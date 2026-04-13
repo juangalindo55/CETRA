@@ -3,6 +3,7 @@
 import Hero from '@/components/sections/Hero';
 import Timeline from '@/components/sections/Timeline';
 import Testimonial from '@/components/sections/Testimonial';
+import Services from '@/components/sections/Services';
 import EligibilityQuiz from '@/components/sections/EligibilityQuiz';
 import FAQ from '@/components/sections/FAQ';
 import Link from 'next/link';
@@ -123,6 +124,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Servicios */}
+      <Services />
 
       {/* Calculadora de Elegibilidad */}
       <EligibilityQuiz />

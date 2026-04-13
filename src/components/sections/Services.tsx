@@ -7,7 +7,12 @@ const serviceCategories = [
   {
     id: 'diagnostico-funcional',
     title: 'Diagnóstico Funcional Respiratorio',
-    icon: '🫁',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c-4.97 0-9 2.686-9 6v7c0 3.314 4.03 6 9 6s9-2.686 9-6V9c0-3.314-4.03-6-9-6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 9v4m8-4v4" />
+      </svg>
+    ),
     color: 'from-purple-500 to-indigo-600',
     services: [
       {
@@ -39,7 +44,11 @@ const serviceCategories = [
   {
     id: 'diagnostico-sueno',
     title: 'Diagnóstico del Sueño',
-    icon: '😴',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+      </svg>
+    ),
     color: 'from-blue-500 to-cyan-600',
     services: [
       {
@@ -63,7 +72,11 @@ const serviceCategories = [
   {
     id: 'pruebas-esfuerzo',
     title: 'Pruebas de Esfuerzo y Capacidad Funcional',
-    icon: '💪',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+      </svg>
+    ),
     color: 'from-green-500 to-emerald-600',
     services: [
       {
@@ -83,7 +96,11 @@ const serviceCategories = [
   {
     id: 'rehabilitacion',
     title: 'Rehabilitación Pulmonar',
-    icon: '🏥',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+      </svg>
+    ),
     color: 'from-red-500 to-pink-600',
     services: [
       {
@@ -176,7 +193,9 @@ export default function Services() {
                 <div className={`bg-gradient-to-r ${category.color} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <span className="text-4xl">{category.icon}</span>
+                      <div className="w-12 h-12 flex items-center justify-center text-white">
+                        {category.icon}
+                      </div>
                       <div className="text-left">
                         <h3 className="font-display text-2xl font-semibold">
                           {category.title}

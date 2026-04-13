@@ -11,31 +11,24 @@ const pneumologistDescription = {
 const technicians = [
   {
     id: 1,
-    name: 'Carlos Martínez',
+    name: 'Cristina Durán',
     area: 'Función Pulmonar',
     services: ['Espirometría', 'Pletismografía', 'DLCO', 'MIP-MEP'],
     description: 'Especialista en pruebas de función pulmonar avanzadas con más de 8 años de experiencia.',
   },
   {
     id: 2,
-    name: 'María García',
+    name: 'Ivis Pérez',
     area: 'Estudios de Sueño',
     services: ['Poligrafía', 'Titulación CPAP', 'Noche Dividida'],
     description: 'Técnica especializada en diagnóstico y titulación de apnea del sueño, atención personalizada.',
   },
   {
     id: 3,
-    name: 'Jorge López',
+    name: 'Brandon Hernández',
     area: 'Pruebas de Esfuerzo',
     services: ['Caminata 6 Minutos', 'CPET', 'Reto con Ejercicio'],
     description: 'Técnico certificado en ergometría cardiopulmonar y evaluación de capacidad funcional.',
-  },
-  {
-    id: 4,
-    name: 'Ana Rodríguez',
-    area: 'Rehabilitación Cardiopulmonar',
-    services: ['Sesiones Individuales', 'Programas de Entrenamiento', 'Mantenimiento'],
-    description: 'Especialista en rehabilitación pulmonar con enfoque personalizado y seguimiento continuo.',
   },
 ];
 

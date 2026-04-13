@@ -2,26 +2,11 @@
 
 import { motion } from 'framer-motion';
 
-const pneumologists = [
-  {
-    id: 1,
-    role: 'Neumólogo Especialista',
-    specialties: ['Diagnóstico Integral', 'Medicina Respiratoria'],
-    description: 'Evaluación clínica completa, análisis de pruebas funcionales y diagnóstico de enfermedades respiratorias.',
-  },
-  {
-    id: 2,
-    role: 'Neumólogo Especialista',
-    specialties: ['Trasplante Pulmonar', 'Seguimiento Post-Trasplante'],
-    description: 'Evaluación de candidatos, manejo perioperatorio e interpretación de resultados post-trasplante.',
-  },
-  {
-    id: 3,
-    role: 'Neumólogo Especialista',
-    specialties: ['Medicina del Sueño', 'Trastornos Respiratorios'],
-    description: 'Diagnóstico y tratamiento de apnea del sueño, hipoxemia nocturna y trastornos respiratorios relacionados.',
-  },
-];
+const pneumologistDescription = {
+  role: 'Neumólogos Especialistas',
+  specialties: ['Diagnóstico Integral', 'Trasplante Pulmonar', 'Medicina del Sueño', 'Interpretación de Resultados'],
+  description: 'Nuestro equipo de neumólogos especializados maneja todas las áreas de la medicina respiratoria: desde evaluaciones clínicas completas y diagnóstico de enfermedades respiratorias, hasta evaluación de candidatos para trasplante pulmonar y seguimiento post-trasplante. También diagnosticamos y tratamos trastornos del sueño como apnea, hipoxemia nocturna y otros trastornos respiratorios nocturnos. Cada especialista interpreta resultados de pruebas funcionales con precisión para guiar el mejor tratamiento para cada paciente.',
+};
 
 const technicians = [
   {
@@ -117,41 +102,35 @@ export default function Specialists() {
           </div>
 
           <motion.div
-            variants={containerVariants}
+            variants={itemVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="max-w-3xl mx-auto"
           >
-            {pneumologists.map((pneumologist) => (
-              <motion.div
-                key={pneumologist.id}
-                variants={itemVariants}
-                className="bg-white rounded-2xl p-8 border-2 border-gray-100 hover:border-[#7C3AED]/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#311B92] to-[#7C3AED] flex items-center justify-center text-white font-semibold text-xl mb-4">
-                    ⚕️
-                  </div>
-                  <h3 className="font-display text-xl font-semibold text-[#1a0a3d] mb-2">
-                    {pneumologist.role}
-                  </h3>
-                  <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    {pneumologist.specialties.map((spec) => (
-                      <span
-                        key={spec}
-                        className="text-xs bg-[#f5f3ff] text-[#7C3AED] px-3 py-1 rounded-full font-medium"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {pneumologist.description}
-                  </p>
+            <div className="bg-white rounded-2xl p-8 border-2 border-gray-100 hover:border-[#7C3AED]/30 hover:shadow-lg transition-all duration-300">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#311B92] to-[#7C3AED] flex items-center justify-center text-white font-semibold text-xl mb-4">
+                  ⚕️
                 </div>
-              </motion.div>
-            ))}
+                <h3 className="font-display text-2xl font-semibold text-[#1a0a3d] mb-4">
+                  {pneumologistDescription.role}
+                </h3>
+                <div className="flex flex-wrap gap-2 justify-center mb-6">
+                  {pneumologistDescription.specialties.map((spec) => (
+                    <span
+                      key={spec}
+                      className="text-xs bg-[#f5f3ff] text-[#7C3AED] px-3 py-1 rounded-full font-medium"
+                    >
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
+                  {pneumologistDescription.description}
+                </p>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 

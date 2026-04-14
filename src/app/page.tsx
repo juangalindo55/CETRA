@@ -146,12 +146,14 @@ export default function Home() {
             <p className="text-gray-500 font-light leading-relaxed mb-10 max-w-md mx-auto">
               Agenda una consulta con nuestros especialistas y da el primer paso hacia una mejor calidad de vida.
             </p>
-            <Link
-              href="/contacto"
+            <a
+              href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20consulta"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-10 py-4 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-lg shadow-[#311B92]/20 hover:bg-[#1a0a5e] hover:shadow-xl hover:shadow-[#311B92]/30 hover:-translate-y-0.5 transition-all duration-300"
             >
               Agendar Consulta
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>

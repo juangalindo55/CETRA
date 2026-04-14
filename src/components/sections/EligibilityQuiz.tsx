@@ -82,12 +82,14 @@ export default function EligibilityQuiz() {
             </p>
 
             <div className="flex gap-4 justify-center">
-              <Link
-                href="/contacto"
+              <a
+                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20evaluaci%C3%B3n"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300"
               >
                 Agendar Evaluación
-              </Link>
+              </a>
               <button
                 onClick={handleReset}
                 className="px-8 py-3 border border-gray-300 text-gray-700 font-light rounded-full hover:border-[#7C3AED] hover:text-[#7C3AED] transition-all duration-300"

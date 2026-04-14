@@ -33,12 +33,14 @@ export default function Navbar() {
           <Link href="/servicios" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Servicios</Link>
           <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
           <div className="w-px h-4 bg-gray-200" />
-          <Link
-            href="/contacto"
+          <a
+            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-sm hover:bg-[#1a0a5e] hover:shadow-lg hover:shadow-[#311B92]/20 hover:-translate-y-0.5 transition-all duration-300"
           >
             Agendar Cita
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -59,13 +61,15 @@ export default function Navbar() {
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4 text-sm font-light text-gray-600 tracking-wide">
           <Link href="/servicios" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Servicios</Link>
           <Link href="/especialistas" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Especialistas</Link>
-          <Link
-            href="/contacto"
+          <a
+            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-center hover:bg-[#1a0a5e] transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             Agendar Cita
-          </Link>
+          </a>
         </div>
       )}
     </header>

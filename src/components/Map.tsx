@@ -4,7 +4,7 @@
 const CETRA_LOCATION = {
   lat: 25.673836,
   lng: -100.348892,
-  address: 'Torre José A. Muguerza, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L.',
+  address: 'Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L.',
   phone: '+52 81 1778 1017',
   hours: 'Lunes - Viernes: 8:00 - 17:00',
 };
@@ -15,7 +15,7 @@ export default function Map() {
   return (
     <div className="rounded-lg overflow-hidden border border-[#e8e4f8] shadow-sm">
       <iframe
-        width="100%"
+        width="125%"
         height="256"
         frameBorder="0"
         scrolling="no"

@@ -83,12 +83,14 @@ export default function Hero() {
               custom={0.4}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link
-                href="/contacto"
+              <a
+                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20consulta"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-lg shadow-[#311B92]/20 hover:bg-[#1a0a5e] hover:shadow-xl hover:shadow-[#311B92]/30 hover:-translate-y-0.5 transition-all duration-300 text-center"
               >
                 Agendar Consulta
-              </Link>
+              </a>
               <Link
                 href="/servicios"
                 className="px-9 py-3.5 border border-gray-300 text-gray-600 font-light tracking-wide rounded-full hover:border-[#311B92] hover:text-[#311B92] hover:-translate-y-0.5 transition-all duration-300 text-center"

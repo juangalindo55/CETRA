@@ -5,7 +5,7 @@ import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
 import { SectionLayout } from '@/components/SectionLayout';
 import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
-import { ReadingProgress } from '@/components/ReadingProgress';
+import ReadingProgress from '@/components/ReadingProgress';
 
 export async function generateStaticParams() {
   const services = getAllServices();

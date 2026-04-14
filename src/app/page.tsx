@@ -44,7 +44,7 @@ const pillars = [
     ),
     title: 'Acompañamiento Integral',
     desc: 'Cuidado continuo y multidisciplinario que pone la humanidad del paciente en el centro.',
-    link: { href: '/contacto', label: 'Hablar con un especialista →' },
+    link: { href: '/especialistas', label: 'Hablar con un especialista →' },
   },
 ];
 

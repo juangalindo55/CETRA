@@ -18,12 +18,14 @@ export default function Footer() {
               Centro de excelencia en trasplante pulmonar y medicina respiratoria avanzada.
               Atención médica de alta especialidad con un enfoque humano e integral.
             </p>
-            <Link
-              href="/contacto"
+            <a
+              href="https://wa.me/528117781017?text=Hola,%20quisiera%20hablar%20con%20un%20especialista"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block border border-[#311B92]/30 text-[#311B92] hover:border-[#311B92] hover:bg-[#311B92]/5 text-sm px-6 py-2.5 rounded-full transition-all duration-300"
             >
               Contactar al especialista
-            </Link>
+            </a>
           </div>
 
           {/* Links */}

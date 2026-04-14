@@ -44,7 +44,7 @@ const pillars = [
     ),
     title: 'Acompañamiento Integral',
     desc: 'Cuidado continuo y multidisciplinario que pone la humanidad del paciente en el centro.',
-    link: { href: '/especialistas', label: 'Hablar con un especialista →' },
+    link: { href: 'https://wa.me/528117781017?text=Hola,%20quisiera%20hablar%20con%20un%20especialista', label: 'Hablar con un especialista →' },
   },
 ];
 
@@ -112,12 +112,23 @@ export default function Home() {
                 </div>
                 <h3 className="font-display text-base font-semibold mb-2 text-[#1a0a3d]">{p.title}</h3>
                 <p className="text-gray-500 leading-relaxed text-sm mb-3 flex-grow">{p.desc}</p>
-                <Link
-                  href={p.link.href}
-                  className="text-[#7C3AED] text-xs font-medium hover:text-[#311B92] transition-colors mt-auto inline-block"
-                >
-                  {p.link.label}
-                </Link>
+                {p.link.href.startsWith('http') ? (
+                  <a
+                    href={p.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#7C3AED] text-xs font-medium hover:text-[#311B92] transition-colors mt-auto inline-block"
+                  >
+                    {p.link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={p.link.href}
+                    className="text-[#7C3AED] text-xs font-medium hover:text-[#311B92] transition-colors mt-auto inline-block"
+                  >
+                    {p.link.label}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>

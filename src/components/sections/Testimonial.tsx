@@ -1,37 +1,33 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const testimonials = [
   {
     name: 'Juan García',
     age: 52,
-    location: 'Madrid',
+    location: 'Monterrey',
     achievement: 'Volvió a correr 5km diariamente',
     story:
       'Hace 8 meses no podía caminar sin perder el aliento. Después del trasplante en CETRA, mi vida cambió por completo. Hoy puedo disfrutar con mis hijos y nietos nuevamente.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
     monthsPost: 8,
   },
   {
     name: 'María Rodríguez',
     age: 48,
-    location: 'Barcelona',
+    location: 'Ciudad de México',
     achievement: 'Retomó su carrera profesional',
     story:
-      'El equipo de CETRA no solo me cuidó médicamente, sino emocionalmente. Hoy trabajo como antes y me siento una persona nueva. La supervivencia del 98% no es estadística, es realidad.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
+      'El equipo de CETRA no solo me cuidó médicamente, sino emocionalmente. Hoy trabajo como antes y me siento una persona nueva. La supervivencia no es estadística, es realidad.',
     monthsPost: 12,
   },
   {
     name: 'Carlos López',
     age: 55,
-    location: 'Valencia',
+    location: 'San Pedro Garza García',
     achievement: 'Viaja por primera vez en 5 años',
     story:
       'Pensé que nunca volvería a viajar. Con CETRA no solo recuperé mi salud, sino mi libertad. Hace poco estuve en Italia y fue increíble sentir que puedo vivir sin limitaciones.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
     monthsPost: 10,
   },
 ];
@@ -57,39 +53,34 @@ export default function Testimonial() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[#7C3AED]/30 hover:shadow-lg transition-all duration-300"
+              className="relative p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_20px_40px_rgb(124,58,237,0.1)] transition-all duration-500 overflow-hidden group flex flex-col justify-between"
             >
-              {/* Image */}
-              <div className="relative h-48 bg-gray-200 overflow-hidden">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+              {/* Decorative Quote Mark */}
+              <div className="absolute -top-4 -right-2 text-[150px] leading-none text-[#7C3AED]/5 font-serif font-bold group-hover:text-[#7C3AED]/10 transition-colors duration-500 pointer-events-none">
+                “
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                {/* Name & Location */}
-                <div className="mb-4">
-                  <h3 className="font-display text-xl font-semibold text-[#1a0a3d]">{testimonial.name}</h3>
-                  <p className="text-xs text-gray-500 mt-1">{testimonial.age} años • {testimonial.location}</p>
-                  <p className="text-xs text-[#7C3AED] font-medium mt-2">
-                    ✓ {testimonial.monthsPost} meses post-trasplante
-                  </p>
+              {/* Story */}
+              <p className="relative z-10 text-lg text-gray-600 leading-relaxed font-light mb-8 italic">
+                "{testimonial.story}"
+              </p>
+
+              <div className="relative z-10 mt-auto">
+                {/* Patient Info */}
+                <div className="flex flex-col border-t border-gray-100 pt-6 mb-5">
+                    <h3 className="font-display text-xl font-semibold text-[#1a0a3d]">{testimonial.name}</h3>
+                    <div className="flex gap-2 items-center mt-1">
+                       <span className="text-sm text-gray-400">{testimonial.age} años</span>
+                       <span className="w-1 h-1 bg-gray-300 rounded-full" />
+                       <span className="text-sm text-[#7C3AED] font-medium tracking-wide">{testimonial.location}</span>
+                    </div>
                 </div>
 
-                {/* Achievement */}
-                <div className="bg-[#f5f3ff] rounded-lg p-3 mb-4 border border-[#e8e4f8]">
-                  <p className="text-sm font-semibold text-[#311B92]">
-                    🎯 {testimonial.achievement}
-                  </p>
+                {/* Achievement Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#f5f3ff] rounded-full border border-[#ede9fe] group-hover:bg-[#ede9fe] transition-colors">
+                    <span className="w-2 h-2 rounded-full bg-[#7C3AED] animate-pulse" />
+                    <span className="text-xs font-semibold text-[#311B92] tracking-wide">{testimonial.achievement}</span>
                 </div>
-
-                {/* Story */}
-                <p className="text-sm text-gray-600 leading-relaxed">"{testimonial.story}"</p>
               </div>
             </motion.div>
           ))}

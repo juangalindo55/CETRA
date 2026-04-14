@@ -24,21 +24,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="w-full">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Link href="/" className="hover:text-[#311B92] transition-colors">Inicio</Link>
-            <span>/</span>
-            <Link href="/servicios" className="hover:text-[#311B92] transition-colors">Servicios</Link>
-            <span>/</span>
-            <span className="text-[#1a0a3d] font-medium">{service.frontmatter.title}</span>
-          </div>
-        </div>
-      </div>
+
 
       {/* Hero Section */}
-      <section className="bg-[#1a0a3d] text-white py-24">
+      <section className="bg-[#1a0a3d] text-white pt-32 pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[10px] tracking-[0.3em] text-[#a78bfa] uppercase mb-6">Servicio especializado</p>
           <h1 className="font-display text-5xl md:text-6xl font-light mb-6 leading-tight">

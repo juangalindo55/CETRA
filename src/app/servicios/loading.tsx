@@ -1,12 +1,7 @@
 export default function ServicesLoading() {
   return (
     <div className="w-full animate-pulse">
-      {/* Breadcrumb Skeleton */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="w-48 h-4 bg-gray-200 rounded-md"></div>
-        </div>
-      </div>
+
 
       {/* Hero Skeleton */}
       <section className="bg-[#1a0a3d]/5 py-24">

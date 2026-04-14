@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#f8f7ff] text-[#1a0a3d] pt-16 pb-10 border-t border-[#e8e4f8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
           {/* Brand */}
           <div className="md:col-span-2">
@@ -46,14 +46,15 @@ export default function Footer() {
               <li><Link href="/terminos" className="hover:text-[#311B92] transition-colors duration-200">Términos y Condiciones</Link></li>
             </ul>
           </div>
-
-          {/* Map */}
-          <div>
-            <h4 className="text-[10px] font-semibold mb-5 text-[#7C3AED] uppercase tracking-[0.2em]">Ubicación</h4>
-            <Map />
-          </div>
         </div>
+      </div>
 
+      {/* Full Width Map Section */}
+      <div className="w-full h-[450px] relative border-y border-[#e8e4f8] mb-12">
+        <Map />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bottom bar */}
         <div className="border-t border-[#e8e4f8] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <span>© {new Date().getFullYear()} CETRA. Todos los derechos reservados.</span>

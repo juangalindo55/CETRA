@@ -2,11 +2,11 @@
 
 // Coordenadas de ejemplo (Madrid, España)
 const CETRA_LOCATION = {
-  lat: 40.4168,
-  lng: -3.7038,
-  address: 'Madrid, España',
-  phone: '+34 912 345 678',
-  hours: 'Lunes - Viernes: 8:00 - 20:00',
+  lat: 25.673836,
+  lng: -100.348892,
+  address: 'Torre José A. Muguerza, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L.',
+  phone: '+52 81 1778 1017',
+  hours: 'Lunes - Viernes: 8:00 - 17:00',
 };
 
 export default function Map() {

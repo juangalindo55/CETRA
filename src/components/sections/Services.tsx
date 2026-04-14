@@ -2,17 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Wind, Moon, Activity, HeartPulse, ChevronDown } from 'lucide-react';
 
 const serviceCategories = [
   {
     id: 'diagnostico-funcional',
     title: 'Diagnóstico Funcional Respiratorio',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c-4.97 0-9 2.686-9 6v7c0 3.314 4.03 6 9 6s9-2.686 9-6V9c0-3.314-4.03-6-9-6z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 9v4m8-4v4" />
-      </svg>
-    ),
+    icon: <Wind className="w-8 h-8" strokeWidth={1.5} />,
     color: 'from-purple-500 to-indigo-600',
     services: [
       {
@@ -44,11 +40,7 @@ const serviceCategories = [
   {
     id: 'diagnostico-sueno',
     title: 'Diagnóstico del Sueño',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-      </svg>
-    ),
+    icon: <Moon className="w-8 h-8" strokeWidth={1.5} />,
     color: 'from-blue-500 to-cyan-600',
     services: [
       {
@@ -72,11 +64,7 @@ const serviceCategories = [
   {
     id: 'pruebas-esfuerzo',
     title: 'Pruebas de Esfuerzo y Capacidad Funcional',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-      </svg>
-    ),
+    icon: <Activity className="w-8 h-8" strokeWidth={1.5} />,
     color: 'from-green-500 to-emerald-600',
     services: [
       {
@@ -96,11 +84,7 @@ const serviceCategories = [
   {
     id: 'rehabilitacion',
     title: 'Rehabilitación Pulmonar',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-      </svg>
-    ),
+    icon: <HeartPulse className="w-8 h-8" strokeWidth={1.5} />,
     color: 'from-red-500 to-pink-600',
     services: [
       {
@@ -128,18 +112,19 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
+    scale: 1,
+    transition: { duration: 0.6 },
   },
 };
 
@@ -209,10 +194,10 @@ export default function Services() {
                       animate={{
                         rotate: expandedCategory === category.id ? 180 : 0,
                       }}
-                      transition={{ duration: 0.3 }}
-                      className="text-2xl"
+                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      className="text-white"
                     >
-                      ▼
+                      <ChevronDown className="w-6 h-6" />
                     </motion.div>
                   </div>
                 </div>
@@ -241,7 +226,7 @@ export default function Services() {
                         duration: 0.3,
                         delay: expandedCategory === category.id ? index * 0.05 : 0,
                       }}
-                      className="bg-white rounded-xl p-5 border-2 border-gray-100 hover:border-[#7C3AED]/30 hover:shadow-md transition-all duration-300"
+                      className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-300"
                     >
                       <h4 className="font-display text-lg font-semibold text-[#1a0a3d] mb-2">
                         {service.name}
@@ -259,22 +244,30 @@ export default function Services() {
 
         {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 bg-gradient-to-r from-[#311B92] to-[#7C3AED] rounded-3xl p-12 text-center"
+          transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+          className="mt-24 relative overflow-hidden bg-[#1a0a3d] rounded-[2rem] p-12 text-center isolate border border-white/10"
         >
-          <h3 className="font-display text-3xl font-light text-white mb-4">
-            ¿Necesitas uno de nuestros servicios?
+          {/* Glowing Accents */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#7C3AED]/20 via-[#1a0a3d]/0 to-transparent -z-10 pointer-events-none" />
+          
+          <h3 className="font-display text-4xl font-light text-white mb-6">
+            Lleva tu cuidado al siguiente nivel
           </h3>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Contacta con nuestro equipo especializado para agendar tu evaluación o para resolver
-            cualquier duda sobre nuestros servicios.
+          <p className="text-white/80 mb-10 max-w-xl mx-auto text-lg font-light leading-relaxed">
+            Nuestro equipo de especialistas está preparado para ofrecerte un diagnóstico preciso y un tratamiento a medida. 
+            No dejes tu salud respiratoria para mañana.
           </p>
-          <button className="px-10 py-4 bg-white text-[#311B92] font-light tracking-wide rounded-full hover:shadow-xl hover:bg-gray-50 transition-all duration-300">
-            Agendar Consulta
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300">
+              Agendar Evaluación
+            </button>
+            <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-medium tracking-wide rounded-full hover:bg-white/5 transition-all duration-300">
+              Realizar Quiz de Candidato
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

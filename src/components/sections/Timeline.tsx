@@ -3,34 +3,36 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+import { ClipboardList, HeartPulse, Stethoscope, Sparkles } from 'lucide-react';
+
 const phases = [
   {
     phase: 1,
     title: 'Evaluación',
     duration: '2-4 semanas',
     description: 'Análisis clínico profundo con pruebas de función pulmonar, estudios de imagen avanzados, evaluación cardiológica, análisis nutricional y psicológico.',
-    icon: '📋',
+    icon: <ClipboardList className="w-8 h-8 text-[#7C3AED]" strokeWidth={1.5} />,
   },
   {
     phase: 2,
     title: 'Preparación',
     duration: '1-3 meses',
     description: 'Programa de rehabilitación respiratoria, optimización nutricional, educación sobre el proceso, coordinación con equipo de donación y preparación psicológica.',
-    icon: '💪',
+    icon: <HeartPulse className="w-8 h-8 text-[#7C3AED]" strokeWidth={1.5} />,
   },
   {
     phase: 3,
     title: 'Trasplante',
     duration: '1 día',
     description: 'Procedimiento quirúrgico realizado por nuestro equipo especializado con tecnología de punta. Monitoreo continuo durante y después de la intervención.',
-    icon: '🏥',
+    icon: <Stethoscope className="w-8 h-8 text-[#7C3AED]" strokeWidth={1.5} />,
   },
   {
     phase: 4,
     title: 'Recuperación',
     duration: '3-6 meses',
     description: 'Rehabilitación progresiva, ajuste de medicamentos, monitoreo de función pulmonar, seguimiento continuo y retorno gradual a actividades cotidianas.',
-    icon: '✨',
+    icon: <Sparkles className="w-8 h-8 text-[#7C3AED]" strokeWidth={1.5} />,
   },
 ];
 

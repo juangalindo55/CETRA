@@ -30,7 +30,7 @@ export default function Navbar() {
         {/* Izquierda: Logo */}
         <div className="flex-1 flex justify-start">
           <Link href="/" className="flex items-center hover:opacity-90 transition-all transform hover:scale-105 duration-300 relative py-2">
-            <Logo width={160} height={160} className="relative z-10 drop-shadow-lg" />
+            <Logo width={200} height={200} className="relative z-10 drop-shadow-lg" />
           </Link>
         </div>
 

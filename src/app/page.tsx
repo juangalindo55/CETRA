@@ -5,7 +5,9 @@ import Timeline from '@/components/sections/Timeline';
 import Testimonial from '@/components/sections/Testimonial';
 import EligibilityQuiz from '@/components/sections/EligibilityQuiz';
 import FAQ from '@/components/sections/FAQ';
+import Marquee from '@/components/ui/Marquee';
 import Link from 'next/link';
+
 import { motion } from 'framer-motion';
 
 const stats = [
@@ -86,6 +88,8 @@ export default function Home() {
 
       {/* Testimonios */}
       <Testimonial />
+
+      <Marquee />
 
       {/* Pilares */}
       <section className="py-20 w-full bg-white relative">

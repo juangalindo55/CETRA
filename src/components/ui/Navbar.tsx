@@ -29,15 +29,15 @@ export default function Navbar() {
         
         {/* Izquierda: Logo */}
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center hover:opacity-90 transition-all transform hover:scale-105 duration-300 relative py-2">
-            <Logo width={200} height={200} className="relative z-10 drop-shadow-lg" />
+          <Link href="/" className="flex items-center hover:opacity-90 transition-all transform hover:scale-105 duration-300 relative py-1">
+            <Logo width={260} height={260} className="relative z-10 drop-shadow-lg" />
           </Link>
         </div>
 
         {/* Centro: Nav links (Absolute for perfect centering) */}
-        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-sm font-light text-[#1a0a3d]/70 tracking-wide">
+        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 text-base font-light text-[#1a0a3d]/70 tracking-wide">
           <Link href="/servicios" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Servicios</Link>
-          <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Trasplante Pulmonar</Link>
+          <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer whitespace-nowrap">Trasplante Pulmonar</Link>
           <Link href="/investigacion" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Investigación</Link>
           <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
         </nav>

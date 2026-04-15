@@ -60,29 +60,29 @@ export function ProcessPhases() {
       {phases.map((phase, index) => (
         <div
           key={index}
-          className={`${phase.bgColor} rounded-2xl p-8 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 relative overflow-hidden group`}
+          className={`${phase.bgColor} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group`}
         >
           {/* Decorative background element */}
           <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-300" />
 
-          {/* Number badge */}
-          <div className="text-4xl font-bold opacity-20 mb-4">{phase.number}</div>
-
-          {/* Icon */}
-          <div className={`${phase.iconBgColor} w-14 h-14 rounded-xl flex items-center justify-center mb-6 backdrop-blur-sm`}>
+          {/* Icon - positioned at top */}
+          <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm relative z-10`}>
             {phase.icon}
           </div>
 
+          {/* Number badge - subtle */}
+          <div className="text-3xl font-bold opacity-10 mb-2 relative z-10">{phase.number}</div>
+
           {/* Content */}
-          <h3 className="font-display text-xl font-semibold mb-3 relative z-10">{phase.title}</h3>
-          <p className="text-sm text-white/90 mb-6 leading-relaxed relative z-10">{phase.description}</p>
+          <h3 className="font-display text-lg font-semibold mb-2 relative z-10 leading-snug">{phase.title}</h3>
+          <p className="text-xs text-white/85 mb-4 leading-relaxed relative z-10">{phase.description}</p>
 
           {/* Items list */}
-          <ul className="space-y-3 relative z-10">
+          <ul className="space-y-2 relative z-10">
             {phase.items.map((item, itemIndex) => (
-              <li key={itemIndex} className="flex items-start gap-3">
-                <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-white/95">{item}</span>
+              <li key={itemIndex} className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/90" />
+                <span className="text-xs text-white/90">{item}</span>
               </li>
             ))}
           </ul>

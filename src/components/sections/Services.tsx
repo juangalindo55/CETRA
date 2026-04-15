@@ -262,16 +262,13 @@ export default function Services() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20evaluaci%C3%B3n"
+              href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20servicios"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 inline-block text-center"
             >
-              Agendar Evaluación
+              Agendar Servicios
             </a>
-            <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-medium tracking-wide rounded-full hover:bg-white/5 transition-all duration-300">
-              Realizar Quiz de Candidato
-            </button>
           </div>
         </motion.div>
       </div>

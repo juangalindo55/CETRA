@@ -37,8 +37,9 @@ export default function Navbar() {
         {/* Centro: Nav links (Absolute for perfect centering) */}
         <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-sm font-light text-[#1a0a3d]/70 tracking-wide">
           <Link href="/servicios" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Servicios</Link>
-          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Trasplante Pulmonar</Link>
+          <Link href="/investigacion" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Investigación</Link>
+          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
         </nav>
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
@@ -49,7 +50,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="hidden md:inline-block bg-[#311B92] text-white px-6 py-2.5 rounded-full text-sm hover:bg-[#1a0a5e] hover:shadow-lg hover:shadow-[#311B92]/20 hover:-translate-y-0.5 transition-all duration-300"
           >
-            Agendar Cita
+            Agendar Servicios
           </a>
 
           {/* Mobile hamburger */}
@@ -70,8 +71,9 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4 text-sm font-light text-gray-600 tracking-wide">
           <Link href="/servicios" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Servicios</Link>
-          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Especialistas</Link>
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Trasplante Pulmonar</Link>
+          <Link href="/investigacion" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Investigación</Link>
+          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Especialistas</Link>
           <a
             href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
             target="_blank"
@@ -79,7 +81,7 @@ export default function Navbar() {
             className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-center hover:bg-[#1a0a5e] transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
-            Agendar Cita
+            Agendar Servicios
           </a>
         </div>
       )}

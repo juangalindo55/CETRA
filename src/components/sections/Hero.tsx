@@ -60,8 +60,8 @@ export default function Hero() {
               custom={0.2}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-[#1a0a3d] leading-[1.1] tracking-tight mb-6"
             >
-              Esperanza y{' '}
-              <em className="italic font-bold text-[#2563eb] drop-shadow-sm">Excelencia</em>
+              <span className="text-gray-600">Esperanza y</span>{' '}
+              <em className="italic font-bold text-[#311B92] drop-shadow-sm">Excelencia</em>
             </motion.h1>
 
             <motion.p

@@ -90,15 +90,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 ¿Eres candidato?
               </h2>
               <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                Solicita una evaluación con nuestros especialistas y conoce si eres candidato para este tratamiento.
+                Solicita una consulta con nuestros especialistas y conoce si eres candidato para este tratamiento.
               </p>
               <a
-                href="https://wa.me/528117781017?text=Hola,%20quisiera%20solicitar%20una%20evaluaci%C3%B3n"
+                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20consulta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-10 py-4 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300 shadow-lg shadow-[#311B92]/20"
               >
-                Solicitar Evaluación
+                Solicitar una Consulta
               </a>
             </section>
           </main>

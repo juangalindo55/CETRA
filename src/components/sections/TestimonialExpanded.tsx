@@ -163,7 +163,7 @@ export default function TestimonialExpanded() {
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Banner Section (Sin botón) */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -174,17 +174,9 @@ export default function TestimonialExpanded() {
           <h3 className="font-display text-3xl font-light text-white mb-4">
             ¿Tu historia podría ser la siguiente?
           </h3>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Si tienes una enfermedad pulmonar terminal, es momento de explorar el trasplante como opción
+          <p className="text-white/90 mb-0 max-w-2xl mx-auto">
+            En CETRA estamos comprometidos con brindar una nueva oportunidad a quienes padecen enfermedades pulmonares terminales.
           </p>
-          <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20solicitar%20una%20evaluación"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-10 py-4 bg-white text-[#311B92] font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg"
-          >
-            Solicitar Evaluación Gratuita
-          </a>
         </motion.div>
       </div>
     </section>

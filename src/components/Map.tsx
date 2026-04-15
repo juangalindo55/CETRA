@@ -40,15 +40,18 @@ export default function Map() {
             </div>
             
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#311B92]/5 flex items-center justify-center border border-[#311B92]/10">
+              <a 
+                href={`tel:${CETRA_LOCATION.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-3 group hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#311B92]/5 flex items-center justify-center border border-[#311B92]/10 group-hover:bg-[#311B92]/10 group-hover:border-[#311B92]/30 transition-all">
                    <svg className="w-5 h-4 text-[#311B92]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-gray-400">Teléfono directo</p>
-                  <p className="text-sm text-[#1a0a3d] font-medium">{CETRA_LOCATION.phone}</p>
+                  <p className="text-sm text-[#1a0a3d] font-medium group-hover:text-[#7C3AED] transition-colors">{CETRA_LOCATION.phone}</p>
                 </div>
-              </div>
+              </a>
               
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#311B92]/5 flex items-center justify-center border border-[#311B92]/10">

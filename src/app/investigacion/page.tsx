@@ -134,16 +134,7 @@ export default function InvestigacionPage() {
           <p className="text-gray-600 text-lg mb-10 font-light">
             Nuestra labor científica garantiza que cada tratamiento que recibes hoy es el resultado de la mejor evidencia disponible en el mundo.
           </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="https://wa.me/528117781017?text=Hola,%20quisiera%20saber%20m%C3%A1s%20sobre%20sus%20protocolos%20de%20investigaci%C3%B3n"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-10 py-4 bg-[#311B92] text-white font-medium rounded-full shadow-lg hover:bg-[#1a0a5e] transition-all"
-            >
-              Contactar Dirección Científica
-            </a>
-          </div>
+
         </div>
       </section>
     </div>

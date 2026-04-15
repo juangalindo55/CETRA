@@ -99,7 +99,7 @@ export default function Specialists() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
             <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.1)] transition-all duration-500 flex flex-col md:flex-row gap-10 items-center text-center md:text-left relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#311B92] via-[#7C3AED] to-[#a78bfa]" />
@@ -115,13 +115,13 @@ export default function Specialists() {
                 <h3 className="font-display text-3xl font-semibold text-[#1a0a3d] mb-4">
                   {pneumologistDescription.role}
                 </h3>
-                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
+                <div className="flex flex-nowrap overflow-x-auto md:overflow-visible gap-2 justify-center md:justify-start mb-6 no-scrollbar">
                   {pneumologistDescription.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="text-xs bg-[#7C3AED]/10 text-[#7C3AED] px-4 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1.5"
+                      className="text-[10px] md:text-xs bg-[#7C3AED]/10 text-[#7C3AED] px-3 md:px-4 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1.5 whitespace-nowrap"
                     >
-                      <Star className="w-3 h-3" /> {spec}
+                      <Star className="w-3 h-3 flex-shrink-0" /> {spec}
                     </span>
                   ))}
                 </div>

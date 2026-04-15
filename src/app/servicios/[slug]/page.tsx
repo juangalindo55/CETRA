@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
 import { SectionLayout } from '@/components/SectionLayout';
+import { ProcessPhases } from '@/components/sections/ProcessPhases';
+import { RecoveryTimeline } from '@/components/sections/RecoveryTimeline';
 import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
 
@@ -76,7 +78,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               prose-strong:text-[#311B92] prose-strong:font-semibold">
               <MDXRemote
                 source={service.content}
-                components={{ SectionLayout }}
+                components={{ SectionLayout, ProcessPhases, RecoveryTimeline }}
               />
             </article>
 

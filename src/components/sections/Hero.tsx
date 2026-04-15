@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Logo from '@/components/ui/Logo';
 import { motion } from 'framer-motion';
 
 const fadeUp = {
@@ -33,7 +32,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 gap-16 items-center">
 
           {/* Columna izquierda — texto */}
           <div className="flex flex-col">
@@ -100,16 +99,6 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Columna derecha — logo */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.2}
-            className="flex justify-center md:justify-end"
-          >
-            <Logo width={320} height={320} className="opacity-90" />
-          </motion.div>
         </div>
 
         {/* Scroll indicator */}

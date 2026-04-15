@@ -46,6 +46,20 @@ export default function TableOfContents() {
 
   if (headings.length === 0) return null;
 
+  const handleClick = (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 150;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <nav className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto hidden lg:block w-64 bg-white/50 backdrop-blur-md p-6 rounded-2xl border border-[#7C3AED]/10 shadow-[0_4px_20px_rgb(0,0,0,0.02)]">
       <h4 className="font-display text-sm font-semibold text-[#1a0a3d] tracking-widest uppercase mb-4">
@@ -61,6 +75,7 @@ export default function TableOfContents() {
           >
             <a
               href={`#${heading.id}`}
+              onClick={(e) => handleClick(heading.id, e)}
               className={`block -ml-[2px] pl-4 border-l-2 py-1 text-sm ${
                 activeId === heading.id
                   ? 'border-[#7C3AED] text-[#7C3AED] font-medium'

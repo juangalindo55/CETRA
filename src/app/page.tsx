@@ -2,7 +2,6 @@
 
 import Hero from '@/components/sections/Hero';
 import Timeline from '@/components/sections/Timeline';
-import Testimonial from '@/components/sections/Testimonial';
 import EligibilityQuiz from '@/components/sections/EligibilityQuiz';
 import FAQ from '@/components/sections/FAQ';
 import Marquee from '@/components/ui/Marquee';
@@ -85,9 +84,6 @@ export default function Home() {
 
       {/* Timeline */}
       <Timeline />
-
-      {/* Testimonios */}
-      <Testimonial />
 
       <Marquee />
 

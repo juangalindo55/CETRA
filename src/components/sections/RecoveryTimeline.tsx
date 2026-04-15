@@ -98,7 +98,6 @@ export function RecoveryTimeline() {
                       <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">
                         {phase.period}
                       </span>
-                      <h3 className="font-display text-lg font-semibold text-gray-900">{phase.title}</h3>
                     </div>
 
                     <p className="text-gray-600 text-sm mb-4">{phase.description}</p>

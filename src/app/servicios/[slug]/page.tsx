@@ -6,6 +6,7 @@ import TableOfContents from '@/components/TableOfContents';
 import { SectionLayout } from '@/components/SectionLayout';
 import { ProcessPhases } from '@/components/sections/ProcessPhases';
 import { RecoveryTimeline } from '@/components/sections/RecoveryTimeline';
+import TestimonialExpanded from '@/components/sections/TestimonialExpanded';
 import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
 
@@ -70,15 +71,16 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           {/* Main Content */}
           <main className="md:col-span-2">
             <article className="prose prose-lg max-w-none prose-purple prose-img:rounded-2xl
-              prose-headings:font-display prose-headings:text-[#1a0a3d] prose-headings:mt-12 prose-headings:mb-6 prose-headings:font-medium
-              prose-h2:text-4xl prose-h3:text-2xl
+              prose-headings:font-display prose-headings:mt-16 prose-headings:mb-6
+              prose-h2:text-4xl prose-h2:text-[#311B92] prose-h2:font-bold prose-h2:border-b-2 prose-h2:border-[#7C3AED] prose-h2:pb-4 prose-h2:scroll-mt-32
+              prose-h3:text-2xl prose-h3:text-[#7C3AED] prose-h3:font-semibold
               prose-p:mb-6 prose-p:leading-relaxed prose-p:text-gray-600
               prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-ul:text-gray-600
               prose-li:mb-2
               prose-strong:text-[#311B92] prose-strong:font-semibold">
               <MDXRemote
                 source={service.content}
-                components={{ SectionLayout, ProcessPhases, RecoveryTimeline }}
+                components={{ SectionLayout, ProcessPhases, RecoveryTimeline, TestimonialExpanded }}
               />
             </article>
 

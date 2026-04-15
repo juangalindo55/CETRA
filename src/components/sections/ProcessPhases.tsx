@@ -74,7 +74,6 @@ export function ProcessPhases() {
           <div className="text-3xl font-bold opacity-10 mb-2 relative z-10">{phase.number}</div>
 
           {/* Content */}
-          <h3 className="font-display text-lg font-semibold mb-2 relative z-10 leading-snug">{phase.title}</h3>
           <p className="text-xs text-white/85 mb-4 leading-relaxed relative z-10">{phase.description}</p>
 
           {/* Items list */}

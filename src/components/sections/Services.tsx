@@ -44,20 +44,20 @@ const serviceCategories = [
     color: 'from-blue-500 to-cyan-600',
     services: [
       {
-        name: 'Poligrafía Simple Atendida',
-        description: 'Estudio domiciliario o en clínica para detectar apnea del sueño, sin registro de EEG. Opción costo-efectiva y accesible.',
+        name: 'Polisomnografía (Estudio Completo del Sueño)',
+        description: 'El estándar de oro para el diagnóstico de trastornos del sueño. La polisomnografía monitorea simultáneamente la actividad cerebral, niveles de oxígeno, ritmo cardíaco y movimientos oculares para identificar con precisión la arquitectura del sueño y patologías complejas como narcolepsia o trastornos del movimiento.',
       },
       {
-        name: 'Poligrafía de Titulación',
-        description: 'Poligrafía combinada con ajuste de presión de CPAP para encontrar la configuración óptima del dispositivo.',
+        name: 'Poligrafía Simple',
+        description: 'Evaluación simplificada para el diagnóstico del ronquido y pausas respiratorias. Ofrece resultados claros y directos mediante un estudio portátil en casa o bajo supervisión en clínica.',
+      },
+      {
+        name: 'Titulación con CPAP',
+        description: 'Proceso especializado para determinar la presión exacta de aire que necesitas para mantener tu vía aérea abierta. Garantiza que tu equipo de CPAP sea 100% efectivo, eliminando los ronquidos y las apneas para un descanso reparador desde la primera noche.',
       },
       {
         name: 'Poligrafía en Noche Dividida',
         description: 'En una sola noche se realiza primero el diagnóstico y luego la titulación, optimizando tiempos para el paciente.',
-      },
-      {
-        name: 'Estudios de Sueño (RCP)',
-        description: 'Estudios de sueño completos dentro del marco del programa de rehabilitación.',
       },
     ],
   },

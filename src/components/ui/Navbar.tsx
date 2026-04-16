@@ -40,6 +40,7 @@ export default function Navbar() {
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer whitespace-nowrap">Trasplante Pulmonar</Link>
           <Link href="/investigacion" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Investigación</Link>
           <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
+          <Link href="/contacto" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer text-[#311B92] font-normal underline decoration-[#311B92]/30 underline-offset-8">Contacto</Link>
         </nav>
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
@@ -74,6 +75,7 @@ export default function Navbar() {
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Trasplante Pulmonar</Link>
           <Link href="/investigacion" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Investigación</Link>
           <Link href="/especialistas" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Especialistas</Link>
+          <Link href="/contacto" className="hover:text-[#311B92] transition-colors font-medium border-t border-gray-100 pt-2" onClick={() => setOpen(false)}>Contacto</Link>
           <a
             href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
             target="_blank"

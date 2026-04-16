@@ -1,79 +1,80 @@
 'use client';
 
-// Coordenadas de ejemplo
-const CETRA_LOCATION = {
-  lat: 25.673836,
-  lng: -100.348892,
-  address: 'Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L.',
-  phone: '+52 81 1778 1017',
-  hours: 'Lunes - Viernes: 8:00 - 17:00',
-};
+import { Clock, ExternalLink, MapPin, Phone } from 'lucide-react';
+import {
+  CETRA_LOCATION,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_TEL,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_URL,
+} from '@/lib/contact';
 
 export default function Map() {
-  const encodedAddress = encodeURIComponent(CETRA_LOCATION.address);
-  const mapUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
-
   return (
-    <div className="w-full h-full flex flex-col">
-      {/* Map Iframe */}
-      <div className="w-full flex-grow relative min-h-[350px]">
+    <div className="flex h-full w-full flex-col bg-white">
+      <div className="relative min-h-[360px] w-full flex-grow overflow-hidden">
         <iframe
           width="100%"
           height="100%"
           frameBorder="0"
-          style={{ border: 0, filter: 'grayscale(0.1) contrast(1.1) brightness(0.95)' }}
-          src={mapUrl}
+          style={{ border: 0, filter: 'grayscale(0.08) contrast(1.08) brightness(0.96)' }}
+          src={GOOGLE_MAPS_EMBED_URL}
           allowFullScreen
           loading="lazy"
-          title="CETRA Location Map"
+          title="Ubicación de CETRA en Monterrey"
         />
       </div>
 
-      {/* Info Bar - Below Map */}
-      <div className="w-full bg-white py-8 border-t border-[#e8e4f8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7C3AED] font-semibold mb-2">Centro</p>
-              <h3 className="font-display font-semibold text-[#1a0a3d] text-xl leading-tight mb-2">CETRA</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{CETRA_LOCATION.address}</p>
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <a 
-                href={`tel:${CETRA_LOCATION.phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-3 group hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#311B92]/5 flex items-center justify-center border border-[#311B92]/10 group-hover:bg-[#311B92]/10 group-hover:border-[#311B92]/30 transition-all">
-                   <svg className="w-5 h-4 text-[#311B92]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Teléfono directo</p>
-                  <p className="text-sm text-[#1a0a3d] font-medium group-hover:text-[#7C3AED] transition-colors">{CETRA_LOCATION.phone}</p>
-                </div>
-              </a>
-              
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#311B92]/5 flex items-center justify-center border border-[#311B92]/10">
-                   <svg className="w-5 h-4 text-[#311B92]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400">Horario de atención</p>
-                  <p className="text-sm text-gray-500">{CETRA_LOCATION.hours}</p>
-                </div>
+      <div className="border-t border-[#e8e4f8] bg-white py-8">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.95fr_0.8fr] lg:px-8">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+              Centro
+            </p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-[#120726]">
+              {CETRA_LOCATION.title}
+            </h3>
+            <p className="mt-2 text-sm leading-7 text-gray-600">{CETRA_LOCATION.address}</p>
+          </div>
+
+          <div className="space-y-4">
+            <a
+              href={`tel:${CONTACT_PHONE_TEL}`}
+              className="flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#311B92]/10 bg-[#311B92]/5">
+                <Phone className="h-4 w-4 text-[#311B92]" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400">Teléfono directo</p>
+                <p className="text-sm font-medium text-[#120726] transition-colors hover:text-[#7C3AED]">
+                  {CONTACT_PHONE_DISPLAY}
+                </p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#311B92]/10 bg-[#311B92]/5">
+                <Clock className="h-4 w-4 text-[#311B92]" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400">Horario de atención</p>
+                <p className="text-sm text-gray-500">{CETRA_LOCATION.hours}</p>
+                <p className="text-sm text-gray-500">{CETRA_LOCATION.saturdayHours}</p>
               </div>
             </div>
+          </div>
 
-            <div className="flex md:justify-end">
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full md:w-auto px-10 py-4 bg-[#311B92] text-white text-center rounded-full text-sm font-light tracking-wide hover:bg-[#1a0a5e] transition-all shadow-lg shadow-[#311B92]/20 hover:-translate-y-0.5"
-              >
-                Abrir en Google Maps
-              </a>
-            </div>
+          <div className="flex items-start lg:justify-end">
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#311B92] px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-[#311B92]/20 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e] lg:w-auto"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Abrir en Google Maps
+            </a>
           </div>
         </div>
       </div>

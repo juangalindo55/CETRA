@@ -22,6 +22,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (open) {
+      return;
+    }
+
     const onPointerDown = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -33,7 +37,13 @@ export default function Navbar() {
 
     document.addEventListener('mousedown', onPointerDown);
     return () => document.removeEventListener('mousedown', onPointerDown);
-  }, []);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      setServicesOpen(false);
+    }
+  }, [open]);
 
   return (
     <header
@@ -150,15 +160,17 @@ export default function Navbar() {
           <div className="space-y-3">
             <button
               type="button"
-              className="flex w-full items-center justify-between border-b border-gray-100 pb-2 text-left text-gray-800"
+              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
               onClick={() => setServicesOpen((value) => !value)}
               aria-expanded={servicesOpen}
             >
-              <span>Servicios</span>
-              <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+              <span className="text-base font-medium">Servicios</span>
+              <ChevronDown
+                className={`h-5 w-5 shrink-0 transition-transform ${servicesOpen ? 'rotate-180' : ''}`}
+              />
             </button>
             {servicesOpen && (
-              <div className="space-y-4 pl-2">
+              <div className="space-y-4 pl-2 pr-1 pt-2">
                 {serviceCategories.map((category) => (
                   <div key={category.title} className="space-y-2">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
@@ -168,7 +180,7 @@ export default function Navbar() {
                       <Link
                         key={item.slug}
                         href={item.slug}
-                        className="block rounded-lg px-3 py-2 text-sm hover:bg-[#faf8ff] hover:text-[#311B92]"
+                        className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
                         onClick={() => {
                           setOpen(false);
                           setServicesOpen(false);
@@ -181,7 +193,7 @@ export default function Navbar() {
                 ))}
                 <Link
                   href="/servicios"
-                  className="block rounded-lg px-3 py-2 text-sm font-medium text-[#311B92] hover:bg-[#faf8ff]"
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-[#311B92] hover:bg-[#faf8ff] active:bg-[#f3edff]"
                   onClick={() => {
                     setOpen(false);
                     setServicesOpen(false);

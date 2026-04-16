@@ -1,140 +1,350 @@
+import Link from 'next/link';
 import ReadingProgress from '@/components/ReadingProgress';
 import { SectionLayout } from '@/components/SectionLayout';
-import { Microscope, BookOpen, FlaskConical, Globe, GraduationCap, Award } from 'lucide-react';
-
-export const metadata = {
-  title: 'Investigación y Vanguardia | CETRA',
-  description: 'Explora nuestras líneas de investigación en trasplante pulmonar y medicina respiratoria. En CETRA nos mantenemos a la vanguardia científica para ofrecer los mejores resultados.',
-};
+import {
+  ArrowRight,
+  Award,
+  BookOpen,
+  CalendarDays,
+  FlaskConical,
+  Globe,
+  GraduationCap,
+  Microscope,
+  ShieldCheck,
+  Users,
+} from 'lucide-react';
+import { CONTACT_EMAIL_LINK, CONTACT_WHATSAPP } from '@/lib/contact';
 
 const researchLines = [
   {
-    icon: <FlaskConical className="w-8 h-8 text-[#7C3AED]" />,
-    title: 'Bioconservación Pulmonar',
-    desc: 'Investigamos protocolos avanzados de conservación de órganos para extender los tiempos de isquemia y mejorar la función post-trasplante.'
+    icon: <FlaskConical className="h-7 w-7 text-[#7C3AED]" strokeWidth={1.5} />,
+    title: 'Bioconservación pulmonar',
+    status: 'Línea activa',
+    desc: 'Estudiamos protocolos de conservación de órganos para optimizar el manejo del injerto, ampliar ventanas de trabajo y mejorar la recuperación clínica posterior al trasplante.',
+    bullets: [
+      'Preservación del injerto y tiempos de isquemia',
+      'Mejor estabilidad para la planificación quirúrgica',
+      'Optimización del resultado postoperatorio',
+    ],
   },
   {
-    icon: <Microscope className="w-8 h-8 text-[#7C3AED]" />,
-    title: 'Inmunomodulación Precisa',
-    desc: 'Desarrollamos algoritmos personalizados para el manejo de la inmunosupresión, buscando el equilibrio perfecto entre prevención de rechazo y mínima toxicidad.'
+    icon: <Microscope className="h-7 w-7 text-[#7C3AED]" strokeWidth={1.5} />,
+    title: 'Inmunomodulación precisa',
+    status: 'En evolución continua',
+    desc: 'Analizamos estrategias personalizadas para el manejo de la inmunosupresión, buscando equilibrio entre prevención de rechazo y reducción de toxicidad.',
+    bullets: [
+      'Seguimiento adaptado al perfil clínico del paciente',
+      'Lectura más fina del riesgo inmunológico',
+      'Ajustes terapéuticos más informados',
+    ],
   },
   {
-    icon: <Globe className="w-8 h-8 text-[#7C3AED]" />,
-    title: 'Colaboración Internacional',
-    desc: 'Participamos en multicéntricos globales para el estudio de enfermedades intersticiales raras y nuevas terapias biológicas.'
-  }
+    icon: <Globe className="h-7 w-7 text-[#7C3AED]" strokeWidth={1.5} />,
+    title: 'Colaboración internacional',
+    status: 'Trabajo multicéntrico',
+    desc: 'Participamos en redes académicas y colaboraciones globales para revisar evidencia, comparar resultados y alinear la práctica local con estándares internacionales.',
+    bullets: [
+      'Intercambio científico con centros de referencia',
+      'Revisión de evidencia en enfermedades complejas',
+      'Aplicación de hallazgos al contexto local',
+    ],
+  },
+];
+
+const evidenceBlocks = [
+  {
+    icon: <GraduationCap className="h-6 w-6 text-[#311B92]" />,
+    title: 'Protocolos y formación',
+    text: 'La investigación también vive en la práctica diaria: sesiones, revisión de protocolos y actualización clínica continua.',
+  },
+  {
+    icon: <BookOpen className="h-6 w-6 text-[#311B92]" />,
+    title: 'Publicaciones y ponencias',
+    text: 'Compartimos resultados mediante presentaciones académicas, revisiones, pósters y espacios de difusión científica.',
+  },
+  {
+    icon: <Award className="h-6 w-6 text-[#311B92]" />,
+    title: 'Calidad y trazabilidad',
+    text: 'Priorizamos la consistencia metodológica para que cada avance pueda ser leído, discutido y aplicado con claridad.',
+  },
+];
+
+const clinicalImpact = [
+  'Decisiones clínicas mejor informadas',
+  'Protocolos más consistentes y revisables',
+  'Seguimiento más preciso del paciente',
+  'Mayor integración entre ciencia y consulta',
+];
+
+const collaborationPoints = [
+  'Instituciones académicas',
+  'Centros médicos de referencia',
+  'Sociedades científicas',
+  'Proyectos multicéntricos',
 ];
 
 export default function InvestigacionPage() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <ReadingProgress />
 
-      {/* Hero Section */}
-      <section className="bg-[#1a0a3d] text-white pt-40 pb-28 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500 via-transparent to-transparent" />
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block text-[10px] tracking-[0.4em] text-[#a78bfa] uppercase mb-6 font-semibold">
-              Vanguardia Médica
+      <section className="relative overflow-hidden bg-[#120726] text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(124,58,237,0.22),_transparent_42%),radial-gradient(circle_at_bottom_left,_rgba(255,255,255,0.08),_transparent_35%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-14 px-4 py-28 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-32">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c4b5fd]">
+              Investigación y vanguardia
             </span>
-            <h1 className="font-display text-5xl md:text-7xl font-light mb-8 leading-tight">
-              Investigación que <em className="italic font-bold text-white">Salva Vidas</em>
+            <h1 className="mt-6 font-display text-5xl font-light leading-tight sm:text-6xl lg:text-7xl">
+              Investigación en trasplante pulmonar y medicina respiratoria
             </h1>
-            <p className="text-xl text-gray-300 font-light leading-relaxed">
-              En CETRA, la investigación no es un complemento, es nuestro motor de evolución. 
-              Nos dedicamos a empujar las fronteras del trasplante pulmonar para transformar el futuro de nuestros pacientes.
+            <p className="mt-7 max-w-xl text-lg leading-8 text-white/75 sm:text-xl">
+              Generamos evidencia para mejorar la atención clínica, fortalecer los protocolos y ofrecer mejores resultados a nuestros pacientes.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#lineas"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <ArrowRight className="h-4 w-4" />
+                Ver líneas de investigación
+              </a>
+              <a
+                href="#evidencia"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/35 hover:bg-white/5"
+              >
+                <BookOpen className="h-4 w-4" />
+                Publicaciones y congresos
+              </a>
+            </div>
+          </div>
+
+          <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-8">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c4b5fd]">
+              Nuestra base científica
+            </p>
+            <div className="mt-7 space-y-4">
+              {evidenceBlocks.map((item) => (
+                <div key={item.title} className="flex gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h2 className="text-base font-semibold text-white">{item.title}</h2>
+                    <p className="mt-2 text-sm leading-6 text-white/65">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="border-b border-[#ece7fb] bg-white py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-3xl border border-gray-100 bg-[#faf8ff] p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+                Líneas activas
+              </p>
+              <p className="mt-3 text-base leading-7 text-gray-700">
+                Tres frentes de trabajo orientados a impactar la seguridad, la precisión y el seguimiento clínico.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-gray-100 bg-[#faf8ff] p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+                Colaboración
+              </p>
+              <p className="mt-3 text-base leading-7 text-gray-700">
+                Redes académicas, centros de referencia y espacios de intercambio científico.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-gray-100 bg-[#faf8ff] p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+                Difusión científica
+              </p>
+              <p className="mt-3 text-base leading-7 text-gray-700">
+                Pósters, sesiones, revisiones y presentaciones que convierten trabajo clínico en evidencia compartible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lineas" className="bg-[#f8f7ff] py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+              Líneas de investigación
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-light text-[#120726] sm:text-4xl">
+              Trabajo enfocado en áreas que sí cambian la atención
+            </h2>
+            <p className="mt-4 text-base leading-7 text-gray-600">
+              Cada línea busca traducirse en decisiones clínicas más sólidas, mejores protocolos y una lectura más clara del contexto del paciente.
             </p>
           </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {researchLines.map((line) => (
+              <article
+                key={line.title}
+                className="group rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#faf8ff]">
+                    {line.icon}
+                  </div>
+                  <span className="rounded-full border border-[#d8c9ff] bg-[#f5f0ff] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#311B92]">
+                    {line.status}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold text-[#120726]">{line.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-gray-600">{line.desc}</p>
+                <ul className="mt-6 space-y-3 text-sm leading-7 text-gray-700">
+                  {line.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7C3AED]" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Intro Stats */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <GraduationCap className="w-8 h-8 text-[#311B92]" />
-              </div>
-              <h3 className="font-display text-2xl font-semibold text-[#1a0a3d] mb-2">Protocolos Propios</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Implementamos técnicas innovadoras de manejo pre-operatorio únicas en la región.</p>
+      <section id="evidencia" className="bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionLayout
+            imageUrl="https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?w=800&h=600&fit=crop"
+            imageAlt="Laboratorio de investigación avanzada"
+            imageType="photo"
+          >
+            <h2 className="text-[#311B92] font-display text-3xl font-bold mb-6">
+              Actualización permanente
+            </h2>
+            <p>
+              La investigación se traduce en lectura crítica de la evidencia, asistencia a congresos y revisión de lo que puede adaptarse al contexto local. No se trata solo de asistir: se trata de incorporar lo útil al trabajo clínico.
+            </p>
+            <p className="font-semibold text-[#7C3AED]">
+              La ciencia tiene valor cuando mejora decisiones, ordena protocolos y ayuda a atender mejor.
+            </p>
+          </SectionLayout>
+
+          <SectionLayout
+            imageUrl="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?w=800&h=600&fit=crop"
+            imageAlt="Colaboración multidisciplinaria"
+            imageType="photo"
+            reversed
+          >
+            <h2 className="text-[#311B92] font-display text-3xl font-bold mb-6">
+              Ecosistema de innovación
+            </h2>
+            <p>
+              Colaboramos con instituciones académicas y equipos multidisciplinarios para revisar hipótesis, validar protocolos y compartir hallazgos. Nuestra meta es construir investigación con impacto clínico real y lenguaje útil para la práctica.
+            </p>
+          </SectionLayout>
+        </div>
+      </section>
+
+      <section className="bg-[#f8f7ff] py-20 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:px-8">
+          <div className="rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm sm:p-10">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="h-6 w-6 text-[#311B92]" />
+              <h2 className="font-display text-3xl font-light text-[#120726]">
+                Cómo se traduce en la atención
+              </h2>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <BookOpen className="w-8 h-8 text-[#311B92]" />
-              </div>
-              <h3 className="font-display text-2xl font-semibold text-[#1a0a3d] mb-2">Publicaciones</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Nuestros especialistas contribuyen activamente a revistas internacionales de medicina respiratoria.</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-600">
+              El objetivo no es solo producir conocimiento, sino volverlo útil para el paciente y consistente para el equipo clínico.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {clinicalImpact.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-[#ece7fb] bg-[#faf8ff] px-5 py-5 text-sm font-medium text-[#120726]"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Award className="w-8 h-8 text-[#311B92]" />
-              </div>
-              <h3 className="font-display text-2xl font-semibold text-[#1a0a3d] mb-2">Certificaciones</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Avalados por los estándares internacionales más estrictos en investigación clínica.</p>
+          </div>
+
+          <div className="rounded-[2rem] border border-[#e8e4f8] bg-[#120726] p-8 text-white shadow-sm sm:p-10">
+            <div className="flex items-center gap-3">
+              <Users className="h-6 w-6 text-[#c4b5fd]" />
+              <h2 className="font-display text-3xl font-light text-white">
+                Colaboraciones
+              </h2>
+            </div>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/75">
+              La investigación se fortalece cuando se construye en red. Trabajamos con aliados que comparten el objetivo de mejorar la atención respiratoria.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {collaborationPoints.map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-5 text-sm font-medium text-white/90">
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c4b5fd]">
+                Equipo multidisciplinario
+              </p>
+              <p className="mt-4 text-sm leading-7 text-white/75">
+                El trabajo científico se apoya en especialistas clínicos, revisión académica y coordinación entre áreas para que cada hallazgo tenga contexto y aplicación.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Research Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="font-display text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mb-16 text-center">
-          Líneas de Investigación Estratégica
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
-          {researchLines.map((line) => (
-            <div key={line.title} className="bg-[#f5f3ff] p-10 rounded-3xl border border-[#e8e4f8] hover:shadow-xl transition-all duration-300 group">
-              <div className="mb-6 group-hover:scale-110 transition-transform duration-300">{line.icon}</div>
-              <h4 className="font-display text-xl font-bold text-[#1a0a3d] mb-4">{line.title}</h4>
-              <p className="text-gray-600 text-sm leading-relaxed font-light">{line.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Detailed Sections */}
-        <SectionLayout
-          imageUrl="https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?w=800&h=600&fit=crop"
-          imageAlt="Laboratorio de investigación avanzada"
-          imageType="photo"
-        >
-          <h2 className="text-[#311B92] font-display text-3xl font-bold mb-6">Actualización Permanente</h2>
-          <p>
-            Nuestro equipo asiste anualmente a los congresos más relevantes del mundo, como el International Society for Heart and Lung Transplantation (ISHLT). No solo asistimos: tropicalizamos los hallazgos para que el contexto local de nuestros pacientes se beneficie de la ciencia global.
-          </p>
-          <p className="font-semibold text-[#7C3AED]">
-            "La investigación es lo que nos permite ofrecer una segunda oportunidad donde otros ven un límite."
-          </p>
-        </SectionLayout>
-
-        <SectionLayout
-          imageUrl="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?w=800&h=600&fit=crop"
-          imageAlt="Colaboración multidisciplinaria"
-          imageType="photo"
-          reversed
-        >
-          <h2 className="text-[#311B92] font-display text-3xl font-bold mb-6">Ecosistema de Innovación</h2>
-          <p>
-            Colaboramos estrechamente con instituciones académicas líderes para desarrollar tecnología propia en monitoreo funcional respiratorio. Nuestra meta es que CETRA sea el primer centro en Latinoamérica en implementar protocolos de realidad aumentada para la planificación quirúrgica de trasplante pulmonar.
-          </p>
-        </SectionLayout>
-      </div>
-
-      {/* Footer CTA */}
-      <section className="bg-[#f5f3ff] py-24 border-t border-[#e8e4f8]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl font-light text-[#1a0a3d] mb-6">
-            Comprometidos con el <em className="italic font-bold">Futuro</em>
+      <section className="bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+            Contacto académico
+          </span>
+          <h2 className="mt-4 font-display text-4xl font-light text-[#120726] sm:text-5xl">
+            ¿Quieres colaborar con CETRA?
           </h2>
-          <p className="text-gray-600 text-lg mb-10 font-light">
-            Nuestra labor científica garantiza que cada tratamiento que recibes hoy es el resultado de la mejor evidencia disponible en el mundo.
+          <p className="mt-5 text-lg leading-8 text-gray-600">
+            Si representas una institución, proyecto académico o comité científico, podemos conversar sobre alianzas, intercambio de conocimiento o participación en iniciativas multicéntricas.
           </p>
 
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+            <a
+              href={CONTACT_WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#311B92] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e]"
+            >
+              <ArrowRight className="h-4 w-4" />
+              Contactar investigación
+            </a>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c9ff] bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-colors duration-300 hover:border-[#b99cff] hover:bg-[#fcfbff]"
+            >
+              <CalendarDays className="h-4 w-4" />
+              Ver contacto
+            </Link>
+            <a
+              href={CONTACT_EMAIL_LINK}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c9ff] bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-colors duration-300 hover:border-[#b99cff] hover:bg-[#fcfbff]"
+            >
+              <BookOpen className="h-4 w-4" />
+              Enviar propuesta académica
+            </a>
+          </div>
         </div>
       </section>
     </div>

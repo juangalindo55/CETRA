@@ -1,107 +1,164 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Wind, Moon, Activity, HeartPulse, ChevronDown } from 'lucide-react';
+import {
+  Activity,
+  ChevronDown,
+  HeartPulse,
+  Moon,
+  ArrowRight,
+  Wind,
+  ShieldCheck,
+  FileText,
+  Stethoscope,
+} from 'lucide-react';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
+import { featuredServices } from '@/lib/service-hub';
+
+const quickGuide = [
+  {
+    title: 'Tos, falta de aire o enfermedad pulmonar',
+    description: 'Empieza por diagnóstico funcional respiratorio.',
+  },
+  {
+    title: 'Ronquido, pausas respiratorias o sueño no reparador',
+    description: 'Revisa el diagnóstico del sueño.',
+  },
+  {
+    title: 'Seguimiento de trasplante o capacidad funcional',
+    description: 'Consulta las pruebas de esfuerzo y función.',
+  },
+  {
+    title: 'Recuperación y entrenamiento respiratorio',
+    description: 'Explora rehabilitación pulmonar.',
+  },
+];
 
 const serviceCategories = [
   {
     id: 'diagnostico-funcional',
-    title: 'Diagnóstico Funcional Respiratorio',
-    icon: <Wind className="w-8 h-8" strokeWidth={1.5} />,
-    color: 'from-purple-500 to-indigo-600',
+    title: 'Diagnóstico funcional respiratorio',
+    icon: <Wind className="h-8 w-8" strokeWidth={1.5} />,
+    accent: 'from-[#7C3AED] to-[#311B92]',
+    summary:
+      'Estudios para medir función pulmonar, intercambio de gases, inflamación de vía aérea y fuerza respiratoria.',
     services: [
       {
-        name: 'Espirometría Simple',
-        description: 'Mide la capacidad y el flujo de aire de los pulmones. Es la prueba base para detectar enfermedades como EPOC y asma.',
+        name: 'Espirometría simple',
+        description:
+          'Evalúa la capacidad y el flujo de aire. Es una prueba base para revisar síntomas respiratorios y control clínico.',
       },
       {
-        name: 'Espirometría con Broncodilatador',
-        description: 'Misma prueba, pero se administra un medicamento broncodilatador antes para evaluar la reversibilidad de la obstrucción.',
+        name: 'Espirometría con broncodilatador',
+        description:
+          'Permite valorar la reversibilidad de la obstrucción y la respuesta al tratamiento inhalado.',
       },
       {
         name: 'Pletismografía',
-        description: 'Medición avanzada de los volúmenes pulmonares totales, incluyendo el aire que queda atrapado en los pulmones. Complementa la espirometría.',
+        description:
+          'Mide volúmenes pulmonares totales y ayuda a completar la evaluación de enfermedad respiratoria compleja.',
       },
       {
-        name: 'DLCO (Difusión de Gases)',
-        description: 'Evalúa qué tan bien los pulmones transfieren el oxígeno hacia la sangre. Clave para diagnóstico de fibrosis pulmonar y enfisema.',
+        name: 'DLCO',
+        description:
+          'Analiza el intercambio de gases entre pulmón y sangre. Es clave en fibrosis, enfisema y otras enfermedades intersticiales.',
       },
       {
-        name: 'Óxido Nítrico Exhalado (FeNO)',
-        description: 'Detecta inflamación eosinofílica en la vía aérea. Apoya el diagnóstico y seguimiento del asma.',
+        name: 'Óxido nítrico exhalado (FeNO)',
+        description:
+          'Detecta inflamación eosinofílica en la vía aérea y apoya el diagnóstico y seguimiento del asma.',
       },
       {
-        name: 'MIP-MEP (RCP)',
-        description: 'Mide la fuerza de los músculos respiratorios. Útil en enfermedades neuromusculares y evaluación preoperatoria.',
+        name: 'MIP-MEP',
+        description:
+          'Mide la fuerza de los músculos respiratorios. Útil en evaluación neuromuscular y preoperatoria.',
       },
     ],
   },
   {
     id: 'diagnostico-sueno',
-    title: 'Diagnóstico del Sueño',
-    icon: <Moon className="w-8 h-8" strokeWidth={1.5} />,
-    color: 'from-blue-500 to-cyan-600',
+    title: 'Diagnóstico del sueño',
+    icon: <Moon className="h-8 w-8" strokeWidth={1.5} />,
+    accent: 'from-[#0f62fe] to-[#06b6d4]',
+    summary:
+      'Estudios para detectar ronquido, pausas respiratorias y otros trastornos que alteran la calidad del descanso.',
     services: [
       {
-        name: 'Polisomnografía (Estudio Completo del Sueño)',
-        description: 'El estándar de oro para el diagnóstico de trastornos del sueño. La polisomnografía monitorea simultáneamente la actividad cerebral, niveles de oxígeno, ritmo cardíaco y movimientos oculares para identificar con precisión la arquitectura del sueño y patologías complejas como narcolepsia o trastornos del movimiento.',
+        name: 'Polisomnografía',
+        description:
+          'Estudio completo del sueño para una evaluación integral de la respiración nocturna y la arquitectura del descanso.',
       },
       {
-        name: 'Poligrafía Simple',
-        description: 'Evaluación simplificada para el diagnóstico del ronquido y pausas respiratorias. Ofrece resultados claros y directos mediante un estudio portátil en casa o bajo supervisión en clínica.',
+        name: 'Poligrafía simple',
+        description:
+          'Estudio simplificado que ayuda a identificar apnea del sueño y ronquido en un entorno portátil o clínico.',
       },
       {
         name: 'Titulación con CPAP',
-        description: 'Proceso especializado para determinar la presión exacta de aire que necesitas para mantener tu vía aérea abierta. Garantiza que tu equipo de CPAP sea 100% efectivo, eliminando los ronquidos y las apneas para un descanso reparador desde la primera noche.',
+        description:
+          'Permite definir la presión adecuada para el tratamiento y ajustar el equipo con base en la respuesta real del paciente.',
       },
       {
-        name: 'Poligrafía en Noche Dividida',
-        description: 'En una sola noche se realiza primero el diagnóstico y luego la titulación, optimizando tiempos para el paciente.',
+        name: 'Poligrafía en noche dividida',
+        description:
+          'Combina diagnóstico y ajuste terapéutico en una sola noche cuando el caso lo permite.',
       },
     ],
   },
   {
     id: 'pruebas-esfuerzo',
-    title: 'Pruebas de Esfuerzo y Capacidad Funcional',
-    icon: <Activity className="w-8 h-8" strokeWidth={1.5} />,
-    color: 'from-green-500 to-emerald-600',
+    title: 'Pruebas de esfuerzo y capacidad funcional',
+    icon: <Activity className="h-8 w-8" strokeWidth={1.5} />,
+    accent: 'from-[#10b981] to-[#16a34a]',
+    summary:
+      'Evaluaciones para medir tolerancia al ejercicio, respuesta cardiorrespiratoria y capacidad funcional real.',
     services: [
       {
-        name: 'Prueba de Caminata de 6 Minutos',
-        description: 'Evalúa la tolerancia al ejercicio y la saturación de oxígeno. Estándar para seguimiento en trasplante, EPOC e hipertensión pulmonar.',
+        name: 'Prueba de caminata de 6 minutos',
+        description:
+          'Valora la tolerancia al esfuerzo y la saturación de oxígeno. Es útil en trasplante, EPOC e hipertensión pulmonar.',
       },
       {
-        name: 'Prueba de Ejercicio Cardiopulmonar con Gases Espirados (CPET)',
-        description: 'Prueba de esfuerzo máximo que analiza la respuesta integrada del corazón, pulmones y músculos. Gold standard en evaluación funcional avanzada.',
+        name: 'CPET',
+        description:
+          'Analiza la respuesta integrada de corazón, pulmones y músculos durante el esfuerzo máximo. Es útil en evaluación avanzada.',
       },
       {
-        name: 'Prueba de Reto con Ejercicio',
-        description: 'Diagnostica asma inducida por ejercicio mediante un protocolo de esfuerzo controlado.',
+        name: 'Prueba de reto con ejercicio',
+        description:
+          'Ayuda a detectar asma inducida por ejercicio mediante un protocolo controlado.',
       },
     ],
   },
   {
     id: 'rehabilitacion',
-    title: 'Rehabilitación Pulmonar',
-    icon: <HeartPulse className="w-8 h-8" strokeWidth={1.5} />,
-    color: 'from-red-500 to-pink-600',
+    title: 'Rehabilitación pulmonar',
+    icon: <HeartPulse className="h-8 w-8" strokeWidth={1.5} />,
+    accent: 'from-[#ef4444] to-[#ec4899]',
+    summary:
+      'Programas y sesiones para mejorar condición física, respiratoria y calidad de vida en pacientes con enfermedad pulmonar o trasplante.',
     services: [
       {
-        name: 'Consulta de Rehabilitación Cardiopulmonar',
-        description: 'Valoración médica inicial para ingreso al programa de rehabilitación.',
+        name: 'Consulta de rehabilitación cardiopulmonar',
+        description:
+          'Valoración inicial para definir si el paciente debe ingresar a un programa de rehabilitación.',
       },
       {
-        name: 'Sesión de Rehabilitación Cardiopulmonar',
-        description: 'Sesión individual supervisada con ejercicio aeróbico y educación en salud respiratoria.',
+        name: 'Sesión de rehabilitación cardiopulmonar',
+        description:
+          'Sesión individual supervisada con ejercicio aeróbico y educación en salud respiratoria.',
       },
       {
-        name: 'Programa de Rehabilitación Pulmonar (24 sesiones)',
-        description: 'Programa estructurado y completo. Alta evidencia clínica en mejora de calidad de vida en EPOC, trasplante y fibrosis.',
+        name: 'Programa de rehabilitación pulmonar',
+        description:
+          'Plan estructurado de seguimiento con evidencia clínica en EPOC, trasplante y fibrosis.',
       },
       {
-        name: 'Rehabilitación Pulmonar de Mantenimiento (1 sesión)',
-        description: 'Para pacientes que completaron el programa y continúan entrenando de forma periódica. Genera recurrencia.',
+        name: 'Sesión de mantenimiento',
+        description:
+          'Sesión para continuidad terapéutica en pacientes que ya completaron un programa previo.',
       },
     ],
   },
@@ -119,156 +176,221 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  hidden: { opacity: 0, y: 24, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6 },
+    transition: { duration: 0.55 },
   },
 };
 
 export default function Services() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(
-    serviceCategories[0].id
+    serviceCategories[0].id,
   );
 
   return (
-    <section className="py-24 w-full bg-gradient-to-br from-white via-purple-50/30 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section className="w-full bg-white py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.55 }}
+          className="max-w-3xl"
         >
-          <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4">
-            Servicios Especializados
+          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+            ¿Qué necesitas hoy?
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight mb-4">
-            Servicios CETRA Pulmonar
+          <h2 className="mt-4 font-display text-4xl font-light text-[#120726] sm:text-5xl">
+            Estudios, evaluación y rehabilitación respiratoria
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Diagnóstico integral, tratamiento especializado y rehabilitación para enfermedades
-            respiratorias con tecnología de punta.
+          <p className="mt-4 text-lg leading-8 text-gray-600">
+            Encuentra el estudio o programa que mejor corresponde a tu caso y avanza con una ruta clínica más clara.
           </p>
         </motion.div>
 
-        {/* Categories */}
+        <div className="mt-10">
+          <div className="mb-5 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+                Rutas principales
+              </p>
+              <h3 className="mt-3 font-display text-2xl font-light text-[#120726]">
+                Puntos de entrada para las búsquedas más importantes
+              </h3>
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {featuredServices.map((service, index) => (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="rounded-3xl border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+              >
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                  {service.tag}
+                </p>
+                <h4 className="mt-3 text-xl font-semibold text-[#120726]">{service.title}</h4>
+                <p className="mt-3 text-sm leading-7 text-gray-600">{service.summary}</p>
+                <Link
+                  href={service.slug}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#7C3AED] transition-colors hover:text-[#311B92]"
+                >
+                  Ver página
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {quickGuide.map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              className="rounded-3xl border border-[#ece7fb] bg-[#faf8ff] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                Guía rápida
+              </p>
+              <h3 className="mt-3 text-base font-semibold text-[#120726]">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
+            </motion.article>
+          ))}
+        </div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="space-y-6"
+          className="mt-16 space-y-5"
         >
-          {serviceCategories.map((category) => (
-            <motion.div key={category.id} variants={itemVariants}>
-              {/* Category Header */}
-              <button
-                onClick={() =>
-                  setExpandedCategory(
-                    expandedCategory === category.id ? null : category.id
-                  )
-                }
-                className="w-full"
-              >
-                <div className={`bg-gradient-to-r ${category.color} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group`}>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 flex items-center justify-center text-white">
-                        {category.icon}
+          {serviceCategories.map((category) => {
+            const isExpanded = expandedCategory === category.id;
+
+            return (
+              <motion.div key={category.id} variants={itemVariants}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setExpandedCategory(isExpanded ? null : category.id)
+                  }
+                  className="w-full text-left"
+                >
+                  <div className="rounded-[2rem] border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100">
+                    <div className="flex items-start justify-between gap-6">
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${category.accent} text-white shadow-sm`}
+                        >
+                          {category.icon}
+                        </div>
+                        <div>
+                          <div className="flex flex-wrap items-center gap-3">
+                            <h3 className="font-display text-2xl font-semibold text-[#120726]">
+                              {category.title}
+                            </h3>
+                            <span className="rounded-full border border-[#d8c9ff] bg-[#f5f0ff] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#311B92]">
+                              {category.services.length} servicios
+                            </span>
+                          </div>
+                          <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
+                            {category.summary}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-left">
-                        <h3 className="font-display text-2xl font-semibold">
-                          {category.title}
-                        </h3>
-                        <p className="text-white/80 text-sm mt-1">
-                          {category.services.length} servicios
+
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="mt-1 text-[#311B92]"
+                      >
+                        <ChevronDown className="h-6 w-6" />
+                      </motion.div>
+                    </div>
+                  </div>
+                </button>
+
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{
+                    opacity: isExpanded ? 1 : 0,
+                    height: isExpanded ? 'auto' : 0,
+                  }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="grid grid-cols-1 gap-4 pt-5 md:grid-cols-2 lg:grid-cols-3">
+                    {category.services.map((service) => (
+                      <div
+                        key={service.name}
+                        className="rounded-2xl border border-white/70 bg-[#fcfbff] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] transition-all duration-300 hover:border-[#d8c9ff] hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)]"
+                      >
+                        <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#7C3AED]">
+                          <FileText className="h-3.5 w-3.5" />
+                          Estudio / sesión
+                        </div>
+                        <h4 className="font-display text-lg font-semibold text-[#120726]">
+                          {service.name}
+                        </h4>
+                        <p className="mt-3 text-sm leading-7 text-gray-600">
+                          {service.description}
                         </p>
                       </div>
-                    </div>
-                    <motion.div
-                      animate={{
-                        rotate: expandedCategory === category.id ? 180 : 0,
-                      }}
-                      transition={{ duration: 0.4, ease: 'easeInOut' }}
-                      className="text-white"
-                    >
-                      <ChevronDown className="w-6 h-6" />
-                    </motion.div>
+                    ))}
                   </div>
-                </div>
-              </button>
-
-              {/* Services Grid */}
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{
-                  opacity: expandedCategory === category.id ? 1 : 0,
-                  height: expandedCategory === category.id ? 'auto' : 0,
-                }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="overflow-hidden"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 pl-6 pr-6 pb-2">
-                  {category.services.map((service, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{
-                        opacity: expandedCategory === category.id ? 1 : 0,
-                        y: expandedCategory === category.id ? 0 : 10,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        delay: expandedCategory === category.id ? index * 0.05 : 0,
-                      }}
-                      className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-300"
-                    >
-                      <h4 className="font-display text-lg font-semibold text-[#1a0a3d] mb-2">
-                        {service.name}
-                      </h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {service.description}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
 
-        {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-          className="mt-24 relative overflow-hidden bg-[#1a0a3d] rounded-[2rem] p-12 text-center isolate border border-white/10"
+          transition={{ duration: 0.65, delay: 0.15, ease: 'easeOut' }}
+          className="mt-20 overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-[#120726] p-8 text-center shadow-2xl shadow-black/10 sm:p-12"
         >
-          {/* Glowing Accents */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#7C3AED]/20 via-[#1a0a3d]/0 to-transparent -z-10 pointer-events-none" />
-          
-          <h3 className="font-display text-4xl font-light text-white mb-6">
-            Lleva tu cuidado al siguiente nivel
-          </h3>
-          <p className="text-white/80 mb-10 max-w-xl mx-auto text-lg font-light leading-relaxed">
-            Nuestro equipo de especialistas está preparado para ofrecerte un diagnóstico preciso y un tratamiento a medida. 
-            No dejes tu salud respiratoria para mañana.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20servicios"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 inline-block text-center"
-            >
-              Agendar Servicios
-            </a>
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#120726]">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <h3 className="font-display text-4xl font-light text-white">
+              ¿No sabes cuál te corresponde?
+            </h3>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/75">
+              Nuestro equipo puede orientarte según tus síntomas, historial y objetivo clínico para que elijas el estudio o programa correcto.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href={CONTACT_WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <ArrowRight className="h-4 w-4" />
+                Contactar por WhatsApp
+              </a>
+              <Link
+                href="/contacto"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-white/5"
+              >
+                <Stethoscope className="h-4 w-4" />
+                Ver contacto
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>

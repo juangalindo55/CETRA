@@ -1,9 +1,21 @@
 import Services from '@/components/sections/Services';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { SITE_NAME } from '@/lib/site';
 
-export const metadata = {
-  title: 'Servicios | CETRA',
-  description: 'Conoce todos los servicios especializados de CETRA: diagnóstico funcional respiratorio, diagnóstico del sueño, pruebas de esfuerzo y rehabilitación pulmonar.',
+export const metadata: Metadata = {
+  title: `Servicios | ${SITE_NAME}`,
+  description:
+    'Servicios especializados de CETRA: trasplante pulmonar, evaluación respiratoria avanzada, diagnóstico funcional, pruebas de esfuerzo, sueño y rehabilitación pulmonar.',
+  alternates: {
+    canonical: '/servicios',
+  },
+  openGraph: {
+    title: `Servicios | ${SITE_NAME}`,
+    description:
+      'Servicios especializados de CETRA en trasplante pulmonar y medicina respiratoria avanzada.',
+    url: '/servicios',
+  },
 };
 
 export default function ServicesPage() {

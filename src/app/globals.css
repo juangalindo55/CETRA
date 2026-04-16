@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
-  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: "DM Sans", "Segoe UI", Inter, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
 
   --color-violet-heritage: #311B92;
   --color-violet-electric: #7C3AED;

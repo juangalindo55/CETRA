@@ -7,8 +7,11 @@ import { SectionLayout } from '@/components/SectionLayout';
 import { ProcessPhases } from '@/components/sections/ProcessPhases';
 import { RecoveryTimeline } from '@/components/sections/RecoveryTimeline';
 import TestimonialExpanded from '@/components/sections/TestimonialExpanded';
+import RehabServices from '@/components/sections/RehabServices';
 import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
+import type { Metadata } from 'next';
+import { SITE_NAME, getAbsoluteUrl } from '@/lib/site';
 
 export async function generateStaticParams() {
   const services = getAllServices();
@@ -17,9 +20,49 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const service = getServiceBySlug(resolvedParams.slug);
+
+  if (!service) {
+    return {};
+  }
+
+  const title = `${service.frontmatter.title} | ${SITE_NAME}`;
+  const keywords = [
+    service.frontmatter.primaryKeyword,
+    ...(service.frontmatter.secondaryKeywords ?? []),
+  ].filter(Boolean) as string[];
+
+  return {
+    title,
+    description: service.frontmatter.description,
+    keywords,
+    alternates: {
+      canonical: getAbsoluteUrl(`/servicios/${resolvedParams.slug}`),
+    },
+    openGraph: {
+      title,
+      description: service.frontmatter.description,
+      url: `/servicios/${resolvedParams.slug}`,
+    },
+  };
+}
+
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const service = getServiceBySlug(resolvedParams.slug);
+  const allServices = getAllServices().filter(Boolean);
+  const serviceTitleBySlug = new Map(
+    allServices.map((entry) => [
+      `/servicios/${entry?.slug}`,
+      entry?.frontmatter.title ?? entry?.slug ?? '',
+    ]),
+  );
 
   if (!service) {
     notFound();
@@ -39,6 +82,20 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
             {service.frontmatter.description}
           </p>
+          {(service.frontmatter.reviewedBy || service.frontmatter.lastUpdated) && (
+            <div className="flex flex-wrap justify-center gap-3 text-xs font-medium text-white/70 mb-8">
+              {service.frontmatter.reviewedBy && (
+                <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                  Revisión clínica: {service.frontmatter.reviewedBy}
+                </span>
+              )}
+              {service.frontmatter.lastUpdated && (
+                <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                  Actualizado: {service.frontmatter.lastUpdated}
+                </span>
+              )}
+            </div>
+          )}
           {/* Excellence Badges */}
           <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-[#a78bfa]">
             <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
@@ -78,6 +135,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-ul:text-gray-600
               prose-li:mb-2
               prose-strong:text-[#311B92] prose-strong:font-semibold">
+              {service.slug === 'rehabilitacion-pulmonar' && (
+                <section className="not-prose mb-8">
+                  <h2 id="servicios-incluidos" className="text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mt-0 mb-6 font-display">
+                    Servicios incluidos
+                  </h2>
+                  <RehabServices />
+                </section>
+              )}
               <MDXRemote
                 source={service.content}
                 components={{ SectionLayout, ProcessPhases, RecoveryTimeline, TestimonialExpanded }}
@@ -101,6 +166,26 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 Solicitar una Consulta
               </a>
             </section>
+
+            {Array.isArray(service.frontmatter.relatedServices) &&
+              service.frontmatter.relatedServices.length > 0 && (
+                <section className="mt-10 rounded-2xl border border-[#e8e4f8] bg-white p-8">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+                    Servicios relacionados
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    {service.frontmatter.relatedServices.map((href) => (
+                      <Link
+                        key={href}
+                        href={href}
+                        className="inline-flex items-center rounded-full border border-[#d8c9ff] bg-[#faf8ff] px-4 py-2 text-sm font-medium text-[#311B92] transition-colors hover:border-[#7C3AED] hover:bg-[#f5f0ff]"
+                      >
+                        {serviceTitleBySlug.get(href) ?? href}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
           </main>
         </div>
       </div>

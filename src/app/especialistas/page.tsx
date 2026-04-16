@@ -1,11 +1,6 @@
 import Specialists from '@/components/sections/Specialists';
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Especialistas | CETRA',
-  description: 'Conoce al equipo de neumólogos especializados y técnicos de CETRA. Profesionales altamente capacitados comprometidos con tu salud respiratoria.',
-};
-
 export default function SpecialistsPage() {
   return (
     <div className="w-full">

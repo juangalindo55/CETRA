@@ -7,6 +7,11 @@ const contentDirectory = path.join(process.cwd(), 'src/content');
 export interface ServiceFrontmatter {
   title: string;
   description: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  relatedServices?: string[];
+  reviewedBy?: string;
+  lastUpdated?: string;
   [key: string]: unknown;
 }
 

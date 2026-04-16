@@ -11,8 +11,8 @@ import {
 
 export default function Map() {
   return (
-    <div className="flex h-full w-full flex-col bg-white">
-      <div className="relative min-h-[360px] w-full flex-grow overflow-hidden">
+    <div className="flex w-full flex-col bg-white">
+      <div className="relative h-[360px] w-full overflow-hidden sm:h-[420px]">
         <iframe
           width="100%"
           height="100%"

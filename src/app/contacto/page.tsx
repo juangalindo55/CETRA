@@ -301,7 +301,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <section className="mt-10 h-[560px] w-full bg-gray-100">
+        <section className="mt-10 w-full bg-gray-100">
           <Map />
         </section>
       </section>

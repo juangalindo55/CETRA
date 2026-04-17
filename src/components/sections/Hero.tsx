@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -13,22 +13,44 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion() ?? false;
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+      {/* Fondo orgánico */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(124,58,237,0.14)_0%,rgba(124,58,237,0.06)_24%,transparent_46%),radial-gradient(circle_at_82%_28%,rgba(49,27,146,0.11)_0%,rgba(49,27,146,0.05)_26%,transparent_50%),radial-gradient(circle_at_50%_82%,rgba(167,139,250,0.12)_0%,rgba(167,139,250,0.05)_22%,transparent_48%),linear-gradient(180deg,#ffffff_0%,#fbfaff_52%,#f5f3ff_100%)]" />
 
-      {/* Fondo atmosférico */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_40%,#ede9fe_0%,#f5f3ff_50%,#ffffff_100%)]" />
+      <motion.div
+        aria-hidden="true"
+        className="absolute -left-28 top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle_at_35%_35%,rgba(124,58,237,0.30)_0%,rgba(49,27,146,0.12)_42%,transparent_72%)] blur-3xl mix-blend-multiply pointer-events-none"
+        animate={
+          reduceMotion
+            ? { x: 0, y: 0, scale: 1, opacity: 0.9 }
+            : { x: [0, 36, 0], y: [0, 22, 0], scale: [1, 1.08, 1], opacity: [0.82, 0.98, 0.82] }
+        }
+        transition={reduceMotion ? { duration: 0 } : { duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-      {/* Orbe decorativo derecho */}
-      <div className="absolute right-0 top-1/4 w-[480px] h-[480px] bg-[#311B92]/6 rounded-full blur-3xl pointer-events-none" />
+      <motion.div
+        aria-hidden="true"
+        className="absolute -right-24 top-24 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle_at_40%_40%,rgba(49,27,146,0.22)_0%,rgba(124,58,237,0.10)_40%,transparent_72%)] blur-3xl mix-blend-multiply pointer-events-none"
+        animate={
+          reduceMotion
+            ? { x: 0, y: 0, scale: 1, opacity: 0.8 }
+            : { x: [0, -28, 0], y: [0, 26, 0], scale: [1, 1.06, 1], opacity: [0.72, 0.9, 0.72] }
+        }
+        transition={reduceMotion ? { duration: 0 } : { duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-      {/* Grid decorativo */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(90deg,#311B92 0,#311B92 1px,transparent 1px,transparent 72px),repeating-linear-gradient(0deg,#311B92 0,#311B92 1px,transparent 1px,transparent 72px)',
-        }}
+      <motion.div
+        aria-hidden="true"
+        className="absolute left-[calc(50%-13rem)] bottom-[-7rem] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.18)_0%,rgba(124,58,237,0.08)_42%,transparent_70%)] blur-3xl mix-blend-multiply pointer-events-none"
+        animate={
+          reduceMotion
+            ? { y: 0, scale: 1, opacity: 0.75 }
+            : { y: [0, -18, 0], scale: [1, 1.05, 1], opacity: [0.65, 0.85, 0.65] }
+        }
+        transition={reduceMotion ? { duration: 0 } : { duration: 26, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
@@ -84,9 +106,9 @@ export default function Hero() {
             >
               <Link
                 href="/servicios"
-                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-lg shadow-[#311B92]/20 hover:bg-[#1a0a5e] hover:shadow-xl hover:shadow-[#311B92]/30 hover:-translate-y-0.5 transition-all duration-300 text-center"
+                className="px-9 py-3.5 bg-white text-[#311B92] border border-[#7C3AED] font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/10 hover:bg-[#f8f5ff] hover:border-[#5b21b6] hover:shadow-md hover:shadow-[#311B92]/15 hover:-translate-y-0.5 transition-[transform,background-color,border-color,box-shadow,color] duration-300 text-center"
               >
-                Conocer Nuestros Servicios
+                Conoce Más
               </Link>
             </motion.div>
           </div>
@@ -102,11 +124,11 @@ export default function Hero() {
           className="mt-20 flex justify-start"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+            animate={reduceMotion ? { y: 0 } : { y: [0, 8, 0] }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
             className="flex flex-col items-center gap-2 text-gray-300"
           >
-            <span className="text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+            <span className="text-[9px] tracking-[0.3em] uppercase">Conoce CETRA</span>
             <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent" />
           </motion.div>
         </motion.div>

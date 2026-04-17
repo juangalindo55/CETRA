@@ -10,7 +10,7 @@ const items = [
 
 export default function Marquee() {
   return (
-    <div className="w-full bg-[#7C3AED] overflow-hidden py-8 flex border-y border-white/10 select-none">
+    <div className="w-full bg-[#f5f3ff] overflow-hidden py-4 flex border-y border-[#7C3AED]/10 select-none">
       <motion.div
         className="flex whitespace-nowrap items-center"
         animate={{ x: ["0%", "-50%"] }}
@@ -23,11 +23,11 @@ export default function Marquee() {
         {/* We repeat the items to ensure a seamless infinite loop */}
         {[...items, ...items].map((item, i) => (
           <div key={i} className="flex items-center">
-            <span className="text-white font-display text-2xl md:text-4xl font-light tracking-[0.15em] uppercase px-12">
+            <span className="text-[#311B92] font-display text-sm md:text-base font-medium tracking-[0.18em] uppercase px-8 opacity-80">
               {item}
             </span>
             {/* Elegant separator */}
-            <div className="w-2 h-2 rounded-full bg-white/40 shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]/35" />
           </div>
         ))}
       </motion.div>

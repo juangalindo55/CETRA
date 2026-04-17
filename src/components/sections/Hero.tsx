@@ -126,10 +126,12 @@ export default function Hero() {
           <motion.div
             animate={reduceMotion ? { y: 0 } : { y: [0, 8, 0] }}
             transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-2 text-gray-300"
+            className="flex flex-col items-center gap-2 text-[#4c1d95]"
           >
-            <span className="text-[9px] tracking-[0.3em] uppercase">Conoce CETRA</span>
-            <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent" />
+            <span className="text-[11px] md:text-sm font-medium tracking-[0.24em] uppercase text-[#311B92]">
+              Conoce CETRA
+            </span>
+            <div className="w-px h-10 bg-gradient-to-b from-[#7C3AED]/45 to-transparent" />
           </motion.div>
         </motion.div>
       </div>

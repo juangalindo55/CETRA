@@ -11,7 +11,7 @@ export const CETRA_LOCATION = {
   title: 'Torre José A. Muguerza',
   floor: 'Piso 3',
   city: 'Monterrey, Nuevo León, México',
-  hours: 'Lun a Vie: 9:00 - 19:00',
+  hours: 'Lun a Vie: 8 am a 17:00',
   saturdayHours: 'Sábados previa cita',
 };
 
@@ -36,4 +36,3 @@ export const INSURANCE_COMPANIES = [
   'Banorte Seguros',
   'Allianz',
 ];
-

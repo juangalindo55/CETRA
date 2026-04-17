@@ -93,18 +93,6 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 p-6 bg-white rounded-xl border border-gray-200 text-center">
-          <p className="text-gray-600 mb-4">¿Tienes más preguntas?</p>
-          <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20hablar%20con%20un%20especialista"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 py-3 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300"
-          >
-            Hablar con un especialista
-          </a>
-        </div>
       </div>
     </section>
   );

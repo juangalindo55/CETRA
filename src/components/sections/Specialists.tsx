@@ -115,11 +115,11 @@ export default function Specialists() {
                 <h3 className="font-display text-3xl font-semibold text-[#1a0a3d] mb-4">
                   {pneumologistDescription.role}
                 </h3>
-                <div className="flex flex-nowrap overflow-x-auto md:overflow-visible gap-2 justify-center md:justify-start mb-6 no-scrollbar">
+                <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
                   {pneumologistDescription.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="text-[10px] md:text-xs bg-[#7C3AED]/10 text-[#7C3AED] px-3 md:px-4 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1.5 whitespace-nowrap"
+                      className="text-[10px] md:text-xs bg-[#7C3AED]/10 text-[#7C3AED] px-3 md:px-4 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1.5"
                     >
                       <Star className="w-3 h-3 flex-shrink-0" /> {spec}
                     </span>

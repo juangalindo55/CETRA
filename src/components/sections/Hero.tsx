@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 
 const fadeUp = {
@@ -54,7 +55,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Columna izquierda — texto */}
           <div className="flex flex-col">
@@ -112,6 +113,26 @@ export default function Hero() {
               </Link>
             </motion.div>
           </div>
+
+          {/* Columna derecha — imagen */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={0.3}
+            className="relative hidden lg:flex justify-center items-center"
+          >
+            <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-[#311B92]/20">
+              <Image
+                src="/images/Hero.webp"
+                alt="Especialista CETRA en medicina respiratoria"
+                fill
+                className="object-cover object-top"
+                priority
+                sizes="(max-width: 1024px) 0px, 50vw"
+              />
+            </div>
+          </motion.div>
 
         </div>
 

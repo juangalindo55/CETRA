@@ -323,7 +323,7 @@ export default function ContactPage() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#311B92] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e]"
             >
               <MessageCircle className="h-4 w-4" />
-              Chatear con un especialista
+              Consultar Agenda por Chat
             </a>
             <a
               href={`tel:${CONTACT_PHONE_TEL}`}

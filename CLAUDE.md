@@ -1,0 +1,155 @@
+# CLAUDE.md — CETRA Project Context
+
+## Qué Es Este Proyecto
+
+CETRA (Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada) es un **sitio web institucional de alta especialidad médica** ubicado en Monterrey, N.L. No es un SaaS ni e-commerce. Su objetivo es captar pacientes, generar confianza y dirigir conversiones a WhatsApp. Diseño editorial de lujo — estética "Medical Atelier".
+
+## Stack
+
+- **Framework:** Next.js 16.2.3 (App Router, Server Components por defecto)
+- **UI:** React 19.2.5 + TypeScript 6.0 (strict, prohibido `any`)
+- **Estilos:** Tailwind CSS 4.2.2 — solo tokens del Design System, sin librerías externas
+- **Animaciones:** Framer Motion 12.38 — siempre `viewport={{ once: true }}`
+- **Iconos:** Lucide React
+- **Contenido:** MDX via `next-mdx-remote` + `gray-matter` (SSG)
+- **Fuentes:** Playfair Display (display/headings) + DM Sans (body)
+- **Deploy:** Vercel
+- **BD/Auth:** Supabase (Fase 3 — aún no implementado)
+
+## Estructura de Carpetas
+
+```
+src/
+├── app/
+│   ├── layout.tsx                  # Root layout, metadata global, fuentes
+│   ├── page.tsx                    # Landing principal (Server Component)
+│   ├── contacto/page.tsx           # Página de contacto con mapa y WhatsApp
+│   ├── especialistas/page.tsx      # Perfiles de médicos y técnicos
+│   ├── investigacion/page.tsx      # Investigación científica
+│   ├── servicios/
+│   │   ├── page.tsx                # Grid de todos los servicios
+│   │   └── [slug]/page.tsx         # Renderizador MDX dinámico (SSG)
+│   ├── privacidad/page.tsx
+│   └── terminos/page.tsx
+├── components/
+│   ├── sections/                   # Hero, Timeline, EligibilityQuiz, Specialists, Services, FAQ...
+│   ├── ui/                         # Navbar, Footer, Marquee, Logo
+│   └── SectionLayout.tsx           # Layout imagen+texto reutilizable en MDX
+├── content/
+│   └── servicios/                  # 6 archivos .mdx (uno por servicio)
+│       ├── trasplante-pulmonar.mdx
+│       ├── evaluacion-pretrasplante.mdx
+│       ├── rehabilitacion-pulmonar.mdx
+│       ├── diagnostico-funcional-respiratorio.mdx
+│       ├── diagnostico-del-sueno.mdx
+│       └── pruebas-de-esfuerzo.mdx
+├── lib/
+│   ├── contact.ts                  # ÚNICA fuente de datos de contacto — siempre importar de aquí
+│   ├── site.ts                     # SITE_NAME, getAbsoluteUrl(), Schema.org
+│   ├── mdx.ts                      # getServiceBySlug(), getAllServices()
+│   └── service-hub.ts              # Metadata de servicios para SEO
+public/
+└── images/                         # Imágenes estáticas (webp optimizados)
+```
+
+## Design Tokens (no usar otros colores)
+
+| Token | Hex | Uso |
+|-------|-----|-----|
+| Deep Violet (Heritage) | `#311B92` | Navegación, confianza, headings |
+| Electric Violet (Pulse) | `#7C3AED` | CTAs, acentos, interacción |
+| Violet oscuro | `#1a0a3d` | Hero backgrounds, display text |
+| Base Black | `#09090B` | Tipografía, secciones de impacto |
+| Soft Gray | `#F4F4F5` | Separaciones sutiles |
+| White | `#FFFFFF` | Fondos de contenido |
+
+**Regla:** Sin azules (`blue-*`), sin grises genéricos (`gray-800`), sin `purple-*` de Tailwind.
+
+## Datos de Contacto — Fuente Única
+
+```tsx
+import { CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY, CETRA_LOCATION, CONTACT_EMAIL } from '@/lib/contact';
+// NUNCA hardcodear teléfonos, emails o direcciones directamente
+```
+
+- WhatsApp: `https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita`
+- Teléfono display: `811 778 1017`
+- Email: `contacto@cetrapulmonar.com`
+- Dirección: Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Monterrey
+
+## Reglas de Desarrollo
+
+1. **Server-First** — Todo componente es Server Component por defecto. `'use client'` solo cuando hay `useState`, `useEffect`, `useRef`, o Framer Motion.
+2. **TypeScript estricto** — Sin `any`. Props tipadas con interfaces nombradas.
+3. **Tailwind puro** — Sin shadcn, MUI, Chakra ni otras librerías de componentes.
+4. **Animaciones** — Siempre `viewport={{ once: true }}` en Framer Motion para no re-triggerear al scroll.
+5. **Links externos** — Siempre `target="_blank" rel="noopener noreferrer"`.
+6. **Imágenes** — Usar `next/image` con `alt` descriptivo. Archivos en `public/images/`.
+7. **MDX headings** — Usar `<h2 id="id-kebab">` con las clases del Design System para que el TableOfContents funcione.
+8. **Commits** — Atómicos. Un cambio funcional por commit.
+
+## Patrones Frecuentes
+
+### Componente con animación
+```tsx
+'use client';
+import { motion } from 'framer-motion';
+const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
+
+<motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+  ...
+</motion.div>
+```
+
+### Stagger list
+```tsx
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
+```
+
+### CTA WhatsApp correcto
+```tsx
+import { CONTACT_WHATSAPP } from '@/lib/contact';
+<a href={CONTACT_WHATSAPP} target="_blank" rel="noopener noreferrer">Agendar Evaluación</a>
+```
+
+### Heading MDX con ID
+```mdx
+<h2 id="seccion-id" className="text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mt-16 mb-6 font-display">
+  Título
+</h2>
+```
+
+## Servicios Médicos (6 páginas MDX)
+
+| Servicio | Slug | Técnico |
+|----------|------|---------|
+| Trasplante Pulmonar | `trasplante-pulmonar` | Equipo neumólogos |
+| Evaluación Pretrasplante | `evaluacion-pretrasplante` | Equipo neumólogos |
+| Rehabilitación Pulmonar | `rehabilitacion-pulmonar` | Equipo neumólogos |
+| Diagnóstico Funcional Respiratorio | `diagnostico-funcional-respiratorio` | Cristina Durán |
+| Diagnóstico del Sueño | `diagnostico-del-sueno` | Ivis Pérez |
+| Pruebas de Esfuerzo | `pruebas-de-esfuerzo` | Brandon Hernández |
+
+## Componentes MDX disponibles (registrados en `[slug]/page.tsx`)
+
+`SectionLayout`, `ProcessPhases`, `RecoveryTimeline`, `TestimonialExpanded`
+
+## Estado del Proyecto (Mayo 2026)
+
+- **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
+- **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente
+- **Fase 4:** 🔄 En progreso — Mobile OK, Lighthouse audit pendiente
+- **Fase 5:** ⏭️ Siguiente — Deploy producción, analytics
+
+## Documentación del Proyecto
+
+| Doc | Cuándo leer |
+|-----|-------------|
+| `DESIGN_SYSTEM.md` | Antes de tocar estilos o colores |
+| `ARCHITECTURE.md` | Antes de crear componentes o rutas |
+| `12_CONVENCIONES_CODIGO.md` | Antes de escribir código |
+| `21_FLOWS_UX.md` | Al trabajar en secciones de UI o CTAs |
+| `22_NEGOCIO.md` | Al tomar decisiones de copy o producto |
+| `10_ERRORES_Y_MEJORAS.md` | Al inicio de cada sesión de trabajo |
+| `03_BASE_DATOS.md` | Cuando se implemente Supabase (Fase 3) |

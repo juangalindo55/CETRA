@@ -7,7 +7,6 @@ import { SectionLayout } from '@/components/SectionLayout';
 import { ProcessPhases } from '@/components/sections/ProcessPhases';
 import { RecoveryTimeline } from '@/components/sections/RecoveryTimeline';
 import TestimonialExpanded from '@/components/sections/TestimonialExpanded';
-import RehabServices from '@/components/sections/RehabServices';
 import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
 import type { Metadata } from 'next';
@@ -136,14 +135,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-ul:text-gray-600
               prose-li:mb-2
               prose-strong:text-[#311B92] prose-strong:font-semibold">
-              {service.slug === 'rehabilitacion-pulmonar' && (
-                <section className="not-prose mb-8">
-                  <h2 id="servicios-incluidos" className="text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mt-0 mb-6 font-display">
-                    Servicios incluidos
-                  </h2>
-                  <RehabServices />
-                </section>
-              )}
               <MDXRemote
                 source={service.content}
                 components={{ SectionLayout, ProcessPhases, RecoveryTimeline, TestimonialExpanded }}

@@ -73,7 +73,7 @@ export default function PrivacyPage() {
                 Usted tiene derecho a conocer qué datos personales tenemos de usted (<strong>Acceso</strong>), solicitar su corrección en caso de que esté desactualizada o sea inexacta (<strong>Rectificación</strong>); que la eliminemos de nuestros registros (<strong>Cancelación</strong>); así como oponerse al uso de sus datos para fines específicos (<strong>Oposición</strong>).
               </p>
               <p>
-                Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través del correo electrónico: <strong>contacto@cetra.com.mx</strong> o acudiendo directamente a nuestro domicilio.
+                Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través del correo electrónico: <strong>contacto@cetrapulmonar.com</strong> o acudiendo directamente a nuestro domicilio.
               </p>
 
               <h2 id="seguridad">6. Seguridad de la Información</h2>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
                 El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los servicios que ofrecemos; de nuestras prácticas de privacidad o por cambios en nuestro modelo de negocio.
               </p>
               <p>
-                Cualquier cambio será notificado a través de nuestro sitio web <strong>www.cetra.com.mx</strong>.
+                Cualquier cambio será notificado a través de nuestro sitio web <strong>cetrapulmonar.com</strong>.
               </p>
             </motion.div>
           </main>

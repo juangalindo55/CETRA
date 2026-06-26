@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Stethoscope, Award, Star, CheckCircle2, User } from 'lucide-react';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 const pulmonologists = [
   {
@@ -235,7 +236,7 @@ export default function Specialists() {
             precisión médica con un toque profundamente humano.
           </p>
           <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20evaluaci%C3%B3n"
+            href={CONTACT_WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 inline-block"

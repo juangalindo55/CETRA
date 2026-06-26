@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, ArrowRight, BookOpen, Users, Building2 } from 'lucide-react';
 import { serviceCategories } from '@/lib/service-hub';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 const cetraMenuItems = [
   {
@@ -205,7 +206,7 @@ export default function Navbar() {
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
         <div className="flex-1 flex justify-end items-center gap-4">
           <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
+            href={CONTACT_WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-block bg-[#311B92] text-white px-6 py-2.5 rounded-full text-sm hover:bg-[#1a0a5e] hover:shadow-lg hover:shadow-[#311B92]/20 hover:-translate-y-0.5 transition-all duration-300"
@@ -312,7 +313,7 @@ export default function Navbar() {
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Trasplante Pulmonar</Link>
           <Link href="/contacto" className="hover:text-[#311B92] transition-colors font-medium border-t border-gray-100 pt-2" onClick={() => setOpen(false)}>Contacto</Link>
           <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
+            href={CONTACT_WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-center hover:bg-[#1a0a5e] transition-colors duration-300"

@@ -24,11 +24,13 @@
 ## ✨ Características Principales
 
 ### 🎯 Experiencia del Paciente
-- **Timeline Interactivo**: Visualización por fases del proceso de trasplante con estados progresivos.
-- **Quiz de Elegibilidad (Next-Gen)**: Herramienta reactiva para determinar de forma preliminar la candidatura al trasplante.
+- **Trust Pillars**: Cuatro pilares de confianza — Atención especializada, Interpretación clínica, Estudios avanzados, Agenda por WhatsApp.
+- **When to Seek**: Checklist de 8 síntomas respiratorios para orientación del paciente sobre cuándo buscar evaluación.
+- **How It Works**: Proceso en 3 pasos — Agenda, Prueba, Interpretación.
 - **Directorio de Especialistas Dinámico**: Gestión centralizada de perfiles médicos (ej. Cristina Durán, Ivis Pérez, Brandon Hernández).
-- **Concierge Digital**: Botón de contacto persistente ("Electric Violet") para acceso inmediato a soporte.
+- **Concierge Digital**: Botón de contacto persistente ("Electric Violet") para acceso inmediato a soporte vía WhatsApp.
 - **Historias de Resiliencia**: Sección de testimonios diseñada con micro-animaciones para conexión emocional.
+- **Timeline** & **Quiz de Elegibilidad**: Componentes disponibles (no montados en homepage actualmente, listos para páginas futuras).
 
 ### 🏥 Ingeniería de Software
 - **Arquitectura Next.js 16**: Aprovechamiento de Server Components y React 19 para rendimiento Grade-A.
@@ -126,9 +128,9 @@ cetra/
 
 ## 🤝 Contacto
 
-- **Web**: [cetra.md](https://cetra.com)
-- **Email**: contacto@cetra.com
-- **Ubicación**: Sede de Excelencia Médica
+- **Web**: [cetrapulmonar.com](https://cetrapulmonar.com)
+- **Email**: contacto@cetrapulmonar.com
+- **Ubicación**: Torre José A. Muguerza, Piso 3, Monterrey, N.L.
 
-**Última actualización**: Abril 2026 | **Versión**: 0.1.0 (Beta)
+**Última actualización**: Junio 2026 | **Versión**: 0.2.1
 Producido bajo estándares de excelencia para el **Centro de Excelencia en Trasplante Pulmonar**.

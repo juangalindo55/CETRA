@@ -75,6 +75,26 @@
 
 ---
 
+## v0.2.1 — Auditoría de Documentación y Correcciones de Datos (Junio 2026)
+
+**Período:** Junio 2026
+**Estado:** ✅ Completa
+
+### FIXED
+- Actualización de fecha de proyecto: Mayo 2026 → Junio 2026 en CLAUDE.md, README.md, docs/
+- Corrección de dominio: cetra.com.mx → cetrapulmonar.com en privacidad/page.tsx y terminos/page.tsx
+- Corrección de email: contacto@cetra.com → contacto@cetrapulmonar.com en README.md y privacidad/page.tsx
+- Consolidación de WhatsApp: 7 instancias hardcodeadas de `wa.me/528117781017` reemplazadas por import de `CONTACT_WHATSAPP` desde `@/lib/contact` en: app/page.tsx, components/ui/Navbar.tsx (×2), components/sections/Hero.tsx, components/sections/EligibilityQuiz.tsx, components/sections/Specialists.tsx, app/servicios/[slug]/page.tsx
+
+### DOCS
+- Documentación reorganizada: 13 archivos numerados movidos a carpeta `docs/` con nombres limpios
+- Eliminados archivos stale: CONCEPT.md, CONTEXT_MAP.md, gemini.md, MEMORY.md, 00_*.md, 24_TOKENS_CONTEXTO.md
+- Actualizado .gitignore para prevenir `.aider*`, `gemini/`, lighthouse reports
+- Documentadas componentes no activos: Timeline.tsx, EligibilityQuiz.tsx disponibles para páginas futuras
+- Documentada deuda técnica: colores hex en 30+ archivos (refactor pendiente en sesión dedicada)
+
+---
+
 ## v0.3.0 — Optimización y Lighthouse (Fase 4)
 
 **Período:** TBD

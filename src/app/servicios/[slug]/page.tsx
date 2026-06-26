@@ -12,6 +12,7 @@ import { Award, ShieldCheck, Stethoscope } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
 import type { Metadata } from 'next';
 import { SITE_NAME, getAbsoluteUrl } from '@/lib/site';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 export async function generateStaticParams() {
   const services = getAllServices();
@@ -158,7 +159,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 Solicita una consulta con nuestros especialistas y conoce si eres candidato para este tratamiento.
               </p>
               <a
-                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20consulta"
+                href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-10 py-4 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300 shadow-lg shadow-[#311B92]/20"

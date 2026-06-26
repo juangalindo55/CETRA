@@ -32,7 +32,7 @@ export default function TermsPage() {
 
               <h2 id="aceptacion">1. Aceptación de los Términos</h2>
               <p>
-                Al acceder y utilizar este sitio web (www.cetra.com.mx), usted acepta quedar vinculado por los presentes Términos y Condiciones. Si usted no está de acuerdo con alguno de estos términos, le solicitamos se abstenga de utilizar el sitio.
+                Al acceder y utilizar este sitio web (cetrapulmonar.com), usted acepta quedar vinculado por los presentes Términos y Condiciones. Si usted no está de acuerdo con alguno de estos términos, le solicitamos se abstenga de utilizar el sitio.
               </p>
 
               <h2 id="uso-medico">2. No Sustituye la Consulta Médica</h2>

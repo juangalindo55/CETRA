@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -106,7 +107,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
-                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
+                href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 hover:-translate-y-0.5 transition-[transform,background-color,box-shadow,color] duration-300 text-center"

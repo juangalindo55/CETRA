@@ -135,12 +135,22 @@ import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 `SectionLayout`, `ProcessPhases`, `RecoveryTimeline`, `TestimonialExpanded`
 
-## Estado del Proyecto (Mayo 2026)
+## Estado del Proyecto (Junio 2026)
 
 - **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
 - **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente
 - **Fase 4:** 🔄 En progreso — Mobile OK, Lighthouse audit pendiente
 - **Fase 5:** ⏭️ Siguiente — Deploy producción, analytics
+
+## Componentes No Activos (pero disponibles)
+
+Algunos componentes implementados no están montados en la homepage actual pero están listos para uso futuro:
+- **`Timeline.tsx`** (src/components/sections/) — Proceso de trasplante en 4 fases. Usar en páginas de servicios detallados o flow de elegibilidad.
+- **`EligibilityQuiz.tsx`** (src/components/sections/) — Quiz interactivo de 4 preguntas. Usar en /evaluacion o como modal en servicios relacionados.
+
+## Deuda Técnica Documentada
+
+**Colores Hex vs Tokens Tailwind** — 30+ archivos usan valores hexadecimales directamente (`#311B92`, `#7C3AED`, `#1a0a3d`, `#09090B`) en lugar de los tokens Tailwind CSS definidos (`text-violet-heritage`, `bg-violet-electric`, `text-base-black`). Los valores visuales son correctos, pero esto viola la regla "Sin azules, sin grises genéricos". **Próxima acción**: Refactorización dedicada con prueba visual completa (sesión separada). **Regla para código nuevo**: Todo componente nuevo DEBE usar tokens Tailwind desde el inicio — buscar en `tailwind.config.ts` los nombres exactos disponibles.
 
 ## Documentación del Proyecto
 

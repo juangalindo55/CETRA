@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 const questions = [
   {
@@ -83,7 +84,7 @@ export default function EligibilityQuiz() {
 
             <div className="flex gap-4 justify-center">
               <a
-                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20evaluaci%C3%B3n"
+                href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300"

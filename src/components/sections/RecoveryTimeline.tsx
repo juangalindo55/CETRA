@@ -68,7 +68,7 @@ export function RecoveryTimeline() {
       {/* Timeline visualization */}
       <div className="relative">
         {/* Vertical line */}
-        <div className="hidden md:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 via-blue-500 to-emerald-500" />
+        <div className="hidden md:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-[#311B92] via-[#7C3AED] to-[#a78bfa]" />
 
         {/* Timeline items */}
         <div className="space-y-8">
@@ -95,7 +95,7 @@ export function RecoveryTimeline() {
 
                   <div className="flex-1">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                      <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">
+                      <span className="inline-block px-3 py-1 bg-[#f5f0ff] text-[#311B92] rounded-full text-xs font-semibold">
                         {phase.period}
                       </span>
                     </div>
@@ -121,21 +121,21 @@ export function RecoveryTimeline() {
 
       {/* Summary stats */}
       <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 text-center border border-purple-200">
-          <div className="text-2xl font-bold text-purple-700">3-6</div>
-          <div className="text-xs text-purple-600 mt-1">Meses para actividades cotidianas</div>
+        <div className="bg-gradient-to-br from-[#f5f0ff] to-[#ece7fb] rounded-lg p-4 text-center border border-[#e8e4f8]">
+          <div className="text-2xl font-bold text-[#311B92]">3-6</div>
+          <div className="text-xs text-[#7C3AED] mt-1">Meses para actividades cotidianas</div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 text-center border border-blue-200">
-          <div className="text-2xl font-bold text-blue-700">98%</div>
-          <div className="text-xs text-blue-600 mt-1">Supervivencia a 5 años</div>
+        <div className="bg-gradient-to-br from-[#f5f0ff] to-[#ece7fb] rounded-lg p-4 text-center border border-[#e8e4f8]">
+          <div className="text-2xl font-bold text-[#311B92]">98%</div>
+          <div className="text-xs text-[#7C3AED] mt-1">Supervivencia a 5 años</div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 text-center border border-green-200">
-          <div className="text-2xl font-bold text-green-700">100%</div>
-          <div className="text-xs text-green-600 mt-1">Seguimiento de por vida</div>
+        <div className="bg-gradient-to-br from-[#f5f0ff] to-[#ece7fb] rounded-lg p-4 text-center border border-[#e8e4f8]">
+          <div className="text-2xl font-bold text-[#311B92]">100%</div>
+          <div className="text-xs text-[#7C3AED] mt-1">Seguimiento de por vida</div>
         </div>
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 text-center border border-emerald-200">
-          <div className="text-2xl font-bold text-emerald-700">24/7</div>
-          <div className="text-xs text-emerald-600 mt-1">Equipo disponible</div>
+        <div className="bg-gradient-to-br from-[#f5f0ff] to-[#ece7fb] rounded-lg p-4 text-center border border-[#e8e4f8]">
+          <div className="text-2xl font-bold text-[#311B92]">24/7</div>
+          <div className="text-xs text-[#7C3AED] mt-1">Equipo disponible</div>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export default function ServicesLoading() {
       {/* Services Grid Skeleton */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center mb-20 space-y-4">
-          <div className="w-40 h-3 bg-purple-100 rounded-md"></div>
+          <div className="w-40 h-3 bg-[#ece7fb] rounded-md"></div>
           <div className="w-80 h-10 bg-gray-200 rounded-lg"></div>
           <div className="w-full max-w-xl h-4 bg-gray-100 rounded-md"></div>
         </div>

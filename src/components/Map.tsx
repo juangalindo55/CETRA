@@ -8,6 +8,7 @@ import {
   GOOGLE_MAPS_EMBED_URL,
   GOOGLE_MAPS_URL,
 } from '@/lib/contact';
+import ButtonCTA from './ui/ButtonCTA';
 
 export default function Map() {
   return (
@@ -66,15 +67,15 @@ export default function Map() {
           </div>
 
           <div className="flex items-start lg:justify-end">
-            <a
+            <ButtonCTA
               href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#311B92] px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-[#311B92]/20 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e] lg:w-auto"
+              external
+              size="md"
+              icon={<ExternalLink className="h-4 w-4" />}
+              className="w-full lg:w-auto"
             >
-              <ExternalLink className="h-4 w-4" />
               Abrir en Google Maps
-            </a>
+            </ButtonCTA>
           </div>
         </div>
       </div>

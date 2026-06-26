@@ -9,6 +9,7 @@ import FAQ from '@/components/sections/FAQ';
 import Marquee from '@/components/ui/Marquee';
 import Link from 'next/link';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
+import ButtonCTA from '@/components/ui/ButtonCTA';
 
 import { motion } from 'framer-motion';
 
@@ -128,14 +129,9 @@ export default function Home() {
               Nuestro equipo puede orientarte sobre el estudio más adecuado para tu caso.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={CONTACT_WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-4 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-lg shadow-[#311B92]/20 hover:bg-[#1a0a5e] hover:shadow-xl hover:shadow-[#311B92]/30 hover:-translate-y-0.5 transition-all duration-300"
-              >
+              <ButtonCTA href={CONTACT_WHATSAPP} external size="lg">
                 Agendar estudio por WhatsApp
-              </a>
+              </ButtonCTA>
               <Link
                 href="/servicios"
                 className="inline-block px-10 py-4 border border-[#311B92] text-[#311B92] font-light tracking-wide rounded-full hover:bg-white hover:shadow-md transition-all duration-300"

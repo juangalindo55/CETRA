@@ -107,10 +107,12 @@ const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 ```
 
-### CTA WhatsApp correcto
+### CTA correcto — usar `ButtonCTA`
+Todos los CTAs ("pill" violeta) van con `@/components/ui/ButtonCTA` (variants `primary`/`secondary`, sizes `sm`/`md`/`lg`). No escribir clases de botón a mano. Ver `DESIGN_SYSTEM.md` → "Botones".
 ```tsx
+import ButtonCTA from '@/components/ui/ButtonCTA';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
-<a href={CONTACT_WHATSAPP} target="_blank" rel="noopener noreferrer">Agendar Evaluación</a>
+<ButtonCTA href={CONTACT_WHATSAPP} external size="lg">Agendar Evaluación</ButtonCTA>
 ```
 
 ### Heading MDX con ID
@@ -151,6 +153,10 @@ Algunos componentes implementados no están montados en la homepage actual pero 
 ## Deuda Técnica Documentada
 
 **Colores Hex vs Tokens Tailwind** — 30+ archivos usan valores hexadecimales directamente (`#311B92`, `#7C3AED`, `#1a0a3d`, `#09090B`) en lugar de los tokens Tailwind CSS definidos (`text-violet-heritage`, `bg-violet-electric`, `text-base-black`). Los valores visuales son correctos, pero esto viola la regla "Sin azules, sin grises genéricos". **Próxima acción**: Refactorización dedicada con prueba visual completa (sesión separada). **Regla para código nuevo**: Todo componente nuevo DEBE usar tokens Tailwind desde el inicio — buscar en `tailwind.config.ts` los nombres exactos disponibles.
+
+**Resuelto (Junio 2026):** Eliminados todos los `blue-*`, `purple-*` y `shadow-purple-*` de Tailwind (eran azul/violeta off-brand) — migrados a hex de marca. Los CTAs se unificaron en el componente `ButtonCTA` (antes ~11 recetas distintas del pill violeta). Datos de contacto hardcodeados (FAQ, privacidad) ahora importan de `@/lib/contact`.
+
+**Pendiente menor:** consolidar la proliferación de casi-blancos violeta (`#faf8ff`, `#f8f7ff`, `#fcfbff`, `#f5f3ff`, `#f5f0ff`, `#ece7fb`, `#eee7ff`…) en una escala nombrada — requiere QA visual, va junto con la migración hex→tokens.
 
 ## Documentación del Proyecto
 

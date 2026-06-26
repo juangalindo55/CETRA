@@ -95,6 +95,33 @@
 
 ---
 
+## v0.2.2 — Rediseño de Navegación y Consistencia de UI (Junio 2026)
+
+**Período:** Junio 2026
+**Estado:** ✅ Completa
+
+### CHANGED
+- Dropdown de **Servicios** (desktop): tarjetas ricas con icono + `summary` + chip de `tag` (datos de `service-hub.ts` antes sin usar), entrada animada con stagger, lift + glow violeta, flecha al hover y subrayado animado en el trigger.
+- Dropdown de **CETRA**: mismo lenguaje visual y de movimiento que Servicios (consistencia total).
+- **Menú móvil** (Android/iOS): paridad con desktop — tarjetas con icono/summary/tag, animación escalonada, adaptado a táctil (`active:`, tap targets ≥44px, sin hover). "Trasplante Pulmonar" y "Contacto" pasaron de links de texto plano a filas consistentes.
+
+### ADDED
+- Componente **`src/components/ui/ButtonCTA.tsx`** — CTA unificado (variants `primary`/`secondary`, sizes `sm`/`md`/`lg`, soporte interno/externo + icono). Migrados ~9 CTAs dispersos: Navbar (×2), Map, landing, [slug], instalaciones, nuestra-historia, contacto (×2), investigación (×3).
+
+### FIXED
+- **Azules prohibidos** eliminados (`blue-*`) en RecoveryTimeline, TestimonialExpanded y SectionLayout → hex de marca.
+- **`purple-*` y `shadow-purple-*` de Tailwind** eliminados (off-brand) en RecoveryTimeline, Services, SectionLayout, loading y los CTAs → violeta de marca (`shadow-[#311B92]/…`).
+- `prose-purple` → `prose-a:text-[#7C3AED]` en el artículo MDX de servicios.
+- Datos de contacto hardcodeados → import de `@/lib/contact`: teléfono y email en `FAQ.tsx`, email en `privacidad/page.tsx`.
+- Fix iPad: panel desktop `w-[1000px]` → `w-[min(1000px,calc(100vw-2rem))]` (y `420px` en CETRA) para no desbordar en táctiles md.
+- Casing del token Soft Gray normalizado `#F4F4F5` → `#f4f4f5`.
+
+### DOCS
+- `DESIGN_SYSTEM.md`: sección "Botones — Componente `ButtonCTA`" + regla de color estricta y tints canónicos.
+- `CLAUDE.md`: patrón CTA actualizado a `ButtonCTA`; nota de deuda técnica de color marcada como resuelta (blues/purples/CTAs) con pendiente menor (casi-blancos).
+
+---
+
 ## v0.3.0 — Optimización y Lighthouse (Fase 4)
 
 **Período:** TBD

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import TableOfContents from '@/components/TableOfContents';
 import ReadingProgress from '@/components/ReadingProgress';
+import { CONTACT_EMAIL } from '@/lib/contact';
 
 export default function PrivacyPage() {
   return (
@@ -73,7 +74,7 @@ export default function PrivacyPage() {
                 Usted tiene derecho a conocer qué datos personales tenemos de usted (<strong>Acceso</strong>), solicitar su corrección en caso de que esté desactualizada o sea inexacta (<strong>Rectificación</strong>); que la eliminemos de nuestros registros (<strong>Cancelación</strong>); así como oponerse al uso de sus datos para fines específicos (<strong>Oposición</strong>).
               </p>
               <p>
-                Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través del correo electrónico: <strong>contacto@cetrapulmonar.com</strong> o acudiendo directamente a nuestro domicilio.
+                Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través del correo electrónico: <strong>{CONTACT_EMAIL}</strong> o acudiendo directamente a nuestro domicilio.
               </p>
 
               <h2 id="seguridad">6. Seguridad de la Información</h2>

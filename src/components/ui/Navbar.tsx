@@ -4,9 +4,44 @@ import Link from 'next/link';
 import Logo from './Logo';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, ArrowRight, BookOpen, Users, Building2 } from 'lucide-react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import {
+  ChevronDown,
+  ArrowRight,
+  BookOpen,
+  Users,
+  Building2,
+  Wind,
+  Moon,
+  Activity,
+  HeartPulse,
+  type LucideIcon,
+} from 'lucide-react';
 import { serviceCategories } from '@/lib/service-hub';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
+import ButtonCTA from './ButtonCTA';
+
+const serviceIcons: Record<string, LucideIcon> = {
+  '/servicios/diagnostico-funcional-respiratorio': Wind,
+  '/servicios/diagnostico-del-sueno': Moon,
+  '/servicios/pruebas-de-esfuerzo': Activity,
+  '/servicios/rehabilitacion-pulmonar': HeartPulse,
+};
+
+// C — micro-interacciones: entrada del panel + reveal escalonado
+const panelVariants: Variants = {
+  hidden: { opacity: 0, y: -8, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: 'easeOut' } },
+  exit: { opacity: 0, y: -8, scale: 0.98, transition: { duration: 0.15, ease: 'easeIn' } },
+};
+const listVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
+};
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+};
 
 const cetraMenuItems = [
   {
@@ -99,105 +134,165 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setCetraOpen((value) => !value)}
-              className="inline-flex items-center gap-1 hover:text-[#311B92] transition-colors duration-200 cursor-pointer"
+              className={`group relative inline-flex items-center gap-1 transition-colors duration-200 cursor-pointer ${cetraOpen ? 'text-[#311B92]' : 'hover:text-[#311B92]'}`}
               aria-expanded={cetraOpen}
               aria-haspopup="menu"
             >
               CETRA
-              <ChevronDown className={`h-4 w-4 transition-transform ${cetraOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${cetraOpen ? 'rotate-180' : ''}`} />
+              <span
+                className={`pointer-events-none absolute -bottom-1.5 left-0 h-px bg-[#7C3AED] transition-all duration-300 ${cetraOpen ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              />
             </button>
 
-            {cetraOpen && (
-              <div className="absolute left-1/2 top-full z-50 mt-4 w-[420px] -translate-x-1/2 rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-black/10">
-                <div className="mb-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                    Conoce CETRA
-                  </p>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Quiénes somos, nuestro equipo y dónde te atendemos.
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  {cetraMenuItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setCetraOpen(false)}
-                        className="flex items-start gap-3 rounded-lg border border-[#e8e4f8] bg-white px-4 py-3 text-sm text-[#120726] transition-all hover:bg-[#f5f0ff] hover:border-[#7C3AED]"
-                      >
-                        <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" strokeWidth={1.75} />
-                        <span>
-                          <span className="block font-medium">{item.label}</span>
-                          <span className="mt-0.5 block text-xs text-gray-500">{item.description}</span>
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+            <AnimatePresence>
+              {cetraOpen && (
+                <motion.div
+                  variants={panelVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(420px,calc(100vw-2rem))] -translate-x-1/2 origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
+                >
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#7C3AED]/5 blur-3xl" />
+                  <motion.div variants={listVariants} className="relative">
+                    <motion.div variants={cardVariants} className="mb-5">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                        Conoce CETRA
+                      </p>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Quiénes somos, nuestro equipo y dónde te atendemos.
+                      </p>
+                    </motion.div>
+                    <div className="space-y-2">
+                      {cetraMenuItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <motion.div key={item.href} variants={cardVariants}>
+                            <Link
+                              href={item.href}
+                              onClick={() => setCetraOpen(false)}
+                              className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                            >
+                              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
+                                <Icon className="h-4 w-4" strokeWidth={1.75} />
+                              </span>
+                              <span className="min-w-0 flex-1">
+                                <span className="flex items-center justify-between gap-2">
+                                  <span className="block text-sm font-medium text-[#120726]">{item.label}</span>
+                                  <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100" />
+                                </span>
+                                <span className="mt-0.5 block text-xs text-gray-500">{item.description}</span>
+                              </span>
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           <div ref={dropdownRef} className="relative">
             <button
               type="button"
               onClick={() => setServicesOpen((value) => !value)}
-              className="inline-flex items-center gap-1 hover:text-[#311B92] transition-colors duration-200 cursor-pointer"
+              className={`group relative inline-flex items-center gap-1 transition-colors duration-200 cursor-pointer ${servicesOpen ? 'text-[#311B92]' : 'hover:text-[#311B92]'}`}
               aria-expanded={servicesOpen}
               aria-haspopup="menu"
             >
               Servicios
-              <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+              <span
+                className={`pointer-events-none absolute -bottom-1.5 left-0 h-px bg-[#7C3AED] transition-all duration-300 ${servicesOpen ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              />
             </button>
 
-            {servicesOpen && (
-              <div className="absolute left-1/2 top-full z-50 mt-4 w-[1000px] -translate-x-1/2 rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-black/10">
-                <div className="grid grid-cols-2 gap-8">
-                  {serviceCategories
-                    .filter((category) => category.title !== 'Alta complejidad')
-                    .map((category) => (
-                      <div key={category.title} className="flex flex-col">
-                        <div className="mb-5">
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                            {category.title}
-                          </p>
-                          <p className="mt-2 text-sm text-gray-500">{category.description}</p>
-                        </div>
-                        <div className="space-y-2 flex-1">
-                          {category.items.map((item) => (
-                            <Link
-                              key={item.slug}
-                              href={item.slug}
-                              onClick={() => setServicesOpen(false)}
-                              className="block w-full text-left rounded-lg border border-[#e8e4f8] bg-white px-4 py-3 text-sm text-[#120726] transition-all hover:bg-[#f5f0ff] hover:border-[#7C3AED]"
-                            >
-                              {item.title}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                </div>
-                <div className="mt-5 flex items-center justify-between rounded-2xl bg-[#120726] px-5 py-4 text-white">
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#c4b5fd]">
-                      Vista general
-                    </p>
-                    <p className="mt-2 text-sm text-white/70">
-                      Navega por todas las rutas de servicio y baja directo a la página que corresponda.
-                    </p>
-                  </div>
-                  <Link
-                    href="/servicios"
-                    onClick={() => setServicesOpen(false)}
-                    className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726] transition-transform hover:-translate-y-0.5"
+            <AnimatePresence>
+              {servicesOpen && (
+                <motion.div
+                  variants={panelVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(1000px,calc(100vw-2rem))] -translate-x-1/2 origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
+                >
+                  {/* Halo violeta sutil de fondo */}
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#7C3AED]/5 blur-3xl" />
+
+                  <motion.div variants={listVariants} className="relative grid grid-cols-2 gap-8">
+                    {serviceCategories
+                      .filter((category) => category.title !== 'Alta complejidad')
+                      .map((category) => (
+                        <motion.div key={category.title} variants={listVariants} className="flex flex-col">
+                          <motion.div variants={cardVariants} className="mb-5">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                              {category.title}
+                            </p>
+                            <p className="mt-2 text-sm text-gray-500">{category.description}</p>
+                          </motion.div>
+                          <div className="space-y-2 flex-1">
+                            {category.items.map((item) => {
+                              const Icon = serviceIcons[item.slug] ?? Activity;
+                              return (
+                                <motion.div key={item.slug} variants={cardVariants}>
+                                  <Link
+                                    href={item.slug}
+                                    onClick={() => setServicesOpen(false)}
+                                    className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                                  >
+                                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
+                                      <Icon className="h-4 w-4" strokeWidth={1.75} />
+                                    </span>
+                                    <span className="min-w-0 flex-1">
+                                      <span className="flex items-center justify-between gap-2">
+                                        <span className="block text-sm font-medium text-[#120726]">
+                                          {item.title}
+                                        </span>
+                                        <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100" />
+                                      </span>
+                                      <span className="mt-1 block text-xs leading-relaxed text-gray-500">
+                                        {item.summary}
+                                      </span>
+                                      <span className="mt-2 inline-block rounded-full bg-[#f4f4f5] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[#7C3AED]">
+                                        {item.tag}
+                                      </span>
+                                    </span>
+                                  </Link>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      ))}
+                  </motion.div>
+
+                  <motion.div
+                    variants={cardVariants}
+                    className="relative mt-5 flex items-center justify-between gap-4 overflow-hidden rounded-2xl bg-[#120726] px-5 py-4 text-white"
                   >
-                    Ver todos los servicios
-                  </Link>
-                </div>
-              </div>
-            )}
+                    <div className="pointer-events-none absolute -left-10 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-[#7C3AED]/20 blur-2xl" />
+                    <div className="relative">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#c4b5fd]">
+                        Vista general
+                      </p>
+                      <p className="mt-2 text-sm text-white/70">
+                        Navega por todas las rutas de servicio y baja directo a la página que corresponda.
+                      </p>
+                    </div>
+                    <Link
+                      href="/servicios"
+                      onClick={() => setServicesOpen(false)}
+                      className="group/cta relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726] transition-transform hover:-translate-y-0.5"
+                    >
+                      Ver todos los servicios
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer whitespace-nowrap">Trasplante Pulmonar</Link>
           <Link href="/contacto" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer text-[#311B92] font-normal underline decoration-[#311B92]/30 underline-offset-8">Contacto</Link>
@@ -205,14 +300,14 @@ export default function Navbar() {
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
         <div className="flex-1 flex justify-end items-center gap-4">
-          <a
+          <ButtonCTA
             href={CONTACT_WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-block bg-[#311B92] text-white px-6 py-2.5 rounded-full text-sm hover:bg-[#1a0a5e] hover:shadow-lg hover:shadow-[#311B92]/20 hover:-translate-y-0.5 transition-all duration-300"
+            external
+            size="sm"
+            className="hidden md:inline-flex"
           >
             Agendar estudio
-          </a>
+          </ButtonCTA>
 
           {/* Mobile hamburger */}
           <button
@@ -243,23 +338,43 @@ export default function Navbar() {
                 className={`h-5 w-5 shrink-0 transition-transform ${cetraOpen ? 'rotate-180' : ''}`}
               />
             </button>
-            {cetraOpen && (
-              <div className="space-y-1 pl-2 pr-1 pt-2">
-                {cetraMenuItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
-                    onClick={() => {
-                      setOpen(false);
-                      setCetraOpen(false);
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <AnimatePresence initial={false}>
+              {cetraOpen && (
+                <motion.div
+                  variants={listVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  className="space-y-2 pl-2 pr-1 pt-2"
+                >
+                  {cetraMenuItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <motion.div key={item.href} variants={cardVariants}>
+                        <Link
+                          href={item.href}
+                          className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
+                          onClick={() => {
+                            setOpen(false);
+                            setCetraOpen(false);
+                          }}
+                        >
+                          <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED]">
+                            <Icon className="h-4 w-4" strokeWidth={1.75} />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-sm font-medium text-[#120726]">{item.label}</span>
+                            <span className="mt-0.5 block text-xs leading-relaxed text-gray-500">
+                              {item.description}
+                            </span>
+                          </span>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           <div className="space-y-3">
             <button
@@ -273,54 +388,97 @@ export default function Navbar() {
                 className={`h-5 w-5 shrink-0 transition-transform ${servicesOpen ? 'rotate-180' : ''}`}
               />
             </button>
-            {servicesOpen && (
-              <div className="space-y-4 pl-2 pr-1 pt-2">
-                {serviceCategories
-                  .filter((category) => category.title !== 'Alta complejidad')
-                  .map((category) => (
-                    <div key={category.title} className="space-y-2">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                        {category.title}
-                      </p>
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={item.slug}
-                          className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
-                          onClick={() => {
-                            setOpen(false);
-                            setServicesOpen(false);
-                          }}
-                        >
-                          {item.title}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                <Link
-                  href="/servicios"
-                  className="block rounded-xl px-4 py-3 text-sm font-medium text-[#311B92] hover:bg-[#faf8ff] active:bg-[#f3edff]"
-                  onClick={() => {
-                    setOpen(false);
-                    setServicesOpen(false);
-                  }}
+            <AnimatePresence initial={false}>
+              {servicesOpen && (
+                <motion.div
+                  variants={listVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  className="space-y-4 pl-2 pr-1 pt-2"
                 >
-                  Ver todos los servicios
-                </Link>
-              </div>
-            )}
+                  {serviceCategories
+                    .filter((category) => category.title !== 'Alta complejidad')
+                    .map((category) => (
+                      <motion.div key={category.title} variants={listVariants} className="space-y-2">
+                        <motion.p
+                          variants={cardVariants}
+                          className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]"
+                        >
+                          {category.title}
+                        </motion.p>
+                        {category.items.map((item) => {
+                          const Icon = serviceIcons[item.slug] ?? Activity;
+                          return (
+                            <motion.div key={item.slug} variants={cardVariants}>
+                              <Link
+                                href={item.slug}
+                                className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
+                                onClick={() => {
+                                  setOpen(false);
+                                  setServicesOpen(false);
+                                }}
+                              >
+                                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED]">
+                                  <Icon className="h-4 w-4" strokeWidth={1.75} />
+                                </span>
+                                <span className="min-w-0 flex-1">
+                                  <span className="block text-sm font-medium text-[#120726]">
+                                    {item.title}
+                                  </span>
+                                  <span className="mt-0.5 block text-xs leading-relaxed text-gray-500">
+                                    {item.summary}
+                                  </span>
+                                  <span className="mt-1.5 inline-block rounded-full bg-[#f4f4f5] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[#7C3AED]">
+                                    {item.tag}
+                                  </span>
+                                </span>
+                              </Link>
+                            </motion.div>
+                          );
+                        })}
+                      </motion.div>
+                    ))}
+                  <motion.div variants={cardVariants}>
+                    <Link
+                      href="/servicios"
+                      className="flex min-h-11 items-center justify-between rounded-xl bg-[#120726] px-4 py-3 text-sm font-medium text-white active:bg-[#1a0a3d]"
+                      onClick={() => {
+                        setOpen(false);
+                        setServicesOpen(false);
+                      }}
+                    >
+                      Ver todos los servicios
+                      <ArrowRight className="h-4 w-4 shrink-0" />
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Trasplante Pulmonar</Link>
-          <Link href="/contacto" className="hover:text-[#311B92] transition-colors font-medium border-t border-gray-100 pt-2" onClick={() => setOpen(false)}>Contacto</Link>
-          <a
+          <Link
+            href="/servicios/trasplante-pulmonar"
+            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+            onClick={() => setOpen(false)}
+          >
+            Trasplante Pulmonar
+          </Link>
+          <Link
+            href="/contacto"
+            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-[#311B92] transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+            onClick={() => setOpen(false)}
+          >
+            Contacto
+          </Link>
+          <ButtonCTA
             href={CONTACT_WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-center hover:bg-[#1a0a5e] transition-colors duration-300"
+            external
+            size="md"
+            className="mt-1 w-full"
             onClick={() => setOpen(false)}
           >
             Agendar estudio
-          </a>
+          </ButtonCTA>
         </div>
       )}
     </header>

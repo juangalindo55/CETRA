@@ -72,7 +72,7 @@ const itemVariants = {
 function PhotoPlaceholder({ className = '' }: { className?: string }) {
   return (
     <div
-      className={`flex items-center justify-center bg-[#F4F4F5] border border-[#311B92]/10 ${className}`}
+      className={`flex items-center justify-center bg-[#f4f4f5] border border-[#311B92]/10 ${className}`}
     >
       <User className="w-1/3 h-1/3 text-[#311B92]/25" strokeWidth={1.25} />
     </div>
@@ -115,7 +115,7 @@ export default function Specialists() {
                 className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 overflow-hidden flex flex-col h-full"
               >
                 {doctor.image ? (
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F4F5]">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f4f4f5]">
                     <Image
                       src={doctor.image}
                       alt={doctor.name}
@@ -177,7 +177,7 @@ export default function Specialists() {
                 className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 group overflow-hidden flex flex-col h-full"
               >
                 {technician.image ? (
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F4F5]">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f4f4f5]">
                     <Image
                       src={technician.image}
                       alt={technician.name}

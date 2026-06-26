@@ -126,7 +126,7 @@ export default function TestimonialExpanded() {
                   <Calendar className="w-3.5 h-3.5" />
                   {testimonial.monthsPost} meses
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full text-xs font-semibold text-blue-700">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-[#f5f3ff] rounded-full text-xs font-semibold text-[#311B92]">
                   <MapPin className="w-3.5 h-3.5" />
                   {testimonial.location}
                 </div>

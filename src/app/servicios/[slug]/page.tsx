@@ -12,6 +12,7 @@ import ReadingProgress from '@/components/ReadingProgress';
 import type { Metadata } from 'next';
 import { SITE_NAME, getAbsoluteUrl } from '@/lib/site';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
+import ButtonCTA from '@/components/ui/ButtonCTA';
 
 export async function generateStaticParams() {
   const services = getAllServices();
@@ -127,7 +128,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
           {/* Main Content */}
           <main className="md:col-span-2">
-            <article className="prose prose-lg max-w-none prose-purple prose-img:rounded-2xl
+            <article className="prose prose-lg max-w-none prose-img:rounded-2xl prose-a:text-[#7C3AED] prose-a:font-medium
               prose-headings:font-display prose-headings:mt-16 prose-headings:mb-6
               prose-h2:text-4xl prose-h2:text-[#311B92] prose-h2:font-bold prose-h2:border-b-2 prose-h2:border-[#7C3AED] prose-h2:pb-4 prose-h2:scroll-mt-32
               prose-h3:text-2xl prose-h3:text-[#7C3AED] prose-h3:font-semibold
@@ -149,14 +150,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <p className="text-gray-600 mb-8 max-w-md mx-auto">
                 Solicita una consulta con nuestros especialistas y conoce si eres candidato para este tratamiento.
               </p>
-              <a
-                href={CONTACT_WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-4 bg-[#311B92] text-white font-light tracking-wide rounded-full hover:bg-[#1a0a5e] transition-all duration-300 shadow-lg shadow-[#311B92]/20"
-              >
+              <ButtonCTA href={CONTACT_WHATSAPP} external size="lg">
                 Solicitar una Consulta
-              </a>
+              </ButtonCTA>
             </section>
 
             {Array.isArray(service.frontmatter.relatedServices) &&

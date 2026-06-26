@@ -231,7 +231,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="rounded-3xl border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+                className="rounded-3xl border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
               >
                 <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
                   {service.tag}
@@ -258,7 +258,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.4, delay: index * 0.06 }}
-              className="rounded-3xl border border-[#ece7fb] bg-[#faf8ff] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+              className="rounded-3xl border border-[#ece7fb] bg-[#faf8ff] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
             >
               <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
                 Guía rápida
@@ -288,7 +288,7 @@ export default function Services() {
                   }
                   className="w-full text-left"
                 >
-                  <div className={`rounded-[2rem] border border-[#e8e4f8] bg-gradient-to-br ${category.bgGradient} p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100`}>
+                  <div className={`rounded-[2rem] border border-[#e8e4f8] bg-gradient-to-br ${category.bgGradient} p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10`}>
                     <div className="flex items-start justify-between gap-6">
                       <div className="flex items-start gap-4">
                         <div

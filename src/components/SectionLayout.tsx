@@ -21,11 +21,11 @@ export function SectionLayout({
   const getImageBgClass = () => {
     switch (imageType) {
       case 'illustration':
-        return 'bg-purple-50';
+        return 'bg-[#f5f0ff]';
       case 'infographic':
-        return 'bg-blue-50';
+        return 'bg-[#ece7fb]';
       default:
-        return 'bg-gray-100';
+        return 'bg-[#f4f4f5]';
     }
   };
 

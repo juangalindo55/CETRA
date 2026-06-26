@@ -12,6 +12,7 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import Map from '@/components/Map';
+import ButtonCTA from '@/components/ui/ButtonCTA';
 import {
   CETRA_LOCATION,
   CONTACT_EMAIL,
@@ -165,7 +166,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="group rounded-3xl border border-gray-100 bg-[#faf8ff] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+                className="group rounded-3xl border border-gray-100 bg-[#faf8ff] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#311B92] shadow-sm">
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -316,22 +317,22 @@ export default function ContactPage() {
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <a
+            <ButtonCTA
               href={CONTACT_WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#311B92] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e]"
+              external
+              size="md"
+              icon={<MessageCircle className="h-4 w-4" />}
             >
-              <MessageCircle className="h-4 w-4" />
               Consultar Agenda por Chat
-            </a>
-            <a
+            </ButtonCTA>
+            <ButtonCTA
               href={`tel:${CONTACT_PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c9ff] bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-colors duration-300 hover:border-[#b99cff] hover:bg-[#fcfbff]"
+              variant="secondary"
+              size="md"
+              icon={<Phone className="h-4 w-4" />}
             >
-              <Phone className="h-4 w-4" />
               Llamar al consultorio
-            </a>
+            </ButtonCTA>
           </div>
         </div>
       </section>

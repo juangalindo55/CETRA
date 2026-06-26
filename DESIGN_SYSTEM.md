@@ -37,3 +37,37 @@
 - **Borders:** 0px o 4px (Bordes muy sutiles). Queremos que el sitio se sienta como una interfaz de software de alta gama (tipo Apple o Stripe).
 - **Shadows:** Ninguna o "Stroke-only". Usaremos bordes de 1px en lugar de sombras para mantener la limpieza.
 - **Buttons:** Fondo negro con texto blanco y hover en `Electric Violet`. O fondo blanco con borde `Deep Violet`.
+
+## Botones — Componente `ButtonCTA`
+
+Todos los CTAs ("pill" violeta) se renderizan con el componente único **`src/components/ui/ButtonCTA.tsx`**. No volver a escribir clases de botón a mano: usar el componente para mantener una sola receta visual en todo el sitio.
+
+```tsx
+import ButtonCTA from '@/components/ui/ButtonCTA';
+import { CONTACT_WHATSAPP } from '@/lib/contact';
+
+// Externo (WhatsApp, Google Maps) → abre en pestaña nueva con rel seguro
+<ButtonCTA href={CONTACT_WHATSAPP} external size="lg">Agendar estudio</ButtonCTA>
+
+// Interno (next/link) — secundario con icono
+<ButtonCTA href="/contacto" variant="secondary" size="md" icon={<CalendarDays className="h-4 w-4" />}>
+  Ver contacto
+</ButtonCTA>
+```
+
+| Prop | Valores | Uso |
+|------|---------|-----|
+| `variant` | `primary` (def.) · `secondary` | Sólido violeta `#311B92` / contorno violeta sobre blanco |
+| `size` | `sm` · `md` (def.) · `lg` | Nav / CTA estándar de página / hero y cierres editoriales |
+| `external` | `boolean` | `true` → `<a target="_blank" rel="noopener noreferrer">` |
+| `href` | string | Rutas `/…` usan `next/link`; `tel:`/`mailto:` y externos usan `<a>` |
+| `icon` | ReactNode | Icono opcional a la izquierda (`<ArrowRight className="h-4 w-4" />`) |
+| `className` | string | Solo para ancho/margen/visibilidad responsive (ej. `w-full lg:w-auto`) |
+
+**Sombra estándar:** `shadow-lg shadow-[#311B92]/20` (no usar `shadow-purple-*` de Tailwind).
+
+**Excepciones documentadas (bespoke, no migradas):** los pares de botones del `Hero` y de `EligibilityQuiz` conservan su tamaño propio para no desalinear su botón hermano; los outline violeta del Hero/landing ("Ver servicios") mantienen su estilo editorial.
+
+## Regla de Color (estricta)
+
+Prohibido en clases Tailwind: `blue-*`, `purple-*`, grises genéricos como acento (`gray-800`, etc.). Usar siempre los tokens/hex de marca. Tints violeta de superficie canónicos: `#faf8ff` (hover claro), `#f5f0ff` / `#f5f3ff` (chips y fondos suaves), `#ece7fb` (tint medio), `#e8e4f8` / `#d8c9ff` (bordes). **Deuda pendiente:** consolidar la proliferación de casi-blancos en una escala nombrada (sesión dedicada con QA visual).

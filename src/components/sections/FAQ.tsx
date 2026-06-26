@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { CONTACT_PHONE_DISPLAY, CONTACT_EMAIL } from '@/lib/contact';
 
 const faqItems = [
   {
@@ -32,7 +33,7 @@ const faqItems = [
   {
     question: '¿Cómo agendo un estudio?',
     answer:
-      'Muy fácil: contacta por WhatsApp al 811-778-1017 o llama al mismo número. Nuestro equipo te pregunta sobre tus síntomas y propone el estudio ideal para ti. Generalmente te vemos dentro de 1-2 semanas. También puedes escribirnos a contacto@cetrapulmonar.com.',
+      `Muy fácil: contacta por WhatsApp al ${CONTACT_PHONE_DISPLAY} o llama al mismo número. Nuestro equipo te pregunta sobre tus síntomas y propone el estudio ideal para ti. Generalmente te vemos dentro de 1-2 semanas. También puedes escribirnos a ${CONTACT_EMAIL}.`,
   },
   {
     question: '¿Cuándo recibo los resultados?',

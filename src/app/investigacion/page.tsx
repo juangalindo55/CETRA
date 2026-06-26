@@ -14,6 +14,7 @@ import {
   Users,
 } from 'lucide-react';
 import { CONTACT_EMAIL_LINK, CONTACT_WHATSAPP } from '@/lib/contact';
+import ButtonCTA from '@/components/ui/ButtonCTA';
 
 const researchLines = [
   {
@@ -192,7 +193,7 @@ export default function InvestigacionPage() {
             {researchLines.map((line) => (
               <article
                 key={line.title}
-                className="group rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100"
+                className="group rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#faf8ff]">
@@ -321,29 +322,30 @@ export default function InvestigacionPage() {
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <a
+            <ButtonCTA
               href={CONTACT_WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#311B92] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#1a0a5e]"
+              external
+              size="md"
+              icon={<ArrowRight className="h-4 w-4" />}
             >
-              <ArrowRight className="h-4 w-4" />
               Contactar investigación
-            </a>
-            <Link
+            </ButtonCTA>
+            <ButtonCTA
               href="/contacto"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c9ff] bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-colors duration-300 hover:border-[#b99cff] hover:bg-[#fcfbff]"
+              variant="secondary"
+              size="md"
+              icon={<CalendarDays className="h-4 w-4" />}
             >
-              <CalendarDays className="h-4 w-4" />
               Ver contacto
-            </Link>
-            <a
+            </ButtonCTA>
+            <ButtonCTA
               href={CONTACT_EMAIL_LINK}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c9ff] bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-colors duration-300 hover:border-[#b99cff] hover:bg-[#fcfbff]"
+              variant="secondary"
+              size="md"
+              icon={<BookOpen className="h-4 w-4" />}
             >
-              <BookOpen className="h-4 w-4" />
               Enviar propuesta académica
-            </a>
+            </ButtonCTA>
           </div>
         </div>
       </section>

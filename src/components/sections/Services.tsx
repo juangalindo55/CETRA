@@ -4,14 +4,10 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import {
-  Activity,
   ChevronDown,
-  HeartPulse,
-  Moon,
   ArrowRight,
-  Wind,
-  ShieldCheck,
   FileText,
+  ShieldCheck,
   Stethoscope,
 } from 'lucide-react';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
@@ -40,8 +36,9 @@ const serviceCategories = [
   {
     id: 'diagnostico-funcional',
     title: 'Diagnóstico funcional respiratorio',
-    icon: <Wind className="h-8 w-8" strokeWidth={1.5} />,
-    accent: 'from-[#7C3AED] to-[#311B92]',
+    abbreviation: 'DFR',
+    bgGradient: 'from-[#f3edff] to-[#f0ecfb]',
+    accentGradient: 'from-[#7C3AED] to-[#311B92]',
     summary:
       'Estudios para medir función pulmonar, intercambio de gases, inflamación de vía aérea y fuerza respiratoria.',
     services: [
@@ -80,8 +77,9 @@ const serviceCategories = [
   {
     id: 'diagnostico-sueno',
     title: 'Diagnóstico del sueño',
-    icon: <Moon className="h-8 w-8" strokeWidth={1.5} />,
-    accent: 'from-[#0f62fe] to-[#06b6d4]',
+    abbreviation: 'DS',
+    bgGradient: 'from-[#f0ecfb] to-[#ede9f6]',
+    accentGradient: 'from-[#6366f1] to-[#7C3AED]',
     summary:
       'Estudios para detectar ronquido, pausas respiratorias y otros trastornos que alteran la calidad del descanso.',
     services: [
@@ -110,8 +108,9 @@ const serviceCategories = [
   {
     id: 'pruebas-esfuerzo',
     title: 'Pruebas de esfuerzo y capacidad funcional',
-    icon: <Activity className="h-8 w-8" strokeWidth={1.5} />,
-    accent: 'from-[#10b981] to-[#16a34a]',
+    abbreviation: 'PE',
+    bgGradient: 'from-[#f3edff] to-[#f0ecfb]',
+    accentGradient: 'from-[#7C3AED] to-[#5b21b6]',
     summary:
       'Evaluaciones para medir tolerancia al ejercicio, respuesta cardiorrespiratoria y capacidad funcional real.',
     services: [
@@ -135,8 +134,9 @@ const serviceCategories = [
   {
     id: 'rehabilitacion',
     title: 'Rehabilitación pulmonar',
-    icon: <HeartPulse className="h-8 w-8" strokeWidth={1.5} />,
-    accent: 'from-[#ef4444] to-[#ec4899]',
+    abbreviation: 'RP',
+    bgGradient: 'from-[#ede9f6] to-[#e9e5f5]',
+    accentGradient: 'from-[#5b21b6] to-[#311B92]',
     summary:
       'Programas y sesiones para mejorar condición física, respiratoria y calidad de vida en pacientes con enfermedad pulmonar o trasplante.',
     services: [
@@ -288,13 +288,13 @@ export default function Services() {
                   }
                   className="w-full text-left"
                 >
-                  <div className="rounded-[2rem] border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100">
+                  <div className={`rounded-[2rem] border border-[#e8e4f8] bg-gradient-to-br ${category.bgGradient} p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-purple-100`}>
                     <div className="flex items-start justify-between gap-6">
                       <div className="flex items-start gap-4">
                         <div
-                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${category.accent} text-white shadow-sm`}
+                          className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${category.accentGradient} text-white shadow-md`}
                         >
-                          {category.icon}
+                          <span className="text-2xl font-bold tracking-tight">{category.abbreviation}</span>
                         </div>
                         <div>
                           <div className="flex flex-wrap items-center gap-3">

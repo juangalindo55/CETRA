@@ -4,15 +4,38 @@ import Link from 'next/link';
 import Logo from './Logo';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight, BookOpen, Users, Building2 } from 'lucide-react';
 import { serviceCategories } from '@/lib/service-hub';
+
+const cetraMenuItems = [
+  {
+    label: 'Nuestra Historia',
+    href: '/nuestra-historia',
+    description: 'La trayectoria detrás de CETRA.',
+    icon: BookOpen,
+  },
+  {
+    label: 'Equipo CETRA',
+    href: '/especialistas',
+    description: 'Médicos y técnicos especialistas.',
+    icon: Users,
+  },
+  {
+    label: 'Instalaciones',
+    href: '/instalaciones',
+    description: 'Conoce nuestros espacios de atención.',
+    icon: Building2,
+  },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [cetraOpen, setCetraOpen] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const cetraDropdownRef = useRef<HTMLDivElement | null>(null);
   const isHome = pathname === '/';
 
   useEffect(() => {
@@ -33,6 +56,12 @@ export default function Navbar() {
       ) {
         setServicesOpen(false);
       }
+      if (
+        cetraDropdownRef.current &&
+        !cetraDropdownRef.current.contains(event.target as Node)
+      ) {
+        setCetraOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', onPointerDown);
@@ -42,6 +71,7 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) {
       setServicesOpen(false);
+      setCetraOpen(false);
     }
   }, [open]);
 
@@ -64,6 +94,50 @@ export default function Navbar() {
 
         {/* Centro: Nav links (Absolute for perfect centering) */}
         <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 text-base font-light text-[#1a0a3d]/70 tracking-wide">
+          <div ref={cetraDropdownRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setCetraOpen((value) => !value)}
+              className="inline-flex items-center gap-1 hover:text-[#311B92] transition-colors duration-200 cursor-pointer"
+              aria-expanded={cetraOpen}
+              aria-haspopup="menu"
+            >
+              CETRA
+              <ChevronDown className={`h-4 w-4 transition-transform ${cetraOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {cetraOpen && (
+              <div className="absolute left-1/2 top-full z-50 mt-4 w-[420px] -translate-x-1/2 rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-black/10">
+                <div className="mb-5">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                    Conoce CETRA
+                  </p>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Quiénes somos, nuestro equipo y dónde te atendemos.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  {cetraMenuItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setCetraOpen(false)}
+                        className="flex items-start gap-3 rounded-lg border border-[#e8e4f8] bg-white px-4 py-3 text-sm text-[#120726] transition-all hover:bg-[#f5f0ff] hover:border-[#7C3AED]"
+                      >
+                        <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" strokeWidth={1.75} />
+                        <span>
+                          <span className="block font-medium">{item.label}</span>
+                          <span className="mt-0.5 block text-xs text-gray-500">{item.description}</span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
           <div ref={dropdownRef} className="relative">
             <button
               type="button"
@@ -77,31 +151,32 @@ export default function Navbar() {
             </button>
 
             {servicesOpen && (
-              <div className="absolute left-1/2 top-full z-50 mt-4 w-[860px] -translate-x-1/2 rounded-[2rem] border border-[#e8e4f8] bg-white p-6 shadow-2xl shadow-black/10">
-                <div className="grid gap-5 md:grid-cols-3">
-                  {serviceCategories.map((category) => (
-                    <div key={category.title} className="rounded-2xl border border-[#f0ecfb] bg-[#faf8ff] p-4">
-                      <div className="mb-4">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                          {category.title}
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-gray-500">{category.description}</p>
+              <div className="absolute left-1/2 top-full z-50 mt-4 w-[1000px] -translate-x-1/2 rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-black/10">
+                <div className="grid grid-cols-2 gap-8">
+                  {serviceCategories
+                    .filter((category) => category.title !== 'Alta complejidad')
+                    .map((category) => (
+                      <div key={category.title} className="flex flex-col">
+                        <div className="mb-5">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                            {category.title}
+                          </p>
+                          <p className="mt-2 text-sm text-gray-500">{category.description}</p>
+                        </div>
+                        <div className="space-y-2 flex-1">
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.slug}
+                              href={item.slug}
+                              onClick={() => setServicesOpen(false)}
+                              className="block w-full text-left rounded-lg border border-[#e8e4f8] bg-white px-4 py-3 text-sm text-[#120726] transition-all hover:bg-[#f5f0ff] hover:border-[#7C3AED]"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        {category.items.map((item) => (
-                          <Link
-                            key={item.slug}
-                            href={item.slug}
-                            onClick={() => setServicesOpen(false)}
-                            className="flex items-start justify-between gap-3 rounded-xl bg-white px-3 py-3 text-sm text-[#120726] transition-colors hover:bg-[#f5f0ff]"
-                          >
-                            <span className="font-medium leading-6">{item.title}</span>
-                            <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" />
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
                 <div className="mt-5 flex items-center justify-between rounded-2xl bg-[#120726] px-5 py-4 text-white">
                   <div>
@@ -124,20 +199,18 @@ export default function Navbar() {
             )}
           </div>
           <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer whitespace-nowrap">Trasplante Pulmonar</Link>
-          <Link href="/investigacion" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Investigación</Link>
-          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer">Especialistas</Link>
           <Link href="/contacto" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer text-[#311B92] font-normal underline decoration-[#311B92]/30 underline-offset-8">Contacto</Link>
         </nav>
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
         <div className="flex-1 flex justify-end items-center gap-4">
           <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
+            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-block bg-[#311B92] text-white px-6 py-2.5 rounded-full text-sm hover:bg-[#1a0a5e] hover:shadow-lg hover:shadow-[#311B92]/20 hover:-translate-y-0.5 transition-all duration-300"
           >
-            Agendar Servicios
+            Agendar estudio
           </a>
 
           {/* Mobile hamburger */}
@@ -161,6 +234,36 @@ export default function Navbar() {
             <button
               type="button"
               className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+              onClick={() => setCetraOpen((value) => !value)}
+              aria-expanded={cetraOpen}
+            >
+              <span className="text-base font-medium">CETRA</span>
+              <ChevronDown
+                className={`h-5 w-5 shrink-0 transition-transform ${cetraOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+            {cetraOpen && (
+              <div className="space-y-1 pl-2 pr-1 pt-2">
+                {cetraMenuItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
+                    onClick={() => {
+                      setOpen(false);
+                      setCetraOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="space-y-3">
+            <button
+              type="button"
+              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
               onClick={() => setServicesOpen((value) => !value)}
               aria-expanded={servicesOpen}
             >
@@ -171,26 +274,28 @@ export default function Navbar() {
             </button>
             {servicesOpen && (
               <div className="space-y-4 pl-2 pr-1 pt-2">
-                {serviceCategories.map((category) => (
-                  <div key={category.title} className="space-y-2">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                      {category.title}
-                    </p>
-                    {category.items.map((item) => (
-                      <Link
-                        key={item.slug}
-                        href={item.slug}
-                        className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
-                        onClick={() => {
-                          setOpen(false);
-                          setServicesOpen(false);
-                        }}
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </div>
-                ))}
+                {serviceCategories
+                  .filter((category) => category.title !== 'Alta complejidad')
+                  .map((category) => (
+                    <div key={category.title} className="space-y-2">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                        {category.title}
+                      </p>
+                      {category.items.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={item.slug}
+                          className="block rounded-xl px-4 py-3 text-sm leading-6 hover:bg-[#faf8ff] hover:text-[#311B92] active:bg-[#f3edff]"
+                          onClick={() => {
+                            setOpen(false);
+                            setServicesOpen(false);
+                          }}
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
                 <Link
                   href="/servicios"
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-[#311B92] hover:bg-[#faf8ff] active:bg-[#f3edff]"
@@ -204,17 +309,16 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <Link href="/investigacion" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Investigación</Link>
-          <Link href="/especialistas" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Especialistas</Link>
+          <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors" onClick={() => setOpen(false)}>Trasplante Pulmonar</Link>
           <Link href="/contacto" className="hover:text-[#311B92] transition-colors font-medium border-t border-gray-100 pt-2" onClick={() => setOpen(false)}>Contacto</Link>
           <a
-            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita"
+            href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#311B92] text-white px-6 py-2.5 rounded-full text-center hover:bg-[#1a0a5e] transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
-            Agendar Servicios
+            Agendar estudio
           </a>
         </div>
       )}

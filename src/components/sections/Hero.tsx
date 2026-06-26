@@ -62,7 +62,7 @@ export default function Hero() {
 
             <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0} className="mb-8">
               <span className="inline-block text-[10px] font-light tracking-[0.3em] text-[#7C3AED] uppercase border border-[#7C3AED]/40 px-5 py-2 bg-white/60 backdrop-blur-sm">
-                Excelencia en Medicina Respiratoria
+                Diagnóstico Respiratorio
               </span>
             </motion.div>
 
@@ -73,7 +73,7 @@ export default function Hero() {
               custom={0.1}
               className="text-[10px] tracking-[0.35em] text-[#7C3AED]/70 font-light uppercase mb-4"
             >
-              Centro de Trasplante Pulmonar
+              Estudios de Alta Especialidad
             </motion.p>
 
             <motion.h1
@@ -83,8 +83,9 @@ export default function Hero() {
               custom={0.2}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-[#1a0a3d] leading-[1.1] tracking-tight mb-6"
             >
-              <span className="text-gray-600">Esperanza y</span>{' '}
-              <em className="italic font-bold text-[#311B92] drop-shadow-sm">Excelencia</em>
+              Estudios y diagnóstico{' '}
+              <em className="italic font-bold text-[#311B92] drop-shadow-sm">respiratorio</em>
+              {' '}de alta especialidad
             </motion.h1>
 
             <motion.p
@@ -94,8 +95,7 @@ export default function Hero() {
               custom={0.3}
               className="text-lg text-gray-500 font-light leading-relaxed mb-10 max-w-md"
             >
-              En CETRA combinamos precisión quirúrgica con compasión humanista.
-              Referentes en salud pulmonar y trasplante, comprometidos con tu vida.
+              Espirometría, pletismografía, DLCO, FeNO, estudios del sueño y pruebas de ejercicio en Monterrey.
             </motion.p>
 
             <motion.div
@@ -105,11 +105,19 @@ export default function Hero() {
               custom={0.4}
               className="flex flex-col sm:flex-row gap-4"
             >
+              <a
+                href="https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20un%20estudio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 hover:-translate-y-0.5 transition-[transform,background-color,box-shadow,color] duration-300 text-center"
+              >
+                Agendar estudio
+              </a>
               <Link
                 href="/servicios"
                 className="px-9 py-3.5 bg-white text-[#311B92] border border-[#7C3AED] font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/10 hover:bg-[#f8f5ff] hover:border-[#5b21b6] hover:shadow-md hover:shadow-[#311B92]/15 hover:-translate-y-0.5 transition-[transform,background-color,border-color,box-shadow,color] duration-300 text-center"
               >
-                Conoce Más
+                Ver servicios
               </Link>
             </motion.div>
           </div>
@@ -150,7 +158,7 @@ export default function Hero() {
             className="flex flex-col items-center gap-2 text-[#4c1d95]"
           >
             <span className="text-[11px] md:text-sm font-medium tracking-[0.24em] uppercase text-[#311B92]">
-              Conoce CETRA
+              Descubre nuestros servicios
             </span>
             <div className="w-px h-10 bg-gradient-to-b from-[#7C3AED]/45 to-transparent" />
           </motion.div>

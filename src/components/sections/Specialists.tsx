@@ -1,14 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Stethoscope, Award, Star, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
+import { Stethoscope, Award, Star, CheckCircle2, User } from 'lucide-react';
 
-const pneumologistDescription = {
-  role: 'Neumólogos Especialistas',
-  specialties: ['Diagnóstico Integral', 'Trasplante Pulmonar', 'Medicina del Sueño', 'Tratamiento Respiratorio'],
-  description1: 'Nuestro equipo médico de neumólogos especializados maneja integralmente todas las áreas de la medicina respiratoria avanzada.',
-  description2: 'Desde la valoración inicial para trasplante pulmonar y el estricto seguimiento inmunosupresor, hasta el monitoreo de polisomnografías y rehabilitación clínica.',
-};
+const pulmonologists = [
+  {
+    id: 1,
+    name: 'Dr. Uriel Chavarría',
+    image: '/images/specialists/uriel-chavarria.webp',
+  },
+  {
+    id: 2,
+    name: 'Dr. Manuel Wong',
+    image: '/images/specialists/manuel-wong.webp',
+  },
+  {
+    id: 3,
+    name: 'Dr. Sergio Sánchez',
+    image: '/images/specialists/sergios.webp',
+  },
+];
 
 const technicians = [
   {
@@ -17,6 +29,7 @@ const technicians = [
     area: 'Función Pulmonar',
     services: ['Espirometría', 'Pletismografía', 'DLCO', 'MIP-MEP'],
     description: 'Especialista en pruebas de función pulmonar avanzadas con más de 8 años de experiencia.',
+    image: '/images/specialists/cris.webp',
   },
   {
     id: 2,
@@ -24,6 +37,7 @@ const technicians = [
     area: 'Estudios de Sueño',
     services: ['Poligrafía', 'Titulación CPAP', 'Noche Dividida'],
     description: 'Técnica especializada en diagnóstico y titulación de apnea del sueño, atención personalizada.',
+    image: '/images/specialists/Ivis.webp',
   },
   {
     id: 3,
@@ -54,17 +68,12 @@ const itemVariants = {
   },
 };
 
-function AvatarInitials({ name, color }: { name: string; color: string }) {
-  const initials = name
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-
+function PhotoPlaceholder({ className = '' }: { className?: string }) {
   return (
-    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-lg ${color}`}>
-      <span className="font-display font-bold text-xl tracking-wide">{initials}</span>
+    <div
+      className={`flex items-center justify-center bg-[#F4F4F5] border border-[#311B92]/10 ${className}`}
+    >
+      <User className="w-1/3 h-1/3 text-[#311B92]/25" strokeWidth={1.25} />
     </div>
   );
 }
@@ -82,11 +91,8 @@ export default function Specialists() {
           className="mb-20"
         >
           <div className="text-center mb-16">
-            <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4">
-              Médicos Especialistas
-            </p>
             <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight mb-6">
-              Neumólogos
+              Médicos Especialistas
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Expertos en diagnóstico, consulta clínica e interpretación de resultados. Nuestro equipo de
@@ -95,46 +101,44 @@ export default function Specialists() {
           </div>
 
           <motion.div
-            variants={itemVariants}
+            variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.1)] transition-all duration-500 flex flex-col md:flex-row gap-10 items-center text-center md:text-left relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#311B92] via-[#7C3AED] to-[#a78bfa]" />
-              
-              <div className="flex-shrink-0">
-                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#1a0a3d] to-[#311B92] flex items-center justify-center text-white shadow-2xl relative">
-                  <div className="absolute inset-0 bg-white/10 rounded-3xl backdrop-blur-sm" />
-                  <Stethoscope className="w-10 h-10 relative z-10" strokeWidth={1.5} />
+            {pulmonologists.map((doctor) => (
+              <motion.div
+                key={doctor.id}
+                variants={itemVariants}
+                className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 overflow-hidden flex flex-col h-full"
+              >
+                {doctor.image ? (
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F4F5]">
+                    <Image
+                      src={doctor.image}
+                      alt={doctor.name}
+                      fill
+                      className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                ) : (
+                  <PhotoPlaceholder className="w-full aspect-[4/5]" />
+                )}
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Stethoscope className="w-4 h-4 text-[#7C3AED]" strokeWidth={1.75} />
+                    <p className="text-xs font-semibold tracking-widest uppercase text-[#7C3AED]">
+                      Neumólogo
+                    </p>
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-[#1a0a3d]">
+                    {doctor.name}
+                  </h3>
                 </div>
-              </div>
-              
-              <div className="flex-1">
-                <h3 className="font-display text-3xl font-semibold text-[#1a0a3d] mb-4">
-                  {pneumologistDescription.role}
-                </h3>
-                <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-                  {pneumologistDescription.specialties.map((spec) => (
-                    <span
-                      key={spec}
-                      className="text-[10px] md:text-xs bg-[#7C3AED]/10 text-[#7C3AED] px-3 md:px-4 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1.5"
-                    >
-                      <Star className="w-3 h-3 flex-shrink-0" /> {spec}
-                    </span>
-                  ))}
-                </div>
-                <div className="space-y-3">
-                  <p className="text-gray-600 leading-relaxed text-lg font-light">
-                    {pneumologistDescription.description1}
-                  </p>
-                  <p className="text-gray-600 leading-relaxed text-lg font-light">
-                    {pneumologistDescription.description2}
-                  </p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -149,11 +153,8 @@ export default function Specialists() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-16">
-            <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4">
-              Equipo Técnico Especializado
-            </p>
             <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight mb-6">
-              Técnicos
+              Equipo Técnico Especializado
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Profesionales altamente capacitados que aplican directamente todos nuestros servicios con
@@ -172,19 +173,28 @@ export default function Specialists() {
               <motion.div
                 key={technician.id}
                 variants={itemVariants}
-                className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 group flex flex-col h-full"
+                className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 group overflow-hidden flex flex-col h-full"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <AvatarInitials name={technician.name} color="bg-gradient-to-br from-[#7C3AED] to-[#311B92] group-hover:scale-105 transition-transform duration-500" />
-                  <div className="flex-1 text-left">
-                    <h3 className="font-display text-xl font-semibold text-[#1a0a3d] mb-1">
-                      {technician.name}
-                    </h3>
-                    <p className="text-xs font-semibold tracking-widest uppercase text-[#7C3AED]">
-                      {technician.area}
-                    </p>
+                {technician.image ? (
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F4F5]">
+                    <Image
+                      src={technician.image}
+                      alt={technician.name}
+                      fill
+                      className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <PhotoPlaceholder className="w-full aspect-[4/5]" />
+                )}
+                <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-display text-xl font-semibold text-[#1a0a3d] mb-1">
+                  {technician.name}
+                </h3>
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#7C3AED] mb-6">
+                  {technician.area}
+                </p>
 
                 <div className="flex-1">
                    <p className="text-sm text-gray-600 leading-relaxed mb-6">
@@ -200,6 +210,7 @@ export default function Specialists() {
                        </span>
                      ))}
                    </div>
+                </div>
                 </div>
               </motion.div>
             ))}

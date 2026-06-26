@@ -5,34 +5,54 @@ import { useState } from 'react';
 
 const faqItems = [
   {
-    question: '¿Cuánto cuesta un trasplante pulmonar?',
+    question: '¿Qué estudio necesito según mis síntomas?',
     answer:
-      'El costo varía según el caso específico, comorbilidades y complejidad. La mayoría de casos están cubiertos por seguros médicos. Ofrecemos consulta financiera para discutir opciones de pago y cobertura.',
+      'Depende de lo que experimentes. Si tienes tos persistente, falta de aire o sospecha de asma/EPOC, empieza por espirometría. Si ronquidos, pausas al dormir o somnolencia, es un estudio del sueño. En tu consulta inicial nuestro equipo te orienta sobre el mejor estudio para tu caso.',
   },
   {
-    question: '¿Cuánto tiempo tarda todo el proceso?',
+    question: '¿Cómo me preparo para una espirometría?',
     answer:
-      'El proceso completo generalmente toma 4-6 meses desde la evaluación inicial hasta la recuperación funcional. La evaluación toma 2-4 semanas, la preparación 1-3 meses, y la recuperación 3-6 meses.',
+      'No necesitas ayuno ni preparación especial. Evita ejercicio intenso 1 hora antes. Usa ropa cómoda que permita respirar libremente. Toma tus medicamentos normales, excepto broncodilatadores (inhaladores) que debes suspender 4 horas antes. La prueba dura unos 20 minutos.',
   },
   {
-    question: '¿Cuáles son los principales riesgos del trasplante?',
+    question: '¿Cuánto dura una pletismografía?',
     answer:
-      'Como toda cirugía mayor, hay riesgos de infección, rechazo del órgano y complicaciones quirúrgicas. Sin embargo, con nuestro protocolo integral y seguimiento de por vida, alcanzamos tasas de supervivencia del 98% a 5 años.',
+      'Aproximadamente 45 minutos. Es una prueba cómoda y no duele. Entras en una cámara cerrada (cabina) que mide tus volúmenes pulmonares con precisión. La mayoría de pacientes la tolera muy bien. No hay radiación ni efectos secundarios.',
   },
   {
-    question: '¿Podré volver a trabajar después del trasplante?',
+    question: '¿Qué es DLCO y para qué sirve?',
     answer:
-      'Sí, la mayoría de nuestros pacientes retorna a actividades laborales dentro de 3-6 meses. El tiempo exacto depende del tipo de trabajo y la recuperación individual. Contamos con programa de rehabilitación progresiva.',
+      'DLCO (capacidad de difusión pulmonar) mide cómo tus pulmones transfieren oxígeno a la sangre. Es clave para diagnosticar fibrosis pulmonar, enfisema, problemas vasculares pulmonares y otras enfermedades. Complementa la espirometría dando un diagnóstico más completo.',
   },
   {
-    question: '¿Cuál es la esperanza de vida después del trasplante?',
+    question: '¿Para qué sirve el FeNO?',
     answer:
-      'Con nuestro protocolo, alcanzamos 98% de supervivencia a 5 años. Muchos pacientes viven 10, 15 o más años post-trasplante con excelente calidad de vida, realizando actividades normales incluyendo viajes y deportes.',
+      'El FeNO (óxido nítrico exhalado) detecta inflamación eosinofílica en tus vías aéreas, lo que ayuda a confirmar asma y a guiar el tratamiento. Es rápido, no invasivo (solo respiras en un tubo especial durante 10 segundos) y sin riesgos.',
   },
   {
-    question: '¿Necesitaré tomar medicamentos de por vida?',
+    question: '¿Cómo agendo un estudio?',
     answer:
-      'Sí, es fundamental mantener una terapia inmunosupresora de por vida para prevenir el rechazo. Sin embargo, con el tiempo los medicamentos se estabilizan y los efectos secundarios disminuyen. Nuestro equipo te ayudará a optimizar tu régimen.',
+      'Muy fácil: contacta por WhatsApp al 811-778-1017 o llama al mismo número. Nuestro equipo te pregunta sobre tus síntomas y propone el estudio ideal para ti. Generalmente te vemos dentro de 1-2 semanas. También puedes escribirnos a contacto@cetrapulmonar.com.',
+  },
+  {
+    question: '¿Cuándo recibo los resultados?',
+    answer:
+      'El reporte clínico técnico está listo en 24-48 horas. Te lo enviamos por email y agendamos una cita de interpretación con el especialista para que entiendas qué significan tus resultados y qué sigue en tu tratamiento.',
+  },
+  {
+    question: '¿Puedo venir sin derivación médica?',
+    answer:
+      'Sí, absolutamente. No necesitas una referencia de otro médico. Puedes contactarnos directamente. Aunque si tu médico ya te refirió, nos coordinaremos con él para compartir resultados y recomendaciones.',
+  },
+  {
+    question: '¿Cómo funciona el pago y cobertura?',
+    answer:
+      'Aceptamos la mayoría de seguros médicos privados. Si tienes seguro, verifica cobertura con nosotros. Para pacientes sin seguro, ofrecemos opciones de pago accesibles y planes. No rechazamos a nadie por falta de recursos. Contacta para detalles específicos de tu caso.',
+  },
+  {
+    question: '¿Cómo me preparo para un estudio del sueño?',
+    answer:
+      'Polisomnografía: duermes una noche en nuestra clínica con electrodos. Come normal ese día, evita cafeína/alcohol después de las 4pm. Trae pijama cómoda. Noche dividida: mitad diagnóstico, mitad ajuste de máquina CPAP. El equipo te explica todo antes de empezar. Muchos pacientes duermen bien porque es un ambiente cómodo y seguro.',
   },
 ];
 
@@ -44,10 +64,18 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4">Resuelve tus dudas</p>
-          <h2 className="font-display text-3xl md:text-4xl font-light text-[#1a0a3d] leading-tight">
-            Preguntas Frecuentes
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4 font-light">
+              Resuelve tus dudas
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight">
+              Preguntas Frecuentes sobre Estudios Respiratorios
+            </h2>
+          </motion.div>
         </div>
 
         {/* FAQ Items */}

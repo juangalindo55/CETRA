@@ -5,3 +5,14 @@ build/
 .DS_Store
 *.local
 .env
+
+# AI tooling caches
+.aider*
+gemini/
+
+# Local audit artifacts
+lighthouse-reports/
+lighthouse-reports-prod/
+undefined:/
+*wsl.localhost*
+*.Zone.Identifier

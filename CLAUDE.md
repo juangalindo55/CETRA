@@ -148,8 +148,18 @@ import { CONTACT_WHATSAPP } from '@/lib/contact';
 |-----|-------------|
 | `DESIGN_SYSTEM.md` | Antes de tocar estilos o colores |
 | `ARCHITECTURE.md` | Antes de crear componentes o rutas |
-| `12_CONVENCIONES_CODIGO.md` | Antes de escribir código |
-| `21_FLOWS_UX.md` | Al trabajar en secciones de UI o CTAs |
-| `22_NEGOCIO.md` | Al tomar decisiones de copy o producto |
-| `10_ERRORES_Y_MEJORAS.md` | Al inicio de cada sesión de trabajo |
-| `03_BASE_DATOS.md` | Cuando se implemente Supabase (Fase 3) |
+| `README.md` | Overview público del proyecto |
+| `ROADMAP.md` | Checklist de fases y estado general |
+| `docs/CONVENCIONES_CODIGO.md` | Antes de escribir código |
+| `docs/FLOWS_UX.md` | Al trabajar en secciones de UI o CTAs |
+| `docs/NEGOCIO.md` | Al tomar decisiones de copy o producto |
+| `docs/ERRORES_Y_MEJORAS.md` | Al inicio de cada sesión de trabajo |
+| `docs/BASE_DATOS.md` | Cuando se implemente Supabase (Fase 3) |
+| `docs/ONBOARDING.md` | Para onboarding de nuevo desarrollador |
+| `docs/TESTING.md` | Estrategia de testing (no implementado aún) |
+| `docs/SEGURIDAD_PRIVACIDAD.md` | Marco legal y seguridad de datos |
+| `docs/VARIABLES_ENTORNO.md` | Variables de entorno y config |
+| `docs/COMANDOS_CLI.md` | Referencia de comandos npm, git, Supabase |
+| `docs/GLOSARIO.md` | Términos médicos y técnicos |
+| `docs/HISTORIAL.md` | Changelog por versión |
+| `docs/PRODUCTO.md` | Definición de producto y métricas |

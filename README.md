@@ -45,11 +45,12 @@ Basado en una paleta que equilibra la tecnología con el bienestar humano.
 
 | Elemento | Especificación | Uso |
 |-----------|----------------|-----|
-| **Electric Violet** | `#7C3AED` | Color de acción y marca principal |
-| **Slate 950** | `#020617` | Fondos profundos y tipografía display |
-| **Soft Glow** | `0px 4px 60px rgba(124, 58, 237, 0.1)` | Sombras que emulan iluminación premium |
-| **Tipografía Display** | `Playfair Display` | Títulos y heráldica institucional |
-| **Tipografía Body** | `DM Sans` | Lecturabilidad y documentos técnicos |
+| **Electric Violet** | `#7C3AED` | Acción, botones críticos y acentos |
+| **Deep Violet (Heritage)** | `#311B92` | Elementos de confianza y navegación |
+| **Base Black** | `#09090B` | Tipografía y secciones de impacto |
+| **Soft Gray** | `#F4F4F5` | Separaciones sutiles y divisores |
+| **Tipografía Display** | `Playfair Display` (Serif) | Títulos, autoridad médica |
+| **Tipografía Body** | `DM Sans` (Sans-serif) | Lectura fluida, documentos técnicos |
 
 ---
 
@@ -129,5 +130,5 @@ cetra/
 - **Email**: contacto@cetra.com
 - **Ubicación**: Sede de Excelencia Médica
 
-**Última actualización**: Abril 2026 | **Versión**: 1.0.0
+**Última actualización**: Abril 2026 | **Versión**: 0.1.0 (Beta)
 Producido bajo estándares de excelencia para el **Centro de Excelencia en Trasplante Pulmonar**.

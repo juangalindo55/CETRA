@@ -87,7 +87,8 @@ import PhotoFrame from '@/components/ui/PhotoFrame';
 | `src` | string · `undefined` | Sin valor → placeholder; con valor → `next/image` |
 | `alt` | string | Texto alternativo de la foto; si falta usa `label` |
 | `label` | string (req.) | Qué foto va aquí; visible en el placeholder |
-| `ratio` | `4/3` (def.) · `3/4` · `16/9` · `1/1` · `3/2` | Proporción del marco |
+| `ratio` | `4/3` (def.) · `3/4` · `16/9` · `1/1` · `3/2` · `2/1` | Proporción del marco (usar la más cercana a la foto para minimizar recorte) |
+| `fit` | `cover` (def.) · `contain` | `cover` llena y recorta; `contain` muestra la foto completa sin recortar |
 | `priority` | boolean | Para imágenes above-the-fold |
 | `sizes` | string | `sizes` de `next/image` (optimización responsive) |
 | `className` | string | Ancho/margen/columna (ej. `md:col-span-2`) |

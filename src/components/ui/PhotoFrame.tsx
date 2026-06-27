@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { ImageIcon } from 'lucide-react';
 
-type PhotoFrameRatio = '4/3' | '3/4' | '16/9' | '1/1' | '3/2';
+type PhotoFrameRatio = '4/3' | '3/4' | '16/9' | '1/1' | '3/2' | '2/1';
+type PhotoFrameFit = 'cover' | 'contain';
 
 interface PhotoFrameProps {
   /** Ruta de la foto. Sin valor → muestra el marco placeholder. */
@@ -12,6 +13,8 @@ interface PhotoFrameProps {
   label: string;
   /** Proporción del marco. */
   ratio?: PhotoFrameRatio;
+  /** Ajuste de la imagen: `cover` (def., llena y recorta) o `contain` (muestra completa, sin recortar). */
+  fit?: PhotoFrameFit;
   /** Pasa a next/image para imágenes above-the-fold. */
   priority?: boolean;
   /** `sizes` para next/image (optimización responsive). */
@@ -26,6 +29,12 @@ const ratioClasses: Record<PhotoFrameRatio, string> = {
   '16/9': 'aspect-[16/9]',
   '1/1': 'aspect-square',
   '3/2': 'aspect-[3/2]',
+  '2/1': 'aspect-[2/1]',
+};
+
+const fitClasses: Record<PhotoFrameFit, string> = {
+  cover: 'object-cover',
+  contain: 'object-contain',
 };
 
 /**
@@ -38,11 +47,13 @@ export default function PhotoFrame({
   alt,
   label,
   ratio = '4/3',
+  fit = 'cover',
   priority = false,
   sizes = '(max-width: 768px) 100vw, 50vw',
   className = '',
 }: PhotoFrameProps) {
   const ratioClass = ratioClasses[ratio];
+  const fitClass = fitClasses[fit];
 
   if (src) {
     return (
@@ -53,7 +64,7 @@ export default function PhotoFrame({
           fill
           priority={priority}
           sizes={sizes}
-          className="object-cover"
+          className={fitClass}
         />
       </div>
     );

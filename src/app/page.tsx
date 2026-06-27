@@ -119,7 +119,7 @@ export default function Home() {
                 src="/images/specialists/trasequipo.webp"
                 alt="Equipo médico de trasplante pulmonar de CETRA"
                 label="Equipo médico / sala de procedimientos"
-                ratio="4/3"
+                ratio="2/1"
                 className="w-full"
               />
             </motion.div>

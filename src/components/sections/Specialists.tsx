@@ -121,7 +121,7 @@ export default function Specialists() {
                       src={doctor.image}
                       alt={doctor.name}
                       fill
-                      className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                      className="object-cover object-top [@media(hover:hover)]:hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
@@ -183,7 +183,7 @@ export default function Specialists() {
                       src={technician.image}
                       alt={technician.name}
                       fill
-                      className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                      className="object-cover object-top [@media(hover:hover)]:hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
@@ -240,7 +240,7 @@ export default function Specialists() {
             href={CONTACT_WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-10 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 inline-block"
+            className="px-10 py-4 bg-white text-[#1a0a3d] font-medium tracking-wide rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] [@media(hover:hover)]:hover:scale-105 transition-all duration-300 inline-block"
           >
             Agendar Evaluación
           </a>

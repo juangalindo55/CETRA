@@ -18,7 +18,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+    <section className="relative hero-section flex items-center pt-20 pb-16 overflow-hidden">
       {/* Fondo orgánico */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(124,58,237,0.14)_0%,rgba(124,58,237,0.06)_24%,transparent_46%),radial-gradient(circle_at_82%_28%,rgba(49,27,146,0.11)_0%,rgba(49,27,146,0.05)_26%,transparent_50%),radial-gradient(circle_at_50%_82%,rgba(167,139,250,0.12)_0%,rgba(167,139,250,0.05)_22%,transparent_48%),linear-gradient(180deg,#ffffff_0%,#fbfaff_52%,#f5f3ff_100%)]" />
 
@@ -82,7 +82,7 @@ export default function Hero() {
               initial="hidden"
               animate="show"
               custom={0.2}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-[#1a0a3d] leading-[1.1] tracking-tight mb-6"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[#1a0a3d] leading-[1.1] tracking-tight mb-6"
             >
               Estudios y diagnóstico{' '}
               <em className="italic font-bold text-[#311B92] drop-shadow-sm">respiratorio</em>
@@ -110,13 +110,13 @@ export default function Hero() {
                 href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 hover:-translate-y-0.5 transition-[transform,background-color,box-shadow,color] duration-300 text-center"
+                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 [@media(hover:hover)]:hover:-translate-y-0.5 transition-[transform,background-color,box-shadow,color] duration-300 text-center"
               >
                 Agendar estudio
               </a>
               <Link
                 href="/servicios"
-                className="px-9 py-3.5 bg-white text-[#311B92] border border-[#7C3AED] font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/10 hover:bg-[#f8f5ff] hover:border-[#5b21b6] hover:shadow-md hover:shadow-[#311B92]/15 hover:-translate-y-0.5 transition-[transform,background-color,border-color,box-shadow,color] duration-300 text-center"
+                className="px-9 py-3.5 bg-white text-[#311B92] border border-[#7C3AED] font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/10 hover:bg-[#f8f5ff] hover:border-[#5b21b6] hover:shadow-md hover:shadow-[#311B92]/15 [@media(hover:hover)]:hover:-translate-y-0.5 transition-[transform,background-color,border-color,box-shadow,color] duration-300 text-center"
               >
                 Ver servicios
               </Link>

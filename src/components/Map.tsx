@@ -41,7 +41,7 @@ export default function Map() {
           <div className="space-y-4">
             <a
               href={`tel:${CONTACT_PHONE_TEL}`}
-              className="flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5"
+              className="flex items-center gap-3 transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#311B92]/10 bg-[#311B92]/5">
                 <Phone className="h-4 w-4 text-[#311B92]" />

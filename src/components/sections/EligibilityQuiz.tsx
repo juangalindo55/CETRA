@@ -153,7 +153,7 @@ export default function EligibilityQuiz() {
           <div className="flex gap-4">
             <button
               onClick={() => handleAnswer(true)}
-              className="flex-1 py-4 px-6 bg-[#7C3AED] text-white font-medium rounded-lg hover:bg-[#6D28D9] transition-all duration-300 hover:-translate-y-0.5"
+              className="flex-1 py-4 px-6 bg-[#7C3AED] text-white font-medium rounded-lg hover:bg-[#6D28D9] transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
             >
               Sí
             </button>

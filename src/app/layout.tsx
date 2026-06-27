@@ -1,9 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import SeoSchema from "@/components/SeoSchema";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL_OBJECT } from "@/lib/site";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#311B92',
+};
 
 export const metadata: Metadata = {
   metadataBase: SITE_URL_OBJECT,

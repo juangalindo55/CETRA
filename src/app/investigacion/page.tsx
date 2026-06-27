@@ -108,7 +108,7 @@ export default function InvestigacionPage() {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#lineas"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
               >
                 <ArrowRight className="h-4 w-4" />
                 Ver líneas de investigación
@@ -123,7 +123,7 @@ export default function InvestigacionPage() {
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-8">
+          <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c4b5fd]">
               Nuestra base científica
             </p>
@@ -193,7 +193,7 @@ export default function InvestigacionPage() {
             {researchLines.map((line) => (
               <article
                 key={line.title}
-                className="group rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
+                className="group rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-sm transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#faf8ff]">

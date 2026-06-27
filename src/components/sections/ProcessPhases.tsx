@@ -60,10 +60,10 @@ export function ProcessPhases() {
       {phases.map((phase, index) => (
         <div
           key={index}
-          className={`${phase.bgColor} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group`}
+          className={`${phase.bgColor} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-2 relative overflow-hidden group`}
         >
           {/* Decorative background element */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-300" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 [@media(hover:hover)]:group-hover:scale-150 transition-transform duration-300" />
 
           {/* Icon - positioned at top */}
           <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm relative z-10`}>

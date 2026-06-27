@@ -85,7 +85,7 @@ export default function Navbar() {
       return;
     }
 
-    const onPointerDown = (event: MouseEvent) => {
+    const onPointerDown = (event: PointerEvent) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
@@ -100,8 +100,8 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener('mousedown', onPointerDown);
-    return () => document.removeEventListener('mousedown', onPointerDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
   }, [open]);
 
   useEffect(() => {
@@ -123,7 +123,7 @@ export default function Navbar() {
         
         {/* Izquierda: Logo */}
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center hover:opacity-90 transition-all transform hover:scale-105 duration-300 relative py-1">
+          <Link href="/" className="flex items-center hover:opacity-90 transition-all transform [@media(hover:hover)]:hover:scale-105 duration-300 relative py-1">
             <Logo width={260} height={260} className="relative z-10 drop-shadow-lg" />
           </Link>
         </div>
@@ -172,7 +172,7 @@ export default function Navbar() {
                             <Link
                               href={item.href}
                               onClick={() => setCetraOpen(false)}
-                              className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                              className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
                             >
                               <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
                                 <Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -240,7 +240,7 @@ export default function Navbar() {
                                   <Link
                                     href={item.slug}
                                     onClick={() => setServicesOpen(false)}
-                                    className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                                    className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
                                   >
                                     <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
                                       <Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -284,7 +284,7 @@ export default function Navbar() {
                     <Link
                       href="/servicios"
                       onClick={() => setServicesOpen(false)}
-                      className="group/cta relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726] transition-transform hover:-translate-y-0.5"
+                      className="group/cta relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726] transition-transform [@media(hover:hover)]:hover:-translate-y-0.5"
                     >
                       Ver todos los servicios
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
@@ -325,7 +325,7 @@ export default function Navbar() {
 
       {/* Mobile menu — fuera del overflow-hidden del header */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4 text-sm font-light text-gray-600 tracking-wide">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4 text-sm font-light text-gray-600 tracking-wide max-h-[calc(100svh-5rem)] overflow-y-auto">
           <div className="space-y-3">
             <button
               type="button"

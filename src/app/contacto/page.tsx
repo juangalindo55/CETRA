@@ -91,7 +91,7 @@ export default function ContactPage() {
                 href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
               >
                 <MessageCircle className="h-4 w-4" />
                 Enviar mensaje por WhatsApp
@@ -110,7 +110,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.12 }}
-            className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-8"
+            className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8"
           >
             <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c4b5fd]">
               Acceso rápido
@@ -166,7 +166,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="group rounded-3xl border border-gray-100 bg-[#faf8ff] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
+                className="group rounded-3xl border border-gray-100 bg-[#faf8ff] p-7 transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#311B92] shadow-sm">
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -209,7 +209,7 @@ export default function ContactPage() {
                   href={GOOGLE_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#120726] transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#120726] transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Abrir en Google Maps

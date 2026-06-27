@@ -20,7 +20,7 @@ interface ButtonCTAProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300 hover:-translate-y-0.5';
+  'inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5';
 
 const variants: Record<ButtonCTAVariant, string> = {
   primary:

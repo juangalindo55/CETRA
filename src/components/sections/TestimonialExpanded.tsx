@@ -118,7 +118,7 @@ export default function TestimonialExpanded() {
               className="relative h-full p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-gray-100 hover:border-[#7C3AED]/30 transition-all duration-500 overflow-hidden group flex flex-col"
             >
               {/* Background gradient accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#7C3AED]/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#7C3AED]/10 to-transparent rounded-full -mr-16 -mt-16 [@media(hover:hover)]:group-hover:scale-150 transition-transform duration-500" />
 
               {/* Stats Pills */}
               <div className="relative z-10 flex gap-2 mb-6 flex-wrap">

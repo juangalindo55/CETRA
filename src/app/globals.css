@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Prevenir scroll horizontal en mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Corrección de viewport height para iOS Safari — la barra de direcciones no se descuenta en 100vh */
+.hero-section {
+  min-height: 100vh; /* fallback: Chrome/Firefox sin soporte svh */
+  min-height: 100svh; /* iOS Safari 15.4+, Chrome 108+ — respeta la barra de direcciones */
+}
+
 @theme {
   --font-sans: "DM Sans", "Segoe UI", Inter, system-ui, sans-serif;
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;

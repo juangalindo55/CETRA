@@ -122,6 +122,38 @@
 
 ---
 
+## v0.2.3 — Placeholders de Fotografía en el Landing (Junio 2026)
+
+**Período:** Junio 2026
+**Estado:** ✅ Completa
+
+### ADDED
+- Componente **`src/components/ui/PhotoFrame.tsx`** — marco de imagen con fallback: muestra un placeholder punteado etiquetado (con aspect-ratio) mientras no haya `src`; al pasarle `src` renderiza `next/image`. Props: `src`, `alt`, `label`, `ratio` (`4/3`/`3/4`/`16/9`/`1/1`/`3/2`), `priority`, `sizes`, `className`.
+- Sección **`src/components/sections/Instalaciones.tsx`** — franja "Conoce nuestras instalaciones" con 4 `PhotoFrame` (fachada/recepción, pletismografía/espirómetro, laboratorio del sueño, banda CPET) + enlace a `/instalaciones`. Montada en el landing entre `HowItWorks` y "¿Por qué CETRA?".
+
+### CHANGED
+- **Sección institucional de trasplante** (`app/page.tsx`): de una columna a grid de 2 columnas (texto + `PhotoFrame` "Equipo médico / sala de procedimientos").
+- **`HowItWorks.tsx`**: foto de apoyo 16/9 ("Paciente realizando una prueba respiratoria") bajo los 3 pasos.
+
+### DOCS
+- `DESIGN_SYSTEM.md`: sección "Imágenes — Componente `PhotoFrame`" (tabla de props + convención de `public/images/`).
+- `CLAUDE.md`: patrón de imágenes con `PhotoFrame` en "Patrones Frecuentes".
+
+---
+
+## v0.2.4 — Correcciones de Tipado Estricto y Consistencia de Color (Junio 2026)
+
+**Período:** Junio 2026
+**Estado:** ✅ Completa
+
+### FIXED
+- Activación de TypeScript en modo estricto (`strict: true`) en `tsconfig.json` para cumplir con las pautas de arquitectura.
+- Corrección de la opción de configuración `baseUrl` obsoleta en TypeScript 6.0 añadiendo `ignoreDeprecations: "6.0"`.
+- Resolución de error de compilación en `src/app/servicios/[slug]/page.tsx` mediante la redefinición estricta de tipos en `src/lib/mdx.ts` (`ServiceData` y filtrado explícito de `null` en `getAllServices()`).
+- Eliminación y reemplazo de colores prohibidos (`purple-500` y `purple-50`) en `especialistas/page.tsx`, `servicios/page.tsx`, y `components/sections/Specialists.tsx` para ajustarse estrictamente a la paleta del Design System.
+
+---
+
 ## v0.3.0 — Optimización y Lighthouse (Fase 4)
 
 **Período:** TBD

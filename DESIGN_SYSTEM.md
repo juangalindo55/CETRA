@@ -68,6 +68,34 @@ import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 **Excepciones documentadas (bespoke, no migradas):** los pares de botones del `Hero` y de `EligibilityQuiz` conservan su tamaño propio para no desalinear su botón hermano; los outline violeta del Hero/landing ("Ver servicios") mantienen su estilo editorial.
 
+## Imágenes — Componente `PhotoFrame`
+
+Los slots de imagen del sitio se renderizan con **`src/components/ui/PhotoFrame.tsx`**. Mientras no haya foto, muestra un **marco punteado etiquetado** (con el aspect-ratio visible, sirve de brief para el fotógrafo); al pasarle `src` renderiza `next/image`. Migrar a foto real = añadir las props `src`/`alt`.
+
+```tsx
+import PhotoFrame from '@/components/ui/PhotoFrame';
+
+// Placeholder (aún sin foto) → marco punteado violeta
+<PhotoFrame label="Fachada de la clínica" ratio="4/3" />
+
+// Con foto real → next/image
+<PhotoFrame src="/images/instalaciones/fachada.webp" alt="Fachada de CETRA" ratio="4/3" />
+```
+
+| Prop | Valores | Uso |
+|------|---------|-----|
+| `src` | string · `undefined` | Sin valor → placeholder; con valor → `next/image` |
+| `alt` | string | Texto alternativo de la foto; si falta usa `label` |
+| `label` | string (req.) | Qué foto va aquí; visible en el placeholder |
+| `ratio` | `4/3` (def.) · `3/4` · `16/9` · `1/1` · `3/2` | Proporción del marco |
+| `priority` | boolean | Para imágenes above-the-fold |
+| `sizes` | string | `sizes` de `next/image` (optimización responsive) |
+| `className` | string | Ancho/margen/columna (ej. `md:col-span-2`) |
+
+**Fotos** en `public/images/` (subcarpeta por contexto, ej. `public/images/instalaciones/`), optimizadas a `.webp`. Usado hoy en el landing (sección `Instalaciones`, banda de trasplante, `HowItWorks`).
+
+> Nota: `Specialists.tsx` conserva su propio `PhotoPlaceholder` local (silueta de persona para headshots faltantes). Migrarlo a `PhotoFrame` es deuda menor pendiente.
+
 ## Regla de Color (estricta)
 
 Prohibido en clases Tailwind: `blue-*`, `purple-*`, grises genéricos como acento (`gray-800`, etc.). Usar siempre los tokens/hex de marca. Tints violeta de superficie canónicos: `#faf8ff` (hover claro), `#f5f0ff` / `#f5f3ff` (chips y fondos suaves), `#ece7fb` (tint medio), `#e8e4f8` / `#d8c9ff` (bordes). **Deuda pendiente:** consolidar la proliferación de casi-blancos en una escala nombrada (sesión dedicada con QA visual).

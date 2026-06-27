@@ -115,6 +115,14 @@ import { CONTACT_WHATSAPP } from '@/lib/contact';
 <ButtonCTA href={CONTACT_WHATSAPP} external size="lg">Agendar Evaluación</ButtonCTA>
 ```
 
+### Imágenes — usar `PhotoFrame`
+Los slots de imagen van con `@/components/ui/PhotoFrame` (no escribir `next/image` a mano para placeholders). Sin `src` muestra un marco punteado etiquetado; con `src` renderiza `next/image`. Fotos en `public/images/`. Ver `DESIGN_SYSTEM.md` → "Imágenes".
+```tsx
+import PhotoFrame from '@/components/ui/PhotoFrame';
+<PhotoFrame label="Fachada de la clínica" ratio="4/3" />          // placeholder
+<PhotoFrame src="/images/instalaciones/fachada.webp" alt="Fachada de CETRA" ratio="4/3" /> // foto real
+```
+
 ### Heading MDX con ID
 ```mdx
 <h2 id="seccion-id" className="text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mt-16 mb-6 font-display">

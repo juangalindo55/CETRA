@@ -46,6 +46,7 @@ const technicians = [
     area: 'Pruebas de Esfuerzo',
     services: ['Caminata 6 Minutos', 'CPET', 'Reto con Ejercicio'],
     description: 'Técnico certificado en ergometría cardiopulmonar y evaluación de capacidad funcional.',
+    image: '/images/specialists/brandon.webp',
   },
 ];
 
@@ -81,7 +82,7 @@ function PhotoPlaceholder({ className = '' }: { className?: string }) {
 
 export default function Specialists() {
   return (
-    <section className="py-24 w-full bg-gradient-to-br from-white via-purple-50/20 to-white">
+    <section className="py-24 w-full bg-gradient-to-br from-white via-[#f5f3ff]/20 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* NEUMÓLOGOS SECTION */}
         <motion.div

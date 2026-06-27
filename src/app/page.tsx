@@ -5,11 +5,13 @@ import TrustPillars from '@/components/sections/TrustPillars';
 import Services from '@/components/sections/Services';
 import WhenToSeek from '@/components/sections/WhenToSeek';
 import HowItWorks from '@/components/sections/HowItWorks';
+import Instalaciones from '@/components/sections/Instalaciones';
 import FAQ from '@/components/sections/FAQ';
 import Marquee from '@/components/ui/Marquee';
 import Link from 'next/link';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
+import PhotoFrame from '@/components/ui/PhotoFrame';
 
 import { motion } from 'framer-motion';
 
@@ -41,6 +43,9 @@ export default function Home() {
 
       {/* 6. HOW IT WORKS */}
       <HowItWorks />
+
+      {/* 6.5. INSTALACIONES */}
+      <Instalaciones />
 
       {/* 7. WHY CETRA - DIFFERENTIATORS */}
       <section className="py-20 w-full bg-white relative">
@@ -81,28 +86,44 @@ export default function Home() {
       {/* 8. INSTITUTIONAL TRANSPLANT SECTION */}
       <section className="py-20 bg-gradient-to-br from-[#1a0a3d] to-[#311B92]/80 text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
-            <p className="text-xs tracking-widest uppercase text-[#a78bfa] mb-4 font-light">
-              Alta especialidad
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
-              Medicina respiratoria avanzada y experiencia en trasplante pulmonar
-            </h2>
-            <p className="text-gray-200 leading-relaxed mb-8 font-light max-w-xl">
-              CETRA también cuenta con experiencia en alta especialidad respiratoria y trasplante pulmonar, respaldando una práctica clínica integral para casos complejos.
-            </p>
-            <Link
-              href="/servicios/trasplante-pulmonar"
-              className="inline-block text-[#a78bfa] hover:text-white transition-colors duration-300 font-light"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
             >
-              Conocer programa →
-            </Link>
-          </motion.div>
+              <p className="text-xs tracking-widest uppercase text-[#a78bfa] mb-4 font-light">
+                Alta especialidad
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+                Medicina respiratoria avanzada y experiencia en trasplante pulmonar
+              </h2>
+              <p className="text-gray-200 leading-relaxed mb-8 font-light max-w-xl">
+                CETRA también cuenta con experiencia en alta especialidad respiratoria y trasplante pulmonar, respaldando una práctica clínica integral para casos complejos.
+              </p>
+              <Link
+                href="/servicios/trasplante-pulmonar"
+                className="inline-block text-[#a78bfa] hover:text-white transition-colors duration-300 font-light"
+              >
+                Conocer programa →
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <PhotoFrame
+                src="/images/specialists/trasequipo.webp"
+                alt="Equipo médico de trasplante pulmonar de CETRA"
+                label="Equipo médico / sala de procedimientos"
+                ratio="4/3"
+                className="w-full"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

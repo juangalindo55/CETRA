@@ -16,3 +16,6 @@ lighthouse-reports-prod/
 undefined:/
 *wsl.localhost*
 *.Zone.Identifier
+
+# TS incremental build info (no versionar)
+tsconfig.tsbuildinfo

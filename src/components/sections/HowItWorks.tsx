@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import PhotoFrame from '@/components/ui/PhotoFrame';
 
 const steps = [
   {
@@ -69,6 +70,22 @@ export default function HowItWorks() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.5 }}
+          className="mt-16 max-w-4xl mx-auto"
+        >
+          <PhotoFrame
+            src="/images/pletis.webp"
+            alt="Paciente realizando una prueba respiratoria en CETRA"
+            label="Paciente realizando una prueba respiratoria"
+            ratio="16/9"
+            className="w-full"
+          />
+        </motion.div>
       </div>
     </section>
   );

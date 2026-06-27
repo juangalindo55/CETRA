@@ -8,7 +8,7 @@ export default function SpecialistsPage() {
       {/* Hero Section */}
       <section className="bg-[#1a0a3d] text-white pt-40 pb-28 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500 via-transparent to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#7C3AED] via-transparent to-transparent" />
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

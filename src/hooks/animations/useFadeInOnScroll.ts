@@ -2,6 +2,12 @@
 
 import { useEffect, RefObject } from 'react';
 
+declare global {
+  interface Window {
+    anime?: any;
+  }
+}
+
 export interface FadeInOptions {
   duration?: number;
   delay?: number;
@@ -35,9 +41,8 @@ export function useFadeInOnScroll(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Dynamic import to work around Turbopack module resolution
-          import('animejs').then(({ animate: animeAnimate }) => {
-            animeAnimate(element, {
+          if (window.anime) {
+            window.anime(element, {
               opacity: [0, 1],
               translateY: [translateDistance, 0],
               duration,
@@ -47,7 +52,7 @@ export function useFadeInOnScroll(
                 element.style.willChange = 'auto';
               },
             });
-          });
+          }
           observer.unobserve(element);
         }
       },

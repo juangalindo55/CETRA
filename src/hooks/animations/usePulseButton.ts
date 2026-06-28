@@ -2,6 +2,12 @@
 
 import { useEffect, RefObject } from 'react';
 
+declare global {
+  interface Window {
+    anime?: any;
+  }
+}
+
 export interface PulseOptions {
   enabled?: boolean;
   duration?: number;
@@ -32,16 +38,15 @@ export function usePulseButton(
     const element = ref.current;
     element.style.willChange = 'transform';
 
-    // Dynamic import to work around Turbopack module resolution
     let timeline: any = null;
-    import('animejs').then(({ animate: animeAnimate }) => {
-      timeline = animeAnimate(element, {
+    if (window.anime) {
+      timeline = window.anime(element, {
         scale: [1, 1.04, 1],
         duration,
         easing: 'easeInOutQuad',
         loop: true,
       });
-    });
+    }
 
     return () => {
       if (timeline) timeline.pause();

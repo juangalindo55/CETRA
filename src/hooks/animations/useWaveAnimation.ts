@@ -2,6 +2,12 @@
 
 import { useEffect, RefObject } from 'react';
 
+declare global {
+  interface Window {
+    anime?: any;
+  }
+}
+
 export interface WaveOptions {
   duration?: number;
   staggerDelay?: number;
@@ -43,14 +49,13 @@ export function useWaveAnimation(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Dynamic import to work around Turbopack module resolution
-          import('animejs').then(({ animate: animeAnimate, stagger }) => {
+          if (window.anime) {
             // On desktop, use stagger from center; on mobile, standard left-to-right
             const staggerConfig = isMobile
-              ? stagger(staggerDelay)
-              : stagger(staggerDelay, { from: 'center' });
+              ? window.anime.stagger(staggerDelay)
+              : window.anime.stagger(staggerDelay, { from: 'center' });
 
-            animeAnimate(chips, {
+            window.anime(chips, {
               opacity: [0, 1],
               scale: [0.8, 1],
               duration,
@@ -62,7 +67,7 @@ export function useWaveAnimation(
                 });
               },
             });
-          });
+          }
           observer.unobserve(container);
         }
       },

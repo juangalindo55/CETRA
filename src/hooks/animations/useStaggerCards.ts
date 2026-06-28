@@ -2,6 +2,12 @@
 
 import { useEffect, RefObject } from 'react';
 
+declare global {
+  interface Window {
+    anime?: any;
+  }
+}
+
 export interface StaggerOptions {
   duration?: number;
   staggerDelay?: number;
@@ -44,13 +50,12 @@ export function useStaggerCards(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Dynamic import to work around Turbopack module resolution
-          import('animejs').then(({ animate: animeAnimate, stagger }) => {
-            animeAnimate(cards, {
+          if (window.anime) {
+            window.anime(cards, {
               opacity: [0, 1],
               translateY: [translateDistance, 0],
               duration,
-              delay: stagger(staggerDelay),
+              delay: window.anime.stagger(staggerDelay),
               easing: 'easeOutQuad',
               complete: () => {
                 cards.forEach((card) => {
@@ -58,7 +63,7 @@ export function useStaggerCards(
                 });
               },
             });
-          });
+          }
           observer.unobserve(container);
         }
       },

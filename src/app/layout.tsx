@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import SeoSchema from "@/components/SeoSchema";
+import AnimeScriptLoader from "@/components/AnimeScriptLoader";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL_OBJECT } from "@/lib/site";
 import "./globals.css";
 
@@ -63,14 +63,12 @@ export default function RootLayout({
     <html lang="es">
       <body className="font-sans bg-base-white text-base-black antialiased flex flex-col min-h-screen">
         <SeoSchema />
+        <AnimeScriptLoader />
         <Navbar />
         <main className="relative z-0 flex-grow">
           {children}
         </main>
         <Footer />
-
-        {/* Anime.js library for animations */}
-        <Script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

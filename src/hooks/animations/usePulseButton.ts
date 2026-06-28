@@ -10,7 +10,7 @@ export interface PulseOptions {
 }
 
 export function usePulseButton(
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   options: PulseOptions = {}
 ): void {
   const { enabled = true, duration = 1800, minWidth = 768 } = options;
@@ -34,8 +34,7 @@ export function usePulseButton(
     element.style.willChange = 'transform';
 
     // Infinite pulse animation
-    animate({
-      targets: element,
+    animate(element, {
       scale: [1, 1.04, 1],
       duration,
       easing: 'easeInOutQuad',

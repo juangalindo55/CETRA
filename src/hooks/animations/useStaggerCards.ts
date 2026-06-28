@@ -9,7 +9,7 @@ export interface StaggerOptions {
 }
 
 export function useStaggerCards(
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   options: StaggerOptions = {}
 ): void {
   const { duration = 600, staggerDelay = 80 } = options;
@@ -45,8 +45,7 @@ export function useStaggerCards(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          animate({
-            targets: cards,
+          animate(cards, {
             opacity: [0, 1],
             translateY: [translateDistance, 0],
             duration,

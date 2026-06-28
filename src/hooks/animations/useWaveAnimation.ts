@@ -9,7 +9,7 @@ export interface WaveOptions {
 }
 
 export function useWaveAnimation(
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   options: WaveOptions = {}
 ): void {
   const { duration = 600, staggerDelay = 60 } = options;
@@ -49,8 +49,8 @@ export function useWaveAnimation(
             ? stagger(staggerDelay)
             : stagger(staggerDelay, { from: 'center' });
 
-          animate({
-            targets: chips,
+          animate(chips, {
+            
             opacity: [0, 1],
             scale: [0.8, 1],
             duration,

@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useStaggerCards } from '@/hooks/animations/useStaggerCards';
 import {
   ChevronDown,
   ArrowRight,
@@ -189,6 +190,8 @@ export default function Services() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(
     serviceCategories[0].id,
   );
+  const serviceGridRef = useRef<HTMLDivElement>(null);
+  useStaggerCards(serviceGridRef as React.RefObject<HTMLElement>);
 
   return (
     <section className="w-full bg-white py-20 sm:py-24">
@@ -270,6 +273,7 @@ export default function Services() {
         </div>
 
         <motion.div
+          ref={serviceGridRef}
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -335,7 +339,7 @@ export default function Services() {
                     {category.services.map((service) => (
                       <div
                         key={service.name}
-                        className="rounded-2xl border border-white/70 bg-[#fcfbff] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] transition-all duration-300 hover:border-[#d8c9ff] hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)]"
+                        className="service-card rounded-2xl border border-white/70 bg-[#fcfbff] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] transition-all duration-300 hover:border-[#d8c9ff] hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)]"
                       >
                         <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#7C3AED]">
                           <FileText className="h-3.5 w-3.5" />

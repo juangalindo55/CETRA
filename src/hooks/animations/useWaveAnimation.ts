@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import * as anime from 'animejs';
 
 export interface WaveOptions {
   duration?: number;
@@ -44,23 +43,25 @@ export function useWaveAnimation(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // On desktop, use stagger from center; on mobile, standard left-to-right
-          const staggerConfig = isMobile
-            ? anime.stagger(staggerDelay)
-            : anime.stagger(staggerDelay, { from: 'center' });
+          // Dynamic import to work around Turbopack module resolution
+          import('animejs').then(({ animate: animeAnimate, stagger }) => {
+            // On desktop, use stagger from center; on mobile, standard left-to-right
+            const staggerConfig = isMobile
+              ? stagger(staggerDelay)
+              : stagger(staggerDelay, { from: 'center' });
 
-          anime({
-            targets: chips,
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            duration,
-            delay: staggerConfig,
-            easing: 'easeOutQuad',
-            complete: () => {
-              chips.forEach((chip) => {
-                chip.style.willChange = 'auto';
-              });
-            },
+            animeAnimate(chips, {
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              duration,
+              delay: staggerConfig,
+              easing: 'easeOutQuad',
+              complete: () => {
+                chips.forEach((chip) => {
+                  chip.style.willChange = 'auto';
+                });
+              },
+            });
           });
           observer.unobserve(container);
         }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import * as anime from 'animejs';
 
 export interface PulseOptions {
   enabled?: boolean;
@@ -33,17 +32,19 @@ export function usePulseButton(
     const element = ref.current;
     element.style.willChange = 'transform';
 
-    // Infinite pulse animation
-    const timeline = anime({
-      targets: element,
-      scale: [1, 1.04, 1],
-      duration,
-      easing: 'easeInOutQuad',
-      loop: true,
+    // Dynamic import to work around Turbopack module resolution
+    let timeline: any = null;
+    import('animejs').then(({ animate: animeAnimate }) => {
+      timeline = animeAnimate(element, {
+        scale: [1, 1.04, 1],
+        duration,
+        easing: 'easeInOutQuad',
+        loop: true,
+      });
     });
 
     return () => {
-      timeline.pause();
+      if (timeline) timeline.pause();
       element.style.willChange = 'auto';
     };
   }, [ref, enabled, duration, minWidth]);

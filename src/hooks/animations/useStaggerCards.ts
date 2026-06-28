@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import * as anime from 'animejs';
 
 export interface StaggerOptions {
   duration?: number;
@@ -45,18 +44,20 @@ export function useStaggerCards(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          anime({
-            targets: cards,
-            opacity: [0, 1],
-            translateY: [translateDistance, 0],
-            duration,
-            delay: anime.stagger(staggerDelay),
-            easing: 'easeOutQuad',
-            complete: () => {
-              cards.forEach((card) => {
-                card.style.willChange = 'auto';
-              });
-            },
+          // Dynamic import to work around Turbopack module resolution
+          import('animejs').then(({ animate: animeAnimate, stagger }) => {
+            animeAnimate(cards, {
+              opacity: [0, 1],
+              translateY: [translateDistance, 0],
+              duration,
+              delay: stagger(staggerDelay),
+              easing: 'easeOutQuad',
+              complete: () => {
+                cards.forEach((card) => {
+                  card.style.willChange = 'auto';
+                });
+              },
+            });
           });
           observer.unobserve(container);
         }

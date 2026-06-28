@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import * as anime from 'animejs';
 
 export interface FadeInOptions {
   duration?: number;
@@ -36,16 +35,18 @@ export function useFadeInOnScroll(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [translateDistance, 0],
-            duration,
-            delay,
-            easing: 'easeOutQuad',
-            complete: () => {
-              element.style.willChange = 'auto';
-            },
+          // Dynamic import to work around Turbopack module resolution
+          import('animejs').then(({ animate: animeAnimate }) => {
+            animeAnimate(element, {
+              opacity: [0, 1],
+              translateY: [translateDistance, 0],
+              duration,
+              delay,
+              easing: 'easeOutQuad',
+              complete: () => {
+                element.style.willChange = 'auto';
+              },
+            });
           });
           observer.unobserve(element);
         }

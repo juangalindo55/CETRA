@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { useWaveAnimation } from '@/hooks/animations/useWaveAnimation';
 
 const symptoms = [
   'Falta de aire al esfuerzo',
@@ -14,6 +16,9 @@ const symptoms = [
 ];
 
 export default function WhenToSeek() {
+  const chipContainerRef = useRef<HTMLDivElement>(null);
+  useWaveAnimation(chipContainerRef);
+
   return (
     <section className="py-20 bg-[#f5f3ff]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +40,7 @@ export default function WhenToSeek() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div ref={chipContainerRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {symptoms.map((symptom, i) => (
             <motion.div
               key={symptom}
@@ -43,7 +48,7 @@ export default function WhenToSeek() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-[#7C3AED]/20 hover:shadow-sm transition-all duration-300"
+              className="symptom-chip flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-[#7C3AED]/20 hover:shadow-sm transition-all duration-300"
             >
               <div className="w-2 h-2 bg-[#7C3AED] rounded-full flex-shrink-0 mt-1.5" />
               <span className="text-gray-700 text-sm leading-relaxed">{symptom}</span>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import { animate } from 'animejs';
+import * as anime from 'animejs';
 
 export interface FadeInOptions {
   duration?: number;
@@ -36,7 +36,8 @@ export function useFadeInOnScroll(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          animate(element, {
+          anime({
+            targets: element,
             opacity: [0, 1],
             translateY: [translateDistance, 0],
             duration,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import { animate, stagger } from 'animejs';
+import * as anime from 'animejs';
 
 export interface StaggerOptions {
   duration?: number;
@@ -45,11 +45,12 @@ export function useStaggerCards(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          animate(cards, {
+          anime({
+            targets: cards,
             opacity: [0, 1],
             translateY: [translateDistance, 0],
             duration,
-            delay: stagger(staggerDelay),
+            delay: anime.stagger(staggerDelay),
             easing: 'easeOutQuad',
             complete: () => {
               cards.forEach((card) => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import { animate } from 'animejs';
+import * as anime from 'animejs';
 
 export interface PulseOptions {
   enabled?: boolean;
@@ -34,7 +34,8 @@ export function usePulseButton(
     element.style.willChange = 'transform';
 
     // Infinite pulse animation
-    const timeline = animate(element, {
+    const timeline = anime({
+      targets: element,
       scale: [1, 1.04, 1],
       duration,
       easing: 'easeInOutQuad',

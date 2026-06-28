@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-import { animate, stagger } from 'animejs';
+import * as anime from 'animejs';
 
 export interface WaveOptions {
   duration?: number;
@@ -46,11 +46,11 @@ export function useWaveAnimation(
         if (entry.isIntersecting) {
           // On desktop, use stagger from center; on mobile, standard left-to-right
           const staggerConfig = isMobile
-            ? stagger(staggerDelay)
-            : stagger(staggerDelay, { from: 'center' });
+            ? anime.stagger(staggerDelay)
+            : anime.stagger(staggerDelay, { from: 'center' });
 
-          animate(chips, {
-            
+          anime({
+            targets: chips,
             opacity: [0, 1],
             scale: [0.8, 1],
             duration,

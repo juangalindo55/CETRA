@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import SeoSchema from "@/components/SeoSchema";
@@ -69,7 +70,7 @@ export default function RootLayout({
         <Footer />
 
         {/* Anime.js library for animations */}
-        <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js" />
+        <Script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

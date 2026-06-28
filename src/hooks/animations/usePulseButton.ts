@@ -34,7 +34,7 @@ export function usePulseButton(
     element.style.willChange = 'transform';
 
     // Infinite pulse animation
-    animate(element, {
+    const timeline = animate(element, {
       scale: [1, 1.04, 1],
       duration,
       easing: 'easeInOutQuad',
@@ -42,11 +42,7 @@ export function usePulseButton(
     });
 
     return () => {
-      // Note: Anime.js loop: true means we can't easily stop it,
-      // but cleanup on unmount will remove the element from DOM anyway.
-      // For proper cleanup, we'd need to store and remove the timeline,
-      // but Anime.js v4 doesn't expose timeline handles in the same way.
-      // In practice, this is fine because the element is unmounted.
+      timeline.pause();
       element.style.willChange = 'auto';
     };
   }, [ref, enabled, duration, minWidth]);

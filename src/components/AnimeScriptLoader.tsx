@@ -11,7 +11,7 @@ export default function AnimeScriptLoader() {
 
     // Create script element
     const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js';
+    script.src = 'https://unpkg.com/animejs@4.5.0/lib/anime.min.js';
     script.async = false;
     script.onload = () => {
       console.log('✓ Anime.js loaded successfully');

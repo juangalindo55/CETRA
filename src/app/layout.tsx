@@ -69,10 +69,7 @@ export default function RootLayout({
         <Footer />
 
         {/* Anime.js library for animations */}
-        <script
-          src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js"
-          async
-        />
+        <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.min.js" />
       </body>
     </html>
   );

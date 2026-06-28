@@ -1,5 +1,9 @@
+'use client';
+
+import { useRef } from 'react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { usePulseButton } from '@/hooks/animations/usePulseButton';
 
 type ButtonCTAVariant = 'primary' | 'secondary';
 type ButtonCTASize = 'sm' | 'md' | 'lg';
@@ -49,6 +53,10 @@ export default function ButtonCTA({
   className = '',
   onClick,
 }: ButtonCTAProps) {
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const isWhatsApp = href?.includes('wa.me');
+  usePulseButton(buttonRef, { enabled: isWhatsApp });
+
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`.trim();
   const content = (
     <>
@@ -60,6 +68,7 @@ export default function ButtonCTA({
   if (external) {
     return (
       <a
+        ref={buttonRef}
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -74,14 +83,14 @@ export default function ButtonCTA({
   // Rutas internas → next/link; tel:/mailto: u otros → ancla simple.
   if (href.startsWith('/')) {
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <Link href={href} className={classes} onClick={onClick} ref={buttonRef}>
         {content}
       </Link>
     );
   }
 
   return (
-    <a href={href} className={classes} onClick={onClick}>
+    <a ref={buttonRef} href={href} className={classes} onClick={onClick}>
       {content}
     </a>
   );

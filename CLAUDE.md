@@ -171,6 +171,7 @@ Algunos componentes implementados no están montados en la homepage actual pero 
 | Doc | Cuándo leer |
 |-----|-------------|
 | `DESIGN_SYSTEM.md` | Antes de tocar estilos o colores |
+| `docs/ANIMACIONES.md` | Antes de tocar o añadir animaciones (hooks, easing, conflictos FM/animejs) |
 | `ARCHITECTURE.md` | Antes de crear componentes o rutas |
 | `README.md` | Overview público del proyecto |
 | `ROADMAP.md` | Checklist de fases y estado general |

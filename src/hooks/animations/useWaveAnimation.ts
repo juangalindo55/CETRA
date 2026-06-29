@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-
-declare global {
-  interface Window {
-    anime?: any;
-  }
-}
+import { animate, stagger } from 'animejs';
 
 export interface WaveOptions {
   duration?: number;
@@ -17,58 +12,52 @@ export function useWaveAnimation(
   ref: RefObject<HTMLElement | null>,
   options: WaveOptions = {}
 ): void {
-  const { duration = 600, staggerDelay = 60 } = options;
+  const { staggerDelay = 50 } = options;
 
   useEffect(() => {
     if (!ref.current) return;
 
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (prefersReducedMotion) return;
-
     const container = ref.current;
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
-    // Find all symptom chips
-    const chips = Array.from(
-      container.querySelectorAll('.symptom-chip')
-    ) as HTMLElement[];
+    const getChips = () =>
+      Array.from(container.querySelectorAll('.symptom-chip')) as HTMLElement[];
 
-    if (chips.length === 0) return;
+    const reset = () => {
+      getChips().forEach((chip) => {
+        chip.style.opacity = '0';
+        chip.style.transform = 'scale(0.88) translateY(10px)';
+        chip.style.willChange = 'transform, opacity';
+      });
+    };
 
-    // Set initial state
-    chips.forEach((chip) => {
-      chip.style.opacity = '0';
-      chip.style.transform = 'scale(0.8)';
-      chip.style.willChange = 'transform, opacity';
-    });
+    reset();
 
-    // Observe container intersection
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          if (window.anime) {
-            // On desktop, use stagger from center; on mobile, standard left-to-right
-            const staggerConfig = isMobile
-              ? window.anime.stagger(staggerDelay)
-              : window.anime.stagger(staggerDelay, { from: 'center' });
+        const chips = getChips();
+        if (chips.length === 0) return;
 
-            window.anime(chips, {
-              opacity: [0, 1],
-              scale: [0.8, 1],
-              duration,
-              delay: staggerConfig,
-              easing: 'easeOutQuad',
-              complete: () => {
-                chips.forEach((chip) => {
-                  chip.style.willChange = 'auto';
-                });
-              },
-            });
-          }
-          observer.unobserve(container);
+        if (entry.isIntersecting) {
+          const staggerConfig = isMobile
+            ? stagger(staggerDelay)
+            : stagger(staggerDelay, { from: 'center' });
+
+          animate(chips, {
+            opacity: [0, 1],
+            scale: [0.88, 1],
+            translateY: [10, 0],
+            duration: 650,
+            ease: 'outExpo',
+            delay: staggerConfig,
+            onComplete: () => {
+              chips.forEach((chip) => {
+                chip.style.willChange = 'auto';
+              });
+            },
+          });
+        } else {
+          reset();
         }
       },
       { threshold: 0.05 }
@@ -79,5 +68,5 @@ export function useWaveAnimation(
     return () => {
       observer.disconnect();
     };
-  }, [ref, duration, staggerDelay]);
+  }, [ref, staggerDelay]);
 }

@@ -42,13 +42,13 @@ export default function WhenToSeek() {
 
         <div ref={chipContainerRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {symptoms.map((symptom) => (
-            <motion.div
+            <div
               key={symptom}
               className="symptom-chip flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-[#7C3AED]/20 hover:shadow-sm transition-all duration-300"
             >
               <div className="w-2 h-2 bg-[#7C3AED] rounded-full flex-shrink-0 mt-1.5" />
               <span className="text-gray-700 text-sm leading-relaxed">{symptom}</span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

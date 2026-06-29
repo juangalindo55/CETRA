@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-
-declare global {
-  interface Window {
-    anime?: any;
-  }
-}
+import { animate, spring } from 'animejs';
 
 export interface FadeInOptions {
   duration?: number;
@@ -17,43 +12,37 @@ export function useFadeInOnScroll(
   ref: RefObject<HTMLElement | null>,
   options: FadeInOptions = {}
 ): void {
-  const { duration = 600, delay = 0 } = options;
+  const { delay = 0 } = options;
 
   useEffect(() => {
     if (!ref.current) return;
-
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (prefersReducedMotion) return;
 
     const element = ref.current;
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
     const translateDistance = isMobile ? 20 : 40;
 
-    // Set initial state
-    element.style.opacity = '0';
-    element.style.transform = `translateY(${translateDistance}px)`;
-    element.style.willChange = 'transform, opacity';
+    const reset = () => {
+      element.style.opacity = '0';
+      element.style.transform = `translateY(${translateDistance}px)`;
+      element.style.willChange = 'transform, opacity';
+    };
 
-    // Observe intersection
+    reset();
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (window.anime) {
-            window.anime(element, {
-              opacity: [0, 1],
-              translateY: [translateDistance, 0],
-              duration,
-              delay,
-              easing: 'easeOutQuad',
-              complete: () => {
-                element.style.willChange = 'auto';
-              },
-            });
-          }
-          observer.unobserve(element);
+          animate(element, {
+            opacity: [0, 1],
+            translateY: [translateDistance, 0],
+            ease: spring({ stiffness: 120, damping: 14, mass: 1 }),
+            delay,
+            onComplete: () => {
+              element.style.willChange = 'auto';
+            },
+          });
+        } else {
+          reset();
         }
       },
       { threshold: 0.1 }
@@ -64,5 +53,5 @@ export function useFadeInOnScroll(
     return () => {
       observer.disconnect();
     };
-  }, [ref, duration, delay]);
+  }, [ref, delay]);
 }

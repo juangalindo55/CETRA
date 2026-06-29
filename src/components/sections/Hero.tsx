@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRef, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
+import { animate } from 'animejs';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -16,6 +18,20 @@ const fadeUp = {
 
 export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const el = ctaRef.current;
+    if (!el) return;
+    const anim = animate(el, {
+      scale: [1, 1.13, 1],
+      opacity: [1, 0.82, 1],
+      duration: 3000,
+      ease: 'inOutSine',
+      loop: true,
+    });
+    return () => { anim.pause(); };
+  }, []);
 
   return (
     <section className="relative hero-section flex items-center pt-20 pb-16 overflow-hidden">
@@ -107,10 +123,11 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
+                ref={ctaRef}
                 href={CONTACT_WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 [@media(hover:hover)]:hover:-translate-y-0.5 transition-[transform,background-color,box-shadow,color] duration-300 text-center"
+                className="px-9 py-3.5 bg-[#311B92] text-white font-light tracking-wide rounded-full shadow-sm shadow-[#311B92]/30 hover:bg-[#1a0a5e] hover:shadow-md hover:shadow-[#311B92]/40 transition-[background-color,box-shadow,color] duration-300 text-center"
               >
                 Agendar estudio
               </a>

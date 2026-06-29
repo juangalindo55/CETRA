@@ -8,6 +8,7 @@ import HowItWorks from '@/components/sections/HowItWorks';
 import Instalaciones from '@/components/sections/Instalaciones';
 import FAQ from '@/components/sections/FAQ';
 import Marquee from '@/components/ui/Marquee';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 import Link from 'next/link';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
@@ -163,6 +164,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      <ScrollToTop />
     </div>
   );
 }

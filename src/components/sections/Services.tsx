@@ -165,33 +165,13 @@ const serviceCategories = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.98 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.55 },
-  },
-};
 
 export default function Services() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(
     serviceCategories[0].id,
   );
   const serviceGridRef = useRef<HTMLDivElement>(null);
-  useStaggerCards(serviceGridRef as React.RefObject<HTMLElement>);
+  useStaggerCards(serviceGridRef as React.RefObject<HTMLElement>, { itemSelector: '.service-category' });
 
   return (
     <section className="w-full bg-white py-20 sm:py-24">
@@ -272,19 +252,15 @@ export default function Services() {
           ))}
         </div>
 
-        <motion.div
+        <div
           ref={serviceGridRef}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
           className="mt-16 space-y-5"
         >
           {serviceCategories.map((category) => {
             const isExpanded = expandedCategory === category.id;
 
             return (
-              <motion.div key={category.id} variants={itemVariants}>
+              <div key={category.id} className="service-category">
                 <button
                   type="button"
                   onClick={() =>
@@ -355,10 +331,10 @@ export default function Services() {
                     ))}
                   </div>
                 </motion.div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}

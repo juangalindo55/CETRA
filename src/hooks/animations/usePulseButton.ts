@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, RefObject } from 'react';
-
-declare global {
-  interface Window {
-    anime?: any;
-  }
-}
+import { animate } from 'animejs';
 
 export interface PulseOptions {
   enabled?: boolean;
@@ -23,13 +18,6 @@ export function usePulseButton(
   useEffect(() => {
     if (!ref.current || !enabled) return;
 
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (prefersReducedMotion) return;
-
-    // Check if device width is below minWidth (disable on mobile)
     const isBelowMinWidth = window.matchMedia(
       `(max-width: ${minWidth - 1}px)`
     ).matches;
@@ -38,18 +26,15 @@ export function usePulseButton(
     const element = ref.current;
     element.style.willChange = 'transform';
 
-    let timeline: any = null;
-    if (window.anime) {
-      timeline = window.anime(element, {
-        scale: [1, 1.04, 1],
-        duration,
-        easing: 'easeInOutQuad',
-        loop: true,
-      });
-    }
+    const anim = animate(element, {
+      scale: [1, 1.06, 1],
+      duration,
+      ease: 'inOutSine',
+      loop: true,
+    });
 
     return () => {
-      if (timeline) timeline.pause();
+      anim.pause();
       element.style.willChange = 'auto';
     };
   }, [ref, enabled, duration, minWidth]);

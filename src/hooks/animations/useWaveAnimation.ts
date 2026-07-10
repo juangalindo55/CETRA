@@ -2,9 +2,9 @@
 
 import { useEffect, RefObject } from 'react';
 import { animate, stagger } from 'animejs';
+import { useReducedMotion } from './useReducedMotion';
 
 export interface WaveOptions {
-  duration?: number;
   staggerDelay?: number;
 }
 
@@ -13,15 +13,25 @@ export function useWaveAnimation(
   options: WaveOptions = {}
 ): void {
   const { staggerDelay = 50 } = options;
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!ref.current) return;
 
     const container = ref.current;
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-
     const getChips = () =>
       Array.from(container.querySelectorAll('.symptom-chip')) as HTMLElement[];
+
+    if (shouldReduceMotion) {
+      getChips().forEach((chip) => {
+        chip.style.opacity = '1';
+        chip.style.transform = 'none';
+        chip.style.willChange = 'auto';
+      });
+      return;
+    }
+
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
     const reset = () => {
       getChips().forEach((chip) => {
@@ -39,6 +49,7 @@ export function useWaveAnimation(
         if (chips.length === 0) return;
 
         if (entry.isIntersecting) {
+          observer.unobserve(container);
           const staggerConfig = isMobile
             ? stagger(staggerDelay)
             : stagger(staggerDelay, { from: 'center' });
@@ -56,8 +67,6 @@ export function useWaveAnimation(
               });
             },
           });
-        } else {
-          reset();
         }
       },
       { threshold: 0.05 }
@@ -68,5 +77,5 @@ export function useWaveAnimation(
     return () => {
       observer.disconnect();
     };
-  }, [ref, staggerDelay]);
+  }, [ref, staggerDelay, shouldReduceMotion]);
 }

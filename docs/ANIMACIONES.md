@@ -6,8 +6,8 @@ Sistema de animaciones basado en **animejs v4** (named imports, sin default expo
 
 ## Principios
 
-- **Landing:** animaciones de entrada en scroll, repeat constante, spring con rebote.
-- **Páginas internas:** Framer Motion con `viewport={{ once: true }}` es suficiente. No añadir repeat ni wave.
+- **Landing:** animaciones de entrada en scroll, una sola vez por elemento, spring con rebote.
+- **Páginas internas:** Framer Motion con `viewport={{ once: true }}` es suficiente. No añadir wave.
 - **CTAs principales:** pulse de respiración activo en el botón hero. Aplicar en otros CTAs de conversión si procede.
 - **Nunca:** mezclar FM y animejs sobre el mismo elemento. FM en el padre está bien; FM en el elemento que controla animejs causa conflicto.
 
@@ -17,7 +17,7 @@ Sistema de animaciones basado en **animejs v4** (named imports, sin default expo
 
 ### `useFadeInOnScroll(ref, options?)`
 
-Fade + translateY al entrar al viewport. Se resetea al salir (repeat).
+Fade + translateY al entrar al viewport. Se anima una sola vez; el observer se desconecta tras la entrada.
 
 ```tsx
 import { useFadeInOnScroll } from '@/hooks/animations/useFadeInOnScroll';
@@ -101,14 +101,14 @@ usePulseButton(ref, { duration: 3600, minWidth: 1 });
 
 ---
 
-## Repeat vs once
+## Comportamiento once
 
 | Contexto | Comportamiento |
 |----------|---------------|
-| Landing (`/`) | Repeat: elemento se resetea al salir del viewport y re-anima al volver |
+| Landing (`/`) | Once: el elemento se anima una vez al entrar al viewport; el observer llama `unobserve()` tras iniciar la animación |
 | Páginas internas | Once: Framer Motion `viewport={{ once: true }}` |
 
-Los hooks de animejs en este proyecto usan repeat por defecto (no llaman `observer.unobserve()`).
+Los hooks de animejs en este proyecto animan una sola vez por elemento — no se resetean ni re-animan al volver a entrar al viewport.
 
 ---
 

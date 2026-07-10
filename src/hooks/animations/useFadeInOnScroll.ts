@@ -2,9 +2,9 @@
 
 import { useEffect, RefObject } from 'react';
 import { animate, spring } from 'animejs';
+import { useReducedMotion } from './useReducedMotion';
 
 export interface FadeInOptions {
-  duration?: number;
   delay?: number;
 }
 
@@ -13,11 +13,19 @@ export function useFadeInOnScroll(
   options: FadeInOptions = {}
 ): void {
   const { delay = 0 } = options;
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!ref.current) return;
 
     const element = ref.current;
+    if (shouldReduceMotion) {
+      element.style.opacity = '1';
+      element.style.transform = 'none';
+      element.style.willChange = 'auto';
+      return;
+    }
+
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
     const translateDistance = isMobile ? 20 : 40;
 
@@ -32,6 +40,7 @@ export function useFadeInOnScroll(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          observer.unobserve(element);
           animate(element, {
             opacity: [0, 1],
             translateY: [translateDistance, 0],
@@ -41,8 +50,6 @@ export function useFadeInOnScroll(
               element.style.willChange = 'auto';
             },
           });
-        } else {
-          reset();
         }
       },
       { threshold: 0.1 }
@@ -53,5 +60,5 @@ export function useFadeInOnScroll(
     return () => {
       observer.disconnect();
     };
-  }, [ref, delay]);
+  }, [ref, delay, shouldReduceMotion]);
 }

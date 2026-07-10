@@ -2,9 +2,9 @@
 
 import { useEffect, RefObject } from 'react';
 import { animate, stagger, spring } from 'animejs';
+import { useReducedMotion } from './useReducedMotion';
 
 export interface StaggerOptions {
-  duration?: number;
   staggerDelay?: number;
   itemSelector?: string;
 }
@@ -14,16 +14,26 @@ export function useStaggerCards(
   options: StaggerOptions = {}
 ): void {
   const { staggerDelay = 80, itemSelector = '.service-card' } = options;
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!ref.current) return;
 
     const container = ref.current;
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    const translateDistance = isMobile ? 20 : 40;
-
     const getCards = () =>
       Array.from(container.querySelectorAll(itemSelector)) as HTMLElement[];
+
+    if (shouldReduceMotion) {
+      getCards().forEach((card) => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+        card.style.willChange = 'auto';
+      });
+      return;
+    }
+
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const translateDistance = isMobile ? 20 : 40;
 
     const reset = () => {
       getCards().forEach((card) => {
@@ -41,6 +51,7 @@ export function useStaggerCards(
         if (cards.length === 0) return;
 
         if (entry.isIntersecting) {
+          observer.unobserve(container);
           animate(cards, {
             opacity: [0, 1],
             translateY: [translateDistance, 0],
@@ -52,8 +63,6 @@ export function useStaggerCards(
               });
             },
           });
-        } else {
-          reset();
         }
       },
       { threshold: 0.05 }
@@ -64,5 +73,5 @@ export function useStaggerCards(
     return () => {
       observer.disconnect();
     };
-  }, [ref, staggerDelay, itemSelector]);
+  }, [ref, staggerDelay, itemSelector, shouldReduceMotion]);
 }

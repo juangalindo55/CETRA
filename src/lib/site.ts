@@ -1,4 +1,9 @@
-import { CETRA_LOCATION, CONTACT_EMAIL, CONTACT_PHONE_TEL } from '@/lib/contact';
+import {
+  CETRA_LOCATION,
+  CETRA_WEEKDAY_HOURS,
+  CONTACT_EMAIL,
+  CONTACT_PHONE_TEL,
+} from '@/lib/contact';
 
 export const SITE_NAME = 'CETRA';
 export const SITE_TITLE = 'CETRA | Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada';
@@ -39,7 +44,7 @@ export function getClinicSchema() {
           addressCountry: 'MX',
         },
         areaServed: 'Monterrey, Nuevo León, México',
-        openingHours: ['Mo-Fr 09:00-19:00'],
+        openingHours: [CETRA_WEEKDAY_HOURS.schema],
         priceRange: '$$',
         contactPoint: [
           {

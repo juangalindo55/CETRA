@@ -2,6 +2,7 @@
 
 import { useEffect, RefObject } from 'react';
 import { animate } from 'animejs';
+import { useReducedMotion } from './useReducedMotion';
 
 export interface PulseOptions {
   enabled?: boolean;
@@ -14,16 +15,23 @@ export function usePulseButton(
   options: PulseOptions = {}
 ): void {
   const { enabled = true, duration = 1800, minWidth = 768 } = options;
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!ref.current || !enabled) return;
+
+    const element = ref.current;
+    if (shouldReduceMotion) {
+      element.style.transform = 'none';
+      element.style.willChange = 'auto';
+      return;
+    }
 
     const isBelowMinWidth = window.matchMedia(
       `(max-width: ${minWidth - 1}px)`
     ).matches;
     if (isBelowMinWidth) return;
 
-    const element = ref.current;
     element.style.willChange = 'transform';
 
     const anim = animate(element, {
@@ -37,5 +45,5 @@ export function usePulseButton(
       anim.pause();
       element.style.willChange = 'auto';
     };
-  }, [ref, enabled, duration, minWidth]);
+  }, [ref, enabled, duration, minWidth, shouldReduceMotion]);
 }

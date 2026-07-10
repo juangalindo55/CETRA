@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { Clock, ExternalLink, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
 import {
   CETRA_LOCATION,
   CONTACT_PHONE_DISPLAY,
@@ -11,19 +13,43 @@ import {
 import ButtonCTA from './ui/ButtonCTA';
 
 export default function Map() {
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+
   return (
     <div className="flex w-full flex-col bg-white">
       <div className="relative h-[360px] w-full overflow-hidden sm:h-[420px]">
-        <iframe
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          style={{ border: 0, filter: 'grayscale(0.08) contrast(1.08) brightness(0.96)' }}
-          src={GOOGLE_MAPS_EMBED_URL}
-          allowFullScreen
-          loading="lazy"
-          title="Ubicación de CETRA en Monterrey"
-        />
+        {isMapLoaded ? (
+          <iframe
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            style={{ border: 0, filter: 'grayscale(0.08) contrast(1.08) brightness(0.96)' }}
+            src={GOOGLE_MAPS_EMBED_URL}
+            allowFullScreen
+            loading="lazy"
+            title="Ubicación de CETRA en Monterrey"
+          />
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center bg-[#f5f3ff] px-6 text-center">
+            <MapPin className="h-8 w-8 text-[#7C3AED]" aria-hidden="true" />
+            <h3 className="mt-4 font-display text-2xl font-semibold text-[#120726]">
+              Ver ubicación en el mapa
+            </h3>
+            <p className="mt-3 max-w-md text-sm leading-6 text-gray-600">
+              Al cargar el mapa, Google puede recibir datos técnicos de tu navegación. Consulta el{' '}
+              <Link href="/privacidad" className="font-medium text-[#311B92] underline underline-offset-4">
+                Aviso de Privacidad
+              </Link>.
+            </p>
+            <button
+              type="button"
+              onClick={() => setIsMapLoaded(true)}
+              className="mt-6 rounded-full bg-[#311B92] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a0a5e]"
+            >
+              Cargar mapa de Google
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="border-t border-[#e8e4f8] bg-white py-8">

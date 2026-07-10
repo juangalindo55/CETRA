@@ -9,19 +9,35 @@ const pulmonologists = [
   {
     id: 1,
     name: 'Dr. Uriel Chavarría',
+    role: 'Neumólogo',
     image: '/images/specialists/uriel-chavarria.webp',
   },
   {
     id: 2,
     name: 'Dr. Manuel Wong',
+    role: 'Cirujano Cardiotorácico',
+    specialty: 'Especialista en Trasplante Pulmonar y Cirugía por Mínima Invasión',
     image: '/images/specialists/manuel-wong.webp',
   },
   {
     id: 3,
     name: 'Dr. Sergio Sánchez',
+    role: 'Neumólogo',
     image: '/images/specialists/sergios.webp',
   },
+  {
+    id: 4,
+    name: 'Dr. Juan O. Galindo',
+    role: 'Neumólogo',
+    image: '',
+  },
 ];
+
+const coordinator = {
+  name: 'Irma de Osio',
+  role: 'Coordinadora de Trasplante Pulmonar',
+  image: '/images/specialists/irma.webp',
+};
 
 const technicians = [
   {
@@ -107,7 +123,7 @@ export default function Specialists() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {pulmonologists.map((doctor) => (
               <motion.div
@@ -130,14 +146,19 @@ export default function Specialists() {
                 )}
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <Stethoscope className="w-4 h-4 text-[#7C3AED]" strokeWidth={1.75} />
+                    <Stethoscope className="w-4 h-4 text-[#7C3AED] shrink-0" strokeWidth={1.75} />
                     <p className="text-xs font-semibold tracking-widest uppercase text-[#7C3AED]">
-                      Neumólogo
+                      {doctor.role}
                     </p>
                   </div>
                   <h3 className="font-display text-xl font-semibold text-[#1a0a3d]">
                     {doctor.name}
                   </h3>
+                  {doctor.specialty && (
+                    <p className="text-sm text-gray-600 leading-relaxed mt-2">
+                      {doctor.specialty}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -163,6 +184,36 @@ export default function Specialists() {
               precisión, empatía y compromiso con tu bienestar.
             </p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-sm mx-auto mb-10 bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-[#7C3AED]/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] transition-all duration-500 overflow-hidden flex flex-col"
+          >
+            {coordinator.image ? (
+              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f4f4f5]">
+                <Image
+                  src={coordinator.image}
+                  alt={coordinator.name}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+            ) : (
+              <PhotoPlaceholder className="w-full aspect-[4/5]" />
+            )}
+            <div className="p-6">
+              <h3 className="font-display text-xl font-semibold text-[#1a0a3d] mb-1">
+                {coordinator.name}
+              </h3>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#7C3AED]">
+                {coordinator.role}
+              </p>
+            </div>
+          </motion.div>
 
           <motion.div
             variants={containerVariants}

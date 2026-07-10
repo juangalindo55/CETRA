@@ -7,7 +7,9 @@ const staticRoutes = [
   '/servicios',
   '/especialistas',
   '/contacto',
+  '/instalaciones',
   '/investigacion',
+  '/nuestra-historia',
   '/privacidad',
   '/terminos',
 ];
@@ -20,7 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries = staticRoutes.map((route) => ({
     url: getAbsoluteUrl(route),
-    lastModified: new Date(),
     changeFrequency: (route === '/' ? 'weekly' : 'monthly') as
       | 'weekly'
       | 'monthly',
@@ -29,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const serviceEntries = services.map((service) => ({
     url: getAbsoluteUrl(`/servicios/${service.slug}`),
-    lastModified: new Date(),
+    lastModified: new Date(`${service.frontmatter.lastUpdated}T00:00:00Z`),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
   }));

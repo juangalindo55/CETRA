@@ -8,40 +8,43 @@ export default function TableOfContents() {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    // Buscar todos los h2 y h3 en el área de contenido MDX (que tiene la clase 'prose')
-    const elements = Array.from(document.querySelectorAll('.prose h2, .prose h3'));
-    
-    const parsedHeadings = elements.map((elem) => {
-      // Si el elemento no tiene id, generamos uno basado en su texto
-      if (!elem.id) {
-        elem.id = elem.textContent
-          ?.toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)+/g, '') || '';
-      }
-      return {
-        id: elem.id,
-        text: elem.textContent || '',
-        level: Number(elem.tagName.substring(1)),
-      };
+    let observer: IntersectionObserver | undefined;
+    const frame = requestAnimationFrame(() => {
+      // El contenido MDX ya está montado cuando se recopilan sus encabezados.
+      const elements = Array.from(document.querySelectorAll('.prose h2, .prose h3'));
+      const parsedHeadings = elements.map((elem) => {
+        if (!elem.id) {
+          elem.id = elem.textContent
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)+/g, '') || '';
+        }
+        return {
+          id: elem.id,
+          text: elem.textContent || '',
+          level: Number(elem.tagName.substring(1)),
+        };
+      });
+
+      setHeadings(parsedHeadings);
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -80% 0px' }
+      );
+
+      elements.forEach((elem) => observer?.observe(elem));
     });
-    
-    setHeadings(parsedHeadings);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -80% 0px' }
-    );
-
-    elements.forEach((elem) => observer.observe(elem));
-
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
   }, []);
 
   if (headings.length === 0) return null;

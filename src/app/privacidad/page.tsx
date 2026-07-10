@@ -33,7 +33,7 @@ export default function PrivacyPage() {
 
               <h2 id="identidad">1. Identidad y Domicilio del Responsable</h2>
               <p>
-                CETRA (en adelante, "El responsable"), con domicilio en Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L., es responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
+                CETRA (en adelante, &quot;El responsable&quot;), con domicilio en Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L., es responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
               </p>
 
               <h2 id="datos-personales">2. Datos Personales que recabaremos</h2>
@@ -85,6 +85,10 @@ export default function PrivacyPage() {
               <h2 id="cookies">7. Uso de tecnologías de rastreo en nuestro portal de internet</h2>
               <p>
                 Le informamos que en nuestra página de internet utilizamos cookies y otras tecnologías, a través de las cuales es posible monitorear su comportamiento como usuario de internet para brindarle un mejor servicio y experiencia al navegar en nuestra página. Los datos personales que recabamos no incluyen información clínica ni sensible a través de este medio.
+              </p>
+              <p>
+                El mapa de ubicación se proporciona mediante Google Maps y solo se carga cuando usted decide activarlo. Al hacerlo, Google puede recibir datos técnicos de navegación conforme a sus propias políticas de privacidad. Puede consultar la{' '}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidad de Google</a>.
               </p>
 
               <h2 id="cambios">8. Cambios al Aviso de Privacidad</h2>

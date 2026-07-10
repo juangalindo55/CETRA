@@ -1,9 +1,8 @@
+import Image, { type ImageProps } from 'next/image';
 import React from 'react';
 
-interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface LogoProps extends Omit<ImageProps, 'alt' | 'src'> {
   className?: string;
-  width?: number | string;
-  height?: number | string;
 }
 
 export default function Logo({
@@ -13,13 +12,14 @@ export default function Logo({
   ...props
 }: LogoProps) {
   return (
-    <img
+    <Image
       src="/logo.svg"
       alt="CETRA Logo"
       className={className}
+      width={width ?? 256}
+      height={height ?? 256}
+      priority
       style={{
-        width: width ?? undefined,
-        height: height ?? undefined,
         cursor: 'default',
         display: 'block',
       }}

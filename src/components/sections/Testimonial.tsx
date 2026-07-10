@@ -62,7 +62,7 @@ export default function Testimonial() {
 
               {/* Story */}
               <p className="relative z-10 text-lg text-gray-600 leading-relaxed font-light mb-8 italic">
-                "{testimonial.story}"
+                &quot;{testimonial.story}&quot;
               </p>
 
               <div className="relative z-10 mt-auto">

@@ -86,6 +86,14 @@ npm run dev
 
 ---
 
+## 🚀 Despliegue
+
+El hosting canónico de CETRA es **Vercel**, mediante el proyecto `cetra` con el preset de Next.js. El comando de compilación es `npm run build` y se usa la salida estándar de Next.js.
+
+GitHub Pages no forma parte del flujo de despliegue. Para crear previews o publicar desde la terminal, consultar los comandos documentados en `docs/COMANDOS_CLI.md`.
+
+---
+
 ## 📁 Estructura del Proyecto
 
 ```

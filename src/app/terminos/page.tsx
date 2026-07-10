@@ -50,7 +50,7 @@ export default function TermsPage() {
 
               <h2 id="quiz">3. Quiz de Elegibilidad y Calculadoras</h2>
               <p>
-                Las herramientas interactivas, como el "Quiz de Elegibilidad para Trasplante", están diseñadas para proporcionar orientación general basada en criterios estadísticos y médicos preestablecidos. Los resultados de estas herramientas son <strong>meramente informativos</strong> y no garantizan la elegibilidad real de un paciente, la cual solo puede ser determinada tras una evaluación clínica exhaustiva por parte de nuestros especialistas.
+                Las herramientas interactivas, como el &quot;Quiz de Elegibilidad para Trasplante&quot;, están diseñadas para proporcionar orientación general basada en criterios estadísticos y médicos preestablecidos. Los resultados de estas herramientas son <strong>meramente informativos</strong> y no garantizan la elegibilidad real de un paciente, la cual solo puede ser determinada tras una evaluación clínica exhaustiva por parte de nuestros especialistas.
               </p>
 
               <h2 id="propiedad">4. Propiedad Intelectual</h2>

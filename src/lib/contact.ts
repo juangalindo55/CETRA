@@ -5,13 +5,18 @@ export const CONTACT_EMAIL_LINK = `mailto:${CONTACT_EMAIL}`;
 export const CONTACT_WHATSAPP =
   'https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita';
 
+export const CETRA_WEEKDAY_HOURS = {
+  display: 'Lun a Vie: 8 am a 17:00',
+  schema: 'Mo-Fr 08:00-17:00',
+};
+
 export const CETRA_LOCATION = {
   address:
     'Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Centro, 64060 Monterrey, N.L.',
   title: 'Torre José A. Muguerza',
   floor: 'Piso 3',
   city: 'Monterrey, Nuevo León, México',
-  hours: 'Lun a Vie: 8 am a 17:00',
+  hours: CETRA_WEEKDAY_HOURS.display,
   saturdayHours: 'Sábados previa cita',
 };
 

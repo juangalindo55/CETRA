@@ -134,7 +134,7 @@ export default function TestimonialExpanded() {
 
               {/* Story */}
               <p className="relative z-10 text-base text-gray-600 leading-relaxed font-light mb-8 italic">
-                "{testimonial.story}"
+                &quot;{testimonial.story}&quot;
               </p>
 
               {/* Before/After */}

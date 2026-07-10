@@ -104,12 +104,20 @@ export default function Navbar() {
     return () => document.removeEventListener('pointerdown', onPointerDown);
   }, [open]);
 
-  useEffect(() => {
-    if (!open) {
-      setServicesOpen(false);
-      setCetraOpen(false);
+  const closeMobileMenu = () => {
+    setOpen(false);
+    setServicesOpen(false);
+    setCetraOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    if (open) {
+      closeMobileMenu();
+      return;
     }
-  }, [open]);
+
+    setOpen(true);
+  };
 
   return (
     <header
@@ -312,7 +320,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-            onClick={() => setOpen(!open)}
+            onClick={toggleMobileMenu}
             aria-label="Abrir menú"
             aria-expanded={open}
           >
@@ -354,10 +362,7 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
-                          onClick={() => {
-                            setOpen(false);
-                            setCetraOpen(false);
-                          }}
+                          onClick={closeMobileMenu}
                         >
                           <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED]">
                             <Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -414,10 +419,7 @@ export default function Navbar() {
                               <Link
                                 href={item.slug}
                                 className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
-                                onClick={() => {
-                                  setOpen(false);
-                                  setServicesOpen(false);
-                                }}
+                                onClick={closeMobileMenu}
                               >
                                 <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED]">
                                   <Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -443,10 +445,7 @@ export default function Navbar() {
                     <Link
                       href="/servicios"
                       className="flex min-h-11 items-center justify-between rounded-xl bg-[#120726] px-4 py-3 text-sm font-medium text-white active:bg-[#1a0a3d]"
-                      onClick={() => {
-                        setOpen(false);
-                        setServicesOpen(false);
-                      }}
+                      onClick={closeMobileMenu}
                     >
                       Ver todos los servicios
                       <ArrowRight className="h-4 w-4 shrink-0" />
@@ -459,14 +458,14 @@ export default function Navbar() {
           <Link
             href="/servicios/trasplante-pulmonar"
             className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             Trasplante Pulmonar
           </Link>
           <Link
             href="/contacto"
             className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-[#311B92] transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             Contacto
           </Link>
@@ -475,7 +474,7 @@ export default function Navbar() {
             external
             size="md"
             className="mt-1 w-full"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             Agendar estudio
           </ButtonCTA>

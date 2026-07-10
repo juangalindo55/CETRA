@@ -21,15 +21,15 @@ const pulmonologists = [
   },
   {
     id: 3,
-    name: 'Dr. Sergio Sánchez',
-    role: 'Neumólogo',
-    image: '/images/specialists/drsergios.webp',
-  },
-  {
-    id: 4,
     name: 'Dr. Juan O. Galindo',
     role: 'Neumólogo',
     image: '',
+  },
+  {
+    id: 4,
+    name: 'Dr. Sergio Sánchez',
+    role: 'Neumólogo',
+    image: '/images/specialists/drsergios1.webp',
   },
 ];
 

@@ -56,10 +56,13 @@ const pulmonologists: Specialist[] = [
   },
   {
     id: 4,
-    name: 'Dr. Juan O. Galindo',
+    name: 'Dr. Juan O. Galindo Galindo',
     role: 'Neumólogo',
     image: '/images/specialists/drjuanog.webp',
-    cedulas: null,
+    cedulas: [
+      { number: '1150280', institution: 'UANL — Médico Cirujano y Partero' },
+      { number: '6433235', institution: 'UANL — Doctorado en Medicina' },
+    ],
     certification: null,
   },
 ];

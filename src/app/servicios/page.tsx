@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { SITE_NAME } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: `Servicios | ${SITE_NAME}`,
+  title: `Servicios`,
   description:
     'Servicios especializados de CETRA: trasplante pulmonar, evaluación respiratoria avanzada, diagnóstico funcional, pruebas de esfuerzo, sueño y rehabilitación pulmonar.',
   alternates: {
@@ -23,19 +23,18 @@ export default function ServicesPage() {
     <div className="w-full">
 
       {/* Hero Section */}
-      <section className="bg-[#1a0a3d] text-white pt-40 pb-28 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#7C3AED] via-transparent to-transparent" />
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="inline-block text-[10px] tracking-[0.4em] text-[#a78bfa] uppercase mb-6 font-semibold">
-            Nuestra Oferta
+      <section className="relative overflow-hidden bg-ink text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(124,58,237,0.22),_transparent_42%),radial-gradient(circle_at_bottom_left,_rgba(255,255,255,0.08),_transparent_35%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-32">
+          <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-violet-soft">
+            Servicios
           </span>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light mb-8 leading-tight">
-            Nuestros <em className="italic font-bold text-white">Servicios</em>
+          <h1 className="mt-6 max-w-3xl font-display text-5xl font-light leading-tight sm:text-6xl">
+            Diagnóstico, tratamiento y rehabilitación respiratoria
           </h1>
-          <p className="text-xl text-gray-300 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75 sm:text-xl">
             Diagnóstico integral, tratamiento especializado y rehabilitación para enfermedades
             respiratorias con tecnología de punta y atención humanizada.
           </p>

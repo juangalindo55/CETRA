@@ -4,15 +4,10 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { useStaggerCards } from '@/hooks/animations/useStaggerCards';
-import {
-  ChevronDown,
-  ArrowRight,
-  FileText,
-  ShieldCheck,
-  Stethoscope,
-} from 'lucide-react';
+import { ChevronDown, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
 import { featuredServices } from '@/lib/service-hub';
+import ButtonCTA from '@/components/ui/ButtonCTA';
 
 const quickGuide = [
   {
@@ -37,9 +32,7 @@ const serviceCategories = [
   {
     id: 'diagnostico-funcional',
     title: 'Diagnóstico funcional respiratorio',
-    abbreviation: 'DFR',
-    bgGradient: 'from-[#f3edff] to-[#f0ecfb]',
-    accentGradient: 'from-[#7C3AED] to-[#311B92]',
+    index: 'A',
     summary:
       'Estudios para medir función pulmonar, intercambio de gases, inflamación de vía aérea y fuerza respiratoria.',
     services: [
@@ -78,9 +71,7 @@ const serviceCategories = [
   {
     id: 'diagnostico-sueno',
     title: 'Diagnóstico del sueño',
-    abbreviation: 'DS',
-    bgGradient: 'from-[#f0ecfb] to-[#ede9f6]',
-    accentGradient: 'from-[#6366f1] to-[#7C3AED]',
+    index: 'B',
     summary:
       'Estudios para detectar ronquido, pausas respiratorias y otros trastornos que alteran la calidad del descanso.',
     services: [
@@ -109,9 +100,7 @@ const serviceCategories = [
   {
     id: 'pruebas-esfuerzo',
     title: 'Pruebas de esfuerzo y capacidad funcional',
-    abbreviation: 'PE',
-    bgGradient: 'from-[#f3edff] to-[#f0ecfb]',
-    accentGradient: 'from-[#7C3AED] to-[#5b21b6]',
+    index: 'C',
     summary:
       'Evaluaciones para medir tolerancia al ejercicio, respuesta cardiorrespiratoria y capacidad funcional real.',
     services: [
@@ -135,9 +124,7 @@ const serviceCategories = [
   {
     id: 'rehabilitacion',
     title: 'Rehabilitación pulmonar',
-    abbreviation: 'RP',
-    bgGradient: 'from-[#ede9f6] to-[#e9e5f5]',
-    accentGradient: 'from-[#5b21b6] to-[#311B92]',
+    index: 'D',
     summary:
       'Programas y sesiones para mejorar condición física, respiratoria y calidad de vida en pacientes con enfermedad pulmonar o trasplante.',
     services: [
@@ -183,10 +170,10 @@ export default function Services() {
           transition={{ duration: 0.55 }}
           className="max-w-3xl"
         >
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-violet-electric">
             ¿Qué necesitas hoy?
           </p>
-          <h2 className="mt-4 font-display text-4xl font-light text-[#120726] sm:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-light leading-[1.1] tracking-[-0.025em] text-ink sm:text-5xl">
             Estudios, evaluación y rehabilitación respiratoria
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
@@ -194,182 +181,149 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="mt-10">
-          <div className="mb-5 flex items-end justify-between gap-4">
+        {/* 01 / Rutas principales */}
+        <div className="mt-20">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#7C3AED]">
-                Rutas principales
-              </p>
-              <h3 className="mt-3 font-display text-2xl font-light text-[#120726]">
+              <p className="font-display text-lg text-violet-electric">01 / Rutas principales</p>
+              <h3 className="mt-6 font-display text-3xl font-light leading-[1.15] tracking-[-0.025em] text-ink sm:text-4xl">
                 Puntos de entrada para las búsquedas más importantes
               </h3>
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {featuredServices.map((service, index) => (
-              <motion.div
+          <ol className="mt-10 border-t border-ink">
+            {featuredServices.map((service) => (
+              <li
                 key={service.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="rounded-3xl border border-[#e8e4f8] bg-white p-6 shadow-sm transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
+                className="grid gap-3 border-b border-lavender-line py-7 sm:grid-cols-[10rem_1fr] lg:grid-cols-[10rem_0.9fr_1.1fr] lg:gap-10"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-violet-electric sm:pt-1.5">
                   {service.tag}
                 </p>
-                <h4 className="mt-3 text-xl font-semibold text-[#120726]">{service.title}</h4>
-                <p className="mt-3 text-sm leading-7 text-gray-600">{service.summary}</p>
-                <Link
-                  href={service.slug}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#7C3AED] transition-colors hover:text-[#311B92]"
-                >
-                  Ver página
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </motion.div>
+                <h4 className="max-w-md text-xl font-semibold leading-7 text-ink">{service.title}</h4>
+                <div>
+                  <p className="max-w-xl text-sm leading-7 text-gray-600 sm:text-base">{service.summary}</p>
+                  <Link
+                    href={service.slug}
+                    className="mt-4 inline-flex items-center gap-2 border-b border-violet-electric/35 pb-1 text-sm font-semibold text-violet-heritage transition-colors hover:border-violet-heritage"
+                  >
+                    Ver página
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* 02 / Guía rápida */}
+        <div className="mt-20">
+          <p className="font-display text-lg text-violet-electric">02 / Guía rápida</p>
+          <div className="mt-8 grid gap-x-8 gap-y-10 border-t border-ink pt-8 sm:grid-cols-2 xl:grid-cols-4">
+            {quickGuide.map((item) => (
+              <article key={item.title} className="border-l border-violet-electric/40 pl-4">
+                <h3 className="text-base font-semibold leading-6 text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
+              </article>
             ))}
           </div>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {quickGuide.map((item, index) => (
-            <motion.article
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-              className="rounded-3xl border border-[#ece7fb] bg-[#faf8ff] p-5 shadow-sm transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-1 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10"
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
-                Guía rápida
-              </p>
-              <h3 className="mt-3 text-base font-semibold text-[#120726]">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
-            </motion.article>
-          ))}
-        </div>
+        {/* 03 / Catálogo completo */}
+        <div ref={serviceGridRef} className="mt-20">
+          <p className="font-display text-lg text-violet-electric">03 / Catálogo completo</p>
+          <div className="mt-8 border-t border-ink">
+            {serviceCategories.map((category) => {
+              const isExpanded = expandedCategory === category.id;
 
-        <div
-          ref={serviceGridRef}
-          className="mt-16 space-y-5"
-        >
-          {serviceCategories.map((category) => {
-            const isExpanded = expandedCategory === category.id;
-
-            return (
-              <div key={category.id} className="service-category">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setExpandedCategory(isExpanded ? null : category.id)
-                  }
-                  className="w-full text-left"
-                >
-                  <div className={`rounded-[2rem] border border-[#e8e4f8] bg-gradient-to-br ${category.bgGradient} p-6 shadow-sm transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5 hover:border-[#d8c9ff] hover:shadow-lg hover:shadow-[#311B92]/10`}>
-                    <div className="flex items-start justify-between gap-6">
-                      <div className="flex items-start gap-4">
-                        <div
-                          className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${category.accentGradient} text-white shadow-md`}
-                        >
-                          <span className="text-2xl font-bold tracking-tight">{category.abbreviation}</span>
+              return (
+                <div key={category.id} className="service-category border-b border-lavender-line">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedCategory(isExpanded ? null : category.id)
+                    }
+                    className="w-full cursor-pointer text-left"
+                    aria-expanded={isExpanded}
+                  >
+                    <div className="grid gap-3 py-8 sm:grid-cols-[3rem_1fr_auto] sm:gap-6">
+                      <p className="font-display text-xl text-violet-electric">{category.index}</p>
+                      <div>
+                        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                          <h3 className="font-display text-2xl font-light tracking-[-0.02em] text-ink sm:text-3xl">
+                            {category.title}
+                          </h3>
+                          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+                            {category.services.length} servicios
+                          </span>
                         </div>
-                        <div>
-                          <div className="flex flex-wrap items-center gap-3">
-                            <h3 className="font-display text-2xl font-semibold text-[#120726]">
-                              {category.title}
-                            </h3>
-                            <span className="rounded-full border border-[#d8c9ff] bg-[#f5f0ff] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#311B92]">
-                              {category.services.length} servicios
-                            </span>
-                          </div>
-                          <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
-                            {category.summary}
-                          </p>
-                        </div>
+                        <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
+                          {category.summary}
+                        </p>
                       </div>
-
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="mt-1 text-[#311B92]"
+                        className="hidden text-ink sm:block sm:pt-1"
                       >
-                        <ChevronDown className="h-6 w-6" />
+                        <ChevronDown className="h-6 w-6" strokeWidth={1.5} />
                       </motion.div>
                     </div>
-                  </div>
-                </button>
+                  </button>
 
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{
-                    opacity: isExpanded ? 1 : 0,
-                    height: isExpanded ? 'auto' : 0,
-                  }}
-                  transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  className="overflow-hidden"
-                >
-                  <div className="grid grid-cols-1 gap-4 pt-5 md:grid-cols-2 lg:grid-cols-3">
-                    {category.services.map((service) => (
-                      <div
-                        key={service.name}
-                        className="service-card rounded-2xl border border-white/70 bg-[#fcfbff] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] transition-all duration-300 hover:border-[#d8c9ff] hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)]"
-                      >
-                        <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#7C3AED]">
-                          <FileText className="h-3.5 w-3.5" />
-                          Estudio / sesión
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{
+                      opacity: isExpanded ? 1 : 0,
+                      height: isExpanded ? 'auto' : 0,
+                    }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="grid grid-cols-1 gap-x-10 gap-y-8 pb-10 sm:grid-cols-2 sm:pl-[4.5rem] lg:grid-cols-3">
+                      {category.services.map((service) => (
+                        <div key={service.name} className="border-t border-lavender-line pt-4">
+                          <h4 className="text-base font-semibold text-ink">
+                            {service.name}
+                          </h4>
+                          <p className="mt-2 text-sm leading-6 text-gray-600">
+                            {service.description}
+                          </p>
                         </div>
-                        <h4 className="font-display text-lg font-semibold text-[#120726]">
-                          {service.name}
-                        </h4>
-                        <p className="mt-3 text-sm leading-7 text-gray-600">
-                          {service.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-            );
-          })}
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
+        {/* 04 / Tu siguiente paso */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, delay: 0.15, ease: 'easeOut' }}
-          className="mt-20 overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-[#120726] p-8 text-center shadow-2xl shadow-black/10 sm:p-12"
+          className="mt-24 grid gap-10 border-y border-ink py-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20 lg:py-16"
         >
-          <div className="mx-auto flex max-w-3xl flex-col items-center">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#120726]">
-              <ShieldCheck className="h-6 w-6" />
-            </div>
-            <h3 className="font-display text-4xl font-light text-white">
+          <p className="font-display text-lg text-violet-electric">04 / Tu siguiente paso</p>
+          <div>
+            <h3 className="max-w-2xl font-display text-4xl font-light leading-[1.1] tracking-[-0.025em] text-ink sm:text-5xl">
               ¿No sabes cuál te corresponde?
             </h3>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/75">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-600">
               Nuestro equipo puede orientarte según tus síntomas, historial y objetivo clínico para que elijas el estudio o programa correcto.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href={CONTACT_WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
-              >
-                <ArrowRight className="h-4 w-4" />
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonCTA href={CONTACT_WHATSAPP} external>
                 Contactar por WhatsApp
-              </a>
-              <Link
-                href="/contacto"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-white/5"
-              >
-                <Stethoscope className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4" />
+              </ButtonCTA>
+              <ButtonCTA href="/contacto" variant="secondary">
                 Ver contacto
-              </Link>
+              </ButtonCTA>
             </div>
           </div>
         </motion.div>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function TableOfContents() {
   const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
@@ -64,11 +63,11 @@ export default function TableOfContents() {
   };
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto hidden lg:block w-64 bg-white/50 backdrop-blur-md p-6 rounded-2xl border border-[#7C3AED]/10 shadow-[0_4px_20px_rgb(0,0,0,0.02)]">
-      <h4 className="font-display text-sm font-semibold text-[#1a0a3d] tracking-widest uppercase mb-4">
+    <nav className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto hidden lg:block w-64">
+      <h4 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-violet-electric mb-5">
         Contenido
       </h4>
-      <ul className="space-y-3 border-l-2 border-gray-100">
+      <ul className="space-y-3 border-l border-lavender-line">
         {headings.map((heading) => (
           <li
             key={heading.id}
@@ -79,10 +78,10 @@ export default function TableOfContents() {
             <a
               href={`#${heading.id}`}
               onClick={(e) => handleClick(heading.id, e)}
-              className={`block -ml-[2px] pl-4 border-l-2 py-1 text-sm ${
+              className={`block -ml-px pl-4 border-l py-1 text-sm transition-colors ${
                 activeId === heading.id
-                  ? 'border-[#7C3AED] text-[#7C3AED] font-medium'
-                  : 'border-transparent text-gray-500 hover:text-[#1a0a3d]'
+                  ? 'border-violet-electric text-violet-heritage font-semibold'
+                  : 'border-transparent text-gray-500 hover:text-ink'
               }`}
             >
               {heading.text}

@@ -13,6 +13,9 @@ export interface ServiceFrontmatter {
   reviewedBy: string;
   lastUpdated: string;
   icon: string;
+  /** Foto del hero split (opcional); sin ella el hero se renderiza solo texto. */
+  heroImage?: string;
+  heroImageAlt?: string;
 }
 
 export interface ServiceData {
@@ -30,6 +33,24 @@ function getRequiredString(
 
   if (typeof value !== 'string' || value.trim().length === 0) {
     throw new Error(`Invalid frontmatter in ${filePath}: "${field}" must be a non-empty string.`);
+  }
+
+  return value;
+}
+
+function getOptionalString(
+  frontmatter: Record<string, unknown>,
+  field: 'heroImage' | 'heroImageAlt',
+  filePath: string,
+) {
+  const value = frontmatter[field];
+
+  if (value === undefined) {
+    return undefined;
+  }
+
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    throw new Error(`Invalid frontmatter in ${filePath}: "${field}" must be a non-empty string when present.`);
   }
 
   return value;
@@ -80,6 +101,8 @@ function parseServiceFrontmatter(data: unknown, filePath: string): ServiceFrontm
     reviewedBy: getRequiredString(frontmatter, 'reviewedBy', filePath),
     lastUpdated,
     icon: getRequiredString(frontmatter, 'icon', filePath),
+    heroImage: getOptionalString(frontmatter, 'heroImage', filePath),
+    heroImageAlt: getOptionalString(frontmatter, 'heroImageAlt', filePath),
   };
 }
 

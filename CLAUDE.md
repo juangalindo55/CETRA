@@ -124,10 +124,9 @@ import PhotoFrame from '@/components/ui/PhotoFrame';
 ```
 
 ### Heading MDX con ID
+Los `<h2>` de MDX llevan solo `id` (para el TableOfContents) — **sin `className`**: el estilo lo aplica centralizadamente el wrapper `prose` de `servicios/[slug]/page.tsx`.
 ```mdx
-<h2 id="seccion-id" className="text-4xl text-[#311B92] font-bold border-b-2 border-[#7C3AED] pb-4 mt-16 mb-6 font-display">
-  Título
-</h2>
+<h2 id="seccion-id">Título</h2>
 ```
 
 ## Servicios Médicos (6 páginas MDX)

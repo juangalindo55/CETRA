@@ -1,9 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { usePulseButton } from '@/hooks/animations/usePulseButton';
 
 type ButtonCTAVariant = 'primary' | 'secondary';
 type ButtonCTASize = 'sm' | 'md' | 'lg';
@@ -24,12 +22,13 @@ interface ButtonCTAProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 transition-colors duration-300';
+  'motion-press inline-flex items-center justify-center gap-2';
 
 const variants: Record<ButtonCTAVariant, string> = {
-  primary: 'bg-violet-heritage text-white hover:bg-ink',
+  primary:
+    'bg-violet-heritage text-white [@media(hover:hover)_and_(pointer:fine)]:hover:bg-ink',
   secondary:
-    'border border-violet-heritage text-violet-heritage hover:bg-lavender',
+    'border border-violet-heritage text-violet-heritage [@media(hover:hover)_and_(pointer:fine)]:hover:bg-lavender',
 };
 
 const sizes: Record<ButtonCTASize, string> = {
@@ -52,10 +51,6 @@ export default function ButtonCTA({
   className = '',
   onClick,
 }: ButtonCTAProps) {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  const isWhatsApp = href?.includes('wa.me');
-  usePulseButton(buttonRef, { enabled: isWhatsApp });
-
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`.trim();
   const content = (
     <>
@@ -67,7 +62,6 @@ export default function ButtonCTA({
   if (external) {
     return (
       <a
-        ref={buttonRef}
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -82,14 +76,14 @@ export default function ButtonCTA({
   // Rutas internas → next/link; tel:/mailto: u otros → ancla simple.
   if (href.startsWith('/')) {
     return (
-      <Link href={href} className={classes} onClick={onClick} ref={buttonRef}>
+      <Link href={href} className={classes} onClick={onClick}>
         {content}
       </Link>
     );
   }
 
   return (
-    <a ref={buttonRef} href={href} className={classes} onClick={onClick}>
+    <a href={href} className={classes} onClick={onClick}>
       {content}
     </a>
   );

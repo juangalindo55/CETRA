@@ -6,6 +6,125 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --motion-press: 140ms;
+  --motion-fast: 160ms;
+  --motion-ui: 200ms;
+  --motion-reveal: 440ms;
+  --ease-out-ui: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-ui: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Respuesta física compartida por todos los elementos accionables. */
+.motion-press {
+  transition-duration: var(--motion-press);
+  transition-property: transform, background-color, border-color, color, opacity;
+  transition-timing-function: var(--ease-out-ui);
+}
+
+.motion-press:active {
+  transform: scale(0.97);
+}
+
+.motion-link-arrow {
+  transition: transform var(--motion-fast) var(--ease-out-ui);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-link:hover .motion-link-arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* Entrada única del hero: corta, coordinada y sin rebote. */
+.motion-hero-item {
+  animation: cetra-hero-enter var(--motion-reveal) var(--ease-out-ui) both;
+}
+
+.motion-hero-media {
+  animation: cetra-hero-media 600ms var(--ease-out-ui) both;
+}
+
+.motion-delay-1 { animation-delay: 40ms; }
+.motion-delay-2 { animation-delay: 80ms; }
+.motion-delay-3 { animation-delay: 120ms; }
+.motion-delay-4 { animation-delay: 160ms; }
+.motion-delay-5 { animation-delay: 190ms; }
+
+@keyframes cetra-hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cetra-hero-media {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* El contenido de details conserva el layout nativo y suaviza el cambio de estado. */
+.motion-details::details-content {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    content-visibility var(--motion-ui) allow-discrete,
+    opacity var(--motion-fast) var(--ease-out-ui),
+    transform var(--motion-ui) var(--ease-out-ui);
+}
+
+.motion-details[open]::details-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-details[open] .motion-details-icon {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-press:active {
+    transform: none;
+  }
+
+  .motion-link-arrow {
+    transition-property: color;
+    transform: none !important;
+  }
+
+  .motion-state-transform,
+  .motion-details-icon {
+    transition-duration: 0ms !important;
+  }
+
+  .motion-nav-underline[data-open='false'] {
+    transform: scaleX(0) !important;
+  }
+
+  .motion-hero-item,
+  .motion-hero-media {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .motion-details::details-content {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Corrección de viewport height para iOS Safari — la barra de direcciones no se descuenta en 100vh */
 .hero-section {
   min-height: 100vh; /* fallback: Chrome/Firefox sin soporte svh */

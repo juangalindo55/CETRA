@@ -8,6 +8,7 @@ interface RevealProps {
   children: ReactNode;
   /** Retraso en ms antes de iniciar la animación al entrar al viewport. */
   delay?: number;
+  variant?: 'content' | 'media';
   className?: string;
 }
 
@@ -15,9 +16,14 @@ interface RevealProps {
  * Wrapper cliente para animar bloques de páginas server (fade-up una sola vez,
  * respeta prefers-reduced-motion vía useFadeInOnScroll).
  */
-export default function Reveal({ children, delay = 0, className }: RevealProps) {
+export default function Reveal({
+  children,
+  delay = 0,
+  variant = 'content',
+  className,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  useFadeInOnScroll(ref, { delay });
+  useFadeInOnScroll(ref, { delay, variant });
 
   return (
     <div ref={ref} className={className}>

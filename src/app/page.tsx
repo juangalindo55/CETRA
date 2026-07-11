@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import Reveal from '@/components/ui/Reveal';
+import MotionSequence from '@/components/ui/MotionSequence';
 
 const routes = [
   {
@@ -119,20 +120,20 @@ export default function Home() {
         <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl lg:grid-cols-[1.08fr_0.92fr]">
           <div className="flex flex-col justify-between px-4 pb-12 pt-28 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20 lg:pt-32">
             <div>
-              <div className="flex items-center gap-4 border-b border-ink/25 pb-5">
+              <div className="motion-hero-item flex items-center gap-4 border-b border-ink/25 pb-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-violet-electric">
                   Medicina respiratoria avanzada
                 </p>
               </div>
 
-              <h1 className="mt-10 max-w-3xl font-display text-5xl font-light leading-[1.03] tracking-[-0.03em] sm:text-6xl lg:text-[5rem]">
+              <h1 className="motion-hero-item motion-delay-1 mt-10 max-w-3xl font-display text-5xl font-light leading-[1.03] tracking-[-0.03em] sm:text-6xl lg:text-[5rem]">
                 Entender tu respiración es el primer paso para cuidarla
               </h1>
-              <p className="mt-8 max-w-xl text-lg leading-8 text-gray-600 sm:text-xl">
+              <p className="motion-hero-item motion-delay-2 mt-8 max-w-xl text-lg leading-8 text-gray-600 sm:text-xl">
                 Evaluación, estudios y atención especializada para problemas respiratorios, alteraciones del sueño y enfermedad pulmonar compleja en Monterrey.
               </p>
 
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <div className="motion-hero-item motion-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
                 <ButtonCTA href={CONTACT_WHATSAPP_ORIENTACION} external>
                   Solicitar orientación
                   <ArrowUpRight className="h-4 w-4" />
@@ -142,7 +143,7 @@ export default function Home() {
                 </ButtonCTA>
               </div>
 
-              <div className="relative mt-12 aspect-[16/9] overflow-hidden lg:hidden">
+              <div className="motion-hero-media motion-delay-4 relative mt-12 aspect-[16/9] overflow-hidden lg:hidden">
                 <Image
                   src="/images/Hero.webp"
                   alt="Especialista de CETRA durante una evaluación respiratoria"
@@ -158,7 +159,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-ink/25 pt-6 text-sm text-gray-600 sm:grid-cols-4 lg:mt-20">
+            <div className="motion-hero-item motion-delay-5 mt-16 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-ink/25 pt-6 text-sm text-gray-600 sm:grid-cols-4 lg:mt-20">
               <span>Función pulmonar</span>
               <span>Medicina del sueño</span>
               <span>Rehabilitación</span>
@@ -166,7 +167,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative hidden min-h-[44rem] border-l border-white/15 lg:block">
+          <div className="motion-hero-media motion-delay-2 relative hidden min-h-[44rem] border-l border-white/15 lg:block">
             <Image
               src="/images/Hero.webp"
               alt="Especialista de CETRA durante una evaluación respiratoria"
@@ -204,9 +205,9 @@ export default function Home() {
                 <h3 className="max-w-md text-xl font-semibold leading-7">{route.title}</h3>
                 <div>
                   <p className="max-w-xl text-sm leading-7 text-gray-600 sm:text-base">{route.text}</p>
-                  <Link href={route.href} className="mt-5 inline-flex items-center gap-2 border-b border-violet-electric/35 pb-1 text-sm font-semibold text-violet-heritage transition-colors hover:border-violet-heritage">
+                  <Link href={route.href} className="motion-link mt-5 inline-flex items-center gap-2 border-b border-violet-electric/35 pb-1 text-sm font-semibold text-violet-heritage transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:border-violet-heritage">
                     {route.link}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="motion-link-arrow h-4 w-4" />
                   </Link>
                 </div>
               </li>
@@ -236,16 +237,16 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold">{area.title}</h3>
                     <p className="mt-3 max-w-2xl leading-7 text-gray-600">{area.text}</p>
                     <p className="mt-4 text-sm leading-6 text-violet-heritage">{area.items}</p>
-                    <Link href={area.href} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+                    <Link href={area.href} className="motion-link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink">
                       Explorar servicios
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="motion-link-arrow h-4 w-4" />
                     </Link>
                   </div>
                 </article>
               ))}
-              <Link href="/servicios" className="mt-8 inline-flex items-center gap-2 border-b border-ink pb-1 text-sm font-semibold">
+              <Link href="/servicios" className="motion-link mt-8 inline-flex items-center gap-2 border-b border-ink pb-1 text-sm font-semibold">
                 Ver todos los servicios
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="motion-link-arrow h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -261,9 +262,9 @@ export default function Home() {
                 Claridad antes, durante y después de cada estudio
               </h2>
             </Reveal>
-            <ol className="border-t border-white/35">
+            <MotionSequence>
               {process.map((step) => (
-                <li key={step.number} className="grid gap-4 border-b border-white/20 py-8 sm:grid-cols-[3rem_1fr] sm:py-10">
+                <li key={step.number} data-motion-item="true" className="grid gap-4 border-b border-white/20 py-8 sm:grid-cols-[3rem_1fr] sm:py-10">
                   <p className="font-display text-2xl text-violet-soft">{step.number}</p>
                   <div>
                     <h3 className="text-xl font-semibold">{step.title}</h3>
@@ -271,13 +272,13 @@ export default function Home() {
                   </div>
                 </li>
               ))}
-            </ol>
+            </MotionSequence>
           </div>
 
           <figure className="mt-16 grid border-t border-white/25 pt-6 lg:grid-cols-[1fr_0.5fr] lg:gap-8">
-            <div className="relative aspect-[16/8] overflow-hidden bg-white/5">
+            <Reveal variant="media" className="relative aspect-[16/8] overflow-hidden bg-white/5">
               <Image src="/images/pletis.webp" alt="Equipo para evaluación de la función pulmonar en CETRA" fill sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover" />
-            </div>
+            </Reveal>
             <figcaption className="mt-5 text-sm leading-7 text-white/60 lg:mt-0">
               La tecnología aporta datos. La atención especializada les da contexto para convertirlos en decisiones clínicas útiles.
             </figcaption>
@@ -287,9 +288,9 @@ export default function Home() {
 
       <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20 lg:px-8">
-          <div className="relative aspect-[874/422] overflow-hidden bg-lavender">
+          <Reveal variant="media" className="relative aspect-[874/422] overflow-hidden bg-lavender">
             <Image src="/images/specialists/trasequipo.webp" alt="Equipo multidisciplinario con experiencia en trasplante pulmonar" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-          </div>
+          </Reveal>
           <Reveal>
             <p className="font-display text-lg text-violet-electric">04 / Alta especialidad</p>
             <h2 className="mt-8 font-display text-4xl font-light leading-[1.1] tracking-[-0.025em] sm:text-5xl">
@@ -299,13 +300,13 @@ export default function Home() {
               Nuestro equipo reúne experiencia en neumología, cirugía, terapia intensiva, rehabilitación y seguimiento respiratorio. Esa trayectoria permite evaluar cada caso con una visión amplia y coordinar la atención cuando se requiere alta complejidad.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link href="/especialistas" className="inline-flex items-center gap-2 font-semibold text-violet-heritage">
+              <Link href="/especialistas" className="motion-link inline-flex items-center gap-2 font-semibold text-violet-heritage">
                 Conocer al equipo
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="motion-link-arrow h-4 w-4" />
               </Link>
-              <Link href="/nuestra-historia" className="inline-flex items-center gap-2 font-semibold text-violet-heritage">
+              <Link href="/nuestra-historia" className="motion-link inline-flex items-center gap-2 font-semibold text-violet-heritage">
                 Conocer nuestra historia
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="motion-link-arrow h-4 w-4" />
               </Link>
             </div>
           </Reveal>
@@ -345,17 +346,17 @@ export default function Home() {
             </Reveal>
             <div className="border-t border-ink">
               {questions.map((item) => (
-                <details key={item.question} className="group border-b border-lavender-line">
+                <details key={item.question} className="motion-details group border-b border-lavender-line">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold marker:content-none">
                     {item.question}
-                    <span className="font-display text-2xl font-light text-violet-electric transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                    <span className="motion-details-icon font-display text-2xl font-light text-violet-electric transition-transform duration-[160ms] ease-[var(--ease-in-out-ui)]" aria-hidden="true">+</span>
                   </summary>
                   <p className="max-w-2xl pb-7 pr-10 leading-7 text-gray-600">{item.answer}</p>
                 </details>
               ))}
-              <Link href="/contacto" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">
+              <Link href="/contacto" className="motion-link mt-8 inline-flex items-center gap-2 text-sm font-semibold">
                 Ver ubicación y contacto
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="motion-link-arrow h-4 w-4" />
               </Link>
             </div>
           </div>

@@ -4,7 +4,12 @@ import Link from 'next/link';
 import Logo from './Logo';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  type Variants,
+} from 'framer-motion';
 import {
   ChevronDown,
   ArrowRight,
@@ -28,19 +33,68 @@ const serviceIcons: Record<string, LucideIcon> = {
   '/servicios/rehabilitacion-pulmonar': HeartPulse,
 };
 
-// C — micro-interacciones: entrada del panel + reveal escalonado
 const panelVariants: Variants = {
-  hidden: { opacity: 0, y: -8, scale: 0.98 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: 'easeOut' } },
-  exit: { opacity: 0, y: -8, scale: 0.98, transition: { duration: 0.15, ease: 'easeIn' } },
+  hidden: {
+    opacity: 0,
+    transform: 'translateX(-50%) translateY(-4px) scale(0.98)',
+  },
+  show: {
+    opacity: 1,
+    transform: 'translateX(-50%) translateY(0) scale(1)',
+    transition: { duration: 0.18, ease: [0.23, 1, 0.32, 1] },
+  },
+  exit: {
+    opacity: 0,
+    transform: 'translateX(-50%) translateY(-4px) scale(0.98)',
+    transition: { duration: 0.14, ease: [0.23, 1, 0.32, 1] },
+  },
 };
 const listVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.035, delayChildren: 0.02 } },
 };
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: {
+    opacity: 0,
+    transform: 'translateY(6px)',
+    transition: { duration: 0.14, ease: [0.23, 1, 0.32, 1] },
+  },
+  show: {
+    opacity: 1,
+    transform: 'translateY(0)',
+    transition: { duration: 0.18, ease: [0.23, 1, 0.32, 1] },
+  },
+};
+const mobileMenuVariants: Variants = {
+  hidden: { opacity: 0, transform: 'translateY(-6px)' },
+  show: {
+    opacity: 1,
+    transform: 'translateY(0)',
+    transition: { duration: 0.22, ease: [0.32, 0.72, 0, 1] },
+  },
+  exit: {
+    opacity: 0,
+    transform: 'translateY(-4px)',
+    transition: { duration: 0.15, ease: [0.23, 1, 0.32, 1] },
+  },
+};
+const reducedPanelVariants: Variants = {
+  hidden: { opacity: 1, transform: 'translateX(-50%)' },
+  show: { opacity: 1, transform: 'translateX(-50%)', transition: { duration: 0 } },
+  exit: { opacity: 1, transform: 'translateX(-50%)', transition: { duration: 0 } },
+};
+const reducedListVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0 } },
+};
+const reducedCardVariants: Variants = {
+  hidden: { opacity: 1, transition: { duration: 0 } },
+  show: { opacity: 1, transition: { duration: 0 } },
+};
+const reducedMobileMenuVariants: Variants = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1, transition: { duration: 0 } },
+  exit: { opacity: 1, transition: { duration: 0 } },
 };
 
 const cetraMenuItems = [
@@ -72,7 +126,20 @@ export default function Navbar() {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const cetraDropdownRef = useRef<HTMLDivElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
   const isHome = pathname === '/';
+  const activePanelVariants = shouldReduceMotion
+    ? reducedPanelVariants
+    : panelVariants;
+  const activeListVariants = shouldReduceMotion
+    ? reducedListVariants
+    : listVariants;
+  const activeCardVariants = shouldReduceMotion
+    ? reducedCardVariants
+    : cardVariants;
+  const activeMobileMenuVariants = shouldReduceMotion
+    ? reducedMobileMenuVariants
+    : mobileMenuVariants;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -121,7 +188,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full h-20 z-50 transition-all duration-500 flex items-center ${
+      className={`fixed top-0 left-0 z-50 flex h-20 w-full items-center transition-[background-color,border-color] duration-200 ease-[var(--ease-out-ui)] ${
         scrolled || !isHome
           ? 'bg-white/95 backdrop-blur-md shadow-sm shadow-black/5 border-b border-lavender-line'
           : 'bg-transparent border-b border-transparent'
@@ -131,7 +198,7 @@ export default function Navbar() {
         
         {/* Izquierda: Logo */}
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center hover:opacity-90 transition-all transform [@media(hover:hover)]:hover:scale-105 duration-300 relative py-1">
+          <Link href="/" className="relative flex items-center py-1 transition-opacity duration-[160ms] [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90">
             <Logo width={260} height={260} className="relative z-10 drop-shadow-lg" />
           </Link>
         </div>
@@ -142,29 +209,30 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setCetraOpen((value) => !value)}
-              className={`group relative inline-flex items-center gap-1 transition-colors duration-200 cursor-pointer ${cetraOpen ? 'text-[#311B92]' : 'hover:text-[#311B92]'}`}
+              className={`group relative inline-flex cursor-pointer items-center gap-1 transition-colors duration-200 ${cetraOpen ? 'text-[#311B92]' : '[@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]'}`}
               aria-expanded={cetraOpen}
               aria-haspopup="menu"
             >
               CETRA
-              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${cetraOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`motion-state-transform h-4 w-4 transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] ${cetraOpen ? 'rotate-180' : ''}`} />
               <span
-                className={`pointer-events-none absolute -bottom-1.5 left-0 h-px bg-[#7C3AED] transition-all duration-300 ${cetraOpen ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                data-open={cetraOpen}
+                className={`motion-nav-underline motion-state-transform pointer-events-none absolute -bottom-1.5 left-0 h-px w-full origin-left bg-[#7C3AED] transition-transform duration-[180ms] ease-[var(--ease-out-ui)] ${cetraOpen ? 'scale-x-100' : 'scale-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100'}`}
               />
             </button>
 
             <AnimatePresence>
               {cetraOpen && (
                 <motion.div
-                  variants={panelVariants}
+                  variants={activePanelVariants}
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(420px,calc(100vw-2rem))] -translate-x-1/2 origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
+                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(420px,calc(100vw-2rem))] origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
                 >
                   <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#7C3AED]/5 blur-3xl" />
-                  <motion.div variants={listVariants} className="relative">
-                    <motion.div variants={cardVariants} className="mb-5">
+                  <motion.div variants={activeListVariants} className="relative">
+                    <motion.div variants={activeCardVariants} className="mb-5">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
                         Conoce CETRA
                       </p>
@@ -176,19 +244,19 @@ export default function Navbar() {
                       {cetraMenuItems.map((item) => {
                         const Icon = item.icon;
                         return (
-                          <motion.div key={item.href} variants={cardVariants}>
+                          <motion.div key={item.href} variants={activeCardVariants}>
                             <Link
                               href={item.href}
                               onClick={() => setCetraOpen(false)}
-                              className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                              className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-[background-color,border-color] duration-[160ms] ease-[var(--ease-out-ui)] [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#7C3AED] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#faf8ff]"
                             >
-                              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
+                              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-[160ms] [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:bg-[#7C3AED] [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:text-white">
                                 <Icon className="h-4 w-4" strokeWidth={1.75} />
                               </span>
                               <span className="min-w-0 flex-1">
                                 <span className="flex items-center justify-between gap-2">
                                   <span className="block text-sm font-medium text-[#120726]">{item.label}</span>
-                                  <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100" />
+                                  <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-[transform,opacity] duration-[160ms] ease-[var(--ease-out-ui)] motion-reduce:!translate-x-0 motion-reduce:!transition-none [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:translate-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:opacity-100" />
                                 </span>
                                 <span className="mt-0.5 block text-xs text-gray-500">{item.description}</span>
                               </span>
@@ -206,35 +274,36 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setServicesOpen((value) => !value)}
-              className={`group relative inline-flex items-center gap-1 transition-colors duration-200 cursor-pointer ${servicesOpen ? 'text-[#311B92]' : 'hover:text-[#311B92]'}`}
+              className={`group relative inline-flex cursor-pointer items-center gap-1 transition-colors duration-200 ${servicesOpen ? 'text-[#311B92]' : '[@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]'}`}
               aria-expanded={servicesOpen}
               aria-haspopup="menu"
             >
               Servicios
-              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`motion-state-transform h-4 w-4 transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] ${servicesOpen ? 'rotate-180' : ''}`} />
               <span
-                className={`pointer-events-none absolute -bottom-1.5 left-0 h-px bg-[#7C3AED] transition-all duration-300 ${servicesOpen ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                data-open={servicesOpen}
+                className={`motion-nav-underline motion-state-transform pointer-events-none absolute -bottom-1.5 left-0 h-px w-full origin-left bg-[#7C3AED] transition-transform duration-[180ms] ease-[var(--ease-out-ui)] ${servicesOpen ? 'scale-x-100' : 'scale-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100'}`}
               />
             </button>
 
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div
-                  variants={panelVariants}
+                  variants={activePanelVariants}
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(1000px,calc(100vw-2rem))] -translate-x-1/2 origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
+                  className="absolute left-1/2 top-full z-50 mt-4 w-[min(1000px,calc(100vw-2rem))] origin-top overflow-hidden rounded-[2rem] border border-[#e8e4f8] bg-white p-8 shadow-2xl shadow-[#311B92]/10"
                 >
                   {/* Halo violeta sutil de fondo */}
                   <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#7C3AED]/5 blur-3xl" />
 
-                  <motion.div variants={listVariants} className="relative grid grid-cols-2 gap-8">
+                  <motion.div variants={activeListVariants} className="relative grid grid-cols-2 gap-8">
                     {serviceCategories
                       .filter((category) => category.title !== 'Alta complejidad')
                       .map((category) => (
-                        <motion.div key={category.title} variants={listVariants} className="flex flex-col">
-                          <motion.div variants={cardVariants} className="mb-5">
+                        <motion.div key={category.title} variants={activeListVariants} className="flex flex-col">
+                          <motion.div variants={activeCardVariants} className="mb-5">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]">
                               {category.title}
                             </p>
@@ -244,13 +313,13 @@ export default function Navbar() {
                             {category.items.map((item) => {
                               const Icon = serviceIcons[item.slug] ?? Activity;
                               return (
-                                <motion.div key={item.slug} variants={cardVariants}>
+                                <motion.div key={item.slug} variants={activeCardVariants}>
                                   <Link
                                     href={item.slug}
                                     onClick={() => setServicesOpen(false)}
-                                    className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5 hover:border-[#7C3AED] hover:bg-[#faf8ff] hover:shadow-lg hover:shadow-[#7C3AED]/10"
+                                    className="group/item flex items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-4 py-3.5 transition-[background-color,border-color] duration-[160ms] ease-[var(--ease-out-ui)] [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#7C3AED] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#faf8ff]"
                                   >
-                                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-300 group-hover/item:bg-[#7C3AED] group-hover/item:text-white">
+                                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f5f0ff] text-[#7C3AED] transition-colors duration-[160ms] [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:bg-[#7C3AED] [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:text-white">
                                       <Icon className="h-4 w-4" strokeWidth={1.75} />
                                     </span>
                                     <span className="min-w-0 flex-1">
@@ -258,7 +327,7 @@ export default function Navbar() {
                                         <span className="block text-sm font-medium text-[#120726]">
                                           {item.title}
                                         </span>
-                                        <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100" />
+                                        <ArrowRight className="h-4 w-4 shrink-0 -translate-x-1 text-[#7C3AED] opacity-0 transition-[transform,opacity] duration-[160ms] ease-[var(--ease-out-ui)] motion-reduce:!translate-x-0 motion-reduce:!transition-none [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:translate-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover/item:opacity-100" />
                                       </span>
                                       <span className="mt-1 block text-xs leading-relaxed text-gray-500">
                                         {item.summary}
@@ -277,7 +346,7 @@ export default function Navbar() {
                   </motion.div>
 
                   <motion.div
-                    variants={cardVariants}
+                    variants={activeCardVariants}
                     className="relative mt-5 flex items-center justify-between gap-4 overflow-hidden rounded-2xl bg-[#120726] px-5 py-4 text-white"
                   >
                     <div className="pointer-events-none absolute -left-10 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-[#7C3AED]/20 blur-2xl" />
@@ -292,18 +361,18 @@ export default function Navbar() {
                     <Link
                       href="/servicios"
                       onClick={() => setServicesOpen(false)}
-                      className="group/cta relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726] transition-transform [@media(hover:hover)]:hover:-translate-y-0.5"
+                      className="motion-link motion-press relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#120726]"
                     >
                       Ver todos los servicios
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
+                      <ArrowRight className="motion-link-arrow h-4 w-4" />
                     </Link>
                   </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
-          <Link href="/servicios/trasplante-pulmonar" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer whitespace-nowrap">Trasplante Pulmonar</Link>
-          <Link href="/contacto" className="hover:text-[#311B92] transition-colors duration-200 cursor-pointer text-[#311B92] font-normal underline decoration-[#311B92]/30 underline-offset-8">Contacto</Link>
+          <Link href="/servicios/trasplante-pulmonar" className="cursor-pointer whitespace-nowrap transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]">Trasplante Pulmonar</Link>
+          <Link href="/contacto" className="cursor-pointer font-normal text-[#311B92] underline decoration-[#311B92]/30 underline-offset-8 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]">Contacto</Link>
         </nav>
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
@@ -321,35 +390,42 @@ export default function Navbar() {
           <button
             className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
             onClick={toggleMobileMenu}
-            aria-label="Abrir menú"
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={open}
           >
-            <span className={`block w-5 h-0.5 bg-[#1a0a3d] transition-transform duration-300 origin-center ${open ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-[#1a0a3d] transition-opacity duration-300 ${open ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-[#1a0a3d] transition-transform duration-300 origin-center ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            <span className={`motion-state-transform block w-5 h-0.5 bg-[#1a0a3d] transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] origin-center ${open ? 'translate-y-2 rotate-45' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-[#1a0a3d] transition-opacity duration-[140ms] ${open ? 'opacity-0' : ''}`} />
+            <span className={`motion-state-transform block w-5 h-0.5 bg-[#1a0a3d] transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] origin-center ${open ? '-translate-y-2 -rotate-45' : ''}`} />
           </button>
         </div>
       </div>
 
       {/* Mobile menu — fuera del overflow-hidden del header */}
-      {open && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4 text-sm font-light text-gray-600 tracking-wide max-h-[calc(100svh-5rem)] overflow-y-auto">
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            variants={activeMobileMenuVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="absolute top-full left-0 flex max-h-[calc(100svh-5rem)] w-full flex-col gap-4 overflow-y-auto border-b border-gray-100 bg-white px-6 py-6 text-sm font-light tracking-wide text-gray-600 shadow-lg md:hidden"
+          >
           <div className="space-y-3">
             <button
               type="button"
-              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors active:bg-[#f3edff]"
               onClick={() => setCetraOpen((value) => !value)}
               aria-expanded={cetraOpen}
             >
               <span className="text-base font-medium">CETRA</span>
               <ChevronDown
-                className={`h-5 w-5 shrink-0 transition-transform ${cetraOpen ? 'rotate-180' : ''}`}
+                className={`motion-state-transform h-5 w-5 shrink-0 transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] ${cetraOpen ? 'rotate-180' : ''}`}
               />
             </button>
             <AnimatePresence initial={false}>
               {cetraOpen && (
                 <motion.div
-                  variants={listVariants}
+                  variants={activeListVariants}
                   initial="hidden"
                   animate="show"
                   exit="hidden"
@@ -358,7 +434,7 @@ export default function Navbar() {
                   {cetraMenuItems.map((item) => {
                     const Icon = item.icon;
                     return (
-                      <motion.div key={item.href} variants={cardVariants}>
+                      <motion.div key={item.href} variants={activeCardVariants}>
                         <Link
                           href={item.href}
                           className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
@@ -384,19 +460,19 @@ export default function Navbar() {
           <div className="space-y-3">
             <button
               type="button"
-              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+              className="flex min-h-11 w-full items-center justify-between rounded-xl border border-transparent px-3 py-3 text-left text-gray-800 transition-colors active:bg-[#f3edff]"
               onClick={() => setServicesOpen((value) => !value)}
               aria-expanded={servicesOpen}
             >
               <span className="text-base font-medium">Servicios</span>
               <ChevronDown
-                className={`h-5 w-5 shrink-0 transition-transform ${servicesOpen ? 'rotate-180' : ''}`}
+                className={`motion-state-transform h-5 w-5 shrink-0 transition-transform duration-[180ms] ease-[var(--ease-in-out-ui)] ${servicesOpen ? 'rotate-180' : ''}`}
               />
             </button>
             <AnimatePresence initial={false}>
               {servicesOpen && (
                 <motion.div
-                  variants={listVariants}
+                  variants={activeListVariants}
                   initial="hidden"
                   animate="show"
                   exit="hidden"
@@ -405,9 +481,9 @@ export default function Navbar() {
                   {serviceCategories
                     .filter((category) => category.title !== 'Alta complejidad')
                     .map((category) => (
-                      <motion.div key={category.title} variants={listVariants} className="space-y-2">
+                      <motion.div key={category.title} variants={activeListVariants} className="space-y-2">
                         <motion.p
-                          variants={cardVariants}
+                          variants={activeCardVariants}
                           className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7C3AED]"
                         >
                           {category.title}
@@ -415,7 +491,7 @@ export default function Navbar() {
                         {category.items.map((item) => {
                           const Icon = serviceIcons[item.slug] ?? Activity;
                           return (
-                            <motion.div key={item.slug} variants={cardVariants}>
+                            <motion.div key={item.slug} variants={activeCardVariants}>
                               <Link
                                 href={item.slug}
                                 className="flex min-h-11 items-start gap-3 rounded-xl border border-[#e8e4f8] bg-white px-3 py-3 active:bg-[#f3edff]"
@@ -441,7 +517,7 @@ export default function Navbar() {
                         })}
                       </motion.div>
                     ))}
-                  <motion.div variants={cardVariants}>
+                  <motion.div variants={activeCardVariants}>
                     <Link
                       href="/servicios"
                       className="flex min-h-11 items-center justify-between rounded-xl bg-[#120726] px-4 py-3 text-sm font-medium text-white active:bg-[#1a0a3d]"
@@ -457,14 +533,14 @@ export default function Navbar() {
           </div>
           <Link
             href="/servicios/trasplante-pulmonar"
-            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-gray-800 transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-gray-800 transition-colors active:bg-[#f3edff]"
             onClick={closeMobileMenu}
           >
             Trasplante Pulmonar
           </Link>
           <Link
             href="/contacto"
-            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-[#311B92] transition-colors hover:border-[#eee7ff] hover:bg-[#faf8ff] active:bg-[#f3edff]"
+            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-[#311B92] transition-colors active:bg-[#f3edff]"
             onClick={closeMobileMenu}
           >
             Contacto
@@ -478,8 +554,9 @@ export default function Navbar() {
           >
             Agendar estudio
           </ButtonCTA>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

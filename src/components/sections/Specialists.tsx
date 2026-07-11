@@ -23,7 +23,7 @@ const pulmonologists = [
     id: 3,
     name: 'Dr. Juan O. Galindo',
     role: 'Neumólogo',
-    image: '',
+    image: '/images/specialists/drjuanog.webp',
   },
   {
     id: 4,
@@ -114,7 +114,7 @@ export default function Specialists() {
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Expertos en diagnóstico, consulta clínica e interpretación de resultados. Nuestro equipo de
-              neumólogos especializados guía cada paso del camino del paciente.
+              médicos especialistas guía cada paso del camino del paciente.
             </p>
           </div>
 

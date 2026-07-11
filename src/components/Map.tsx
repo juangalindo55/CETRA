@@ -30,7 +30,7 @@ export default function Map() {
             title="Ubicación de CETRA en Monterrey"
           />
         ) : (
-          <div className="flex h-full flex-col items-center justify-center bg-[#f5f3ff] px-6 text-center">
+          <div className="flex h-full flex-col items-center justify-center bg-lavender px-6 text-center">
             <MapPin className="h-8 w-8 text-[#7C3AED]" aria-hidden="true" />
             <h3 className="mt-4 font-display text-2xl font-semibold text-[#120726]">
               Ver ubicación en el mapa
@@ -44,7 +44,7 @@ export default function Map() {
             <button
               type="button"
               onClick={() => setIsMapLoaded(true)}
-              className="mt-6 rounded-full bg-[#311B92] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a0a5e]"
+              className="mt-6 bg-violet-heritage px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink"
             >
               Cargar mapa de Google
             </button>

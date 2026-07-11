@@ -24,24 +24,23 @@ interface ButtonCTAProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-0.5';
+  'inline-flex items-center justify-center gap-2 transition-colors duration-300';
 
 const variants: Record<ButtonCTAVariant, string> = {
-  primary:
-    'bg-[#311B92] text-white shadow-lg shadow-[#311B92]/20 hover:bg-[#1a0a5e]',
+  primary: 'bg-violet-heritage text-white hover:bg-ink',
   secondary:
-    'border border-[#d8c9ff] bg-white text-[#120726] hover:border-[#b99cff] hover:bg-[#fcfbff]',
+    'border border-violet-heritage text-violet-heritage hover:bg-lavender',
 };
 
 const sizes: Record<ButtonCTASize, string> = {
-  sm: 'px-6 py-2.5 text-sm font-medium',
-  md: 'px-8 py-4 text-sm font-semibold',
-  lg: 'px-10 py-4 font-light tracking-wide',
+  sm: 'min-h-11 px-6 py-2.5 text-sm font-semibold',
+  md: 'min-h-12 px-7 py-3.5 text-sm font-semibold',
+  lg: 'min-h-12 px-9 py-3.5 text-sm font-semibold tracking-wide',
 };
 
 /**
- * CTA unificado de CETRA. Sustituye las múltiples recetas de "pill" violeta
- * que existían dispersas por las páginas (ver DESIGN_SYSTEM.md → Botones).
+ * CTA unificado de CETRA — lenguaje cuadrado editorial
+ * (ver DESIGN_SYSTEM.md → Botones).
  */
 export default function ButtonCTA({
   href,

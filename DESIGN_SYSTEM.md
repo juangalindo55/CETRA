@@ -28,6 +28,10 @@
 - **Deep Violet (The Heritage):** #311B92 (Violeta oscuro, denso, para elementos de confianza y navegación).
 - **Electric Violet (The Pulse):** #7C3AED (Para estados de interacción, botones críticos y acentos de tecnología).
 - **Soft Gray:** #F4F4F5 (Para sutiles separaciones sin ensuciar el diseño).
+- **Lavender (`lavender`):** #f8f7ff (Superficie alterna violeta muy sutil — hero, secciones alternas, footer; parentesco visual con la identidad Christus Muguerza).
+- **Lavender Line (`lavender-line`):** #e8e4f8 (Bordes y separadores sobre lavanda o blanco).
+- **Ink (`ink`):** #120726 (Texto principal y fondos de secciones oscuras en el lenguaje editorial).
+- **Violet Soft (`violet-soft`):** #c4b5fd (Kickers y acentos sobre fondos `ink`).
 
 ## Typography (World-Class Standards)
 - **Display (Headings):** 'Playfair Display' (Font-weight: 700, Tracking: -0.02em). Serif elegante que denota autoridad médica y tradición.
@@ -40,7 +44,9 @@
 
 ## Botones — Componente `ButtonCTA`
 
-Todos los CTAs ("pill" violeta) se renderizan con el componente único **`src/components/ui/ButtonCTA.tsx`**. No volver a escribir clases de botón a mano: usar el componente para mantener una sola receta visual en todo el sitio.
+Todos los CTAs se renderizan con el componente único **`src/components/ui/ButtonCTA.tsx`**. No volver a escribir clases de botón a mano: usar el componente para mantener una sola receta visual en todo el sitio.
+
+**Lenguaje actual: cuadrado editorial** (esquinas rectas, sin sombra, tipografía semibold). El pill redondeado quedó retirado en Julio 2026 al adoptar la dirección editorial de la home.
 
 ```tsx
 import ButtonCTA from '@/components/ui/ButtonCTA';
@@ -57,14 +63,14 @@ import { CONTACT_WHATSAPP } from '@/lib/contact';
 
 | Prop | Valores | Uso |
 |------|---------|-----|
-| `variant` | `primary` (def.) · `secondary` | Sólido violeta `#311B92` / contorno violeta sobre blanco |
+| `variant` | `primary` (def.) · `secondary` | Sólido `violet-heritage` con hover `ink` / contorno `violet-heritage` con hover `lavender` |
 | `size` | `sm` · `md` (def.) · `lg` | Nav / CTA estándar de página / hero y cierres editoriales |
 | `external` | `boolean` | `true` → `<a target="_blank" rel="noopener noreferrer">` |
 | `href` | string | Rutas `/…` usan `next/link`; `tel:`/`mailto:` y externos usan `<a>` |
 | `icon` | ReactNode | Icono opcional a la izquierda (`<ArrowRight className="h-4 w-4" />`) |
 | `className` | string | Solo para ancho/margen/visibilidad responsive (ej. `w-full lg:w-auto`) |
 
-**Sombra estándar:** `shadow-lg shadow-[#311B92]/20` (no usar `shadow-purple-*` de Tailwind).
+**Sin sombra:** el botón editorial no lleva sombra (coherente con "Shadows: ninguna o stroke-only").
 
 **Excepciones documentadas (bespoke, no migradas):** los pares de botones del `Hero` y de `EligibilityQuiz` conservan su tamaño propio para no desalinear su botón hermano; los outline violeta del Hero/landing ("Ver servicios") mantienen su estilo editorial.
 

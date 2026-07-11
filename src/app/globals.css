@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Prevenir scroll horizontal en mobile */
 body {
@@ -20,4 +21,8 @@ body {
   --color-base-black: #09090B;
   --color-base-white: #FFFFFF;
   --color-soft-gray: #F4F4F5;
+  --color-lavender: #f8f7ff;
+  --color-lavender-line: #e8e4f8;
+  --color-ink: #120726;
+  --color-violet-soft: #c4b5fd;
 }

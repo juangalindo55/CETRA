@@ -32,16 +32,16 @@ const pulmonologists: {
   },
   {
     id: 3,
-    name: 'Dr. Juan O. Galindo',
+    name: 'Dr. Sergio Sánchez',
     role: 'Neumólogo',
-    image: '/images/specialists/drjuanog.webp',
+    image: '/images/specialists/drsergios1.webp',
     cedula: null,
   },
   {
     id: 4,
-    name: 'Dr. Sergio Sánchez',
+    name: 'Dr. Juan O. Galindo',
     role: 'Neumólogo',
-    image: '/images/specialists/drsergios1.webp',
+    image: '/images/specialists/drjuanog.webp',
     cedula: null,
   },
 ];

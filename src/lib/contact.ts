@@ -4,6 +4,9 @@ export const CONTACT_EMAIL = 'contacto@cetrapulmonar.com';
 export const CONTACT_EMAIL_LINK = `mailto:${CONTACT_EMAIL}`;
 export const CONTACT_WHATSAPP =
   'https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita';
+// Variante para CTAs de orientación (home): el prefill coincide con el copy del botón.
+export const CONTACT_WHATSAPP_ORIENTACION =
+  'https://wa.me/528117781017?text=Hola,%20quisiera%20orientaci%C3%B3n%20sobre%20mi%20caso';
 
 export const CETRA_WEEKDAY_HOURS = {
   display: 'Lun a Vie: 8 am a 17:00',

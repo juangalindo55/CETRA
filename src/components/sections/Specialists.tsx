@@ -5,44 +5,62 @@ import Image from 'next/image';
 import { Stethoscope, Award, Star, CheckCircle2, User } from 'lucide-react';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
 
-// cedula: número de cédula profesional (requisito de publicidad sanitaria).
-// null = pendiente de recibir; la tarjeta no la muestra hasta tenerla.
-const pulmonologists: {
+// cedulas: números de cédula profesional (requisito publicidad sanitaria COFEPRIS).
+// null = pendiente; la tarjeta no muestra el bloque hasta tener al menos una.
+// certification: número y organismo del Consejo certificador.
+interface Specialist {
   id: number;
   name: string;
   role: string;
   specialty?: string;
+  subspecialty?: string;
   image: string;
-  cedula: string | null;
-}[] = [
+  cedulas: { number: string; institution: string }[] | null;
+  certification?: { number: string; council: string } | null;
+}
+
+const pulmonologists: Specialist[] = [
   {
     id: 1,
-    name: 'Dr. Uriel Chavarría',
+    name: 'Dr. Uriel Chavarría Martínez',
     role: 'Neumólogo',
+    specialty: 'Neumología',
+    subspecialty: 'Neumología Intensivista',
     image: '/images/specialists/uriel-chavarria.webp',
-    cedula: null,
+    cedulas: [
+      { number: '7796468', institution: 'UANL' },
+      { number: '7757598', institution: 'UANL' },
+    ],
+    certification: { number: 'CNN-445', council: 'Consejo Nacional de Neumología, A.C.' },
   },
   {
     id: 2,
-    name: 'Dr. Manuel Wong',
+    name: 'Dr. Manuel Wong Jaen',
     role: 'Cirujano Cardiotorácico',
     specialty: 'Especialista en Trasplante Pulmonar y Cirugía por Mínima Invasión',
     image: '/images/specialists/manuel-wong.webp',
-    cedula: null,
+    cedulas: [
+      { number: '10359772', institution: 'Ministerio de Educación, Cultura y Deporte — Madrid, España' },
+    ],
+    certification: { number: '506', council: 'Consejo Nacional de Cirugía del Tórax, A.C.' },
   },
   {
     id: 3,
-    name: 'Dr. Sergio Sánchez',
+    name: 'Dr. Sergio Saúl Sánchez Salazar',
     role: 'Neumólogo',
     image: '/images/specialists/drsergios1.webp',
-    cedula: null,
+    cedulas: [
+      { number: '11207367', institution: 'UANL' },
+    ],
+    certification: { number: 'CNN-1215', council: 'Consejo Nacional de Neumología, A.C.' },
   },
   {
     id: 4,
     name: 'Dr. Juan O. Galindo',
     role: 'Neumólogo',
     image: '/images/specialists/drjuanog.webp',
-    cedula: null,
+    cedulas: null,
+    certification: null,
   },
 ];
 
@@ -172,10 +190,28 @@ export default function Specialists() {
                       {doctor.specialty}
                     </p>
                   )}
-                  {doctor.cedula && (
-                    <p className="mt-auto pt-3 text-xs text-gray-500">
-                      Céd. Prof. {doctor.cedula}
+                  {doctor.subspecialty && (
+                    <p className="text-xs text-[#7C3AED]/70 font-medium mt-1">
+                      {doctor.subspecialty}
                     </p>
+                  )}
+                  {(doctor.cedulas || doctor.certification) && (
+                    <div className="mt-auto pt-3 border-t border-gray-100 space-y-1">
+                      {doctor.cedulas?.map((c) => (
+                        <p key={c.number} className="text-xs text-gray-500 leading-snug">
+                          Céd. Prof. {c.number}
+                          {' '}·{' '}
+                          <span className="text-gray-400">{c.institution}</span>
+                        </p>
+                      ))}
+                      {doctor.certification && (
+                        <p className="text-xs text-gray-500 leading-snug">
+                          Cert. {doctor.certification.number}
+                          {' '}·{' '}
+                          <span className="text-gray-400">{doctor.certification.council}</span>
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
               </motion.div>

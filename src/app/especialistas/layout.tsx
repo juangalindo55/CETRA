@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { SITE_NAME } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: `Especialistas | ${SITE_NAME}`,
+  title: `Especialistas`,
   description:
     'Conoce al equipo médico y técnico de CETRA, sus perfiles, experiencia y enfoque multidisciplinario en salud respiratoria avanzada.',
   alternates: {

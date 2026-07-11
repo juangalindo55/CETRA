@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { SITE_NAME } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: `Contacto | ${SITE_NAME}`,
+  title: `Contacto`,
   description:
     'Contacto, ubicación, horario y medios de atención de CETRA en Monterrey. Agenda una cita, valida tu cobertura o solicita orientación.',
   alternates: {

@@ -9,14 +9,30 @@ build/
 # AI tooling caches
 .aider*
 gemini/
+.codex
+model
+.claude/settings.local.json
+.agents/
+.superpowers/
+
+# Editor / IDE metadata
+.obsidian/
+
+# Staging / source images (production assets live in public/)
+images/
 
 # Local audit artifacts
 lighthouse-reports/
 lighthouse-reports-prod/
-undefined:/
+
+# WSL artifacts
 *wsl.localhost*
 *.Zone.Identifier
 *:Zone.Identifier
+
+# Misc logs / scratch
+dev.log
+cambios.cetra.txt
 
 # TS incremental build info (no versionar)
 tsconfig.tsbuildinfo

@@ -5,12 +5,22 @@ import Image from 'next/image';
 import { Stethoscope, Award, Star, CheckCircle2, User } from 'lucide-react';
 import { CONTACT_WHATSAPP } from '@/lib/contact';
 
-const pulmonologists = [
+// cedula: número de cédula profesional (requisito de publicidad sanitaria).
+// null = pendiente de recibir; la tarjeta no la muestra hasta tenerla.
+const pulmonologists: {
+  id: number;
+  name: string;
+  role: string;
+  specialty?: string;
+  image: string;
+  cedula: string | null;
+}[] = [
   {
     id: 1,
     name: 'Dr. Uriel Chavarría',
     role: 'Neumólogo',
     image: '/images/specialists/uriel-chavarria.webp',
+    cedula: null,
   },
   {
     id: 2,
@@ -18,18 +28,21 @@ const pulmonologists = [
     role: 'Cirujano Cardiotorácico',
     specialty: 'Especialista en Trasplante Pulmonar y Cirugía por Mínima Invasión',
     image: '/images/specialists/manuel-wong.webp',
+    cedula: null,
   },
   {
     id: 3,
     name: 'Dr. Juan O. Galindo',
     role: 'Neumólogo',
     image: '/images/specialists/drjuanog.webp',
+    cedula: null,
   },
   {
     id: 4,
     name: 'Dr. Sergio Sánchez',
     role: 'Neumólogo',
     image: '/images/specialists/drsergios1.webp',
+    cedula: null,
   },
 ];
 
@@ -157,6 +170,11 @@ export default function Specialists() {
                   {doctor.specialty && (
                     <p className="text-sm text-gray-600 leading-relaxed mt-2">
                       {doctor.specialty}
+                    </p>
+                  )}
+                  {doctor.cedula && (
+                    <p className="mt-auto pt-3 text-xs text-gray-500">
+                      Céd. Prof. {doctor.cedula}
                     </p>
                   )}
                 </div>

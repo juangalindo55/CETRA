@@ -2,19 +2,24 @@
 
 import Link from 'next/link';
 import Map from '@/components/Map';
+import {
+  RESPONSABLE_SANITARIO,
+  COFEPRIS_PERMISO_PUBLICIDAD,
+  LEYENDA_SANITARIA,
+} from '@/lib/legal';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f8f7ff] text-[#1a0a3d] pt-16 pb-10 border-t border-[#e8e4f8]">
+    <footer className="bg-lavender text-ink pt-16 pb-10 border-t border-lavender-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="font-display text-xl font-semibold mb-3 text-[#1a0a3d] tracking-tight">
+            <h3 className="font-display text-xl font-semibold mb-3 text-ink tracking-tight">
               CETRA
             </h3>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed max-w-sm mb-6">
               Centro de excelencia en trasplante pulmonar y medicina respiratoria avanzada.
               Atención médica de alta especialidad con un enfoque humano e integral.
             </p>
@@ -43,13 +48,27 @@ export default function Footer() {
       </div>
 
       {/* Full Width Map Section */}
-      <div className="w-full h-[450px] relative border-y border-[#e8e4f8] mb-12">
+      <div className="w-full relative border-y border-lavender-line mb-12">
         <Map />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Información sanitaria (requisitos de publicidad de servicios de salud) */}
+        <div className="border-t border-lavender-line pt-8 pb-6 text-xs leading-6 text-gray-600">
+          <p>
+            Responsable sanitario: {RESPONSABLE_SANITARIO.name}
+            {RESPONSABLE_SANITARIO.cedula && <> — Céd. Prof. {RESPONSABLE_SANITARIO.cedula}</>}
+            {COFEPRIS_PERMISO_PUBLICIDAD && (
+              <> · Permiso de publicidad COFEPRIS: {COFEPRIS_PERMISO_PUBLICIDAD}</>
+            )}
+          </p>
+          <p className="mt-1">
+            La información de este sitio es orientativa y no sustituye una valoración médica. {LEYENDA_SANITARIA}
+          </p>
+        </div>
+
         {/* Bottom bar */}
-        <div className="border-t border-[#e8e4f8] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <div className="border-t border-lavender-line pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} CETRA. Todos los derechos reservados.</span>
           <span className="tracking-widest uppercase text-[9px] text-[#7C3AED]/60">Medicina Respiratoria de Alta Especialidad</span>
         </div>

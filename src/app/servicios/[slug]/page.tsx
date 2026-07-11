@@ -71,6 +71,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  const isTransplantHero = resolvedParams.slug === 'trasplante-pulmonar';
+
   return (
     <div className="w-full">
 
@@ -94,7 +96,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </p>
 
             {service.frontmatter.heroImage && (
-              <div className="relative mt-10 aspect-[16/9] overflow-hidden lg:hidden">
+              <div
+                className={`relative mt-10 overflow-hidden lg:hidden ${
+                  isTransplantHero ? 'aspect-[874/422]' : 'aspect-[16/9]'
+                }`}
+              >
                 <Image
                   src={service.frontmatter.heroImage}
                   alt={service.frontmatter.heroImageAlt ?? service.frontmatter.title}
@@ -121,7 +127,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
 
           {service.frontmatter.heroImage && (
-            <div className="relative hidden min-h-[28rem] border-l border-white/15 lg:block">
+            <div
+              className={`relative hidden overflow-hidden lg:block ${
+                isTransplantHero
+                  ? 'mx-6 aspect-[874/422] self-center border border-white/15'
+                  : 'min-h-[28rem] border-l border-white/15'
+              }`}
+            >
               <Image
                 src={service.frontmatter.heroImage}
                 alt={service.frontmatter.heroImageAlt ?? service.frontmatter.title}

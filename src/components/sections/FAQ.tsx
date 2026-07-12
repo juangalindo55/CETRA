@@ -61,7 +61,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 w-full bg-[#f5f3ff]">
+    <section className="py-20 w-full bg-lavender">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -70,10 +70,10 @@ export default function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4 font-light">
+            <p className="text-[10px] tracking-[0.3em] text-violet-electric uppercase mb-4 font-light">
               Resuelve tus dudas
             </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight">
+            <h2 className="font-display text-4xl md:text-5xl font-light text-ink leading-tight">
               Preguntas Frecuentes sobre Estudios Respiratorios
             </h2>
           </motion.div>
@@ -88,13 +88,13 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="bg-white rounded-xl border border-gray-200 hover:border-[#7C3AED]/30 transition-all duration-300 overflow-hidden"
+              className="bg-white rounded-xl border border-gray-200 hover:border-violet-electric/30 transition-all duration-300 overflow-hidden"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
               >
-                <span className="font-semibold text-[#1a0a3d] text-left">{item.question}</span>
+                <span className="font-semibold text-ink text-left">{item.question}</span>
                 <motion.span
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}

@@ -168,3 +168,92 @@ export function getSpecialistsSchema() {
     },
   ];
 }
+
+export function getFullFAQSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Qué estudio necesito según mis síntomas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Depende de lo que experimentes. Si tienes tos persistente, falta de aire o sospecha de asma/EPOC, empieza por espirometría. Si ronquidos, pausas al dormir o somnolencia, es un estudio del sueño. En tu consulta inicial nuestro equipo te orienta sobre el mejor estudio para tu caso.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo me preparo para una espirometría?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No necesitas ayuno ni preparación especial. Evita ejercicio intenso 1 hora antes. Usa ropa cómoda que permita respirar libremente. Toma tus medicamentos normales, excepto broncodilatadores (inhaladores) que debes suspender 4 horas antes. La prueba dura unos 20 minutos.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuánto dura una pletismografía?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Aproximadamente 45 minutos. Es una prueba cómoda y no duele. Entras en una cámara cerrada (cabina) que mide tus volúmenes pulmonares con precisión. La mayoría de pacientes la tolera muy bien. No hay radiación ni efectos secundarios.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué es DLCO y para qué sirve?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'DLCO (capacidad de difusión pulmonar) mide cómo tus pulmones transfieren oxígeno a la sangre. Es clave para diagnosticar fibrosis pulmonar, enfisema, problemas vasculares pulmonares y otras enfermedades. Complementa la espirometría dando un diagnóstico más completo.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Para qué sirve el FeNO?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El FeNO (óxido nítrico exhalado) detecta inflamación eosinofílica en tus vías aéreas, lo que ayuda a confirmar asma y a guiar el tratamiento. Es rápido, no invasivo (solo respiras en un tubo especial durante 10 segundos) y sin riesgos.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo agendo un estudio?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Muy fácil: contacta por WhatsApp al +52 81 1778 1017 o llama al mismo número. Nuestro equipo te pregunta sobre tus síntomas y propone el estudio ideal para ti. Generalmente te vemos dentro de 1-2 semanas.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuándo recibo los resultados?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El reporte clínico técnico está listo en 24-48 horas. Te lo enviamos por email y agendamos una cita de interpretación con el especialista para que entiendas qué significan tus resultados y qué sigue en tu tratamiento.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Puedo venir sin derivación médica?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, absolutamente. No necesitas una referencia de otro médico. Puedes contactarnos directamente. Aunque si tu médico ya te refirió, nos coordinaremos con él para compartir resultados y recomendaciones.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo funciona el pago y cobertura?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Aceptamos la mayoría de seguros médicos privados. Si tienes seguro, verifica cobertura con nosotros. Para pacientes sin seguro, ofrecemos opciones de pago accesibles y planes. No rechazamos a nadie por falta de recursos.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo me preparo para un estudio del sueño?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Polisomnografía: duermes una noche en nuestra clínica con electrodos. Come normal ese día, evita cafeína/alcohol después de las 4pm. Trae pijama cómoda. Noche dividida: mitad diagnóstico, mitad ajuste de máquina CPAP. El equipo te explica todo antes de empezar.',
+        },
+      },
+    ],
+  };
+}

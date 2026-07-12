@@ -10,6 +10,7 @@ const staticRoutes = [
   '/instalaciones',
   '/investigacion',
   '/nuestra-historia',
+  '/preguntas-frecuentes',
   '/privacidad',
   '/terminos',
 ];

@@ -359,10 +359,16 @@ export default function Home() {
                   <p className="max-w-2xl pb-7 pr-10 leading-7 text-gray-600">{item.answer}</p>
                 </details>
               ))}
-              <Link href="/contacto" className="motion-link mt-8 inline-flex items-center gap-2 text-sm font-semibold">
-                Ver ubicación y contacto
-                <ArrowRight className="motion-link-arrow h-4 w-4" />
-              </Link>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Link href="/preguntas-frecuentes" className="motion-link inline-flex items-center gap-2 text-sm font-semibold text-violet-heritage">
+                  Ver todas las preguntas frecuentes
+                  <ArrowRight className="motion-link-arrow h-4 w-4" />
+                </Link>
+                <Link href="/contacto" className="motion-link inline-flex items-center gap-2 text-sm font-semibold text-gray-600">
+                  Ver ubicación y contacto
+                  <ArrowRight className="motion-link-arrow h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

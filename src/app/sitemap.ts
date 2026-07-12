@@ -11,6 +11,7 @@ const staticRoutes = [
   '/investigacion',
   '/nuestra-historia',
   '/preguntas-frecuentes',
+  '/revision/quiz-elegibilidad',
   '/privacidad',
   '/terminos',
 ];

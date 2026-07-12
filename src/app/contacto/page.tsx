@@ -87,22 +87,24 @@ export default function ContactPage() {
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a
+              <ButtonCTA
                 href={CONTACT_WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#120726] transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-0.5"
+                external
+                size="md"
+                icon={<MessageCircle className="h-4 w-4" />}
+                className="!bg-white !text-[#120726] hover:!bg-white/90"
               >
-                <MessageCircle className="h-4 w-4" />
                 Enviar mensaje por WhatsApp
-              </a>
-              <a
+              </ButtonCTA>
+              <ButtonCTA
                 href={`tel:${CONTACT_PHONE_TEL}`}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/35 hover:bg-white/5"
+                variant="secondary"
+                size="md"
+                icon={<Phone className="h-4 w-4" />}
+                className="!border-white/20 !text-white hover:!border-white/35 hover:!bg-white/5"
               >
-                <Phone className="h-4 w-4" />
                 Llamar ahora
-              </a>
+              </ButtonCTA>
             </div>
           </motion.div>
 

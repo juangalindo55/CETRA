@@ -224,14 +224,6 @@ export function getFullFAQSchema() {
       },
       {
         '@type': 'Question',
-        name: '¿Cuándo recibo los resultados?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'El reporte clínico técnico está listo en 24-48 horas. Te lo enviamos por email y agendamos una cita de interpretación con el especialista para que entiendas qué significan tus resultados y qué sigue en tu tratamiento.',
-        },
-      },
-      {
-        '@type': 'Question',
         name: '¿Puedo venir sin derivación médica?',
         acceptedAnswer: {
           '@type': 'Answer',

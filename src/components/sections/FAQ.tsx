@@ -36,11 +36,6 @@ const faqItems = [
       `Muy fácil: contacta por WhatsApp al ${CONTACT_PHONE_DISPLAY} o llama al mismo número. Nuestro equipo te pregunta sobre tus síntomas y propone el estudio ideal para ti. Generalmente te vemos dentro de 1-2 semanas. También puedes escribirnos a ${CONTACT_EMAIL}.`,
   },
   {
-    question: '¿Cuándo recibo los resultados?',
-    answer:
-      'El reporte clínico técnico está listo en 24-48 horas. Te lo enviamos por email y agendamos una cita de interpretación con el especialista para que entiendas qué significan tus resultados y qué sigue en tu tratamiento.',
-  },
-  {
     question: '¿Puedo venir sin derivación médica?',
     answer:
       'Sí, absolutamente. No necesitas una referencia de otro médico. Puedes contactarnos directamente. Aunque si tu médico ya te refirió, nos coordinaremos con él para compartir resultados y recomendaciones.',

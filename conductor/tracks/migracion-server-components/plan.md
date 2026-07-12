@@ -16,11 +16,11 @@
 - [x] Reemplazar la dependencia de `motion` por el uso de `Reveal` y `MotionSequence` (el cual es cliente).
 - [x] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
 
-## Task 4: Migrar `ProcessPhases.tsx` a Server Component [~]
-- [ ] Remover la directiva `'use client';` de `src/components/sections/ProcessPhases.tsx`.
-- [ ] Reemplazar `motion.div` por el wrapper `Reveal`.
-- [ ] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
+## Task 4: Migrar `ProcessPhases.tsx` a Server Component [x] (6245963)
+- [x] Remover la directiva `'use client';` de `src/components/sections/ProcessPhases.tsx`.
+- [x] Reemplazar `motion.div` por el wrapper `Reveal`.
+- [x] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
 
-## Task 5: Validación global de producción
-- [ ] Ejecutar el formateador y linter (`npm run lint`).
-- [ ] Ejecutar la compilación completa de producción (`npm run build`) para verificar la correcta optimización de Next.js Server Components.
+## Task 5: Validación global de producción [x]
+- [x] Ejecutar el formateador y linter (`npm run lint`).
+- [x] Ejecutar la compilación completa de producción (`npm run build`) para verificar la correcta optimización de Next.js Server Components.

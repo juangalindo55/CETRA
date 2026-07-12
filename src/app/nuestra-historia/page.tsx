@@ -21,31 +21,31 @@ const milestones = [
     year: '2017',
     title: 'El inicio de un programa',
     text: 'Especialistas que hoy forman parte de CETRA participaron en el desarrollo del programa de trasplante pulmonar de CHRISTUS MUGUERZA y en el primer trasplante bipulmonar secuencial documentado en México.',
-    link: 'https://www.christusmuguerza.com.mx/historias-de-vida/realizan-en-christus-muguerza-primer-trasplante-pulmonar-en-mexico/',
+    link: 'https://www.google.com/search?q=primer+trasplante+bipulmonar+mexico+2017+christus+muguerza',
   },
   {
     year: '2020',
     title: 'Una respuesta ante un desafío nuevo',
     text: 'El programa realizó un trasplante bipulmonar a una persona sobreviviente de COVID-19, reportado entonces como el primero de su tipo en Latinoamérica. Parte de nuestro equipo participó en esa atención multidisciplinaria.',
-    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/realizan-primer-trasplante-pulmonar-post-covid-19-en-latinoamerica',
+    link: 'https://www.google.com/search?q=primer+trasplante+pulmonar+post+covid+latinoamerica+2020+christus+muguerza',
   },
   {
     year: '2021',
     title: 'Atención para la edad pediátrica',
     text: 'Integrantes del equipo participaron en el primer trasplante pulmonar pediátrico documentado en México, un proceso que exigió coordinación clínica, quirúrgica y familiar especialmente cercana.',
-    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/realizan-primer-trasplante-pulmonar-pediatrico-en-mexico',
+    link: 'https://www.google.com/search?q=primer+trasplante+pulmonar+pediatrico+mexico+2021+christus+muguerza',
   },
   {
     year: '2024',
     title: 'Evaluar más allá de la edad',
     text: 'La experiencia del programa permitió ampliar sus criterios clínicos y realizar con éxito un trasplante unipulmonar en una persona de 71 años, después de una evaluación individualizada.',
-    link: 'https://www.christusmuguerza.com.mx/historias-de-vida/',
+    link: 'https://www.google.com/search?q=trasplante+pulmonar+paciente+71+anos+gilberto+christus+muguerza',
   },
   {
     year: '2025',
     title: 'El trasplante número cincuenta',
     text: 'El programa hospitalario alcanzó 50 trasplantes pulmonares desde su inicio. El hito reconoció la continuidad de un trabajo colectivo y el valor de la donación de órganos.',
-    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/un-hito-medico-trasplante-pulmonar-numero-50',
+    link: 'https://www.google.com/search?q=trasplante+pulmonar+numero+50+christus+muguerza',
   },
 ];
 
@@ -136,7 +136,7 @@ export default function NuestraHistoriaPage() {
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#7C3AED] transition-colors hover:text-[#311B92]"
                     >
-                      Leer nota de prensa
+                      Ver cobertura de prensa
                       <ArrowRight className="h-3.5 w-3.5" />
                     </a>
                   )}

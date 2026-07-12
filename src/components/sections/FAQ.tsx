@@ -50,6 +50,16 @@ const faqItems = [
     answer:
       'Polisomnografía: duermes una noche en nuestra clínica con electrodos. Come normal ese día, evita cafeína/alcohol después de las 4pm. Trae pijama cómoda. Noche dividida: mitad diagnóstico, mitad ajuste de máquina CPAP. El equipo te explica todo antes de empezar. Muchos pacientes duermen bien porque es un ambiente cómodo y seguro.',
   },
+  {
+    question: '¿Qué incluye el programa de rehabilitación pulmonar en CETRA?',
+    answer:
+      'Es un programa integral supervisado por neumólogos y técnicos expertos. Combina entrenamiento físico aeróbico, fuerza y ejercicios respiratorios específicos para mejorar la capacidad funcional. Con el fin de brindar una atención verdaderamente holística, el programa incluye 2 consultas de nutrición clínica y 2 consultas de psicología (aplican restricciones).',
+  },
+  {
+    question: '¿En qué consiste el acompañamiento de psicología y nutrición en la rehabilitación?',
+    answer:
+      'La salud pulmonar de alta especialidad requiere un enfoque integral. Las 2 consultas de nutrición clínica ayudan a optimizar la masa muscular y adaptar la alimentación al esfuerzo metabólico respiratorio. Las 2 consultas de psicología clínica proveen herramientas cognitivo-conductuales para el manejo de la ansiedad asociada a la falta de aire (disnea) y el afrontamiento de la enfermedad pulmonar (aplican restricciones).',
+  },
 ];
 
 export default function FAQ() {

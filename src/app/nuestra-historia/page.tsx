@@ -21,26 +21,31 @@ const milestones = [
     year: '2017',
     title: 'El inicio de un programa',
     text: 'Especialistas que hoy forman parte de CETRA participaron en el desarrollo del programa de trasplante pulmonar de CHRISTUS MUGUERZA y en el primer trasplante bipulmonar secuencial documentado en México.',
+    link: 'https://www.christusmuguerza.com.mx/historias-de-vida/realizan-en-christus-muguerza-primer-trasplante-pulmonar-en-mexico/',
   },
   {
     year: '2020',
     title: 'Una respuesta ante un desafío nuevo',
     text: 'El programa realizó un trasplante bipulmonar a una persona sobreviviente de COVID-19, reportado entonces como el primero de su tipo en Latinoamérica. Parte de nuestro equipo participó en esa atención multidisciplinaria.',
+    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/realizan-primer-trasplante-pulmonar-post-covid-19-en-latinoamerica',
   },
   {
     year: '2021',
     title: 'Atención para la edad pediátrica',
     text: 'Integrantes del equipo participaron en el primer trasplante pulmonar pediátrico documentado en México, un proceso que exigió coordinación clínica, quirúrgica y familiar especialmente cercana.',
+    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/realizan-primer-trasplante-pulmonar-pediatrico-en-mexico',
   },
   {
     year: '2024',
     title: 'Evaluar más allá de la edad',
     text: 'La experiencia del programa permitió ampliar sus criterios clínicos y realizar con éxito un trasplante unipulmonar en una persona de 71 años, después de una evaluación individualizada.',
+    link: 'https://www.christusmuguerza.com.mx/historias-de-vida/',
   },
   {
     year: '2025',
     title: 'El trasplante número cincuenta',
     text: 'El programa hospitalario alcanzó 50 trasplantes pulmonares desde su inicio. El hito reconoció la continuidad de un trabajo colectivo y el valor de la donación de órganos.',
+    link: 'https://www.christusmuguerza.com.mx/sala-de-prensa/un-hito-medico-trasplante-pulmonar-numero-50',
   },
 ];
 
@@ -122,7 +127,20 @@ export default function NuestraHistoriaPage() {
               <li key={milestone.year} className="grid gap-4 border-b border-[#c9c3b8] py-8 sm:grid-cols-[8rem_0.8fr_1.2fr] sm:gap-8 sm:py-10">
                 <p className="font-display text-4xl font-light tracking-[-0.02em] text-[#7C3AED] sm:text-5xl">{milestone.year}</p>
                 <h3 className="text-lg font-semibold leading-7 text-[#120726] sm:text-xl">{milestone.title}</h3>
-                <p className="text-sm leading-7 text-gray-600 sm:text-base">{milestone.text}</p>
+                <div>
+                  <p className="text-sm leading-7 text-gray-600 sm:text-base">{milestone.text}</p>
+                  {milestone.link && (
+                    <a
+                      href={milestone.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#7C3AED] transition-colors hover:text-[#311B92]"
+                    >
+                      Leer nota de prensa
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
               </li>
             ))}
           </ol>

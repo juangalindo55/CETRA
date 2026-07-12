@@ -11,12 +11,12 @@
 - [x] Identificar y reemplazar componentes `motion.div` y `motion.button` por elementos HTML limpios envueltos en `Reveal` o `ButtonCTA`.
 - [x] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
 
-## Task 3: Migrar `HowItWorks.tsx` a Server Component [~]
-- [ ] Remover la directiva `'use client';` de `src/components/sections/HowItWorks.tsx`.
-- [ ] Reemplazar la dependencia de `motion` por el uso de `Reveal` y `MotionSequence` (el cual es cliente).
-- [ ] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
+## Task 3: Migrar `HowItWorks.tsx` a Server Component [x] (b9ab5c8)
+- [x] Remover la directiva `'use client';` de `src/components/sections/HowItWorks.tsx`.
+- [x] Reemplazar la dependencia de `motion` por el uso de `Reveal` y `MotionSequence` (el cual es cliente).
+- [x] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.
 
-## Task 4: Migrar `ProcessPhases.tsx` a Server Component
+## Task 4: Migrar `ProcessPhases.tsx` a Server Component [~]
 - [ ] Remover la directiva `'use client';` de `src/components/sections/ProcessPhases.tsx`.
 - [ ] Reemplazar `motion.div` por el wrapper `Reveal`.
 - [ ] Ejecutar comprobación de tipos (`npx tsc --noEmit`) para verificar.

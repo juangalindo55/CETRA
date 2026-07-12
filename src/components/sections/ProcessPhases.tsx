@@ -1,6 +1,5 @@
-'use client';
-
 import { Stethoscope, Heart, TrendingUp, Check } from 'lucide-react';
+import Reveal from '@/components/ui/Reveal';
 
 interface Phase {
   icon: React.ReactNode;
@@ -58,34 +57,39 @@ export function ProcessPhases() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
       {phases.map((phase, index) => (
-        <div
+        <Reveal
           key={index}
-          className={`${phase.bgColor} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-2 relative overflow-hidden group`}
+          delay={index * 100}
+          className="flex"
         >
-          {/* Decorative background element */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 [@media(hover:hover)]:group-hover:scale-150 transition-transform duration-300" />
+          <div
+            className={`${phase.bgColor} w-full rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-2 relative overflow-hidden group`}
+          >
+            {/* Decorative background element */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 [@media(hover:hover)]:group-hover:scale-150 transition-transform duration-300" />
 
-          {/* Icon - positioned at top */}
-          <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm relative z-10`}>
-            {phase.icon}
+            {/* Icon - positioned at top */}
+            <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm relative z-10`}>
+              {phase.icon}
+            </div>
+
+            {/* Number badge - subtle */}
+            <div className="text-3xl font-bold opacity-10 mb-2 relative z-10">{phase.number}</div>
+
+            {/* Content */}
+            <p className="text-xs text-white/85 mb-4 leading-relaxed relative z-10">{phase.description}</p>
+
+            {/* Items list */}
+            <ul className="space-y-2 relative z-10">
+              {phase.items.map((item, itemIndex) => (
+                <li key={itemIndex} className="flex items-start gap-2">
+                  <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/90" />
+                  <span className="text-xs text-white/90">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          {/* Number badge - subtle */}
-          <div className="text-3xl font-bold opacity-10 mb-2 relative z-10">{phase.number}</div>
-
-          {/* Content */}
-          <p className="text-xs text-white/85 mb-4 leading-relaxed relative z-10">{phase.description}</p>
-
-          {/* Items list */}
-          <ul className="space-y-2 relative z-10">
-            {phase.items.map((item, itemIndex) => (
-              <li key={itemIndex} className="flex items-start gap-2">
-                <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/90" />
-                <span className="text-xs text-white/90">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </Reveal>
       ))}
     </div>
   );

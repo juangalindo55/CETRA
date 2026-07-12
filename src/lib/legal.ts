@@ -6,8 +6,7 @@
 
 export const RESPONSABLE_SANITARIO = {
   name: 'Dr. Sergio Saúl Sánchez Salazar',
-  /** Cédula profesional — pendiente de recibir; no se muestra hasta tenerla. */
-  cedula: null as string | null,
+  cedula: '11207367',
 };
 
 /**

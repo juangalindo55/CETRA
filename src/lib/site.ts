@@ -262,6 +262,38 @@ export function getFullFAQSchema() {
           text: 'La salud pulmonar de alta especialidad requiere un enfoque integral. Las 2 consultas de nutrición clínica ayudan a optimizar la masa muscular y adaptar la alimentación al esfuerzo metabólico respiratorio. Las 2 consultas de psicología clínica proveen herramientas cognitivo-conductuales para el manejo de la ansiedad asociada a la falta de aire (disnea) y el afrontamiento de la enfermedad pulmonar (aplican restricciones).',
         },
       },
+      {
+        '@type': 'Question',
+        name: '¿Qué es un trasplante pulmonar y quién es candidato?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Un trasplante pulmonar es una cirugía de alta complejidad para reemplazar uno o ambos pulmones enfermos por pulmones sanos de un donante. Es una opción para personas con enfermedad pulmonar en etapa terminal (como fibrosis pulmonar avanzada, EPOC muy grave o hipertensión pulmonar) que ya no responden al tratamiento médico convencional. Cada paciente requiere una evaluación multidisciplinaria detallada en CETRA para determinar su elegibilidad.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo se realiza la evaluación pretrasplante en CETRA?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'La evaluación es un protocolo riguroso que incluye pruebas de función pulmonar avanzadas (pletismografía, DLCO), estudios de esfuerzo cardiopulmonar, valoraciones por múltiples especialistas (cardiología, infectología, etc.), y un acompañamiento estrecho en nutrición y psicología. El objetivo es confirmar que el trasplante sea seguro y que el paciente tenga la mayor probabilidad de éxito postoperatorio.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo es la recuperación y el seguimiento después de un trasplante pulmonar?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El paciente suele permanecer en el hospital de 2 a 3 semanas. Al egresar, inicia un seguimiento de por vida para monitorear la función del injerto y el uso de medicamentos inmunosupresores (que previenen el rechazo). Los primeros 3 a 6 meses son clave e incluyen un programa intensivo de rehabilitación pulmonar para recuperar la fuerza y regresar de forma segura a sus actividades cotidianas.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Los estudios de diagnóstico (espirometría, pletismografía) requieren orden médica previa?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Es ideal contar con una indicación médica para realizar la prueba exacta que tu especialista necesita. Sin embargo, si tienes síntomas respiratorios (como falta de aire o tos crónica) y no tienes orden, puedes contactarnos. Nuestro equipo te orientará sobre qué estudio de entrada es el adecuado y agendará la posterior interpretación de resultados con nuestros neumólogos.',
+        },
+      },
     ],
   };
 }

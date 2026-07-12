@@ -16,4 +16,4 @@
 *No active tracks. Run `/conductor:newTrack` to create a track.*
 
 ## Completed tracks
-*No completed tracks.*
+- [x] [Migración de componentes a Server Components](./tracks/migracion-server-components/index.md)

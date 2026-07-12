@@ -1,8 +1,5 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import { useWaveAnimation } from '@/hooks/animations/useWaveAnimation';
+import Reveal from '@/components/ui/Reveal';
+import SymptomGrid from '@/components/ui/SymptomGrid';
 
 const symptoms = [
   'Falta de aire al esfuerzo',
@@ -16,41 +13,24 @@ const symptoms = [
 ];
 
 export default function WhenToSeek() {
-  const chipContainerRef = useRef<HTMLDivElement>(null);
-  useWaveAnimation(chipContainerRef);
-
   return (
-    <section className="py-20 bg-[#f5f3ff]">
+    <section className="py-20 bg-lavender">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4 font-light">
+          <Reveal>
+            <p className="text-[10px] tracking-[0.3em] text-violet-electric uppercase mb-4 font-light">
               Indicaciones clínicas
             </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light text-[#1a0a3d] leading-tight">
+            <h2 className="font-display text-4xl md:text-5xl font-light text-ink leading-tight">
               ¿Cuándo deberías acudir?
             </h2>
             <p className="text-gray-500 mt-4 font-light">
               Estos síntomas son indicación para un estudio respiratorio con nuestros especialistas.
             </p>
-          </motion.div>
+          </Reveal>
         </div>
 
-        <div ref={chipContainerRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {symptoms.map((symptom) => (
-            <div
-              key={symptom}
-              className="symptom-chip flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-[#7C3AED]/20 hover:shadow-sm transition-all duration-300"
-            >
-              <div className="w-2 h-2 bg-[#7C3AED] rounded-full flex-shrink-0 mt-1.5" />
-              <span className="text-gray-700 text-sm leading-relaxed">{symptom}</span>
-            </div>
-          ))}
-        </div>
+        <SymptomGrid symptoms={symptoms} />
       </div>
     </section>
   );

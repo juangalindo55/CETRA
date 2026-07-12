@@ -1,4 +1,6 @@
 'use client';
+// NOTE: metadata for this route lives in src/app/privacidad/metadata.ts
+
 
 import { motion } from 'framer-motion';
 import TableOfContents from '@/components/TableOfContents';

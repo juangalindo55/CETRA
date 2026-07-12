@@ -1,5 +1,20 @@
+import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import ButtonCTA from '@/components/ui/ButtonCTA';
+import { SITE_URL } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Nuestra Historia',
+  description:
+    'La historia de CETRA: un equipo con experiencia en el primer trasplante bipulmonar de México (2017), primer trasplante post-COVID en Latinoamérica y primer trasplante pulmonar pediátrico en México.',
+  alternates: { canonical: `${SITE_URL}/nuestra-historia` },
+  openGraph: {
+    title: 'Nuestra Historia | CETRA',
+    description:
+      'De 2017 a 2025: los hitos clínicos que construyeron el programa de trasplante pulmonar de alta especialidad en Monterrey.',
+    url: `${SITE_URL}/nuestra-historia`,
+  },
+};
 
 const milestones = [
   {

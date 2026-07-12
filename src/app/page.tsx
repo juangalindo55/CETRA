@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
+import { getFAQSchema } from '@/lib/site';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import Reveal from '@/components/ui/Reveal';
 import MotionSequence from '@/components/ui/MotionSequence';
@@ -336,6 +337,10 @@ export default function Home() {
       </section>
 
       <section className="bg-lavender py-20 sm:py-28">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getFAQSchema()) }}
+        />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <Reveal>

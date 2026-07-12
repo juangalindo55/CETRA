@@ -1,8 +1,23 @@
+import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { CONTACT_WHATSAPP, CETRA_LOCATION } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import PhotoFrame from '@/components/ui/PhotoFrame';
 import Reveal from '@/components/ui/Reveal';
+import { SITE_URL } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Instalaciones',
+  description:
+    'Conoce las instalaciones de CETRA en la Torre José A. Muguerza, Monterrey. Equipamiento de diagnóstico respiratorio de alta especialidad: cabina de pletismografía, laboratorio del sueño y pruebas de esfuerzo.',
+  alternates: { canonical: `${SITE_URL}/instalaciones` },
+  openGraph: {
+    title: 'Instalaciones | CETRA',
+    description:
+      'Espacios equipados para evaluación, diagnóstico y seguimiento respiratorio en Monterrey. Tecnología diagnóstica avanzada en el corazón de Nuevo León.',
+    url: `${SITE_URL}/instalaciones`,
+  },
+};
 
 type FacilityPhoto = {
   src: string;

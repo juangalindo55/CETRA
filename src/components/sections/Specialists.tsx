@@ -56,7 +56,7 @@ const pulmonologists: Specialist[] = [
   },
   {
     id: 4,
-    name: 'Dr. Juan O. Galindo Galindo',
+    name: 'Dr. med Juan O. Galindo Galindo',
     role: 'Neumólogo',
     image: '/images/specialists/drjuanog.webp',
     cedulas: [

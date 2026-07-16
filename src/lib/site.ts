@@ -157,7 +157,7 @@ export function getSpecialistsSchema() {
       '@context': 'https://schema.org',
       '@type': 'Physician',
       '@id': `${SITE_URL}#specialist-galindo`,
-      name: 'Dr. Juan O. Galindo Galindo',
+      name: 'Dr. med Juan O. Galindo Galindo',
       jobTitle: 'Neumólogo — Doctor en Medicina',
       medicalSpecialty: 'Pulmonary Medicine',
       worksFor: { '@id': `${SITE_URL}#medical-clinic` },

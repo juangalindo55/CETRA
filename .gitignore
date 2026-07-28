@@ -19,7 +19,9 @@ model
 .obsidian/
 
 # Staging / source images (production assets live in public/)
-images/
+# Anclado a la raíz: sin la barra inicial el patrón también ignoraba
+# public/images/, y cualquier imagen nueva se quedaba fuera del commit.
+/images/
 
 # Local audit artifacts
 lighthouse-reports/

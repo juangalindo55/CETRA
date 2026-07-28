@@ -224,6 +224,7 @@ Implementados y funcionales, pero hoy sin ningún import en el árbol. Antes de 
 | `docs/CONVENCIONES_CODIGO.md` | Antes de escribir código |
 | `docs/FLOWS_UX.md` | Al trabajar en secciones de UI o CTAs |
 | `docs/NEGOCIO.md` | Al tomar decisiones de copy o producto |
+| `docs/PUBLICAR_ARTICULOS.md` | Al publicar un artículo del blog (guía para médicos y editor) |
 | `docs/ERRORES_Y_MEJORAS.md` | Al inicio de cada sesión de trabajo |
 | `docs/BASE_DATOS.md` | Cuando se implemente Supabase (Fase 3) |
 | `docs/ONBOARDING.md` | Para onboarding de nuevo desarrollador |

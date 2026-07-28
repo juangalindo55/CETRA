@@ -1,0 +1,99 @@
+---
+# PLANTILLA DE ARTÍCULO — copiar este archivo y renombrarlo al slug deseado.
+# El nombre del archivo es la URL: `fibrosis-pulmonar-sintomas.mdx` → /blog/fibrosis-pulmonar-sintomas
+# Los archivos que empiezan con "_" se ignoran: esta plantilla nunca se publica.
+#
+# TODOS los campos sin "opcional" son obligatorios. Si falta uno o está mal
+# escrito, `npm run build` falla indicando el archivo y el campo.
+
+# Título del artículo. Aparece como <h1> y como <title> de la pestaña.
+title: "Título del artículo"
+
+# Resumen de 1-2 frases. Es la meta description de Google y el texto de la tarjeta.
+description: "Resumen breve y claro de lo que el lector va a encontrar en el artículo."
+
+# Una de: trasplante-pulmonar | enfermedades-respiratorias | diagnostico | vida-con-la-enfermedad
+# La lista vive en BLOG_CATEGORIES, en src/lib/blog.ts
+category: "enfermedades-respiratorias"
+
+# Búsqueda principal que este artículo quiere capturar en Google.
+primaryKeyword: "palabra clave principal"
+
+# Búsquedas secundarias (al menos una).
+secondaryKeywords:
+  - "palabra clave secundaria"
+  - "otra variante de búsqueda"
+
+# Quién escribe y quién valida clínicamente. Son ids de src/lib/authors.ts:
+# uriel | wong | sergio | galindo
+author: "galindo"
+reviewedBy: "sergio"
+
+# Fechas en formato YYYY-MM-DD. `publishedAt` no cambia; `lastUpdated` sí,
+# cada vez que se revise el contenido (Google lo muestra y lo valora).
+publishedAt: "2026-07-28"
+lastUpdated: "2026-07-28"
+
+# Portada. Va en public/images/ como .webp. Proporción recomendada: 21/9 o 16/9.
+coverImage: "/images/Hero.webp"
+coverImageAlt: "Descripción de la imagen para lectores de pantalla"
+
+# Servicios con los que enlaza (deben empezar con /servicios/).
+# Es el puente hacia la conversión: del artículo informativo al servicio.
+relatedServices:
+  - "/servicios/trasplante-pulmonar"
+
+# Opcional — otros artículos a destacar al pie (deben empezar con /blog/).
+# relatedPosts:
+#   - "/blog/otro-articulo"
+
+# Opcional — mientras sea true, el artículo se ve en `npm run dev`
+# pero NO se publica. Quitarlo o ponerlo en false solo tras la revisión médica.
+draft: true
+---
+
+<h2 id="primer-encabezado">Primer encabezado</h2>
+
+Primer párrafo. Los encabezados llevan **solo `id`**, nunca `className`: el estilo lo
+aplica de forma centralizada el contenedor `prose` de la página, y el `id` es lo que
+alimenta el índice lateral. Usa kebab-case sin acentos: `id="que-es-la-fibrosis"`.
+
+- Las listas funcionan con markdown normal.
+- Mantén frases cortas y evita jerga sin explicar.
+
+---
+
+<h2 id="segundo-encabezado">Segundo encabezado</h2>
+
+Puedes usar `<h3 id="...">` para subsecciones; también aparecen en el índice lateral.
+
+<SectionLayout
+  imageUrl="/images/pletis.webp"
+  imageAlt="Texto alternativo de la imagen"
+  imageType="infographic"
+  reversed
+>
+
+El texto dentro de `SectionLayout` necesita una línea en blanco antes y después
+para que se procese como markdown.
+
+</SectionLayout>
+
+---
+
+<h2 id="cuando-buscar-ayuda">Cuándo buscar ayuda</h2>
+
+Cierra siempre orientando al lector hacia una valoración médica. El botón de WhatsApp
+y el aviso sanitario se añaden automáticamente al final del artículo: no hace falta
+escribirlos aquí.
+
+{/*
+  COMPONENTES DISPONIBLES: SectionLayout, ProcessPhases, RecoveryTimeline, TestimonialExpanded
+
+  LIMITACIÓN IMPORTANTE: las props solo aceptan texto entre comillas o booleanos
+  (`reversed`). No funcionan las expresiones tipo `prop={valor}` — el compilador
+  de MDX las elimina. Tampoco funcionan los `import`: los componentes ya están
+  registrados en la página.
+
+  Las tablas de markdown NO funcionan todavía (falta el plugin remark-gfm).
+*/}

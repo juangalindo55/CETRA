@@ -132,8 +132,11 @@ body {
 }
 
 @theme {
-  --font-sans: "DM Sans", "Segoe UI", Inter, system-ui, sans-serif;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  /* Las variables --font-dm-sans y --font-playfair las define next/font en
+     el layout raíz. Sin ellas, la familia solo cargaba si el visitante la
+     tenía instalada; el resto veía los fallbacks. */
+  --font-sans: var(--font-dm-sans), "Segoe UI", Inter, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
 
   --color-violet-heritage: #311B92;
   --color-violet-electric: #7C3AED;

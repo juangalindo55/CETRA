@@ -8,33 +8,45 @@ CETRA (Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada) es un **s
 
 - **Framework:** Next.js 16.2.3 (App Router, Server Components por defecto)
 - **UI:** React 19.2.5 + TypeScript 6.0 (strict, prohibido `any`)
-- **Estilos:** Tailwind CSS 4.2.2 — solo tokens del Design System, sin librerías externas
-- **Animaciones:** Framer Motion 12.38 — siempre `viewport={{ once: true }}`
+- **Estilos:** Tailwind CSS 4.2.2 + plugin `@tailwindcss/typography` — solo tokens del Design System
+- **Animaciones:** sistema híbrido — Framer Motion 12.38 (mayoría) + anime.js 4.5 y Web Animations API en hooks propios. Ver `docs/ANIMACIONES.md` antes de tocar nada.
 - **Iconos:** Lucide React
 - **Contenido:** MDX via `next-mdx-remote` + `gray-matter` (SSG)
 - **Fuentes:** Playfair Display (display/headings) + DM Sans (body)
+- **Analytics:** `@vercel/analytics` + `@vercel/speed-insights` (montados en `layout.tsx`)
 - **Deploy:** Vercel
 - **BD/Auth:** Supabase (Fase 3 — aún no implementado)
+- **Lint:** `npm run lint` → `eslint .` (ya no `next lint`)
 
 ## Estructura de Carpetas
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx                  # Root layout, metadata global, fuentes
+│   ├── layout.tsx                  # Root layout, metadata global, fuentes, analytics
+│   ├── not-found.tsx               # 404 custom
 │   ├── page.tsx                    # Landing principal (Server Component)
 │   ├── contacto/page.tsx           # Página de contacto con mapa y WhatsApp
 │   ├── especialistas/page.tsx      # Perfiles de médicos y técnicos
+│   ├── instalaciones/page.tsx      # Galería editorial del centro
 │   ├── investigacion/page.tsx      # Investigación científica
+│   ├── nuestra-historia/page.tsx   # Historia institucional + hitos con prensa
+│   ├── preguntas-frecuentes/page.tsx  # FAQ dedicada con structured data
+│   ├── revision/
+│   │   └── quiz-elegibilidad/page.tsx # EligibilityQuiz montado
 │   ├── servicios/
 │   │   ├── page.tsx                # Grid de todos los servicios
 │   │   └── [slug]/page.tsx         # Renderizador MDX dinámico (SSG)
 │   ├── privacidad/page.tsx
 │   └── terminos/page.tsx
 ├── components/
-│   ├── sections/                   # Hero, Timeline, EligibilityQuiz, Specialists, Services, FAQ...
-│   ├── ui/                         # Navbar, Footer, Marquee, Logo
-│   └── SectionLayout.tsx           # Layout imagen+texto reutilizable en MDX
+│   ├── sections/                   # Hero, Specialists, Services, FAQ, Instalaciones, EligibilityQuiz...
+│   ├── ui/                         # Navbar, Footer, ButtonCTA, PhotoFrame, Reveal, MotionSequence...
+│   ├── SectionLayout.tsx           # Layout imagen+texto reutilizable en MDX
+│   ├── SeoSchema.tsx               # Inyección de JSON-LD
+│   ├── TableOfContents.tsx         # TOC de páginas de servicio
+│   ├── ReadingProgress.tsx         # Barra de progreso de lectura
+│   └── Map.tsx                     # Embed de Google Maps
 ├── content/
 │   └── servicios/                  # 6 archivos .mdx (uno por servicio)
 │       ├── trasplante-pulmonar.mdx
@@ -43,8 +55,11 @@ src/
 │       ├── diagnostico-funcional-respiratorio.mdx
 │       ├── diagnostico-del-sueno.mdx
 │       └── pruebas-de-esfuerzo.mdx
+├── hooks/
+│   └── animations/                 # useFadeInOnScroll, useStaggerCards, useWaveAnimation, useReducedMotion
 ├── lib/
 │   ├── contact.ts                  # ÚNICA fuente de datos de contacto — siempre importar de aquí
+│   ├── legal.ts                    # ÚNICA fuente de datos regulatorios (COFEPRIS, responsable sanitario)
 │   ├── site.ts                     # SITE_NAME, getAbsoluteUrl(), Schema.org
 │   ├── mdx.ts                      # getServiceBySlug(), getAllServices()
 │   └── service-hub.ts              # Metadata de servicios para SEO
@@ -54,14 +69,21 @@ public/
 
 ## Design Tokens (no usar otros colores)
 
-| Token | Hex | Uso |
-|-------|-----|-----|
-| Deep Violet (Heritage) | `#311B92` | Navegación, confianza, headings |
-| Electric Violet (Pulse) | `#7C3AED` | CTAs, acentos, interacción |
-| Violet oscuro | `#1a0a3d` | Hero backgrounds, display text |
-| Base Black | `#09090B` | Tipografía, secciones de impacto |
-| Soft Gray | `#F4F4F5` | Separaciones sutiles |
-| White | `#FFFFFF` | Fondos de contenido |
+Definidos en `tailwind.config.ts` — usar el nombre del token, no el hex.
+
+| Token Tailwind | Hex | Uso |
+|----------------|-----|-----|
+| `violet-heritage` | `#311B92` | Navegación, confianza, headings |
+| `violet-electric` | `#7C3AED` | CTAs, acentos, interacción |
+| `violet-soft` | `#c4b5fd` | Acentos suaves, bordes activos |
+| `ink` | `#120726` | Headings display sobre fondo claro |
+| `base-black` | `#09090B` | Tipografía, secciones de impacto |
+| `lavender` | `#f8f7ff` | Fondos de bloque suaves (CTA, cards) |
+| `lavender-line` | `#e8e4f8` | Bordes y separadores |
+| `soft-gray` | `#F4F4F5` | Separaciones sutiles |
+| `base-white` | `#FFFFFF` | Fondos de contenido |
+
+También en uso (aún sin token): `#1a0a3d` para hero backgrounds oscuros.
 
 **Regla:** Sin azules (`blue-*`), sin grises genéricos (`gray-800`), sin `purple-*` de Tailwind.
 
@@ -72,20 +94,32 @@ import { CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY, CETRA_LOCATION, CONTACT_EMAIL 
 // NUNCA hardcodear teléfonos, emails o direcciones directamente
 ```
 
-- WhatsApp: `https://wa.me/528117781017?text=Hola,%20quisiera%20agendar%20una%20cita`
-- Teléfono display: `811 778 1017`
+- WhatsApp: `CONTACT_WHATSAPP` — prefill "quisiera agendar una cita"
+- WhatsApp orientación: `CONTACT_WHATSAPP_ORIENTACION` — prefill "quisiera orientación sobre mi caso". Usar en CTAs cuyo copy hable de orientar, no de agendar: el prefill debe coincidir con el texto del botón.
+- Teléfono display: `811 778 1017` · tel: `CONTACT_PHONE_TEL`
 - Email: `contacto@cetrapulmonar.com`
 - Dirección: Torre José A. Muguerza, Piso 3, Belisario Domínguez 2602, Monterrey
+- También exporta: `CETRA_WEEKDAY_HOURS`, `GOOGLE_MAPS_URL`, `GOOGLE_MAPS_EMBED_URL`, `INSURANCE_COMPANIES`
+
+### Datos legales — `@/lib/legal.ts`
+
+Publicidad sanitaria (COFEPRIS). Misma regla: nunca hardcodear.
+
+```tsx
+import { RESPONSABLE_SANITARIO, COFEPRIS_PERMISO_PUBLICIDAD, LEYENDA_SANITARIA } from '@/lib/legal';
+```
+
+`COFEPRIS_PERMISO_PUBLICIDAD` es `null` mientras el trámite esté pendiente — el footer omite el número en ese caso. **Nunca publicar un número de permiso inexistente.**
 
 ## Reglas de Desarrollo
 
 1. **Server-First** — Todo componente es Server Component por defecto. `'use client'` solo cuando hay `useState`, `useEffect`, `useRef`, o Framer Motion.
 2. **TypeScript estricto** — Sin `any`. Props tipadas con interfaces nombradas.
 3. **Tailwind puro** — Sin shadcn, MUI, Chakra ni otras librerías de componentes.
-4. **Animaciones** — Siempre `viewport={{ once: true }}` en Framer Motion para no re-triggerear al scroll.
+4. **Animaciones** — Siempre `viewport={{ once: true }}` en Framer Motion para no re-triggerear al scroll. Los hooks propios (`src/hooks/animations/`) respetan `prefers-reduced-motion` vía `useReducedMotion` — cualquier animación nueva debe hacer lo mismo. **Nunca animar el mismo elemento con Framer Motion y con un hook a la vez** — se pelean; ver `docs/ANIMACIONES.md`.
 5. **Links externos** — Siempre `target="_blank" rel="noopener noreferrer"`.
 6. **Imágenes** — Usar `next/image` con `alt` descriptivo. Archivos en `public/images/`.
-7. **MDX headings** — Usar `<h2 id="id-kebab">` con las clases del Design System para que el TableOfContents funcione.
+7. **MDX headings** — Usar `<h2 id="id-kebab">` **sin `className`** para que el TableOfContents funcione; el estilo lo aplica el wrapper `prose`. Ver "Heading MDX con ID".
 8. **Commits** — Atómicos. Un cambio funcional por commit.
 
 ## Patrones Frecuentes
@@ -144,26 +178,39 @@ Los `<h2>` de MDX llevan solo `id` (para el TableOfContents) — **sin `classNam
 
 `SectionLayout`, `ProcessPhases`, `RecoveryTimeline`, `TestimonialExpanded`
 
-## Estado del Proyecto (Junio 2026)
+## Estado del Proyecto (Julio 2026)
+
+Rama de trabajo: **`preview-staging`**. `main` va 71 commits atrás — la rama es la fuente de verdad.
 
 - **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
-- **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente
-- **Fase 4:** 🔄 En progreso — Mobile OK, Lighthouse audit pendiente
-- **Fase 5:** ⏭️ Siguiente — Deploy producción, analytics
+- **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente (único bloque restante)
+- **Fase 4:** 🔄 En progreso — Mobile OK, SEO/structured data listo, Lighthouse audit pendiente
+- **Fase 5:** 🔄 En progreso — Analytics montado (Vercel Analytics + Speed Insights); deploy de producción pendiente
+
+Cerrado desde la última revisión: `ButtonCTA` unificando los CTAs, `PhotoFrame`, sistema de animaciones con `prefers-reduced-motion`, 4 secciones migradas a Server Components, página FAQ con structured data, 404 custom, cédulas profesionales y preparación COFEPRIS.
 
 ## Componentes No Activos (pero disponibles)
 
-Algunos componentes implementados no están montados en la homepage actual pero están listos para uso futuro:
-- **`Timeline.tsx`** (src/components/sections/) — Proceso de trasplante en 4 fases. Usar en páginas de servicios detallados o flow de elegibilidad.
-- **`EligibilityQuiz.tsx`** (src/components/sections/) — Quiz interactivo de 4 preguntas. Usar en /evaluacion o como modal en servicios relacionados.
+Implementados y funcionales, pero hoy sin ningún import en el árbol. Antes de crear algo parecido, revisar si uno de estos sirve:
+
+- **`HowItWorks.tsx`** — Proceso paso a paso. La home tiene su propia versión inline.
+- **`WhenToSeek.tsx`** — Señales de alarma. Usa `SymptomGrid` + `useWaveAnimation`.
+- **`TrustPillars.tsx`** — Pilares de confianza.
+- **`Testimonial.tsx`** — Testimonio corto (el que sí se usa en servicios es `TestimonialExpanded`).
+
+`Timeline.tsx` **sí está en uso**, pero indirectamente: lo consume `RecoveryTimeline.tsx`, no las páginas. `EligibilityQuiz.tsx` ya está montado en `/revision/quiz-elegibilidad`.
 
 ## Deuda Técnica Documentada
 
 **Colores Hex vs Tokens Tailwind** — 30+ archivos usan valores hexadecimales directamente (`#311B92`, `#7C3AED`, `#1a0a3d`, `#09090B`) en lugar de los tokens Tailwind CSS definidos (`text-violet-heritage`, `bg-violet-electric`, `text-base-black`). Los valores visuales son correctos, pero esto viola la regla "Sin azules, sin grises genéricos". **Próxima acción**: Refactorización dedicada con prueba visual completa (sesión separada). **Regla para código nuevo**: Todo componente nuevo DEBE usar tokens Tailwind desde el inicio — buscar en `tailwind.config.ts` los nombres exactos disponibles.
 
+**Dos sistemas de animación conviviendo** — Framer Motion en ~15 archivos, anime.js 4.5 en `Hero` + 2 hooks, y Web Animations API nativa en `useFadeInOnScroll` / `MotionSequence`. Funciona, pero son tres formas de hacer lo mismo. No migrar nada sin leer `docs/ANIMACIONES.md` primero — hubo una tanda larga de fixes por conflictos entre sistemas y por el bundling de anime.js con Turbopack.
+
+**4 componentes de sección sin uso** — ver "Componentes No Activos". Decidir si se montan o se borran.
+
 **Resuelto (Junio 2026):** Eliminados todos los `blue-*`, `purple-*` y `shadow-purple-*` de Tailwind (eran azul/violeta off-brand) — migrados a hex de marca. Los CTAs se unificaron en el componente `ButtonCTA` (antes ~11 recetas distintas del pill violeta). Datos de contacto hardcodeados (FAQ, privacidad) ahora importan de `@/lib/contact`.
 
-**Pendiente menor:** consolidar la proliferación de casi-blancos violeta (`#faf8ff`, `#f8f7ff`, `#fcfbff`, `#f5f3ff`, `#f5f0ff`, `#ece7fb`, `#eee7ff`…) en una escala nombrada — requiere QA visual, va junto con la migración hex→tokens.
+**Parcialmente resuelto:** la escala de casi-blancos violeta ya tiene tokens (`lavender`, `lavender-line`, `violet-soft`, `ink`), pero conviven con hex sueltos (`#faf8ff`, `#fcfbff`, `#f5f3ff`, `#f5f0ff`, `#ece7fb`, `#eee7ff`…). Falta el barrido final hex→token, que va junto con la deuda de arriba y requiere QA visual.
 
 ## Documentación del Proyecto
 
@@ -187,3 +234,6 @@ Algunos componentes implementados no están montados en la homepage actual pero 
 | `docs/GLOSARIO.md` | Términos médicos y técnicos |
 | `docs/HISTORIAL.md` | Changelog por versión |
 | `docs/PRODUCTO.md` | Definición de producto y métricas |
+| `PROJECT_REVIEW_PLAYBOOK.md` | Al auditar el código o planear limpieza a fondo |
+
+Además: `docs/superpowers/` (specs y planes de trabajo) y `docs/archive/` (docs retirados).

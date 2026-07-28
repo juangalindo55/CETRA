@@ -10,8 +10,9 @@
 | ID | Tipo | Descripción breve | Estado |
 |----|------|-------------------|--------|
 | E-001 | Bug | Rutas inexistentes devuelven HTTP 200 en vez de 404 | Abierto |
-| M-001 | Mejora | Fuentes declaradas con variables CSS que no existen | Pendiente |
-| M-002 | Mejora | Imágenes OG por artículo del blog (bloqueada por M-001) | Pendiente |
+| M-001 | Mejora | Fuentes declaradas con variables CSS que no existen | ✅ Aplicada |
+| M-002 | Mejora | Imágenes OG por artículo del blog | Desbloqueada |
+| M-003 | Mejora | `tailwind.config.ts` es código muerto en Tailwind v4 | Pendiente |
 
 *(Agrega entradas conforme aparezcan)*
 
@@ -105,7 +106,7 @@ de esa sesión por ser una ruta ya publicada que requiere su propia verificació
 **Fecha:** 2026-07-28
 **Archivo(s) o área:** `tailwind.config.ts:12-13`, `src/app/globals.css` (bloque `@theme`)
 **Prioridad:** Media
-**Estado:** Pendiente
+**Estado:** ✅ Aplicada (2026-07-28)
 
 **Descripción:**
 `tailwind.config.ts` define `sans: ['var(--font-dm-sans)', ...]` y
@@ -119,8 +120,48 @@ instaladas o el navegador caiga al fallback (`Georgia`, `system-ui`).
 Tipografía consistente para todos los visitantes, sin depender de fuentes locales.
 Además desbloquea M-002 y evita saltos de layout (CLS) que penalizan Core Web Vitals.
 
+**Resultado:**
+Ambas familias se cargan con `next/font/google` en `src/app/layout.tsx`, exponiendo
+`--font-dm-sans` y `--font-playfair`, que es lo que ahora consume el bloque `@theme` de
+`globals.css`. Se auto-hospedan en `/_next/static/media` (respeta `font-src 'self'` de
+la CSP y evita una petición a Google), van precargadas en el `<head>` y next/font genera
+fuentes de respaldo con `size-adjust` para minimizar el desplazamiento de layout.
+
+Verificado en build de producción: 2 bloques `@font-face`, Playfair Display como fuente
+variable de peso 400–900 y DM Sans de 100–1000, ambas servidas con `200 · font/woff2`.
+
+**Efecto secundario a tener en cuenta:**
+El rango de Playfair Display **empieza en 400**, así que las 60 apariciones de
+`font-display font-light` (peso 300) se redondean a 400. No es una regresión —con
+Georgia el resultado era el mismo—, pero significa que `font-light` no hace nada sobre
+los encabezados display. Conviene normalizarlo a `font-normal` en una limpieza aparte,
+para que el código diga lo que de verdad ocurre.
+
+**Commit:** 5a8801e
+
+---
+
+### [M-003] `tailwind.config.ts` no lo carga Tailwind v4
+
+**Fecha:** 2026-07-28
+**Archivo(s) o área:** `tailwind.config.ts`, `src/app/globals.css`
+**Prioridad:** Baja
+**Estado:** Pendiente
+
+**Descripción:**
+En Tailwind v4 el archivo de configuración JS solo se carga con una directiva
+`@config` en el CSS, y `globals.css` no la tiene. Es decir, **`tailwind.config.ts` es
+código muerto**: los tokens que de verdad usa el proyecto son los del bloque `@theme`.
+Ambos archivos declaran los mismos colores, así que hoy no hay divergencia visual, pero
+sí el riesgo de editar el archivo equivocado y no ver ningún efecto — que es
+exactamente lo que había ocurrido con las fuentes (M-001).
+
+**Beneficio esperado:**
+Una sola fuente de verdad para los tokens. Eliminar `tailwind.config.ts` y actualizar
+la referencia de `CLAUDE.md` para que apunte al bloque `@theme` de `globals.css`.
+
 **Cómo verificarlo:**
-`grep -rn "next/font\|@font-face" src/` no devuelve resultados.
+`grep -n "@config" src/app/globals.css` no devuelve resultados.
 
 ---
 
@@ -129,17 +170,18 @@ Además desbloquea M-002 y evita saltos de layout (CLS) que penalizan Core Web V
 **Fecha:** 2026-07-28
 **Archivo(s) o área:** `src/app/blog/[slug]/opengraph-image.tsx` (no existe aún)
 **Prioridad:** Baja
-**Estado:** Pendiente — bloqueada por M-001
+**Estado:** Pendiente — desbloqueada desde que M-001 quedó resuelta
 
 **Descripción:**
 Cada artículo hereda hoy la imagen OG global del `layout.tsx`. Generar una tarjeta por
 artículo con `ImageResponse` de `next/og` mejoraría el clic al compartir en WhatsApp,
 que es el canal principal de CETRA.
 
-**Por qué está bloqueada:**
-`ImageResponse` necesita el archivo de fuente incrustado; no puede resolver
-`font-display` por nombre. Mientras M-001 siga abierta, no hay archivo de Playfair
-Display que pasarle y la tarjeta saldría con una tipografía distinta a la del sitio.
+**Qué hace falta:**
+`ImageResponse` necesita el archivo de fuente incrustado; no resuelve `font-display` por
+nombre. Con M-001 resuelta, Playfair Display ya se descarga en build, así que se puede
+leer el `.woff2` y pasárselo — o descargar el `.ttf` de la fuente a `public/fonts/`,
+que es lo que `ImageResponse` acepta de forma más fiable.
 
 ---
 

@@ -9,8 +9,9 @@
 
 | ID | Tipo | Descripción breve | Estado |
 |----|------|-------------------|--------|
-| E-001 | Bug | — | — |
-| M-001 | Mejora | — | — |
+| E-001 | Bug | Rutas inexistentes devuelven HTTP 200 en vez de 404 | Abierto |
+| M-001 | Mejora | Fuentes declaradas con variables CSS que no existen | Pendiente |
+| M-002 | Mejora | Imágenes OG por artículo del blog (bloqueada por M-001) | Pendiente |
 
 *(Agrega entradas conforme aparezcan)*
 
@@ -66,13 +67,79 @@ Qué cambió, cómo se midió.
 
 ## Bugs Conocidos
 
-*(Vacío al inicio — agregar conforme se encuentren)*
+### [E-001] Rutas inexistentes devuelven HTTP 200 en vez de 404
+
+**Fecha:** 2026-07-28
+**Archivo(s):** `src/app/servicios/[slug]/page.tsx`, `src/app/not-found.tsx`
+**Prioridad:** Media
+**Estado:** Abierto
+
+**Síntoma:**
+En build de producción, `curl -I /servicios/no-existe` responde `200 OK` y sirve la
+página 404 personalizada. El usuario ve el mensaje correcto, pero el estado HTTP es
+incorrecto. Detectado al verificar las rutas del blog.
+
+**Causa raíz:**
+La ruta tiene `generateStaticParams()` pero `dynamicParams` queda en su valor por
+defecto (`true`), así que Next intenta renderizar el slug bajo demanda y el
+`notFound()` acaba resolviéndose como página renderizada, no como respuesta 404.
+
+**Impacto:**
+Google trata estas URLs como "soft 404": las rastrea e intenta indexarlas, diluyendo
+el presupuesto de rastreo. Relevante porque el SEO es el canal principal de captación.
+
+**Solución aplicada:**
+Solo en las rutas del blog (`/blog/[slug]` y `/blog/categoria/[categoria]`), donde se
+añadió `export const dynamicParams = false;` — verificado que devuelven 404 real.
+**Falta aplicar el mismo arreglo a `/servicios/[slug]`**, que quedó fuera del alcance
+de esa sesión por ser una ruta ya publicada que requiere su propia verificación.
+
+**Commit:** 607591e (arreglo parcial, solo blog)
 
 ---
 
 ## Mejoras Identificadas
 
-*(Vacío al inicio — agregar conforme se identifiquen)*
+### [M-001] Fuentes declaradas con variables CSS que no existen
+
+**Fecha:** 2026-07-28
+**Archivo(s) o área:** `tailwind.config.ts:12-13`, `src/app/globals.css` (bloque `@theme`)
+**Prioridad:** Media
+**Estado:** Pendiente
+
+**Descripción:**
+`tailwind.config.ts` define `sans: ['var(--font-dm-sans)', ...]` y
+`display: ['var(--font-playfair)', ...]`, pero **ninguna de esas dos variables se
+define en el proyecto**: no hay `next/font`, ni `@font-face`, ni enlace a Google Fonts.
+Las fuentes cargan porque el bloque `@theme` de `globals.css` las declara por nombre
+(`"DM Sans"`, `"Playfair Display"`), es decir, dependen de que el usuario las tenga
+instaladas o el navegador caiga al fallback (`Georgia`, `system-ui`).
+
+**Beneficio esperado:**
+Tipografía consistente para todos los visitantes, sin depender de fuentes locales.
+Además desbloquea M-002 y evita saltos de layout (CLS) que penalizan Core Web Vitals.
+
+**Cómo verificarlo:**
+`grep -rn "next/font\|@font-face" src/` no devuelve resultados.
+
+---
+
+### [M-002] Imágenes OG por artículo del blog
+
+**Fecha:** 2026-07-28
+**Archivo(s) o área:** `src/app/blog/[slug]/opengraph-image.tsx` (no existe aún)
+**Prioridad:** Baja
+**Estado:** Pendiente — bloqueada por M-001
+
+**Descripción:**
+Cada artículo hereda hoy la imagen OG global del `layout.tsx`. Generar una tarjeta por
+artículo con `ImageResponse` de `next/og` mejoraría el clic al compartir en WhatsApp,
+que es el canal principal de CETRA.
+
+**Por qué está bloqueada:**
+`ImageResponse` necesita el archivo de fuente incrustado; no puede resolver
+`font-display` por nombre. Mientras M-001 siga abierta, no hay archivo de Playfair
+Display que pasarle y la tarjeta saldría con una tipografía distinta a la del sitio.
 
 ---
 

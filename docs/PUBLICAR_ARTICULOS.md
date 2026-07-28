@@ -225,12 +225,12 @@ Para cerrar el servidor: `Ctrl + C`.
    git push
    ```
 
-El push va a la rama `preview-staging`, que es la rama de trabajo del proyecto. Vercel
-genera un despliegue de vista previa con ese cambio.
+El push va a la rama `preview-staging`, que es la rama que Vercel publica en
+**cetrapulmonar.com**. En uno o dos minutos el artículo está en línea y visible para
+cualquiera.
 
-> **Mientras el sitio no esté en producción** (Fase 5 del roadmap, aún pendiente), el
-> artículo vive solo en la vista previa. Cuando se haga el go-live, publicar consistirá
-> exactamente en estos mismos pasos.
+> Es decir: **el `git push` es la publicación**. Antes de ejecutarlo, asegúrate de que el
+> artículo esté aprobado por un médico y de que `draft` diga `false`.
 
 ---
 

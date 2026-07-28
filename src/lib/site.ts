@@ -4,6 +4,7 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE_TEL,
 } from '@/lib/contact';
+import { AUTHOR_LIST, type Author } from '@/lib/authors';
 
 export const SITE_NAME = 'CETRA';
 export const SITE_TITLE = 'CETRA | Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada';
@@ -111,62 +112,117 @@ export function getFAQSchema() {
   };
 }
 
+/** Identificadores regulatorios de un médico (cédulas + certificación de consejo). */
+function getAuthorIdentifiers(author: Author) {
+  const identifiers = author.cedulas.map((cedula) => ({
+    '@type': 'PropertyValue',
+    name: 'Cédula Profesional',
+    value: cedula.number,
+  }));
+
+  if (author.certification) {
+    identifiers.push({
+      '@type': 'PropertyValue',
+      name: 'Certificación',
+      value: `${author.certification.number} ${author.certification.council}`,
+    });
+  }
+
+  return identifiers;
+}
+
+/** Nodo `Physician` reutilizable: perfiles del equipo y autoría de artículos. */
+export function getPhysicianNode(author: Author) {
+  return {
+    '@type': 'Physician',
+    '@id': `${SITE_URL}#specialist-${author.id}`,
+    name: author.name,
+    jobTitle: author.jobTitle,
+    medicalSpecialty: author.medicalSpecialty,
+    url: getAbsoluteUrl(author.profileHref),
+    worksFor: { '@id': `${SITE_URL}#medical-clinic` },
+    identifier: getAuthorIdentifiers(author),
+  };
+}
+
 export function getSpecialistsSchema() {
-  return [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Physician',
-      '@id': `${SITE_URL}#specialist-uriel`,
-      name: 'Dr. Uriel Chavarría Martínez',
-      jobTitle: 'Neumólogo · Neumólogo Intensivista',
-      medicalSpecialty: 'Pulmonary Medicine',
-      worksFor: { '@id': `${SITE_URL}#medical-clinic` },
-      identifier: [
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '7796468' },
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '7757598' },
-        { '@type': 'PropertyValue', name: 'Certificación', value: 'CNN-445 Consejo Nacional de Neumología' },
-      ],
+  return AUTHOR_LIST.map((author) => ({
+    '@context': 'https://schema.org',
+    ...getPhysicianNode(author),
+  }));
+}
+
+export interface ArticleSchemaInput {
+  slug: string;
+  title: string;
+  description: string;
+  categoryLabel: string;
+  publishedAt: string;
+  lastUpdated: string;
+  coverImage: string;
+  keywords: string[];
+  author: Author;
+  reviewer: Author;
+}
+
+/**
+ * `MedicalWebPage` con revisión clínica declarada, envolviendo un `BlogPosting`.
+ * Es la señal E-E-A-T que Google espera en contenido de salud (YMYL):
+ * quién lo escribió, quién lo revisó y cuándo.
+ */
+export function getArticleSchema(article: ArticleSchemaInput) {
+  const url = getAbsoluteUrl(`/blog/${article.slug}`);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: article.title,
+    description: article.description,
+    inLanguage: 'es-MX',
+    lastReviewed: article.lastUpdated,
+    reviewedBy: getPhysicianNode(article.reviewer),
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    about: {
+      '@type': 'MedicalCondition',
+      name: article.categoryLabel,
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Physician',
-      '@id': `${SITE_URL}#specialist-wong`,
-      name: 'Dr. Manuel Wong Jaen',
-      jobTitle: 'Cirujano Cardiotorácico — Especialista en Trasplante Pulmonar',
-      medicalSpecialty: 'Thoracic Surgery',
-      worksFor: { '@id': `${SITE_URL}#medical-clinic` },
-      identifier: [
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '10359772' },
-        { '@type': 'PropertyValue', name: 'Certificación', value: '506 Consejo Nacional de Cirugía del Tórax' },
-      ],
+    mainEntity: {
+      '@type': 'BlogPosting',
+      '@id': `${url}#article`,
+      headline: article.title,
+      description: article.description,
+      datePublished: article.publishedAt,
+      dateModified: article.lastUpdated,
+      inLanguage: 'es-MX',
+      keywords: article.keywords.join(', '),
+      articleSection: article.categoryLabel,
+      image: getAbsoluteUrl(article.coverImage),
+      author: getPhysicianNode(article.author),
+      publisher: { '@id': `${SITE_URL}#medical-clinic` },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Physician',
-      '@id': `${SITE_URL}#specialist-sergio`,
-      name: 'Dr. Sergio Saúl Sánchez Salazar',
-      jobTitle: 'Neumólogo',
-      medicalSpecialty: 'Pulmonary Medicine',
-      worksFor: { '@id': `${SITE_URL}#medical-clinic` },
-      identifier: [
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '11207367' },
-        { '@type': 'PropertyValue', name: 'Certificación', value: 'CNN-1215 Consejo Nacional de Neumología' },
-      ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Physician',
-      '@id': `${SITE_URL}#specialist-galindo`,
-      name: 'Dr. med Juan O. Galindo Galindo',
-      jobTitle: 'Neumólogo — Doctor en Medicina',
-      medicalSpecialty: 'Pulmonary Medicine',
-      worksFor: { '@id': `${SITE_URL}#medical-clinic` },
-      identifier: [
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '1150280' },
-        { '@type': 'PropertyValue', name: 'Cédula Profesional', value: '6433235' },
-      ],
-    },
-  ];
+  };
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  /** Ruta relativa; se convierte a absoluta. Omitir en el último nivel. */
+  path?: string;
+}
+
+export function getBreadcrumbSchema(items: BreadcrumbItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      ...(item.path ? { item: getAbsoluteUrl(item.path) } : {}),
+    })),
+  };
 }
 
 export function getFullFAQSchema() {

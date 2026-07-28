@@ -14,6 +14,7 @@ import type { Metadata } from 'next';
 import { SITE_NAME, getAbsoluteUrl } from '@/lib/site';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
+import { getPostsForService } from '@/lib/blog';
 
 export async function generateStaticParams() {
   const services = getAllServices();
@@ -72,6 +73,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   }
 
   const isTransplantHero = resolvedParams.slug === 'trasplante-pulmonar';
+  const relatedPosts = getPostsForService(`/servicios/${resolvedParams.slug}`).slice(0, 3);
 
   return (
     <div className="w-full">
@@ -214,6 +216,27 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   </div>
                 </section>
               )}
+
+            {relatedPosts.length > 0 && (
+              <section className="mt-14 border-t border-ink pt-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-violet-electric">
+                  Artículos sobre este servicio
+                </p>
+                <ul className="mt-5 flex flex-col gap-4">
+                  {relatedPosts.map((post) => (
+                    <li key={post.slug}>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-violet-heritage transition-colors hover:text-ink"
+                      >
+                        {post.frontmatter.title}
+                        <ArrowRight className="h-4 w-4 shrink-0" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </main>
         </div>
       </div>

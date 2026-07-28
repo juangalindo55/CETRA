@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ArrowRight,
   BookOpen,
+  Newspaper,
   Users,
   Building2,
   Wind,
@@ -115,6 +116,12 @@ const cetraMenuItems = [
     href: '/instalaciones',
     description: 'Conoce nuestros espacios de atención.',
     icon: Building2,
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    description: 'Artículos escritos y revisados por nuestro equipo clínico.',
+    icon: Newspaper,
   },
 ];
 

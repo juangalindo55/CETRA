@@ -14,7 +14,6 @@ import {
   ChevronDown,
   ArrowRight,
   BookOpen,
-  Newspaper,
   Users,
   Building2,
   Wind,
@@ -117,12 +116,6 @@ const cetraMenuItems = [
     description: 'Conoce nuestros espacios de atención.',
     icon: Building2,
   },
-  {
-    label: 'Blog',
-    href: '/blog',
-    description: 'Artículos escritos y revisados por nuestro equipo clínico.',
-    icon: Newspaper,
-  },
 ];
 
 export default function Navbar() {
@@ -211,7 +204,10 @@ export default function Navbar() {
         </div>
 
         {/* Centro: Nav links (Absolute for perfect centering) */}
-        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 text-base font-light text-[#1a0a3d]/70 tracking-wide">
+        {/* El logo mide 260px fijos y la navegación va centrada en absoluto: por
+            debajo de xl los enlaces se montan encima del logo y del CTA. Hasta
+            ahí se usa el menú hamburguesa, que contiene las mismas rutas. */}
+        <nav className="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 text-base font-light text-[#1a0a3d]/70 tracking-wide">
           <div ref={cetraDropdownRef} className="relative">
             <button
               type="button"
@@ -379,23 +375,23 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
           <Link href="/servicios/trasplante-pulmonar" className="cursor-pointer whitespace-nowrap transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]">Trasplante Pulmonar</Link>
+          <Link href="/blog" className="cursor-pointer transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]">Blog</Link>
           <Link href="/contacto" className="cursor-pointer font-normal text-[#311B92] underline decoration-[#311B92]/30 underline-offset-8 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#311B92]">Contacto</Link>
         </nav>
 
         {/* Derecha: CTA Desktop + Hamburger Mobile */}
         <div className="flex-1 flex justify-end items-center gap-4">
-          <ButtonCTA
-            href={CONTACT_WHATSAPP}
-            external
-            size="sm"
-            className="hidden md:inline-flex"
-          >
-            Agendar estudio
-          </ButtonCTA>
+          {/* El envoltorio controla la visibilidad: ButtonCTA lleva `inline-flex`
+              en sus clases base y gana sobre un `hidden` pasado por className. */}
+          <div className="hidden xl:flex">
+            <ButtonCTA href={CONTACT_WHATSAPP} external size="sm">
+              Agendar estudio
+            </ButtonCTA>
+          </div>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
+            className="xl:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
             onClick={toggleMobileMenu}
             aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={open}
@@ -415,7 +411,7 @@ export default function Navbar() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="absolute top-full left-0 flex max-h-[calc(100svh-5rem)] w-full flex-col gap-4 overflow-y-auto border-b border-gray-100 bg-white px-6 py-6 text-sm font-light tracking-wide text-gray-600 shadow-lg md:hidden"
+            className="absolute top-full left-0 flex max-h-[calc(100svh-5rem)] w-full flex-col gap-4 overflow-y-auto border-b border-gray-100 bg-white px-6 py-6 text-sm font-light tracking-wide text-gray-600 shadow-lg xl:hidden"
           >
           <div className="space-y-3">
             <button
@@ -544,6 +540,13 @@ export default function Navbar() {
             onClick={closeMobileMenu}
           >
             Trasplante Pulmonar
+          </Link>
+          <Link
+            href="/blog"
+            className="flex min-h-11 w-full items-center rounded-xl border border-transparent px-3 py-3 text-base font-medium text-gray-800 transition-colors active:bg-[#f3edff]"
+            onClick={closeMobileMenu}
+          >
+            Blog
           </Link>
           <Link
             href="/contacto"

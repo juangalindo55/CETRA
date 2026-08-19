@@ -33,6 +33,6 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "puppeteer": "^24.43.1",
-    "svgo": "^4.0.1"
+    "svgo": "^4.0.2"
   }
 }

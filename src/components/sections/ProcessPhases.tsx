@@ -35,7 +35,7 @@ const phases: Phase[] = [
       'Optimización nutricional',
       'Apoyo psicológico continuo',
     ],
-    bgColor: 'bg-gradient-to-br from-[#7C3AED] to-[#a78bfa]',
+    bgColor: 'bg-gradient-to-br from-[#7C3AED] to-[#4c1d95]',
     iconBgColor: 'bg-white/20',
   },
   {
@@ -48,14 +48,14 @@ const phases: Phase[] = [
       'Rehabilitación física postoperatoria',
       'Seguimiento médico de por vida',
     ],
-    bgColor: 'bg-gradient-to-br from-[#a78bfa] to-[#c4b5fd]',
+    bgColor: 'bg-gradient-to-br from-[#5b21b6] to-[#311B92]',
     iconBgColor: 'bg-white/20',
   },
 ];
 
 export function ProcessPhases() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
+    <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
       {phases.map((phase, index) => (
         <Reveal
           key={index}
@@ -68,23 +68,28 @@ export function ProcessPhases() {
             {/* Decorative background element */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 [@media(hover:hover)]:group-hover:scale-150 transition-transform duration-300" />
 
-            {/* Icon - positioned at top */}
-            <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm relative z-10`}>
-              {phase.icon}
+            {/* Icon + número */}
+            <div className="flex items-center justify-between mb-4 relative z-10">
+              <div className={`${phase.iconBgColor} w-12 h-12 rounded-lg flex items-center justify-center backdrop-blur-sm`}>
+                {phase.icon}
+              </div>
+              <span className="text-sm font-bold text-white">{phase.number}</span>
             </div>
 
-            {/* Number badge - subtle */}
-            <div className="text-3xl font-bold opacity-10 mb-2 relative z-10">{phase.number}</div>
+            {/* Title */}
+            <h3 className="font-display text-lg font-semibold text-white mb-2 relative z-10">
+              {phase.title}
+            </h3>
 
             {/* Content */}
-            <p className="text-xs text-white/85 mb-4 leading-relaxed relative z-10">{phase.description}</p>
+            <p className="text-sm text-white mb-4 leading-relaxed relative z-10">{phase.description}</p>
 
             {/* Items list */}
             <ul className="space-y-2 relative z-10">
               {phase.items.map((item, itemIndex) => (
                 <li key={itemIndex} className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/90" />
-                  <span className="text-xs text-white/90">{item}</span>
+                  <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white" />
+                  <span className="text-sm text-white">{item}</span>
                 </li>
               ))}
             </ul>

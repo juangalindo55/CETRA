@@ -54,17 +54,6 @@ const pulmonologists: Specialist[] = [
     ],
     certification: { number: 'CNN-1215', council: 'Consejo Nacional de Neumología, A.C.' },
   },
-  {
-    id: 4,
-    name: 'Dr. med Juan O. Galindo Galindo',
-    role: 'Neumólogo',
-    image: '/images/specialists/drjuanog.webp',
-    cedulas: [
-      { number: '1150280', institution: 'UANL — Médico Cirujano y Partero' },
-      { number: '6433235', institution: 'UANL — Doctorado en Medicina' },
-    ],
-    certification: null,
-  },
 ];
 
 const coordinator = {
@@ -157,7 +146,7 @@ export default function Specialists() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {pulmonologists.map((doctor) => (
               <motion.div

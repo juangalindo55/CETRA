@@ -84,25 +84,12 @@ export const AUTHORS = {
     certification: { number: 'CNN-1215', council: 'Consejo Nacional de Neumología, A.C.' },
     profileHref: '/especialistas',
   },
-  galindo: {
-    id: 'galindo',
-    name: 'Dr. med Juan O. Galindo Galindo',
-    role: 'Neumólogo',
-    jobTitle: 'Neumólogo — Doctor en Medicina',
-    medicalSpecialty: 'Pulmonary Medicine',
-    image: '/images/specialists/drjuanog.webp',
-    cedulas: [
-      { number: '1150280', institution: 'UANL — Médico Cirujano y Partero' },
-      { number: '6433235', institution: 'UANL — Doctorado en Medicina' },
-    ],
-    profileHref: '/especialistas',
-  },
 } satisfies Record<string, Author>;
 
 export type AuthorId = keyof typeof AUTHORS;
 
 /** Orden de presentación del equipo médico (tarjetas y JSON-LD). */
-export const AUTHOR_ORDER: AuthorId[] = ['uriel', 'wong', 'sergio', 'galindo'];
+export const AUTHOR_ORDER: AuthorId[] = ['uriel', 'wong', 'sergio'];
 
 export const AUTHOR_LIST: Author[] = AUTHOR_ORDER.map((id) => AUTHORS[id]);
 

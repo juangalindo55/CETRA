@@ -28,7 +28,7 @@
 - [x] **Accessibility:** Validación a11y, semantic HTML, contraste WCAG AA.
 - [ ] **Lighthouse Audit:** Objetivo 100 en Performance, Accessibility, Best Practices.
 
-## Fase 5: Despliegue & Escalado (Grade A) — ⏭️ SIGUIENTE
+## Fase 5: Despliegue & Escalado (Grade A) — 🔄 EN PROGRESO
 - [ ] **Vercel Deployment:** Headers de seguridad, optimización de imágenes, Edge Config.
 - [ ] **Supabase Production:** Migración de datos clínicos, RLS policies, backups.
-- [ ] **Analytics & Monitoring:** Telemetría de usuario, error tracking, performance monitoring.
+- [x] **Analytics & Monitoring:** Vercel Analytics + Speed Insights montados en `layout.tsx`.

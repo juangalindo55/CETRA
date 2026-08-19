@@ -64,7 +64,7 @@ const phases: TimelinePhase[] = [
 
 export function RecoveryTimeline() {
   return (
-    <div className="space-y-8">
+    <div className="not-prose space-y-8">
       {/* Timeline visualization */}
       <div className="relative">
         {/* Vertical line */}

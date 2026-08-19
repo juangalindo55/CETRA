@@ -37,10 +37,16 @@ src/
 │   ├── servicios/
 │   │   ├── page.tsx                # Grid de todos los servicios
 │   │   └── [slug]/page.tsx         # Renderizador MDX dinámico (SSG)
+│   ├── blog/
+│   │   ├── page.tsx                # Índice del blog
+│   │   ├── [slug]/page.tsx         # Artículo individual (MDX)
+│   │   ├── categoria/[categoria]/page.tsx  # Listado por categoría
+│   │   └── rss.xml/route.ts        # Feed RSS
 │   ├── privacidad/page.tsx
 │   └── terminos/page.tsx
 ├── components/
 │   ├── sections/                   # Hero, Specialists, Services, FAQ, Instalaciones, EligibilityQuiz...
+│   ├── blog/                       # PostCard, AuthorCard, CategoryNav, PostMeta
 │   ├── ui/                         # Navbar, Footer, ButtonCTA, PhotoFrame, Reveal, MotionSequence...
 │   ├── SectionLayout.tsx           # Layout imagen+texto reutilizable en MDX
 │   ├── SeoSchema.tsx               # Inyección de JSON-LD

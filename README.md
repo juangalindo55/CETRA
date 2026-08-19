@@ -1,4 +1,4 @@
-# CETRA - Centro de Excelencia en Trasplante Pulmonar
+# CETRA - CENTRO DE TRASPLANTE PULMONAR Y MEDICINA RESPIRATORIA AVANZADA
 
 > **Elevando el estándar del cuidado respiratorio a través de una experiencia digital sofisticada y de alta fidelidad.**
 
@@ -99,17 +99,15 @@ GitHub Pages no forma parte del flujo de despliegue. Para crear previews o publi
 ```
 cetra/
 ├── src/
-│   ├── app/                      # Rutas (Landing, Servicios, Especialistas)
+│   ├── app/                      # Rutas (Landing, Servicios, Especialistas, Blog)
 │   ├── components/               
 │   │   ├── sections/             # Especialistas, Quiz, FAQ, Timeline
+│   │   ├── blog/                 # PostCard, AuthorCard, CategoryNav, PostMeta
 │   │   ├── ui/                   # Navbar, Footer, Concierge CTA
 │   │   └── SectionLayout.tsx     # HoC para secciones MDX
 │   ├── content/                  # Base de conocimiento (MDX)
-│   ├── lib/                      # Utils (mdx.ts, mapping)
-│   └── styles/                   # Design Tokens (globals.css)
+│   └── lib/                      # Utils (mdx.ts, blog.ts, contact.ts, legal.ts)
 ├── public/                       # Assets estáticos y Branding
-├── gemini/                       # Documentación de IA y prompts
-├── images/                       # Galería de activos del proyecto
 └── next.config.ts                # Optimización de build
 ```
 
@@ -140,5 +138,5 @@ cetra/
 - **Email**: contacto@cetrapulmonar.com
 - **Ubicación**: Torre José A. Muguerza, Piso 3, Monterrey, N.L.
 
-**Última actualización**: Junio 2026 | **Versión**: 0.2.1
-Producido bajo estándares de excelencia para el **Centro de Excelencia en Trasplante Pulmonar**.
+**Última actualización**: Agosto 2026 | **Versión**: 0.2.1
+Producido bajo estándares de excelencia para el **CENTRO DE TRASPLANTE PULMONAR Y MEDICINA RESPIRATORIA AVANZADA**.

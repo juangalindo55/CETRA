@@ -63,8 +63,8 @@ Footer                       → Teléfono, email, mapa, WhatsApp
 │  [Logo CETRA]  Servicios ▾  Especialistas  Contacto  [Agendar Servicios →]  │
 │─────────────────────────────────────────────────────│
 │                                                     │
-│  EXCELENCIA EN MEDICINA RESPIRATORIA                │
 │  CENTRO DE TRASPLANTE PULMONAR                      │
+│  Y MEDICINA RESPIRATORIA AVANZADA                   │
 │                                                     │
 │  Esperanza y                                        │
 │  Excelencia  ← (Playfair Display, bold italic)      │

@@ -20,7 +20,7 @@ export default function Footer() {
               CETRA
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed max-w-sm mb-6">
-              Centro de excelencia en trasplante pulmonar y medicina respiratoria avanzada.
+              CENTRO DE TRASPLANTE PULMONAR Y MEDICINA RESPIRATORIA AVANZADA.
               Atención médica de alta especialidad con un enfoque humano e integral.
             </p>
 

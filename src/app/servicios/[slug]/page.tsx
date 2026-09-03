@@ -16,6 +16,12 @@ import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import { getPostsForService } from '@/lib/blog';
 
+/**
+ * Solo los servicios publicados existen: un slug desconocido
+ * devuelve un 404 real en vez de una página vacía con estado 200.
+ */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const services = getAllServices();
   return services.map((service) => ({

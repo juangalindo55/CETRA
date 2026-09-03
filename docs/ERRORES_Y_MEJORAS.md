@@ -9,9 +9,9 @@
 
 | ID | Tipo | Descripción breve | Estado |
 |----|------|-------------------|--------|
-| E-001 | Bug | Rutas inexistentes devuelven HTTP 200 en vez de 404 | Abierto |
+| E-001 | Bug | Rutas inexistentes devuelven HTTP 200 en vez de 404 | ✅ Resuelto |
 | M-001 | Mejora | Fuentes declaradas con variables CSS que no existen | ✅ Aplicada |
-| M-002 | Mejora | Imágenes OG por artículo del blog | Desbloqueada |
+| M-002 | Mejora | Imágenes OG por artículo del blog | ✅ Aplicada |
 | M-003 | Mejora | `tailwind.config.ts` es código muerto en Tailwind v4 | Pendiente |
 
 *(Agrega entradas conforme aparezcan)*
@@ -71,31 +71,25 @@ Qué cambió, cómo se midió.
 ### [E-001] Rutas inexistentes devuelven HTTP 200 en vez de 404
 
 **Fecha:** 2026-07-28
-**Archivo(s):** `src/app/servicios/[slug]/page.tsx`, `src/app/not-found.tsx`
+**Archivo(s):** `src/app/servicios/[slug]/page.tsx`, `src/app/blog/[slug]/page.tsx`, `src/app/not-found.tsx`
 **Prioridad:** Media
-**Estado:** Abierto
+**Estado:** Resuelto
 
 **Síntoma:**
-En build de producción, `curl -I /servicios/no-existe` responde `200 OK` y sirve la
-página 404 personalizada. El usuario ve el mensaje correcto, pero el estado HTTP es
-incorrecto. Detectado al verificar las rutas del blog.
+En build de producción, `curl -I /servicios/no-existe` respondía `200 OK` y servía la
+página 404 personalizada. El usuario veía el mensaje correcto, pero el estado HTTP era
+incorrecto.
 
 **Causa raíz:**
-La ruta tiene `generateStaticParams()` pero `dynamicParams` queda en su valor por
-defecto (`true`), así que Next intenta renderizar el slug bajo demanda y el
-`notFound()` acaba resolviéndose como página renderizada, no como respuesta 404.
+La ruta tiene `generateStaticParams()` pero `dynamicParams` quedaba en su valor por
+defecto (`true`), así que Next intentaba renderizar el slug bajo demanda y el
+`notFound()` acababa resolviéndose como página renderizada, no como respuesta 404.
 
 **Impacto:**
-Google trata estas URLs como "soft 404": las rastrea e intenta indexarlas, diluyendo
-el presupuesto de rastreo. Relevante porque el SEO es el canal principal de captación.
+Google trataba estas URLs como "soft 404", diluyendo el presupuesto de rastreo SEO.
 
 **Solución aplicada:**
-Solo en las rutas del blog (`/blog/[slug]` y `/blog/categoria/[categoria]`), donde se
-añadió `export const dynamicParams = false;` — verificado que devuelven 404 real.
-**Falta aplicar el mismo arreglo a `/servicios/[slug]`**, que quedó fuera del alcance
-de esa sesión por ser una ruta ya publicada que requiere su propia verificación.
-
-**Commit:** 607591e (arreglo parcial, solo blog)
+Se añadió `export const dynamicParams = false;` tanto en `/blog/[slug]` y `/blog/categoria/[categoria]` como en `/servicios/[slug]`. Con esto, cualquier slug no contemplado en `generateStaticParams()` devuelve un 404 real a nivel HTTP en el servidor de producción.
 
 ---
 
@@ -168,20 +162,17 @@ la referencia de `CLAUDE.md` para que apunte al bloque `@theme` de `globals.css`
 ### [M-002] Imágenes OG por artículo del blog
 
 **Fecha:** 2026-07-28
-**Archivo(s) o área:** `src/app/blog/[slug]/opengraph-image.tsx` (no existe aún)
+**Archivo(s) o área:** `src/app/blog/[slug]/opengraph-image.tsx`
 **Prioridad:** Baja
-**Estado:** Pendiente — desbloqueada desde que M-001 quedó resuelta
+**Estado:** Aplicada
 
 **Descripción:**
-Cada artículo hereda hoy la imagen OG global del `layout.tsx`. Generar una tarjeta por
-artículo con `ImageResponse` de `next/og` mejoraría el clic al compartir en WhatsApp,
-que es el canal principal de CETRA.
+Cada artículo heredaba la imagen OG global del `layout.tsx`. Se generó un componente
+`opengraph-image.tsx` usando `ImageResponse` de `next/og` que genera automáticamente tarjetas
+de 1200x630px personalizadas por artículo con el título, categoría, autor y branding de CETRA.
 
-**Qué hace falta:**
-`ImageResponse` necesita el archivo de fuente incrustado; no resuelve `font-display` por
-nombre. Con M-001 resuelta, Playfair Display ya se descarga en build, así que se puede
-leer el `.woff2` y pasárselo — o descargar el `.ttf` de la fuente a `public/fonts/`,
-que es lo que `ImageResponse` acepta de forma más fiable.
+**Beneficio esperado:**
+Mejora sustancial de CTR en WhatsApp y redes sociales al compartir enlaces directos de artículos del blog.
 
 ---
 

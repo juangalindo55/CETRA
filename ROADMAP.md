@@ -29,6 +29,6 @@
 - [ ] **Lighthouse Audit:** Objetivo 100 en Performance, Accessibility, Best Practices.
 
 ## Fase 5: Despliegue & Escalado (Grade A) — 🔄 EN PROGRESO
-- [ ] **Vercel Deployment:** Headers de seguridad, optimización de imágenes, Edge Config.
+- [x] **Vercel Deployment:** Headers de seguridad (CSP, HSTS, X-Frame-Options, Permissions-Policy), optimización de imágenes.
 - [ ] **Supabase Production:** Migración de datos clínicos, RLS policies, backups.
 - [x] **Analytics & Monitoring:** Vercel Analytics + Speed Insights montados en `layout.tsx`.

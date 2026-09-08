@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Ilustración editorial sobre hernia diafragmática</title>
+<desc id="desc">Un arco diafragmático y ondas de respiración conectan una silueta pulmonar con el movimiento del aire.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120726"/><stop offset=".5" stop-color="#09090B"/><stop offset="1" stop-color="#311B92"/></linearGradient>
+<linearGradient id="lung" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c4b5fd"/><stop offset=".5" stop-color="#7C3AED"/><stop offset="1" stop-color="#311B92"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#7C3AED" stop-opacity=".34"/><stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="30"/></filter><filter id="shadow"><feDropShadow dy="25" stdDeviation="25" flood-color="#09090B" flood-opacity=".55"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/><circle cx="850" cy="380" r="370" fill="url(#glow)" filter="url(#blur)"/>
+<g filter="url(#shadow)">
+<path d="M785 240c-60-69-153-67-212-4-59 64-65 179-39 254 24 70 75 117 135 105 61-12 99-79 111-147 12-66 24-166 5-208Z" fill="url(#lung)"/>
+<path d="M815 240c60-69 153-67 212-4 59 64 65 179 39 254-24 70-75 117-135 105-61-12-99-79-111-147-12-66-24-166-5-208Z" fill="url(#lung)" opacity=".88"/>
+<path d="M800 205v164M800 369l-48 49M800 369l48 49" stroke="#f8f7ff" stroke-width="11" stroke-linecap="round" fill="none"/>
+<path d="M750 316c-58 44-90 105-112 207M850 316c58 44 90 105 112 207" fill="none" stroke="#f8f7ff" stroke-width="4" stroke-linecap="round" opacity=".4"/>
+</g>
+<path d="M410 590c108-105 226-105 334 0 108 105 226 105 334 0 108-105 226-105 334 0" fill="none" stroke="#c4b5fd" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+<path d="M414 650c106-75 214-76 320-3 106 73 218 73 324 0s214-72 318 3" fill="none" stroke="#7C3AED" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<g fill="#f8f7ff" font-family="DM Sans,Arial,sans-serif"><text x="112" y="128" font-size="18" letter-spacing="6" opacity=".72">CETRA · MEDICINA RESPIRATORIA</text><text x="112" y="778" font-size="42">El diafragma: el motor de cada respiración</text><text x="112" y="824" font-size="19" opacity=".65">Movimiento · Presión · Diagnóstico funcional</text></g><path d="M112 735h86" stroke="#c4b5fd" stroke-width="4"/>
+</svg>

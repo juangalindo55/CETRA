@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustración editorial de trasplante bipulmonar</title>
+  <desc id="desc">Dos pulmones estilizados conectados por una línea central, sobre un fondo violeta oscuro con una transición de tejido dañado a tejido funcional.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#120726"/>
+      <stop offset="0.58" stop-color="#311B92"/>
+      <stop offset="1" stop-color="#09090B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="44%" r="50%">
+      <stop offset="0" stop-color="#c4b5fd" stop-opacity=".28"/>
+      <stop offset=".48" stop-color="#7C3AED" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="leftLung" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c4b5fd"/>
+      <stop offset=".48" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#311B92"/>
+    </linearGradient>
+    <linearGradient id="rightLung" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f7ff"/>
+      <stop offset=".4" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#09090B" flood-opacity=".42"/>
+    </filter>
+    <clipPath id="leftClip"><path d="M770 292c-73-89-193-86-263-8-70 77-74 214-45 307 27 86 95 143 167 126 72-17 112-98 124-178 11-76 35-188 17-247Z"/></clipPath>
+    <clipPath id="rightClip"><path d="M830 292c73-89 193-86 263-8 70 77 74 214 45 307-27 86-95 143-167 126-72-17-112-98-124-178-11-76-35-188-17-247Z"/></clipPath>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="800" cy="400" r="410" fill="url(#glow)" filter="url(#soft)"/>
+  <path d="M0 760C300 680 450 820 720 760s450-92 880 18V900H0Z" fill="#09090B" opacity=".28"/>
+  <g opacity=".18" fill="none" stroke="#f8f7ff">
+    <circle cx="800" cy="410" r="308" stroke-width="1"/>
+    <circle cx="800" cy="410" r="355" stroke-width="1" stroke-dasharray="2 14"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M770 292c-73-89-193-86-263-8-70 77-74 214-45 307 27 86 95 143 167 126 72-17 112-98 124-178 11-76 35-188 17-247Z" fill="url(#leftLung)"/>
+    <path d="M830 292c73-89 193-86 263-8 70 77 74 214 45 307-27 86-95 143-167 126-72-17-112-98-124-178-11-76-35-188-17-247Z" fill="url(#rightLung)"/>
+    <g clip-path="url(#leftClip)" fill="none" stroke="#f8f7ff" stroke-linecap="round">
+      <path d="M773 358C681 389 603 452 522 555M765 390C685 445 656 522 638 671M748 405C671 418 604 497 579 602M785 435C735 506 721 568 716 690" stroke-width="5" opacity=".34"/>
+      <path d="M598 317c-18 102-5 172 34 227M540 381c73 16 131 52 176 111" stroke-width="2" opacity=".22"/>
+      <path d="M560 588c65-25 125-36 185-24M590 645c52-11 95-8 147 6" stroke-width="2" opacity=".2"/>
+    </g>
+    <g clip-path="url(#rightClip)" fill="none" stroke="#311B92" stroke-linecap="round">
+      <path d="M827 358c92 31 170 94 251 197M835 390c80 55 109 132 127 281M852 405c77 13 144 92 169 197M815 435c50 71 64 133 69 255" stroke-width="5" opacity=".42"/>
+      <path d="M1002 317c18 102 5 172-34 227M1060 381c-73 16-131 52-176 111" stroke-width="2" opacity=".28"/>
+      <path d="M1040 588c-65-25-125-36-185-24M1010 645c-52-11-95-8-147 6" stroke-width="2" opacity=".25"/>
+    </g>
+    <path d="M800 237v145c0 32-25 55-25 55" fill="none" stroke="#f8f7ff" stroke-width="15" stroke-linecap="round"/>
+    <path d="M800 437c-20 0-38 16-54 39M800 437c20 0 38 16 54 39" fill="none" stroke="#f8f7ff" stroke-width="8" stroke-linecap="round"/>
+    <path d="M800 238c-20-23-28-50-22-79M800 238c20-23 28-50 22-79" fill="none" stroke="#c4b5fd" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g fill="#f8f7ff" font-family="DM Sans, Arial, sans-serif">
+    <text x="112" y="128" font-size="18" letter-spacing="6" opacity=".72">CETRA · MEDICINA RESPIRATORIA AVANZADA</text>
+    <text x="112" y="778" font-size="42" letter-spacing="1">Un antecedente que marcó la medicina respiratoria</text>
+    <text x="112" y="824" font-size="19" opacity=".65">Trasplante bipulmonar · Monterrey · 2020</text>
+  </g>
+  <path d="M112 735h86" stroke="#c4b5fd" stroke-width="4"/>
+</svg>

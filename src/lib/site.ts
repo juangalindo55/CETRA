@@ -353,3 +353,19 @@ export function getFullFAQSchema() {
     ],
   };
 }
+
+/** Genera el esquema FAQPage para artículos de blog con preguntas frecuentes específicas. */
+export function getPostFAQSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}

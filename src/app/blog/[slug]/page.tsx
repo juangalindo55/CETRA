@@ -15,12 +15,21 @@ import ButtonCTA from '@/components/ui/ButtonCTA';
 import AuthorCard from '@/components/blog/AuthorCard';
 import PostCard from '@/components/blog/PostCard';
 import PostMeta from '@/components/blog/PostMeta';
+import ShareButtons from '@/components/blog/ShareButtons';
+import PostFAQ from '@/components/blog/PostFAQ';
+import SurgicalSteps from '@/components/blog/SurgicalSteps';
 
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 import { getAllServices } from '@/lib/mdx';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
 import { LEYENDA_SANITARIA } from '@/lib/legal';
-import { SITE_NAME, getAbsoluteUrl, getArticleSchema, getBreadcrumbSchema } from '@/lib/site';
+import {
+  SITE_NAME,
+  getAbsoluteUrl,
+  getArticleSchema,
+  getBreadcrumbSchema,
+  getPostFAQSchema,
+} from '@/lib/site';
 
 /**
  * Solo los artículos publicados existen: un slug desconocido —o un borrador
@@ -113,6 +122,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {frontmatter.faqs && frontmatter.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getPostFAQSchema(frontmatter.faqs)) }}
+        />
+      )}
 
       {/* Hero */}
       <section className="bg-ink text-white">
@@ -164,8 +179,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <aside className="md:col-span-1">
-            <div className="sticky top-24">
+            <div className="lg:sticky lg:top-24 lg:w-64 space-y-6">
               <TableOfContents />
+              <div className="hidden lg:block">
+                <ShareButtons
+                  url={getAbsoluteUrl(`/blog/${slug}`)}
+                  title={frontmatter.title}
+                  variant="compact"
+                />
+              </div>
             </div>
           </aside>
 
@@ -180,9 +202,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               prose-strong:text-ink prose-strong:font-semibold">
               <MDXRemote
                 source={post.content}
-                components={{ SectionLayout, ProcessPhases, RecoveryTimeline, TestimonialExpanded }}
+                components={{
+                  SectionLayout,
+                  ProcessPhases,
+                  RecoveryTimeline,
+                  TestimonialExpanded,
+                  PostFAQ,
+                  SurgicalSteps,
+                }}
               />
             </article>
+
+            <ShareButtons
+              url={getAbsoluteUrl(`/blog/${slug}`)}
+              title={frontmatter.title}
+              variant="inline"
+            />
+
+            {frontmatter.faqs && frontmatter.faqs.length > 0 && (
+              <PostFAQ faqs={frontmatter.faqs} />
+            )}
 
             <AuthorCard author={author} reviewer={reviewer} />
 

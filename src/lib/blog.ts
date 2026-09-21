@@ -54,6 +54,11 @@ export function getCategory(slug: string): BlogCategory | null {
   return BLOG_CATEGORIES.find((category) => category.slug === slug) ?? null;
 }
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface PostFrontmatter {
   title: string;
   description: string;
@@ -70,6 +75,8 @@ export interface PostFrontmatter {
   coverImageAlt: string;
   relatedServices: string[];
   relatedPosts?: string[];
+  /** Preguntas frecuentes específicas del artículo con esquema FAQPage. */
+  faqs?: FAQItem[];
   /** Los borradores se ven en `npm run dev` pero nunca en producción. */
   draft?: boolean;
 }
@@ -117,6 +124,42 @@ function requireAuthorId(
   return value;
 }
 
+function optionalFaqArray(
+  frontmatter: Record<string, unknown>,
+  field: string,
+  filePath: string,
+): FAQItem[] | undefined {
+  const value = frontmatter[field];
+  if (value === undefined) {
+    return undefined;
+  }
+  if (!Array.isArray(value)) {
+    throw new Error(`Invalid frontmatter in ${filePath}: "${field}" must be an array of FAQ items.`);
+  }
+  return value.map((item, index) => {
+    if (typeof item !== 'object' || item === null) {
+      throw new Error(
+        `Invalid frontmatter in ${filePath}: "${field}[${index}]" must be an object with question and answer.`,
+      );
+    }
+    const obj = item as Record<string, unknown>;
+    if (typeof obj.question !== 'string' || obj.question.trim().length === 0) {
+      throw new Error(
+        `Invalid frontmatter in ${filePath}: "${field}[${index}].question" must be a non-empty string.`,
+      );
+    }
+    if (typeof obj.answer !== 'string' || obj.answer.trim().length === 0) {
+      throw new Error(
+        `Invalid frontmatter in ${filePath}: "${field}[${index}].answer" must be a non-empty string.`,
+      );
+    }
+    return {
+      question: obj.question.trim(),
+      answer: obj.answer.trim(),
+    };
+  });
+}
+
 function parsePostFrontmatter(data: unknown, filePath: string): PostFrontmatter {
   const frontmatter = asFrontmatterObject(data, filePath);
 
@@ -149,6 +192,7 @@ function parsePostFrontmatter(data: unknown, filePath: string): PostFrontmatter 
     coverImageAlt: requireString(frontmatter, 'coverImageAlt', filePath),
     relatedServices,
     relatedPosts,
+    faqs: optionalFaqArray(frontmatter, 'faqs', filePath),
     draft: optionalBoolean(frontmatter, 'draft', filePath),
   };
 }

@@ -1,1 +1,149 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d"><title id="t">Antecedente de trasplante bipulmonar</title><desc id="d">Ilustración editorial con dos formas pulmonares suspendidas y una línea de conexión.</desc><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120726"/><stop offset=".55" stop-color="#311B92"/><stop offset="1" stop-color="#09090B"/></linearGradient><linearGradient id="a"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><rect width="1600" height="900" fill="url(#b)"/><path d="M190 190h1220M190 710h1220" stroke="#f8f7ff" stroke-opacity=".12"/><g fill="none" stroke="#c4b5fd" stroke-width="3" opacity=".55"><path d="M470 260c-55-65-139-56-181 9-42 65-34 172 13 229 43 52 99 42 132-11 29-47 54-182 36-227Z"/><path d="M530 260c55-65 139-56 181 9 42 65 34 172-13 229-43 52-99 42-132-11-29-47-54-182-36-227Z"/><path d="M500 218v135M500 353l-42 42M500 353l42 42"/><path d="M1070 260c-55-65-139-56-181 9-42 65-34 172 13 229 43 52 99 42 132-11 29-47 54-182 36-227Z"/><path d="M1130 260c55-65 139-56 181 9 42 65 34 172-13 229-43 52-99 42-132-11-29-47-54-182-36-227Z"/><path d="M1100 218v135M1100 353l-42 42M1100 353l42 42"/></g><path d="M760 365h80" stroke="#7C3AED" stroke-width="8" stroke-linecap="round"/><circle cx="800" cy="365" r="34" fill="none" stroke="#f8f7ff" stroke-width="2" opacity=".7"/><g fill="#f8f7ff" font-family="DM Sans,Arial,sans-serif"><text x="110" y="128" font-size="18" letter-spacing="6" opacity=".7">CETRA · HISTORIA CLÍNICA</text><text x="110" y="760" font-size="42">Un precedente para la medicina respiratoria</text><text x="110" y="812" font-size="19" opacity=".66">México · Monterrey · 2020</text></g><path d="M110 716h90" stroke="#c4b5fd" stroke-width="4"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Antecedente de Trasplante Bipulmonar - CETRA</title>
+  <desc id="desc">Ilustración técnica de alta precisión que representa la arborización bronquial bilateral y el soporte de oxigenación continua.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090B"/>
+      <stop offset="45%" stop-color="#120726"/>
+      <stop offset="100%" stop-color="#05020c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#311B92" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#09090B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bronchiGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background & Atmosphere -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <!-- Technical Grid & Coordinate Lines -->
+  <g stroke="#f8f7ff" stroke-opacity="0.06" stroke-width="1">
+    <line x1="160" y1="180" x2="1440" y2="180"/>
+    <line x1="160" y1="720" x2="1440" y2="720"/>
+    <line x1="800" y1="120" x2="800" y2="780" stroke-dasharray="6 6"/>
+    <circle cx="800" cy="450" r="280" fill="none" stroke-opacity="0.04"/>
+    <circle cx="800" cy="450" r="360" fill="none" stroke-opacity="0.03"/>
+  </g>
+
+  <!-- Stylized Thoracic Cage Contours (Geometric Rib Curves for Anatomical Context) -->
+  <g fill="none" stroke="#7C3AED" stroke-opacity="0.15" stroke-width="2" stroke-linecap="round">
+    <path d="M 680,240 C 580,230 460,260 420,310 C 390,345 420,380 480,370"/>
+    <path d="M 920,240 C 1020,230 1140,260 1180,310 C 1210,345 1180,380 1120,370"/>
+    <path d="M 680,320 C 560,310 430,350 390,410 C 360,455 400,490 470,475"/>
+    <path d="M 920,320 C 1040,310 1170,350 1210,410 C 1240,455 1200,490 1130,475"/>
+    <path d="M 690,410 C 560,400 420,450 380,520 C 350,575 410,610 490,590"/>
+    <path d="M 910,410 C 1040,400 1180,450 1220,520 C 1250,575 1190,610 1110,590"/>
+  </g>
+
+  <!-- Central Trachea with Cartilaginous Rings -->
+  <g stroke="#c4b5fd" stroke-width="2">
+    <!-- Main Trachea Conduit -->
+    <line x1="778" y1="150" x2="778" y2="280" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.8"/>
+    <line x1="822" y1="150" x2="822" y2="280" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.8"/>
+    <!-- Rings -->
+    <line x1="782" y1="170" x2="818" y2="170" stroke-opacity="0.6"/>
+    <line x1="782" y1="195" x2="818" y2="195" stroke-opacity="0.6"/>
+    <line x1="782" y1="220" x2="818" y2="220" stroke-opacity="0.6"/>
+    <line x1="782" y1="245" x2="818" y2="245" stroke-opacity="0.6"/>
+    <line x1="782" y1="270" x2="818" y2="270" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- Carina (Bifurcation Point) Marker -->
+  <circle cx="800" cy="285" r="5" fill="#7C3AED"/>
+  <circle cx="800" cy="285" r="14" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Left & Right Primary Bronchi -->
+  <g fill="none" stroke="url(#bronchiGrad)" stroke-linecap="round">
+    <!-- Right Lung Arborization (Viewer's Left) -->
+    <path d="M 788,285 C 750,310 690,335 630,350" stroke-width="6"/>
+    <!-- Secondary branches -->
+    <path d="M 630,350 C 580,320 540,260 500,230" stroke-width="4"/>
+    <path d="M 630,350 C 550,370 480,390 430,420" stroke-width="4"/>
+    <path d="M 630,350 C 580,420 530,500 480,560" stroke-width="4.5"/>
+    
+    <!-- Tertiary branches - Upper Lobe -->
+    <path d="M 500,230 C 470,210 440,195 400,190" stroke-width="2.5"/>
+    <path d="M 500,230 C 520,190 530,160 520,130" stroke-width="2"/>
+    <path d="M 400,190 C 370,185 340,200 320,220" stroke-width="1.5"/>
+    <path d="M 400,190 C 380,160 360,140 330,130" stroke-width="1.5"/>
+
+    <!-- Tertiary branches - Middle/Lower -->
+    <path d="M 430,420 C 380,410 330,430 290,460" stroke-width="2"/>
+    <path d="M 430,420 C 390,460 350,510 320,560" stroke-width="2"/>
+    <path d="M 480,560 C 440,610 390,650 330,680" stroke-width="2.5"/>
+    <path d="M 480,560 C 510,620 530,670 540,720" stroke-width="2"/>
+    <path d="M 330,680 C 290,700 250,710 210,710" stroke-width="1.5"/>
+
+    <!-- Left Lung Arborization (Viewer's Right) -->
+    <path d="M 812,285 C 850,310 910,340 970,360" stroke-width="6"/>
+    <!-- Secondary branches -->
+    <path d="M 970,360 C 1020,310 1070,260 1110,230" stroke-width="4"/>
+    <path d="M 970,360 C 1040,380 1120,400 1170,430" stroke-width="4"/>
+    <path d="M 970,360 C 1020,430 1070,510 1120,570" stroke-width="4.5"/>
+
+    <!-- Tertiary branches - Upper Lobe -->
+    <path d="M 1110,230 C 1140,210 1170,195 1210,190" stroke-width="2.5"/>
+    <path d="M 1110,230 C 1090,190 1080,160 1090,130" stroke-width="2"/>
+    <path d="M 1210,190 C 1240,185 1270,200 1290,220" stroke-width="1.5"/>
+    <path d="M 1210,190 C 1230,160 1250,140 1280,130" stroke-width="1.5"/>
+
+    <!-- Tertiary branches - Middle/Lower -->
+    <path d="M 1170,430 C 1220,420 1270,440 1310,470" stroke-width="2"/>
+    <path d="M 1170,430 C 1210,470 1250,520 1280,570" stroke-width="2"/>
+    <path d="M 1120,570 C 1160,620 1210,660 1270,690" stroke-width="2.5"/>
+    <path d="M 1120,570 C 1090,630 1070,680 1060,730" stroke-width="2"/>
+    <path d="M 1270,690 C 1310,710 1350,720 1390,720" stroke-width="1.5"/>
+  </g>
+
+  <!-- Microvascular / Alveolar Terminal Nodes (Precision Technical Dots) -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <circle cx="320" cy="220" r="3.5"/>
+    <circle cx="330" cy="130" r="3"/>
+    <circle cx="290" cy="460" r="3.5"/>
+    <circle cx="320" cy="560" r="3.5"/>
+    <circle cx="210" cy="710" r="3"/>
+    <circle cx="540" cy="720" r="3.5"/>
+    
+    <circle cx="1290" cy="220" r="3.5"/>
+    <circle cx="1280" cy="130" r="3"/>
+    <circle cx="1310" cy="470" r="3.5"/>
+    <circle cx="1280" cy="570" r="3.5"/>
+    <circle cx="1390" cy="720" r="3"/>
+    <circle cx="1060" cy="730" r="3.5"/>
+  </g>
+
+  <!-- Technical Telemetry Box & Metadata Badges -->
+  <g transform="translate(680, 680)">
+    <rect x="0" y="0" width="240" height="46" rx="8" fill="#120726" stroke="#7C3AED" stroke-width="1.5"/>
+    <circle cx="22" cy="23" r="5" fill="#25D366"/>
+    <text x="38" y="27" fill="#f8f7ff" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="1.5">REPERFUSIÓN BILATERAL</text>
+  </g>
+
+  <!-- Editorial Typography Header & Footers -->
+  <g fill="#f8f7ff" font-family="'DM Sans', system-ui, sans-serif">
+    <!-- Kicker -->
+    <text x="110" y="118" font-size="14" font-weight="700" letter-spacing="5" fill="#c4b5fd">
+      CETRA · PRECEDENTE CLÍNICO 2020
+    </text>
+    
+    <!-- Title -->
+    <text x="110" y="780" font-size="38" font-weight="300" letter-spacing="-0.5">
+      Trasplante Bipulmonar de Alta Complejidad
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="110" y="825" font-size="16" font-weight="400" fill="#c4b5fd" opacity="0.8" letter-spacing="0.5">
+      Arborización bronquial completa · Soporte ECMO · Reconstrucción funcional
+    </text>
+  </g>
+
+  <!-- Decorative Accent Line -->
+  <line x1="110" y1="735" x2="210" y2="735" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -18,6 +18,7 @@ import PostMeta from '@/components/blog/PostMeta';
 import ShareButtons from '@/components/blog/ShareButtons';
 import PostFAQ from '@/components/blog/PostFAQ';
 import SurgicalSteps from '@/components/blog/SurgicalSteps';
+import EvidenceBox from '@/components/blog/EvidenceBox';
 
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 import { getAllServices } from '@/lib/mdx';
@@ -209,6 +210,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   TestimonialExpanded,
                   PostFAQ,
                   SurgicalSteps,
+                  EvidenceBox,
                 }}
               />
             </article>

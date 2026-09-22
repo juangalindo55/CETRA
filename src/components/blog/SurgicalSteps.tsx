@@ -15,7 +15,7 @@ const surgicalSteps: Step[] = [
     title: 'Soporte Hemodinámico',
     subtitle: 'Estabilidad con ECMO',
     description:
-      'Se conecta oxigenación por membrana extracorpórea para mantener la presión y oxigenación estables mientras se retira el pulmón enfermo.',
+      'Cuando el caso lo requiere, se utiliza oxigenación por membrana extracorpórea para mantener la presión y oxigenación estables durante la intervención.',
     icon: HeartPulse,
     tag: 'Seguridad circulatoria',
   },
@@ -24,7 +24,7 @@ const surgicalSteps: Step[] = [
     title: 'La Vía Aérea',
     subtitle: 'Anastomosis bronquial',
     description:
-      'Se une el bronquio principal del donante con el del receptor con suturas telescópicas milimétricas para garantizar un sellado 100% hermético.',
+      'Se une el bronquio principal del donante con el del receptor mediante suturas de alta precisión para conseguir un sellado seguro de la vía aérea.',
     icon: Wind,
     tag: 'Precisión respiratoria',
   },

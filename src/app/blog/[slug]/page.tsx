@@ -19,6 +19,7 @@ import ShareButtons from '@/components/blog/ShareButtons';
 import PostFAQ from '@/components/blog/PostFAQ';
 import SurgicalSteps from '@/components/blog/SurgicalSteps';
 import EvidenceBox from '@/components/blog/EvidenceBox';
+import MythFact from '@/components/blog/MythFact';
 
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 import { getAllServices } from '@/lib/mdx';
@@ -211,6 +212,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   PostFAQ,
                   SurgicalSteps,
                   EvidenceBox,
+                  MythFact,
                 }}
               />
             </article>

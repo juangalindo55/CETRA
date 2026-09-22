@@ -193,7 +193,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </aside>
 
           <main className="md:col-span-2">
-            <article className="prose prose-lg max-w-none prose-a:text-violet-heritage prose-a:font-medium
+            <article data-cta-placement="blog-cuerpo" className="prose prose-lg max-w-none prose-a:text-violet-heritage prose-a:font-medium
               prose-headings:font-display prose-headings:mt-16 prose-headings:mb-6
               prose-h2:text-4xl prose-h2:text-ink prose-h2:font-light prose-h2:tracking-[-0.025em] prose-h2:border-b prose-h2:border-ink prose-h2:pb-5 prose-h2:scroll-mt-32
               prose-h3:text-2xl prose-h3:text-ink prose-h3:font-semibold
@@ -234,7 +234,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </p>
 
             {/* CTA */}
-            <section className="mt-16 bg-lavender p-10 sm:p-12">
+            <section data-cta-placement="blog-cta-final" className="mt-16 bg-lavender p-10 sm:p-12">
               <h2 className="max-w-xl font-display text-3xl font-light leading-[1.15] tracking-[-0.025em] text-ink">
                 ¿Quieres saber si aplica a tu caso?
               </h2>

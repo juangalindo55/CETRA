@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import SeoSchema from "@/components/SeoSchema";
+import ConversionTracker from "@/components/ConversionTracker";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL_OBJECT } from "@/lib/site";
 import "./globals.css";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
         <Footer />
         <Analytics />
         <SpeedInsights />
+        <ConversionTracker />
       </body>
     </html>
   );

@@ -26,8 +26,8 @@
   <g stroke="#f8f7ff" stroke-opacity="0.05" stroke-width="1">
     <line x1="200" y1="180" x2="1400" y2="180"/>
     <line x1="200" y1="460" x2="1400" y2="460" stroke-dasharray="8 6"/>
-    <line x1="200" y1="720" x2="1400" y2="720"/>
-    <line x1="800" y1="120" x2="800" y2="780" stroke-opacity="0.08"/>
+    <line x1="200" y1="680" x2="1400" y2="680"/>
+    <line x1="800" y1="170" x2="800" y2="680" stroke-opacity="0.08"/>
   </g>
 
   <!-- Biomechanical Dome of the Diaphragm (Cúpula Muscular) -->
@@ -76,21 +76,21 @@
   <!-- Editorial Typography Header & Footers -->
   <g fill="#f8f7ff" font-family="'DM Sans', system-ui, sans-serif">
     <!-- Kicker -->
-    <text x="110" y="118" font-size="14" font-weight="700" letter-spacing="5" fill="#c4b5fd">
+    <text x="110" y="150" font-size="14" font-weight="700" letter-spacing="5" fill="#c4b5fd">
       CETRA · CIRUGÍA TORÁCICA AVANZADA
     </text>
 
     <!-- Title -->
-    <text x="110" y="780" font-size="38" font-weight="300" letter-spacing="-0.5">
+    <text x="110" y="740" font-size="38" font-weight="300" letter-spacing="-0.5">
       Hernia Diafragmática y Biomecánica Respiratoria
     </text>
 
     <!-- Subtitle -->
-    <text x="110" y="825" font-size="16" font-weight="400" fill="#c4b5fd" opacity="0.8" letter-spacing="0.5">
+    <text x="110" y="778" font-size="16" font-weight="400" fill="#c4b5fd" opacity="0.8" letter-spacing="0.5">
       Cúpula diafragmática · Dinámica de presiones · Reconstrucción y plicatura
     </text>
   </g>
 
   <!-- Decorative Accent Line -->
-  <line x1="110" y1="735" x2="210" y2="735" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
+  <line x1="110" y1="696" x2="210" y2="696" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
 </svg>

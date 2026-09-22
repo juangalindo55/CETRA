@@ -23,11 +23,11 @@
   <rect width="1600" height="900" fill="url(#surgBg)"/>
 
   <!-- Surgical Lamp Focused Light Cone -->
-  <path d="M 680,140 L 920,140 L 1150,680 L 450,680 Z" fill="url(#surgicalBeam)"/>
+  <path d="M 680,170 L 920,170 L 1150,680 L 450,680 Z" fill="url(#surgicalBeam)"/>
   <rect width="1600" height="900" fill="url(#lampGlow)"/>
 
   <!-- Surgical Lamp Overhead Fixture (Precision Optics) -->
-  <g transform="translate(800, 140)">
+  <g transform="translate(800, 170)">
     <!-- Outer rim -->
     <ellipse cx="0" cy="0" rx="140" ry="26" fill="#120726" stroke="#c4b5fd" stroke-width="2.5"/>
     <ellipse cx="0" cy="0" rx="110" ry="20" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.7"/>
@@ -88,21 +88,21 @@
   <!-- Editorial Typography Header & Footers -->
   <g fill="#f8f7ff" font-family="'DM Sans', system-ui, sans-serif">
     <!-- Kicker -->
-    <text x="110" y="118" font-size="14" font-weight="700" letter-spacing="5" fill="#c4b5fd">
+    <text x="110" y="150" font-size="14" font-weight="700" letter-spacing="5" fill="#c4b5fd">
       CETRA · PROTOCOLO QUIRÚRGICO
     </text>
 
     <!-- Title -->
-    <text x="110" y="780" font-size="38" font-weight="300" letter-spacing="-0.5">
+    <text x="110" y="740" font-size="38" font-weight="300" letter-spacing="-0.5">
       La Cirugía de Trasplante Paso a Paso
     </text>
 
     <!-- Subtitle -->
-    <text x="110" y="825" font-size="16" font-weight="400" fill="#c4b5fd" opacity="0.8" letter-spacing="0.5">
+    <text x="110" y="778" font-size="16" font-weight="400" fill="#c4b5fd" opacity="0.8" letter-spacing="0.5">
       Microcirugía de alta precisión · Preparación · Quirófano · Recuperación en UCI
     </text>
   </g>
 
   <!-- Decorative Accent Line -->
-  <line x1="110" y1="735" x2="210" y2="735" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
+  <line x1="110" y1="696" x2="210" y2="696" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
 </svg>

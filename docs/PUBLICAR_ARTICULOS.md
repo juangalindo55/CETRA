@@ -246,7 +246,7 @@ error siempre dice qué archivo y qué campo.
 | `"lastUpdated" must use the YYYY-MM-DD format` | Fecha en otro formato | `2026-07-28`, no `28/07/2026` |
 | `"relatedServices" entries must start with "/servicios/"` | Falta la ruta completa | `/servicios/trasplante-pulmonar`, no `Trasplante Pulmonar` |
 | `must be a non-empty string` | Un campo quedó vacío | Complétalo; ninguno es opcional salvo los marcados como tal |
-| `must be a non-empty list of strings` | `secondaryKeywords` o `relatedServices` vacíos | Pon al menos un elemento |
+| `must be a non-empty list of strings` | `secondaryKeywords` vacío, o `relatedServices` escrito pero sin elementos | Pon al menos un elemento; si ningún servicio aplica, borra la línea `relatedServices:` completa |
 
 Ningún error de estos rompe el sitio publicado: el despliegue simplemente no ocurre
 hasta que se corrige.

@@ -73,6 +73,7 @@ export interface PostFrontmatter {
   lastUpdated: string;
   coverImage: string;
   coverImageAlt: string;
+  /** Opcional en el frontmatter; `[]` cuando no se declara. */
   relatedServices: string[];
   relatedPosts?: string[];
   /** Preguntas frecuentes específicas del artículo con esquema FAQPage. */
@@ -163,12 +164,12 @@ function optionalFaqArray(
 function parsePostFrontmatter(data: unknown, filePath: string): PostFrontmatter {
   const frontmatter = asFrontmatterObject(data, filePath);
 
-  const relatedServices = requireHrefPrefix(
-    requireStringArray(frontmatter, 'relatedServices', filePath),
-    '/servicios/',
-    'relatedServices',
-    filePath,
-  );
+  // Opcional: hay temas sin un servicio que les corresponda (p. ej. nódulo
+  // pulmonar), donde el único puente de conversión es el CTA de orientación.
+  const relatedServicesRaw = optionalStringArray(frontmatter, 'relatedServices', filePath);
+  const relatedServices = relatedServicesRaw
+    ? requireHrefPrefix(relatedServicesRaw, '/servicios/', 'relatedServices', filePath)
+    : [];
 
   const relatedPostsRaw = optionalStringArray(frontmatter, 'relatedPosts', filePath);
   const relatedPosts = relatedPostsRaw

@@ -53,10 +53,42 @@ const phases: Phase[] = [
   },
 ];
 
-export function ProcessPhases() {
+interface ProcessPhasesProps {
+  phases?: string;
+  descriptions?: string;
+}
+
+export function ProcessPhases({ phases: customPhases, descriptions: customDescriptions }: ProcessPhasesProps = {}) {
+  let displayPhases = phases;
+
+  if (customPhases) {
+    const titles = customPhases.split('|').map((t) => t.trim());
+    const descs = customDescriptions ? customDescriptions.split('|').map((d) => d.trim()) : [];
+    const icons = [
+      <Stethoscope key="1" className="w-6 h-6" />,
+      <Heart key="2" className="w-6 h-6" />,
+      <TrendingUp key="3" className="w-6 h-6" />,
+    ];
+    const bgColors = [
+      'bg-gradient-to-br from-[#311B92] to-[#7C3AED]',
+      'bg-gradient-to-br from-[#7C3AED] to-[#4c1d95]',
+      'bg-gradient-to-br from-[#5b21b6] to-[#311B92]',
+    ];
+
+    displayPhases = titles.map((title, idx) => ({
+      icon: icons[idx % icons.length],
+      number: String(idx + 1).padStart(2, '0'),
+      title,
+      description: descs[idx] || '',
+      items: [],
+      bgColor: bgColors[idx % bgColors.length],
+      iconBgColor: 'bg-white/20',
+    }));
+  }
+
   return (
     <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
-      {phases.map((phase, index) => (
+      {displayPhases.map((phase, index) => (
         <Reveal
           key={index}
           delay={index * 100}
@@ -76,23 +108,25 @@ export function ProcessPhases() {
               <span className="text-sm font-bold text-white">{phase.number}</span>
             </div>
 
-            {/* Title */}
-            <h3 className="font-display text-lg font-semibold text-white mb-2 relative z-10">
+            {/* Title (use div with role heading so it does not pollute article TableOfContents) */}
+            <div role="heading" aria-level={3} className="font-display text-lg font-semibold text-white mb-2 relative z-10">
               {phase.title}
-            </h3>
+            </div>
 
             {/* Content */}
             <p className="text-sm text-white mb-4 leading-relaxed relative z-10">{phase.description}</p>
 
             {/* Items list */}
-            <ul className="space-y-2 relative z-10">
-              {phase.items.map((item, itemIndex) => (
-                <li key={itemIndex} className="flex items-start gap-2">
-                  <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white" />
-                  <span className="text-sm text-white">{item}</span>
-                </li>
-              ))}
-            </ul>
+            {phase.items && phase.items.length > 0 && (
+              <ul className="space-y-2 relative z-10">
+                {phase.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white" />
+                    <span className="text-sm text-white">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Reveal>
       ))}

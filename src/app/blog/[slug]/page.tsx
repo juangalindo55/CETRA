@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Portada */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative -mt-10 aspect-[16/9] overflow-hidden rounded-[2rem] bg-soft-gray shadow-xl shadow-ink/10 sm:aspect-[21/9]">
+        <div className="relative -mt-10 aspect-[16/9] overflow-hidden rounded-[2rem] bg-soft-gray shadow-xl shadow-ink/10">
           <Image
             src={frontmatter.coverImage}
             alt={frontmatter.coverImageAlt}

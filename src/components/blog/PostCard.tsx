@@ -36,15 +36,15 @@ export default function PostCard({ post, featured = false, priority = false }: P
 
   if (featured) {
     return (
-      <article className="group grid overflow-hidden rounded-[2rem] border border-lavender-line bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-violet-soft hover:shadow-lg hover:shadow-violet-heritage/10 lg:grid-cols-2">
+      <article className="group grid overflow-hidden rounded-[2rem] border border-lavender-line bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-violet-soft hover:shadow-lg hover:shadow-violet-heritage/10 lg:grid-cols-[1.2fr_1fr]">
         <Link href={href} className="relative block aspect-[16/10] overflow-hidden bg-soft-gray lg:aspect-auto lg:min-h-[24rem]">
           <Image
             src={frontmatter.coverImage}
             alt={frontmatter.coverImageAlt}
             fill
             priority={priority}
-            sizes="(max-width: 1023px) 100vw, 50vw"
-            className="object-cover transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.03]"
+            sizes="(max-width: 1023px) 100vw, 55vw"
+            className="object-cover object-left transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.03]"
           />
         </Link>
 
@@ -62,7 +62,7 @@ export default function PostCard({ post, featured = false, priority = false }: P
             </Link>
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-gray-600">{frontmatter.description}</p>
+          <p className="mt-5 text-base leading-7 text-gray-600 line-clamp-3 sm:line-clamp-4">{frontmatter.description}</p>
 
           {meta}
 
@@ -100,7 +100,7 @@ export default function PostCard({ post, featured = false, priority = false }: P
           </Link>
         </h3>
 
-        <p className="mt-4 flex-1 text-sm leading-7 text-gray-600">{frontmatter.description}</p>
+        <p className="mt-4 flex-1 text-sm leading-7 text-gray-600 line-clamp-3">{frontmatter.description}</p>
 
         {meta}
       </div>

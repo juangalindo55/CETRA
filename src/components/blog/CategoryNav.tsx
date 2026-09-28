@@ -7,7 +7,7 @@ interface CategoryNavProps {
 }
 
 const baseChip =
-  'inline-flex min-h-11 items-center rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-[160ms]';
+  'inline-flex shrink-0 min-h-11 items-center rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-[160ms]';
 
 /**
  * Enlaces reales a `/blog/categoria/[slug]` en vez de filtros de cliente:
@@ -15,7 +15,7 @@ const baseChip =
  */
 export default function CategoryNav({ active = null }: CategoryNavProps) {
   return (
-    <nav aria-label="Categorías del blog" className="flex flex-wrap gap-3">
+    <nav aria-label="Categorías del blog" className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap sm:gap-3 sm:pb-0">
       <Link
         href="/blog"
         aria-current={active === null ? 'page' : undefined}

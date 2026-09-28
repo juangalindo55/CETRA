@@ -17,7 +17,7 @@ export default function BlogPostLoading() {
 
       {/* Portada */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="-mt-10 aspect-[16/9] rounded-[2rem] bg-gray-200 sm:aspect-[21/9]" />
+        <div className="-mt-10 aspect-[16/9] rounded-[2rem] bg-gray-200" />
       </div>
 
       {/* Contenido + índice */}

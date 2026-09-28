@@ -1,0 +1,227 @@
+# Blog informativo para pacientes — entradas 11 a 20
+### Segunda entrega: ECMO, oxígeno domiciliario, sueño, asma, vacunas, técnica inhalatoria, post-COVID, humo de leña, broncoscopia y nódulo pulmonar
+
+> *Nota de uso:* mismo formato que la primera entrega (200–250 palabras, público general, una referencia verificada por entrada). Sustituya [NOMBRE DEL CENTRO] según corresponda.
+
+---
+
+## 11. ECMO: qué es y cuándo se usa
+
+*No es un pulmón artificial permanente. Es tiempo prestado para que el pulmón sane.*
+
+ECMO significa oxigenación por membrana extracorpórea. En términos simples: la sangre del paciente sale del cuerpo por una cánula, pasa por una membrana que le agrega oxígeno y le retira dióxido de carbono —hace el trabajo que el pulmón no puede hacer— y regresa al cuerpo. Es, esencialmente, un pulmón fuera del cuerpo conectado de forma temporal.
+
+*¿Para qué sirve realmente?* Para dos cosas. Primero, mantener la oxigenación cuando el pulmón está tan dañado que el ventilador ya no alcanza. Segundo —y esto es igual de importante— permitir que el ventilador trabaje con presiones y volúmenes muy bajos, para que el propio tratamiento no siga lastimando el pulmón. El ECMO no cura la enfermedad de fondo: da tiempo.
+
+*¿Cuándo se considera?* En falla respiratoria muy grave que no responde a las medidas convencionales, y en algunos pacientes como puente al trasplante pulmonar. En el ensayo clínico aleatorizado más grande en síndrome de distrés respiratorio agudo grave, la mortalidad a 60 días fue de 35% con ECMO frente a 46% con tratamiento convencional; la diferencia no alcanzó significación estadística, en parte porque una cuarta parte de los pacientes del grupo control terminó recibiendo ECMO de rescate.
+
+Es una terapia compleja, con riesgos reales, que debe realizarse en centros con equipo y experiencia dedicados.
+
+En [NOMBRE DEL CENTRO] contamos con programa de ECMO.
+
+*Referencia:* Combes A, Hajage D, Capellier G, et al.; EOLIA Trial Group, REVA, and ECMONet. Extracorporeal membrane oxygenation for severe acute respiratory distress syndrome. N Engl J Med. 2018;378(21):1965-1975.
+
+---
+
+## 12. Oxígeno en casa: cuatro mitos que conviene aclarar
+
+*El oxígeno es un medicamento. Tiene indicación, dosis y contraindicaciones.*
+
+*"El oxígeno crea adicción."* Falso. El oxígeno no genera dependencia física ni adicción. Si un paciente lo necesita de forma continua es porque su enfermedad lo requiere, no porque el oxígeno lo haya vuelto dependiente.
+
+*"Que me pongan oxígeno significa que ya no hay nada que hacer."* Falso. En pacientes con oxígeno bajo de forma persistente, el oxígeno domiciliario mejora la sobrevida y permite hacer más actividades, no menos. Muchos pacientes viajan, trabajan y hacen ejercicio con oxígeno.
+
+*"Si me falta el aire, me subo el flujo."* Peligroso. La sensación de falta de aire y el nivel de oxígeno en sangre no son lo mismo: se puede tener mucha disnea con oxígeno normal, y oxígeno bajo casi sin síntomas. En algunos pacientes, subir el flujo por cuenta propia retiene dióxido de carbono. El flujo lo ajusta su médico con mediciones objetivas.
+
+*"Si me falta el aire, el oxígeno me va a ayudar."* No siempre. Un ensayo con 738 pacientes con EPOC y descensos leves o moderados de oxígeno mostró que el oxígeno de largo plazo *no prolongó la vida, no redujo hospitalizaciones ni mejoró la calidad de vida* en ese grupo. El beneficio está demostrado en quienes tienen oxígeno realmente bajo.
+
+*Advertencia de seguridad:* el oxígeno es altamente inflamable. Nunca se debe fumar ni acercar fuego, estufas o velas a un equipo de oxígeno.
+
+*Referencia:* Long-Term Oxygen Treatment Trial Research Group. A randomized trial of long-term oxygen for COPD with moderate desaturation. N Engl J Med. 2016;375(17):1617-1627.
+
+---
+
+## 13. Apnea del sueño: cuando roncar no es normal
+
+*Su pareja probablemente ya notó el síntoma más importante.*
+
+En la apnea obstructiva del sueño, la vía aérea se cierra parcial o totalmente decenas de veces por hora mientras la persona duerme. Cada pausa baja el oxígeno y provoca un microdespertar que el paciente no recuerda. El resultado: se pasan ocho horas en la cama sin descansar realmente.
+
+*Señales de alarma:*
+
+- Ronquido fuerte, habitual, que se interrumpe con pausas o con un ronquido de "sobresalto"
+- Alguien ha presenciado que usted deja de respirar mientras duerme
+- Somnolencia durante el día: al leer, ver televisión, en el trabajo o —muy importante— al conducir
+- Despertar con dolor de cabeza, boca seca o sensación de ahogo
+- Levantarse a orinar varias veces por noche
+- Presión arterial difícil de controlar a pesar de varios medicamentos
+
+*No es solo un problema de sueño.* Un estudio poblacional que dio seguimiento a 709 personas durante cuatro años encontró una relación dosis-respuesta entre la severidad de los trastornos respiratorios del sueño y el desarrollo de hipertensión arterial, independiente del peso y de otros factores. La apnea también se asocia a arritmias, eventos cardiovasculares y mayor riesgo de accidentes de tránsito.
+
+*La buena noticia:* el diagnóstico se hace con un estudio de sueño y el tratamiento —CPAP y otras opciones según el caso— suele mejorar la energía diurna en semanas.
+
+Solicite su valoración de sueño en [NOMBRE DEL CENTRO].
+
+*Referencia:* Peppard PE, Young T, Palta M, Skatrud J. Prospective study of the association between sleep-disordered breathing and hypertension. N Engl J Med. 2000;342(19):1378-1384.
+
+---
+
+## 14. ¿Usa su inhalador de rescate casi todos los días? Eso no es asma controlada
+
+*El inhalador azul quita el síntoma. No trata la enfermedad.*
+
+Existen dos tipos de inhaladores y confundirlos es uno de los errores más costosos en asma. El de *rescate* relaja el músculo del bronquio y alivia en minutos, pero no toca la inflamación. El de *mantenimiento* contiene un antiinflamatorio, no se siente al momento, y es el que realmente cambia el curso de la enfermedad.
+
+Cuando alguien usa el rescate a diario, la lectura correcta no es "qué bueno que funciona", sino "esta persona tiene asma no controlada".
+
+Un estudio nacional que siguió a pacientes con asma de 12 a 45 años encontró que usar *más de dos frascos de rescate al año* se asoció, de forma dosis-dependiente, a más crisis y a mayor mortalidad por todas las causas, respiratoria y por asma. A más frascos, mayor riesgo.
+
+*Señales de asma mal controlada:*
+
+- Usar el rescate más de dos veces por semana
+- Despertar de noche por tos, silbidos o falta de aire
+- Limitar actividades o ejercicio por síntomas respiratorios
+- Haber requerido esteroides orales, urgencias u hospitalización en el último año
+
+Las guías internacionales cambiaron el enfoque en años recientes, y hoy la mayoría de los pacientes se beneficia de esquemas que siempre incluyen un antiinflamatorio. Su tratamiento debe individualizarlo su médico: no lo modifique por su cuenta.
+
+Revise su control del asma en [NOMBRE DEL CENTRO].
+
+*Referencia:* Nwaru BI, Ekström M, Hasvold P, Wiklund F, Telg G, Janson C. Overuse of short-acting β2-agonists in asthma is associated with increased risk of exacerbation and mortality: a nationwide cohort study of the global SABINA programme. Eur Respir J. 2020;55(4):1901872.
+
+---
+
+## 15. Vacunas que protegen sus pulmones
+
+*Si tiene una enfermedad respiratoria crónica, las vacunas no son opcionales.*
+
+Un pulmón con EPOC, asma, fibrosis o bronquiectasias tiene menos reserva. Una infección que en otra persona sería una gripe molesta puede desencadenar una crisis, una neumonía o una hospitalización, y muchos pacientes no recuperan por completo el nivel funcional que tenían antes del evento.
+
+Una revisión Cochrane que analizó ensayos controlados en pacientes con EPOC concluyó que la vacuna inactivada contra influenza *reduce el número de exacerbaciones* en comparación con placebo.
+
+*Las que suelen recomendarse en pacientes respiratorios:*
+
+- *Influenza:* cada año, antes del inicio de la temporada
+- *Neumococo:* protege contra la principal causa de neumonía bacteriana adquirida en la comunidad
+- *COVID-19:* según el esquema de refuerzos vigente
+- *Virus sincicial respiratorio (VSR):* disponible para adultos mayores en un número creciente de países
+- *Tos ferina, herpes zóster y otras:* según edad y condiciones asociadas
+
+*Dos aclaraciones frecuentes.* La vacuna de influenza inactivada no produce gripe; el malestar leve de uno o dos días es una respuesta inmune normal, no una infección. Y ninguna vacuna evita el 100% de los casos: su mayor valor está en reducir la gravedad, las hospitalizaciones y la mortalidad.
+
+Los esquemas varían por país, edad y condición. Pregunte cuáles le corresponden en su próxima consulta en [NOMBRE DEL CENTRO].
+
+*Referencia:* Kopsaftis Z, Wood-Baker R, Poole P. Influenza vaccine for chronic obstructive pulmonary disease (COPD). Cochrane Database Syst Rev. 2018;6(6):CD002733.
+
+---
+
+## 16. "Mi inhalador no me hace nada": revise primero la técnica
+
+*Siete de cada diez pacientes usan mal su inhalador. Y no ha mejorado en 40 años.*
+
+Una revisión sistemática de 144 estudios, en los que personal entrenado observó directamente a los pacientes usar su inhalador, encontró que *solo 31% tenía técnica correcta*. Un 41% tenía técnica aceptable y 31% técnica deficiente. Al comparar los primeros veinte años con los siguientes veinte, no hubo mejoría.
+
+Esto importa porque un medicamento que no llega al pulmón no funciona, y con frecuencia se interpreta como que "el tratamiento falló" cuando en realidad nunca se administró bien.
+
+*Errores más frecuentes con inhalador presurizado (el de bote metálico):*
+
+- No coordinar el disparo con el inicio de la inhalación
+- Inhalar demasiado rápido o demasiado superficial (debe ser lento y profundo)
+- No sostener la respiración unos 10 segundos después
+
+*Errores más frecuentes con inhalador de polvo seco:*
+
+- No preparar bien el dispositivo antes de inhalar
+- No exhalar completamente *antes* de inhalar (nunca exhale dentro del dispositivo)
+- No sostener la respiración al final
+
+*Tres recomendaciones prácticas:* pregunte si le conviene usar cámara espaciadora con el inhalador presurizado; enjuáguese la boca después de usar inhaladores con esteroide; y lleve *todos* sus inhaladores a la consulta y demuestre cómo los usa. Se revisa en dos minutos y con frecuencia cambia el resultado del tratamiento.
+
+*Referencia:* Sanchis J, Gich I, Pedersen S; Aerosol Drug Management Improvement Team (ADMIT). Systematic review of errors in inhaler use: has patient technique improved over time? Chest. 2016;150(2):394-406.
+
+---
+
+## 17. Rehabilitación después de COVID-19: sí ayuda, pero no de cualquier forma
+
+*El cansancio que quedó no siempre se resuelve solo con reposo ni con "echarle ganas".*
+
+Un grupo de pacientes conserva síntomas semanas o meses después de la infección: falta de aire al esfuerzo, cansancio marcado, intolerancia al ejercicio, dificultad para concentrarse y menor tolerancia a las actividades cotidianas. Puede ocurrir tanto en quienes estuvieron hospitalizados como en quienes cursaron un cuadro leve.
+
+Una revisión sistemática con metaanálisis de intervenciones de rehabilitación en adultos con condición post-COVID-19 encontró *mejoría en la capacidad física y en la calidad de vida* con programas estructurados de rehabilitación, en comparación con la atención habitual.
+
+*Un matiz importante, y por eso este tema no se resuelve con un video de internet:* algunos pacientes presentan empeoramiento marcado de los síntomas horas o días después del esfuerzo. En esos casos, un programa de ejercicio progresivo estándar puede ser contraproducente, y el abordaje debe basarse en dosificación cuidadosa del esfuerzo con supervisión.
+
+*Lo que debería incluir una valoración adecuada:* descartar causas tratables de la falta de aire (pulmonares, cardiacas, anemia, tiroides, desacondicionamiento), pruebas de función respiratoria, medición del oxígeno durante el esfuerzo, y un plan individualizado con seguimiento.
+
+Si lleva más de tres meses sin recuperar su nivel previo, no lo normalice. Pida valoración en [NOMBRE DEL CENTRO].
+
+*Referencia:* Pouliopoulou DV, MacDermid JC, Saunders E, et al. Rehabilitation interventions for physical capacity and quality of life in adults with post-COVID-19 condition: a systematic review and meta-analysis. JAMA Netw Open. 2023;6:e2333838.
+
+---
+
+## 18. Humo de leña dentro de casa: el factor de riesgo del que casi no se habla
+
+*Se puede tener EPOC sin haber fumado nunca un cigarro.*
+
+Cocinar con leña, carbón o biomasa en espacios con poca ventilación expone a la persona —durante horas al día, por años— a partículas finas que llegan hasta lo más profundo del pulmón. La exposición afecta desproporcionadamente a mujeres, por el tiempo que históricamente han pasado frente al fogón, y a los niños pequeños que permanecen cerca.
+
+Un estudio realizado en el Instituto Nacional de Enfermedades Respiratorias de México comparó la sobrevida de pacientes con EPOC por humo de leña frente a pacientes con EPOC por tabaco, y encontró *una sobrevida comparable entre ambos grupos*. Es decir: no se trata de una versión leve de la enfermedad. Es EPOC, con el mismo peso clínico.
+
+*Qué se puede hacer, en orden de impacto:*
+
+- Cambiar a estufa de gas o eléctrica cuando sea posible
+- Si se sigue usando leña, instalar chimenea o ducto que saque el humo al exterior
+- Cocinar con puertas y ventanas abiertas; nunca cocinar con leña en un cuarto cerrado
+- Mantener a los niños pequeños lejos del fogón
+- No quemar basura, plásticos ni madera tratada o pintada
+- Evitar el humo de tabaco dentro de casa, que se suma a la exposición
+
+Si cocinó con leña muchos años y hoy se cansa más que antes, pida una espirometría aunque nunca haya fumado.
+
+*Referencia:* Ramírez-Venegas A, Sansores RH, Pérez-Padilla R, et al. Survival of patients with chronic obstructive pulmonary disease due to biomass smoke and tobacco. Am J Respir Crit Care Med. 2006;173(4):393-397.
+
+---
+
+## 19. Qué esperar de una broncoscopia
+
+*Es un estudio que permite ver por dentro de sus bronquios y tomar muestras. No es una cirugía.*
+
+La broncoscopia flexible usa un tubo delgado y flexible, con cámara y luz, que se introduce por la nariz o la boca y avanza por la vía aérea. Sirve para estudiar sangrado, tos crónica sin explicación, infecciones difíciles, lesiones o nódulos, y para tomar muestras de tejido, secreciones o ganglios.
+
+*Antes:* se le pedirá ayuno de varias horas. Informe todos sus medicamentos, en especial anticoagulantes y antiagregantes, y cualquier alergia. Acuda acompañado.
+
+*Durante:* se aplica anestesia local en garganta y vía aérea, y en la mayoría de los casos sedación, de modo que el estudio resulte tolerable. Se monitorean oxígeno, pulso y presión. El procedimiento suele durar entre 20 y 45 minutos según lo que se necesite hacer.
+
+*Después:* la garganta puede quedar irritada y la voz ronca. No se come ni se bebe hasta que pase el efecto de la anestesia local, para evitar broncoaspiración. Puede haber algo de sangre en la flema durante uno o dos días, lo cual es esperado. No debe conducir el mismo día si recibió sedación.
+
+*Cuándo llamar:* fiebre, dolor de pecho, falta de aire nueva o sangrado abundante.
+
+Las guías internacionales la consideran un procedimiento seguro; las complicaciones serias son poco frecuentes cuando se realiza con la preparación, el monitoreo y el personal adecuados.
+
+*Referencia:* Du Rand IA, Blaikley J, Booton R, et al.; British Thoracic Society Bronchoscopy Guideline Group. British Thoracic Society guideline for diagnostic flexible bronchoscopy in adults. Thorax. 2013;68(Suppl 1):i1-i44.
+
+---
+
+## 20. Le encontraron un nódulo en el pulmón: qué significa y qué sigue
+
+*La mayoría de los nódulos pulmonares no son cáncer.*
+
+Un nódulo pulmonar es una manchita redondeada en el tejido del pulmón, menor de 3 cm. Aparecen con mucha frecuencia como hallazgo incidental en tomografías pedidas por otro motivo —dolor de pecho, un golpe, un estudio preoperatorio— y la mayoría corresponde a cicatrices de infecciones antiguas, granulomas o ganglios.
+
+Aun así, no se ignoran, porque un pequeño porcentaje corresponde a cáncer temprano, precisamente en la etapa en que el tratamiento es más efectivo.
+
+*De qué depende la conducta:* el tamaño del nódulo, si es sólido o de aspecto vidrio deslustrado, si es único o múltiple, sus bordes y su ubicación, y su riesgo personal —edad, tabaquismo, exposiciones laborales, antecedente de cáncer.
+
+Las guías internacionales de referencia establecen que los nódulos sólidos muy pequeños en personas de bajo riesgo *no requieren seguimiento rutinario con tomografía*, y proponen intervalos de vigilancia expresados como rangos, para que médico y paciente puedan ajustarlos al riesgo individual. La estrategia va desde no hacer nada, hasta vigilancia por imagen, estudio con PET, biopsia o resección.
+
+*Dos cosas que ayudan mucho:* lleve a la consulta sus tomografías previas —comparar es la herramienta más poderosa, porque un nódulo estable durante años es tranquilizador— y no busque conclusiones en internet a partir del reporte. Necesita que alguien vea las imágenes junto con su historia.
+
+Traiga sus estudios a valoración en [NOMBRE DEL CENTRO].
+
+*Referencia:* MacMahon H, Naidich DP, Goo JM, et al. Guidelines for management of incidental pulmonary nodules detected on CT images: from the Fleischner Society 2017. Radiology. 2017;284(1):228-243.
+
+---
+
+## Aviso sugerido al pie de cada entrada
+
+> Este contenido tiene fines informativos y educativos, y no sustituye la consulta, el diagnóstico ni el tratamiento por parte de un profesional de la salud. Si presenta síntomas respiratorios, acuda a valoración médica.

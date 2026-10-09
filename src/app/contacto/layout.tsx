@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_NAME, SITE_URL } from '@/lib/site';
+import { SITE_NAME, SITE_URL, getContactPageSchema } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contacto',
@@ -19,5 +19,16 @@ export default function ContactLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  const schema = getContactPageSchema();
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      {children}
+    </>
+  );
 }
+

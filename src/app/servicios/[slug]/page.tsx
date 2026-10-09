@@ -11,7 +11,7 @@ import TestimonialExpanded from '@/components/sections/TestimonialExpanded';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import ReadingProgress from '@/components/ReadingProgress';
 import type { Metadata } from 'next';
-import { SITE_NAME, getAbsoluteUrl } from '@/lib/site';
+import { SITE_NAME, getAbsoluteUrl, getServiceSchema } from '@/lib/site';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import { getPostsForService } from '@/lib/blog';
@@ -81,8 +81,28 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const isTransplantHero = resolvedParams.slug === 'trasplante-pulmonar';
   const relatedPosts = getPostsForService(`/servicios/${resolvedParams.slug}`).slice(0, 3);
 
+  const schemaType =
+    resolvedParams.slug === 'rehabilitacion-pulmonar'
+      ? ('MedicalTherapy' as const)
+      : resolvedParams.slug === 'trasplante-pulmonar' ||
+        resolvedParams.slug === 'evaluacion-pretrasplante'
+      ? ('MedicalProcedure' as const)
+      : ('MedicalTest' as const);
+
+  const serviceSchema = getServiceSchema({
+    slug: resolvedParams.slug,
+    name: service.frontmatter.title,
+    description: service.frontmatter.description,
+    serviceType: service.frontmatter.primaryKeyword,
+    schemaType,
+  });
+
   return (
     <div className="w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
 
       {/* Hero Section */}

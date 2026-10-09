@@ -35,11 +35,23 @@ export function getClinicSchema() {
         name: SITE_NAME,
         alternateName: 'Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada',
         url: SITE_URL,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/logo.png`,
+          width: '512',
+          height: '512',
+        },
+        image: [
+          `${SITE_URL}/images/cetralobby.webp`,
+          `${SITE_URL}/images/Hero.webp`,
+          `${SITE_URL}/images/pletissolo.webp`,
+        ],
+        description: SITE_DESCRIPTION,
         telephone: CONTACT_PHONE_TEL,
         email: CONTACT_EMAIL,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: CETRA_LOCATION.address,
+          streetAddress: 'Belisario Domínguez 2602, Torre José A. Muguerza, Piso 3',
           addressLocality: 'Monterrey',
           addressRegion: 'Nuevo León',
           postalCode: '64060',
@@ -60,38 +72,65 @@ export function getClinicSchema() {
           'https://schema.org/Pulmonary',
           'https://schema.org/RespiratoryTherapy',
         ],
+        areaServed: {
+          '@type': 'City',
+          name: 'Monterrey',
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '17:00',
+          },
+        ],
         availableService: [
           {
             '@type': 'MedicalTest',
-            name: 'Espirometría simple y con broncodilatador',
-            description: 'Evaluación de capacidad y flujos pulmonares para diagnóstico de asma, EPOC y seguimiento respiratorio.',
+            name: 'Diagnóstico funcional respiratorio',
+            url: `${SITE_URL}/servicios/diagnostico-funcional-respiratorio`,
+            description: 'Espirometría, pletismografía, DLCO y evaluación integral de la mecánica pulmonar.',
           },
           {
             '@type': 'MedicalTest',
-            name: 'Pletismografía corporal',
-            description: 'Medición de volúmenes pulmonares estáticos y resistencia de vías aéreas en cabina de pletismografía.',
-          },
-          {
-            '@type': 'MedicalTest',
-            name: 'Difusión de Monóxido de Carbono (DLCO)',
-            description: 'Evaluación del intercambio gaseoso alvéolo-capilar para detección de fibrosis pulmonar y enfisema.',
+            name: 'Diagnóstico del sueño',
+            url: `${SITE_URL}/servicios/diagnostico-del-sueno`,
+            description: 'Estudios de polisomnografía y poligrafía respiratoria para detección de apnea y trastornos nocturnos.',
           },
           {
             '@type': 'MedicalTherapy',
-            name: 'Programa de Rehabilitación Cardiopulmonar',
-            description: 'Entrenamiento físico aeróbico, fuerza y reeducación respiratoria con acompañamiento de nutrición y psicología.',
+            name: 'Rehabilitación pulmonar',
+            url: `${SITE_URL}/servicios/rehabilitacion-pulmonar`,
+            description: 'Programa de entrenamiento físico supervisado y reeducación respiratoria.',
+          },
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Evaluación pretrasplante pulmonar',
+            url: `${SITE_URL}/servicios/evaluacion-pretrasplante`,
+            description: 'Protocolo multidisciplinario y estratificación para pacientes candidatos a trasplante.',
+          },
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Trasplante pulmonar',
+            url: `${SITE_URL}/servicios/trasplante-pulmonar`,
+            description: 'Programa quirúrgico y de seguimiento clínico de alta especialidad.',
+          },
+          {
+            '@type': 'MedicalTest',
+            name: 'Pruebas de esfuerzo cardiopulmonar',
+            url: `${SITE_URL}/servicios/pruebas-de-esfuerzo`,
+            description: 'Evaluación integrada de la respuesta cardiovascular y respiratoria al ejercicio.',
           },
         ],
-        areaServed: 'Monterrey, Nuevo León, México',
-        openingHours: [CETRA_WEEKDAY_HOURS.schema],
         priceRange: '$$',
         contactPoint: [
           {
             '@type': 'ContactPoint',
             telephone: CONTACT_PHONE_TEL,
-            contactType: 'appointments',
+            contactType: 'patient support',
+            email: CONTACT_EMAIL,
             areaServed: 'MX',
-            availableLanguage: ['es'],
+            availableLanguage: ['es-MX'],
           },
         ],
       },
@@ -104,6 +143,20 @@ export function getClinicSchema() {
         publisher: {
           '@id': `${SITE_URL}#medical-clinic`,
         },
+        inLanguage: 'es-MX',
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}#webpage`,
+        url: SITE_URL,
+        name: SITE_TITLE,
+        isPartOf: {
+          '@id': `${SITE_URL}#website`,
+        },
+        about: {
+          '@id': `${SITE_URL}#medical-clinic`,
+        },
+        inLanguage: 'es-MX',
       },
     ],
   };
@@ -407,3 +460,115 @@ export function getPostFAQSchema(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+/**
+ * Esquema estructurado para la página /contacto:
+ * Vincula ContactPage con la entidad principal MedicalClinic,
+ * puntos de contacto verificables y especificación de horarios.
+ */
+export function getContactPageSchema() {
+  const contactUrl = getAbsoluteUrl('/contacto');
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ContactPage',
+        '@id': `${contactUrl}#webpage`,
+        url: contactUrl,
+        name: 'Contacto y Ubicación | CETRA',
+        description: 'Ubicación, horarios y canales de atención de CETRA en Torre José A. Muguerza, Monterrey.',
+        isPartOf: {
+          '@id': `${SITE_URL}#website`,
+        },
+        about: {
+          '@id': `${SITE_URL}#medical-clinic`,
+        },
+        inLanguage: 'es-MX',
+      },
+      {
+        '@type': 'MedicalClinic',
+        '@id': `${SITE_URL}#medical-clinic`,
+        name: SITE_NAME,
+        telephone: CONTACT_PHONE_TEL,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Belisario Domínguez 2602, Torre José A. Muguerza, Piso 3',
+          addressLocality: 'Monterrey',
+          addressRegion: 'Nuevo León',
+          postalCode: '64060',
+          addressCountry: 'MX',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: CONTACT_PHONE_TEL,
+          contactType: 'patient support',
+          email: CONTACT_EMAIL,
+          areaServed: 'MX',
+          availableLanguage: ['es-MX'],
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '17:00',
+          },
+        ],
+      },
+    ],
+  };
+}
+
+export interface ServiceSchemaInput {
+  slug: string;
+  name: string;
+  description: string;
+  serviceType?: string;
+  schemaType?: 'MedicalTest' | 'MedicalTherapy' | 'MedicalProcedure' | 'Service';
+}
+
+/**
+ * Esquema estructurado para páginas individuales de servicio (/servicios/[slug]):
+ * Modela el servicio médico y lo conecta explícitamente a CETRA (provider: #medical-clinic).
+ */
+export function getServiceSchema(service: ServiceSchemaInput) {
+  const serviceUrl = getAbsoluteUrl(`/servicios/${service.slug}`);
+  const serviceType = service.schemaType ?? 'Service';
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'MedicalWebPage',
+        '@id': `${serviceUrl}#webpage`,
+        url: serviceUrl,
+        name: `${service.name} | CETRA`,
+        description: service.description,
+        isPartOf: {
+          '@id': `${SITE_URL}#website`,
+        },
+        about: {
+          '@id': `${serviceUrl}#service`,
+        },
+        inLanguage: 'es-MX',
+      },
+      {
+        '@type': serviceType,
+        '@id': `${serviceUrl}#service`,
+        name: service.name,
+        serviceType: service.serviceType ?? service.name,
+        url: serviceUrl,
+        description: service.description,
+        provider: {
+          '@id': `${SITE_URL}#medical-clinic`,
+        },
+        areaServed: {
+          '@type': 'City',
+          name: 'Monterrey',
+        },
+      },
+    ],
+  };
+}
+

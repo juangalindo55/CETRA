@@ -572,3 +572,70 @@ export function getServiceSchema(service: ServiceSchemaInput) {
   };
 }
 
+/**
+ * Esquema estructurado para el índice general /servicios:
+ * CollectionPage con ItemList de los servicios clínicos disponibles.
+ */
+export function getServicesCollectionSchema() {
+  const servicesUrl = getAbsoluteUrl('/servicios');
+  const servicesList = [
+    {
+      name: 'Diagnóstico funcional respiratorio',
+      url: getAbsoluteUrl('/servicios/diagnostico-funcional-respiratorio'),
+      description: 'Espirometría, pletismografía, DLCO y evaluación de mecánica pulmonar.',
+    },
+    {
+      name: 'Diagnóstico del sueño',
+      url: getAbsoluteUrl('/servicios/diagnostico-del-sueno'),
+      description: 'Estudios de polisomnografía y poligrafía para detección de apnea y trastornos nocturnos.',
+    },
+    {
+      name: 'Rehabilitación pulmonar',
+      url: getAbsoluteUrl('/servicios/rehabilitacion-pulmonar'),
+      description: 'Programa de entrenamiento físico y reeducación respiratoria supervisada.',
+    },
+    {
+      name: 'Evaluación pretrasplante',
+      url: getAbsoluteUrl('/servicios/evaluacion-pretrasplante'),
+      description: 'Protocolo clínico multidisciplinario para candidatos a trasplante pulmonar.',
+    },
+    {
+      name: 'Trasplante pulmonar',
+      url: getAbsoluteUrl('/servicios/trasplante-pulmonar'),
+      description: 'Programa quirúrgico y de seguimiento clínico de alta especialidad.',
+    },
+    {
+      name: 'Pruebas de esfuerzo',
+      url: getAbsoluteUrl('/servicios/pruebas-de-esfuerzo'),
+      description: 'Evaluación de capacidad funcional real y respuesta cardiopulmonar.',
+    },
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${servicesUrl}#webpage`,
+    url: servicesUrl,
+    name: 'Servicios de Medicina Respiratoria y Trasplante Pulmonar | CETRA',
+    description: 'Catálogo de servicios de diagnóstico respiratorio, sueño, rehabilitación y trasplante pulmonar en Monterrey.',
+    isPartOf: {
+      '@id': `${SITE_URL}#website`,
+    },
+    about: {
+      '@id': `${SITE_URL}#medical-clinic`,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: servicesList.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: service.name,
+        url: service.url,
+        description: service.description,
+      })),
+    },
+    inLanguage: 'es-MX',
+  };
+}
+
+

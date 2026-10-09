@@ -1,7 +1,7 @@
 import Services from '@/components/sections/Services';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SITE_NAME } from '@/lib/site';
+import { SITE_NAME, getServicesCollectionSchema } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: `Servicios`,
@@ -19,8 +19,14 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const collectionSchema = getServicesCollectionSchema();
+
   return (
     <div className="w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-ink text-white">

@@ -42,8 +42,46 @@ export function getClinicSchema() {
           streetAddress: CETRA_LOCATION.address,
           addressLocality: 'Monterrey',
           addressRegion: 'Nuevo León',
+          postalCode: '64060',
           addressCountry: 'MX',
         },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 25.6698,
+          longitude: -100.3475,
+        },
+        hasMap: 'https://www.google.com/maps/place/CETRA+PULMONAR/data=!4m2!3m1!1s0x0:0xf82c4fdf14f21948',
+        sameAs: [
+          'https://www.google.com/maps/place/CETRA+PULMONAR/data=!4m2!3m1!1s0x0:0xf82c4fdf14f21948',
+          'https://www.facebook.com/cetrapulmonar',
+          'https://www.instagram.com/cetrapulmonar',
+        ],
+        medicalSpecialty: [
+          'https://schema.org/Pulmonary',
+          'https://schema.org/RespiratoryTherapy',
+        ],
+        availableService: [
+          {
+            '@type': 'MedicalTest',
+            name: 'Espirometría simple y con broncodilatador',
+            description: 'Evaluación de capacidad y flujos pulmonares para diagnóstico de asma, EPOC y seguimiento respiratorio.',
+          },
+          {
+            '@type': 'MedicalTest',
+            name: 'Pletismografía corporal',
+            description: 'Medición de volúmenes pulmonares estáticos y resistencia de vías aéreas en cabina de pletismografía.',
+          },
+          {
+            '@type': 'MedicalTest',
+            name: 'Difusión de Monóxido de Carbono (DLCO)',
+            description: 'Evaluación del intercambio gaseoso alvéolo-capilar para detección de fibrosis pulmonar y enfisema.',
+          },
+          {
+            '@type': 'MedicalTherapy',
+            name: 'Programa de Rehabilitación Cardiopulmonar',
+            description: 'Entrenamiento físico aeróbico, fuerza y reeducación respiratoria con acompañamiento de nutrición y psicología.',
+          },
+        ],
         areaServed: 'Monterrey, Nuevo León, México',
         openingHours: [CETRA_WEEKDAY_HOURS.schema],
         priceRange: '$$',

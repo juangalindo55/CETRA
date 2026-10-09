@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { CONTACT_WHATSAPP_ORIENTACION } from '@/lib/contact';
-import { getFAQSchema } from '@/lib/site';
+import { getFAQSchema, getHomePageSchema } from '@/lib/site';
 import ButtonCTA from '@/components/ui/ButtonCTA';
 import Reveal from '@/components/ui/Reveal';
 import MotionSequence from '@/components/ui/MotionSequence';
@@ -115,8 +115,14 @@ const questions = [
 ];
 
 export default function Home() {
+  const homeSchema = getHomePageSchema();
+
   return (
     <main className="w-full bg-white text-ink">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
+      />
       <section className="bg-lavender text-ink">
         <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl lg:grid-cols-[1.08fr_0.92fr]">
           <div className="flex flex-col justify-between px-4 pb-12 pt-28 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20 lg:pt-32">

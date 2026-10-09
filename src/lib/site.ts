@@ -145,22 +145,32 @@ export function getClinicSchema() {
         },
         inLanguage: 'es-MX',
       },
-      {
-        '@type': 'WebPage',
-        '@id': `${SITE_URL}#webpage`,
-        url: SITE_URL,
-        name: SITE_TITLE,
-        isPartOf: {
-          '@id': `${SITE_URL}#website`,
-        },
-        about: {
-          '@id': `${SITE_URL}#medical-clinic`,
-        },
-        inLanguage: 'es-MX',
-      },
     ],
   };
 }
+
+/**
+ * Esquema de la página de inicio (WebPage):
+ * Se inyecta exclusivamente en src/app/page.tsx para evitar colisión con
+ * páginas hijas (ContactPage, CollectionPage, MedicalWebPage).
+ */
+export function getHomePageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}#webpage`,
+    url: SITE_URL,
+    name: SITE_TITLE,
+    isPartOf: {
+      '@id': `${SITE_URL}#website`,
+    },
+    about: {
+      '@id': `${SITE_URL}#medical-clinic`,
+    },
+    inLanguage: 'es-MX',
+  };
+}
+
 
 export function getFAQSchema() {
   return {
@@ -292,7 +302,7 @@ export function getArticleSchema(article: ArticleSchemaInput) {
       image: getAbsoluteUrl(article.coverImage),
       author: getPhysicianNode(article.author),
       publisher: { '@id': `${SITE_URL}#medical-clinic` },
-      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      mainEntityOfPage: { '@id': `${url}#webpage` },
     },
   };
 }
@@ -463,60 +473,29 @@ export function getPostFAQSchema(faqs: { question: string; answer: string }[]) {
 
 /**
  * Esquema estructurado para la página /contacto:
- * Vincula ContactPage con la entidad principal MedicalClinic,
- * puntos de contacto verificables y especificación de horarios.
+ * Modela ContactPage y la enlaza limpiamente al grafo central de CETRA
+ * (about: #medical-clinic, isPartOf: #website).
  */
 export function getContactPageSchema() {
   const contactUrl = getAbsoluteUrl('/contacto');
 
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'ContactPage',
-        '@id': `${contactUrl}#webpage`,
-        url: contactUrl,
-        name: 'Contacto y Ubicación | CETRA',
-        description: 'Ubicación, horarios y canales de atención de CETRA en Torre José A. Muguerza, Monterrey.',
-        isPartOf: {
-          '@id': `${SITE_URL}#website`,
-        },
-        about: {
-          '@id': `${SITE_URL}#medical-clinic`,
-        },
-        inLanguage: 'es-MX',
-      },
-      {
-        '@type': 'MedicalClinic',
-        '@id': `${SITE_URL}#medical-clinic`,
-        name: SITE_NAME,
-        telephone: CONTACT_PHONE_TEL,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Belisario Domínguez 2602, Torre José A. Muguerza, Piso 3',
-          addressLocality: 'Monterrey',
-          addressRegion: 'Nuevo León',
-          postalCode: '64060',
-          addressCountry: 'MX',
-        },
-        contactPoint: {
-          '@type': 'ContactPoint',
-          telephone: CONTACT_PHONE_TEL,
-          contactType: 'patient support',
-          email: CONTACT_EMAIL,
-          areaServed: 'MX',
-          availableLanguage: ['es-MX'],
-        },
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '08:00',
-            closes: '17:00',
-          },
-        ],
-      },
-    ],
+    '@type': 'ContactPage',
+    '@id': `${contactUrl}#webpage`,
+    url: contactUrl,
+    name: 'Contacto y Ubicación | CETRA',
+    description: 'Ubicación, horarios y canales de atención de CETRA en Torre José A. Muguerza, Monterrey.',
+    isPartOf: {
+      '@id': `${SITE_URL}#website`,
+    },
+    about: {
+      '@id': `${SITE_URL}#medical-clinic`,
+    },
+    mainEntity: {
+      '@id': `${SITE_URL}#medical-clinic`,
+    },
+    inLanguage: 'es-MX',
   };
 }
 

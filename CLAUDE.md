@@ -6,7 +6,7 @@ CETRA (Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada) es un **s
 
 ## Stack
 
-- **Framework:** Next.js 16.2.3 (App Router, Server Components por defecto)
+- **Framework:** Next.js 16.3.8 (App Router, Server Components por defecto)
 - **UI:** React 19.2.5 + TypeScript 6.0 (strict, prohibido `any`)
 - **Estilos:** Tailwind CSS 4.2.2 + plugin `@tailwindcss/typography` — solo tokens del Design System
 - **Animaciones:** sistema híbrido — Framer Motion 12.38 (mayoría) + anime.js 4.5 y Web Animations API en hooks propios. Ver `docs/ANIMACIONES.md` antes de tocar nada.

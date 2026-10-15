@@ -10,7 +10,7 @@
 1. `CLAUDE.md` (10 min) — Stack, estructura, tokens, patrones clave. El doc más importante.
 2. `README.md` (10 min) — Visión general del proyecto
 3. `DESIGN_SYSTEM.md` (5 min) — Colores y tipografía. Crítico antes de tocar estilos.
-4. `12_CONVENCIONES_CODIGO.md` (10 min) — Cómo se escribe código aquí
+4. `docs/CONVENCIONES_CODIGO.md` (10 min) — Cómo se escribe código aquí
 
 ---
 
@@ -26,7 +26,7 @@ npm install
 
 # 3. Configurar variables de entorno
 cp .env.example .env.local
-# Pedir valores a Juan (ver 13_VARIABLES_ENTORNO.md)
+# Referencia de variables: docs/VARIABLES_ENTORNO.md
 # Por ahora solo necesitas las variables de Next.js — Supabase es Fase 3
 
 # 4. Levantar el servidor
@@ -62,8 +62,8 @@ Abre 2-3 componentes y observa:
 
 1. Juan te asigna una tarea pequeña (fix de UI, texto, CTA, etc.)
 2. Crea una rama: `git checkout -b fix/nombre-descriptivo`
-3. Consulta el doc relevante según la tarea (ver tabla en `00_INICIO.md`)
-4. Sigue `12_CONVENCIONES_CODIGO.md` al escribir código
+3. Consulta el doc relevante según la tarea (ver la tabla de documentación en `CLAUDE.md`)
+4. Sigue `docs/CONVENCIONES_CODIGO.md` al escribir código
 5. Prueba en mobile y desktop
 6. Commit y push: `git commit -m "fix: descripción corta"`
 
@@ -75,14 +75,14 @@ Abre 2-3 componentes y observa:
 |-----------|-----------|-------------|
 | 1 | `CLAUDE.md` | Primero — resumen ejecutivo del proyecto |
 | 2 | `DESIGN_SYSTEM.md` | Antes de tocar estilos |
-| 3 | `12_CONVENCIONES_CODIGO.md` | Antes de escribir código |
-| 4 | `21_FLOWS_UX.md` | Al trabajar en UI o CTAs |
-| 5 | `22_NEGOCIO.md` | Para entender el negocio y el copy |
+| 3 | `docs/CONVENCIONES_CODIGO.md` | Antes de escribir código |
+| 4 | `docs/FLOWS_UX.md` | Al trabajar en UI o CTAs |
+| 5 | `docs/NEGOCIO.md` | Para entender el negocio y el copy |
 | 6 | `ARCHITECTURE.md` | Para entender rutas y arquitectura |
-| — | `13_VARIABLES_ENTORNO.md` | Al configurar entorno |
-| — | `10_ERRORES_Y_MEJORAS.md` | Si encuentras un bug |
-| — | `11_HISTORIAL.md` | Para ver qué se ha construido |
-| — | `03_BASE_DATOS.md` | Solo cuando se implemente Supabase (Fase 3) |
+| — | `docs/VARIABLES_ENTORNO.md` | Al configurar entorno |
+| — | `docs/ERRORES_Y_MEJORAS.md` | Si encuentras un bug |
+| — | `docs/HISTORIAL.md` | Para ver qué se ha construido |
+| — | `docs/BASE_DATOS.md` | Solo cuando se implemente Supabase (Fase 3) |
 
 ---
 
@@ -120,7 +120,7 @@ git push origin feat/nombre-de-la-feature
 feat: agregar sección de investigación con animaciones
 fix: corregir overflow en mapa mobile de contacto
 style: ajustar padding de cards en mobile
-docs: actualizar 11_HISTORIAL.md con cambios de Mayo
+docs: actualizar docs/HISTORIAL.md con cambios de Mayo
 refactor: extraer datos de servicios a service-hub.ts
 ```
 
@@ -158,7 +158,7 @@ Si usa `useState`, `useEffect`, `useRef`, o `motion` de Framer Motion → sí. S
 Vercel. Cada push a `main` hace deploy automático.
 
 **¿Hay base de datos?**
-No todavía. Supabase está planeado para Fase 3. Ver `03_BASE_DATOS.md` para el diseño.
+No todavía. Supabase está planeado para Fase 3. Ver `docs/BASE_DATOS.md` para el diseño.
 
 **¿Qué hago si encuentro un bug?**
-Documéntalo en `10_ERRORES_Y_MEJORAS.md` con la plantilla, luego corrígelo.
+Documéntalo en `docs/ERRORES_Y_MEJORAS.md` con la plantilla, luego corrígelo.

@@ -59,7 +59,7 @@ Basado en una paleta que equilibra la tecnología con el bienestar humano.
 ## 🛠 Tech Stack
 
 ### Núcleo
-- **Framework**: [Next.js 16.2.3](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16.3.8](https://nextjs.org/) (App Router)
 - **Librería UI**: [React 19.2.5](https://react.dev/)
 - **Estilos**: [Tailwind CSS 4.2.2](https://tailwindcss.com/) con `@tailwindcss/typography`
 - **Lenguaje**: [TypeScript 6.0](https://www.typescriptlang.org/)
@@ -126,7 +126,7 @@ cetra/
 - [x] Sistema de animaciones con soporte de `prefers-reduced-motion`.
 
 ### Fase 3: Datos e Infraestructura (En Progreso)
-- [ ] Integración con Supabase para gestión de datos clínicos (único bloque restante de la Fase 3).
+- [ ] Integración con Supabase para gestión de datos clínicos (pendiente de la Fase 3).
 - [ ] Dashboard de administración para contenido médico.
 - [ ] Auditoría Lighthouse (Objetivo: 100/100/100/100).
 

@@ -1,7 +1,7 @@
 # CETRA - Technical Architecture & Standards
 
 ## Stack Tecnológico
-- **Framework:** Next.js 16.2.3 (App Router).
+- **Framework:** Next.js 16.3.8 (App Router).
 - **Runtime:** Node.js 24 LTS (default), compatible con 20+.
 - **Lenguaje:** TypeScript 6.0 (Strict Mode: on).
 - **Librería UI:** React 19.2.5 con Server Components.

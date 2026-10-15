@@ -1,8 +1,8 @@
 # CETRA - High-End Medical Development Roadmap
 
 ## Fase 1: Entorno y Core Architecture (Setup Atómico) — ✅ COMPLETADA
-- [x] **Configuración Next.js 16.2.3:** App Router, TypeScript 6.0, Tailwind CSS 4.2.2.
-- [x] **Tailwind Config:** Tokens de `DESIGN_SYSTEM.md` (Violet Heritage, Electric Violet, Base Black/White, Soft Gray).
+- [x] **Configuración Next.js 16.3.8:** App Router, TypeScript 6.0, Tailwind CSS 4.2.2.
+- [x] **Tokens Tailwind v4:** bloque `@theme` en `src/app/globals.css` (sin `tailwind.config.ts`), según `DESIGN_SYSTEM.md` (Violet Heritage, Electric Violet, Base Black/White, Soft Gray).
 - [x] **Estructura de Carpetas:**
     - `/src/components/ui`: Componentes base reutilizables.
     - `/src/components/sections`: Secciones de impacto (Hero, Timeline, Quiz, Especialistas).

@@ -155,7 +155,7 @@ Edita el archivo `.mdx` en `src/content/servicios/`. Los headings necesitan `id`
 Si usa `useState`, `useEffect`, `useRef`, o `motion` de Framer Motion → sí. Si solo renderiza HTML → no.
 
 **¿Dónde se despliega el sitio?**
-Vercel. Cada push a `main` hace deploy automático.
+Vercel. Cada push a `preview-staging` genera un Preview. Producción se publica promoviendo el Preview revisado desde el panel de Vercel (lo hace el responsable del proyecto); un push a `main` también despliega a producción, así que no lo hagas sin avisar.
 
 **¿Hay base de datos?**
 No todavía. Supabase está planeado para Fase 3. Ver `docs/BASE_DATOS.md` para el diseño.

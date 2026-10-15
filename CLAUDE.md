@@ -186,12 +186,12 @@ Los `<h2>` de MDX llevan solo `id` (para el TableOfContents) — **sin `classNam
 
 ## Estado del Proyecto (Julio 2026)
 
-Rama de trabajo: **`preview-staging`**. `main` es la rama de producción en Vercel (publica en cetrapulmonar.com; `preview-staging` genera solo Preview). Al 2026-10-15 ambas ramas están en el mismo commit (`e54c2cd`).
+Rama de trabajo: **`preview-staging`** (cada push genera un Preview en Vercel). Producción (cetrapulmonar.com) sale de **promover un Preview desde el panel de Vercel**; el responsable del proyecto revisa el último Preview y lo promueve. Promover **no mueve `main`**: después se alinea con `git checkout main && git merge --ff-only preview-staging && git push`, para que `main` refleje producción (en Vercel es la rama de producción, así que un push a `main` también despliega). `main` no es la fuente de verdad. Al 2026-10-15 ambas ramas coinciden (`e54c2cd`).
 
 - **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
 - **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente (único bloque restante)
 - **Fase 4:** 🔄 En progreso — Mobile OK, SEO/structured data listo, Lighthouse audit pendiente
-- **Fase 5:** 🔄 En progreso — Analytics montado (Vercel Analytics + Speed Insights); deploy de producción activo desde `main` (cetrapulmonar.com); falta la auditoría Lighthouse
+- **Fase 5:** 🔄 En progreso — Analytics montado (Vercel Analytics + Speed Insights); producción activa en cetrapulmonar.com (vía Promote desde Vercel); falta la auditoría Lighthouse
 
 Cerrado desde la última revisión: `ButtonCTA` unificando los CTAs, `PhotoFrame`, sistema de animaciones con `prefers-reduced-motion`, 4 secciones migradas a Server Components, página FAQ con structured data, 404 custom, cédulas profesionales y preparación COFEPRIS.
 

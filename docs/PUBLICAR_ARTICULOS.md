@@ -230,12 +230,14 @@ prueba), no publica en **cetrapulmonar.com**. Revisa ahí el artículo antes de 
 bueno.
 
 > **No hagas push a `main`.** Siempre se trabaja y se revisa primero en `preview-staging`.
-> Vercel tiene `main` como rama de producción, así que el artículo solo sale al dominio
-> público cuando el responsable del proyecto pasa esos cambios a `main`. Antes de
-> avisarle, asegúrate de que el artículo esté aprobado por un médico y de que `draft`
-> diga `false`.
+> El artículo solo sale al dominio público cuando el responsable del proyecto revisa el
+> Preview más reciente y lo **promueve a producción desde el panel de Vercel**
+> (Deployments → Promote to Production). Antes de avisarle, asegúrate de que el artículo
+> esté aprobado por un médico y de que `draft` diga `false`.
 
-<!-- Verificado en Vercel (oct 2026): productionBranch = main; dominio cetrapulmonar.com. -->
+<!-- Verificado en Vercel (oct 2026): productionBranch = main; dominio cetrapulmonar.com.
+     Las promociones de jul y oct 2026 aparecen como despliegues de producción con origen
+     `redeploy` y rama preview-staging. Promover NO mueve `main`: ver CLAUDE.md. -->
 
 ---
 

@@ -74,7 +74,11 @@ export async function generateMetadata({
       publishedTime: frontmatter.publishedAt,
       modifiedTime: frontmatter.lastUpdated,
       authors: [post.author.name],
-      images: [frontmatter.coverImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${frontmatter.title} | ${SITE_NAME}`,
+      description: frontmatter.description,
     },
   };
 }

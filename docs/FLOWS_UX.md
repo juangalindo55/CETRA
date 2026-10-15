@@ -19,8 +19,8 @@
 
 | Perfil | Motivación | Punto de entrada | Componente clave |
 |--------|-----------|-----------------|------------------|
-| **Paciente potencial** | Tiene enfermedad pulmonar, busca opciones | Google → `/` | Timeline + EligibilityQuiz |
-| **Familiar del paciente** | Investiga para un ser querido | Google → `/` | Timeline + Quiz + Testimonios |
+| **Paciente potencial** | Tiene enfermedad pulmonar, busca opciones | Google → `/` | Servicios + Quiz (`/revision/quiz-elegibilidad`) |
+| **Familiar del paciente** | Investiga para un ser querido | Google → `/` | Servicios + Quiz (`/revision/quiz-elegibilidad`) + Testimonios |
 | **Médico referidor** | Busca especialistas para referir | Google → `/especialistas` | Cards de especialistas |
 | **Paciente actual** | Busca info de su servicio específico | Directo → `/servicios/[slug]` | MDX + TableOfContents |
 
@@ -38,10 +38,6 @@ Landing (/)
 Hero                         → CTA: "Conoce Más" → /servicios
   ↓
 Marquee (aseguradoras)       → Sin CTA — genera confianza institucional
-  ↓
-Timeline (proceso)           → Interactivo, 4 fases — sin CTA directo
-  ↓
-EligibilityQuiz (¿candidato?)→ CTA resultado → WhatsApp
   ↓
 Services (grid)              → CTA por card → /servicios/[slug]
   ↓
@@ -92,7 +88,7 @@ Footer                       → Teléfono, email, mapa, WhatsApp
 ```
 Sin CTA. Función: validación institucional — "aceptan mi seguro".
 
-#### Timeline (El proceso de trasplante)
+#### Timeline (El proceso de trasplante) — no montado en la landing
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -111,7 +107,7 @@ Sin CTA. Función: validación institucional — "aceptan mi seguro".
 **Interacción:** Click en fase → expande esa fase, colapsa la anterior.
 **Mobile:** Stack vertical, expandir/colapsar con tap.
 
-#### EligibilityQuiz (¿Eres candidato?)
+#### EligibilityQuiz (¿Eres candidato?) — vive en `/revision/quiz-elegibilidad`, no en la landing
 
 ```
 Estado inicial:

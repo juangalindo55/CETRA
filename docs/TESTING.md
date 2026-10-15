@@ -36,7 +36,9 @@ Mientras no haya suite automatizada, usar este checklist antes de cada deploy:
 
 ### Landing (`/`)
 - [ ] Hero carga correctamente con animaciones fade-in
-- [ ] Timeline — las 4 fases son clickeables y muestran contenido correcto
+- [ ] (Timeline y EligibilityQuiz no están en la landing; el Quiz se prueba en `/revision/quiz-elegibilidad`)
+
+### Quiz (`/revision/quiz-elegibilidad`)
 - [ ] EligibilityQuiz — flujo completo: 4 preguntas → resultado correcto con ≥3 "Sí" → resultado alternativo con <3 "Sí" → botón reset funciona
 - [ ] Specialists — cards de Cristina Durán, Ivis Pérez, Brandon Hernández visibles
 - [ ] CTA "Agendar Evaluación" abre WhatsApp con mensaje pre-cargado
@@ -67,7 +69,7 @@ Mientras no haya suite automatizada, usar este checklist antes de cada deploy:
 ### Responsive (Mobile)
 - [ ] Landing en 375px (iPhone SE) — sin overflow horizontal
 - [ ] Navbar mobile funciona (menú hamburguesa si existe)
-- [ ] Timeline legible en mobile
+- [ ] Quiz de elegibilidad legible en mobile (`/revision/quiz-elegibilidad`)
 - [ ] Cards de especialistas apiladas en mobile
 - [ ] CTAs con tap targets mínimo 44x44px
 

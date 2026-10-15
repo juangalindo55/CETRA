@@ -14,7 +14,6 @@ const staticRoutes = [
   '/preguntas-frecuentes',
   '/blog',
   '/revision/quiz-elegibilidad',
-  '/privacidad',
   '/terminos',
 ];
 

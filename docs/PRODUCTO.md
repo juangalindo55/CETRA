@@ -159,7 +159,7 @@ Búsqueda Google
 | ✅ 1-2 | Presencia digital profesional, captación orgánica SEO |
 | 🔄 3 | Formulario de contacto con backend Supabase, gestión de leads |
 | 🔄 4 | Lighthouse 100, Core Web Vitals óptimos (factor SEO) |
-| ⏭️ 5 | Go-live oficial, analytics de conversión, monitoreo |
+| 🔄 5 | Producción activa en cetrapulmonar.com; analytics montado (Vercel Analytics + Speed Insights); falta monitoreo de conversiones |
 
 ---
 

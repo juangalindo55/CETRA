@@ -178,7 +178,7 @@ Impresión en Google (SEO)
 | Fase 1-2 | ✅ Completa | Presencia digital profesional, posicionamiento SEO inicial |
 | Fase 3 — Supabase | 🔄 Próxima | Gestión de leads, formulario de contacto con backend, dashboard admin |
 | Fase 4 — Lighthouse | 🔄 En progreso | Mejora de ranking SEO (Core Web Vitals), mejor experiencia mobile |
-| Fase 5 — Producción | ⏭️ Siguiente | Go-live oficial, Google Analytics, monitoreo de conversiones |
+| Fase 5 — Producción | 🔄 En progreso | Producción activa en cetrapulmonar.com; Vercel Analytics montado; falta monitoreo de conversiones |
 
 ---
 

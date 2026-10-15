@@ -186,7 +186,7 @@ Los `<h2>` de MDX llevan solo `id` (para el TableOfContents) — **sin `classNam
 
 ## Estado del Proyecto (Julio 2026)
 
-Rama de trabajo: **`preview-staging`** (cada push genera un Preview en Vercel). Producción (cetrapulmonar.com) sale de **promover un Preview desde el panel de Vercel**; el responsable del proyecto revisa el último Preview y lo promueve. Promover **no mueve `main`**: después se alinea con `git checkout main && git merge --ff-only preview-staging && git push`, para que `main` refleje producción (en Vercel es la rama de producción, así que un push a `main` también despliega). `main` no es la fuente de verdad. Al 2026-10-15 ambas ramas coinciden (`e54c2cd`).
+Rama de trabajo: **`preview-staging`** (cada push genera un Preview en Vercel). Producción (cetrapulmonar.com) sale de **promover un Preview desde el panel de Vercel**; el responsable del proyecto revisa el último Preview y lo promueve. Promover **no mueve `main`**: después se alinea con `git checkout main && git merge --ff-only preview-staging && git push`, para que `main` refleje producción (en Vercel es la rama de producción, así que un push a `main` también despliega). `main` no es la fuente de verdad. Antes de trabajar, comprobar con `git log --oneline -1 origin/main origin/preview-staging` si coinciden.
 
 - **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
 - **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente (único bloque restante)

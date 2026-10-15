@@ -100,18 +100,18 @@ Pedir a Juan:
 ## Git Workflow
 
 ```bash
-# Rama principal (no pushear directo)
-main  ← producción, auto-deploy a Vercel
-
-# Crear rama para tu trabajo
-git checkout -b fix/nombre-del-fix
-git checkout -b feat/nombre-de-la-feature
+# Rama de trabajo: preview-staging (cada push genera un Preview en Vercel)
+# main es la rama de producción en Vercel: NO pushear a main sin avisar.
+git checkout preview-staging
 
 # Flujo estándar
 git add src/components/sections/MiComponente.tsx   # solo los archivos de tu cambio
 git commit -m "feat: descripción corta del cambio"
-git push origin feat/nombre-de-la-feature
-# → Pull Request en GitHub → Juan revisa → merge a main
+git push origin preview-staging
+# → Revisar el Preview en Vercel → el responsable del proyecto lo promueve
+#   a producción desde el panel (Deployments → Promote to Production)
+# → Después se alinea main: git checkout main && git merge --ff-only preview-staging && git push
+# Ver CLAUDE.md → "Estado del Proyecto" y docs/PUBLICAR_ARTICULOS.md
 ```
 
 ### Convención de commits

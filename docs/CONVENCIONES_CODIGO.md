@@ -33,7 +33,7 @@ Todo archivo `.ts` o `.tsx` no trivial empieza con un bloque descriptivo:
  * @description Genera una página estática por cada archivo MDX en /content/servicios/.
  *              Incluye hero, barra de progreso, tabla de contenidos y CTA final.
  * @see src/content/servicios/ para los archivos de contenido
- * @see 21_FLOWS_UX.md — Flujo de Servicio
+ * @see docs/FLOWS_UX.md — Flujo de Servicio
  */
 ```
 
@@ -264,12 +264,13 @@ export default function Hero() {
 
 ```tsx
 // ✅ Correcto — tokens del Design System
-className="text-[#311B92]"        // Deep Violet (Heritage) — confianza, navegación
-className="text-[#7C3AED]"        // Electric Violet — CTAs, acentos, interacción
-className="bg-[#09090B]"          // Base Black — tipografía, secciones de impacto
-className="bg-[#F4F4F5]"          // Soft Gray — separaciones sutiles
-className="text-[#1a0a3d]"        // Violeta muy oscuro — headings y texto display
-className="bg-[#f5f3ff]"          // Violeta ultra-suave — fondos de cards/callouts
+className="text-violet-heritage"  // Deep Violet — confianza, navegación
+className="text-violet-electric"  // Electric Violet — CTAs, acentos, interacción
+className="bg-base-black"         // Base Black — tipografía, secciones de impacto
+className="bg-soft-gray"          // Soft Gray — separaciones sutiles
+className="text-ink"              // Headings display sobre fondo claro
+className="bg-lavender"           // Fondos de bloque suaves (CTA, cards)
+// Nombres exactos: bloque @theme de src/app/globals.css. Código nuevo: tokens, no hex.
 
 // ❌ Incorrecto — rompe el Design System
 className="text-blue-600"         // Azul genérico de industria médica
@@ -419,5 +420,5 @@ Antes de dar por terminado un componente:
 - [ ] ¿No hay `console.log` olvidados?
 - [ ] ¿No se hardcodearon datos de contacto?
 - [ ] ¿Los colores son del Design System?
-- [ ] ¿Se actualizó `10_ERRORES_Y_MEJORAS.md` si se resolvió un bug?
-- [ ] ¿Se actualizó `11_HISTORIAL.md` al final de la sesión?
+- [ ] ¿Se actualizó `docs/ERRORES_Y_MEJORAS.md` si se resolvió un bug?
+- [ ] ¿Se actualizó `docs/HISTORIAL.md` al final de la sesión?

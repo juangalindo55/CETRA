@@ -40,13 +40,13 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ---
 
-## Variables Planeadas — Fase 5 (Analytics y Monitoring)
+## Analytics (activo) y Monitoring (planeado)
 
 ```env
-# Vercel Analytics (activar desde Vercel Dashboard, no requiere variable manual)
+# Vercel Analytics + Speed Insights: ya montados en layout.tsx; no requieren variable manual
 # NEXT_PUBLIC_VERCEL_ANALYTICS_ID — se inyecta automáticamente por Vercel
 
-# Error tracking (si se agrega Sentry)
+# Planeado — error tracking (si se agrega Sentry)
 NEXT_PUBLIC_SENTRY_DSN=https://...@sentry.io/...
 SENTRY_AUTH_TOKEN=...
 SENTRY_ORG=cetra

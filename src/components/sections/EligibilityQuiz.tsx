@@ -110,9 +110,9 @@ export default function EligibilityQuiz() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-[10px] tracking-[0.3em] text-[#7C3AED] uppercase mb-4">Evaluación inicial</p>
-          <h2 className="font-display text-3xl md:text-4xl font-light text-[#1a0a3d] leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl font-light text-[#1a0a3d] leading-tight">
             ¿Podrías ser candidato?
-          </h2>
+          </h1>
         </div>
 
         {/* Progress Bar */}

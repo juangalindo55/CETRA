@@ -98,9 +98,9 @@ export default function FAQ() {
             <p className="text-[10px] tracking-[0.3em] text-violet-electric uppercase mb-4 font-light">
               Resuelve tus dudas
             </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light text-ink leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl font-light text-ink leading-tight">
               Preguntas Frecuentes sobre Estudios Respiratorios
-            </h2>
+            </h1>
           </motion.div>
         </div>
 

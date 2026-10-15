@@ -36,7 +36,7 @@
 - **Arquitectura Next.js 16**: Aprovechamiento de Server Components y React 19 para rendimiento Grade-A.
 - **Motor MDX**: Contenido médico gestionado via MDX-Remote con parseo de `gray-matter`.
 - **Estética Glassmorphism**: Capas visuales con desenfoque de fondo y bordes translúcidos.
-- **Animaciones "Fade-In-Up"**: Transiciones orquestadas con Framer Motion en cada sección.
+- **Animaciones "Fade-In-Up"**: Sistema híbrido: Framer Motion en la mayoría de secciones, anime.js en el Hero y hooks propios (Web Animations API), más animaciones CSS; todo respeta `prefers-reduced-motion`. Ver `docs/ANIMACIONES.md`.
 - **Optimización de Activos**: Sistema SVGO para manejo eficiente de vectores e imágenes optimizadas.
 
 ---
@@ -120,13 +120,13 @@ cetra/
 - [x] Implementación del Sistema de Diseño Premium.
 - [x] Arquitectura de componentes base.
 
-### Fase 2: Experiencia (En Progreso)
+### Fase 2: Experiencia (Completado)
 - [x] Timeline Interactivo y Quiz de elegibilidad.
 - [x] Sistema MDX para servicios dinámicos.
-- [/] Refinamiento de micro-interacciones (Framer Motion).
+- [x] Sistema de animaciones con soporte de `prefers-reduced-motion`.
 
-### Fase 3: Datos e Infraestructura (Siguiente)
-- [ ] Integración con Supabase para gestión de datos clínicos.
+### Fase 3: Datos e Infraestructura (En Progreso)
+- [ ] Integración con Supabase para gestión de datos clínicos (único bloque restante de la Fase 3).
 - [ ] Dashboard de administración para contenido médico.
 - [ ] Auditoría Lighthouse (Objetivo: 100/100/100/100).
 
@@ -138,5 +138,5 @@ cetra/
 - **Email**: contacto@cetrapulmonar.com
 - **Ubicación**: Torre José A. Muguerza, Piso 3, Monterrey, N.L.
 
-**Última actualización**: Agosto 2026 | **Versión**: 0.2.1
+**Última actualización**: Octubre 2026 | **Versión**: 1.4.0
 Producido bajo estándares de excelencia para el **CENTRO DE TRASPLANTE PULMONAR Y MEDICINA RESPIRATORIA AVANZADA**.

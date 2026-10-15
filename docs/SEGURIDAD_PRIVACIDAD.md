@@ -29,7 +29,7 @@ Los datos de salud son clasificados como **"datos sensibles"** bajo la LFPDPPP, 
 |---|---|---|
 | Interacciones con Quiz (respuestas Sí/No) | Solo en memoria del browser, no persiste | Bajo |
 | Clicks en WhatsApp | Redirige a wa.me (no almacena datos en CETRA) | Bajo |
-| Visitas al sitio | No hay analytics activo aún | Ninguno |
+| Visitas al sitio y rendimiento | Vercel Analytics + Speed Insights (montados en `src/app/layout.tsx`) | Bajo — medición agregada; confirmar en el aviso de privacidad |
 
 ### Fase 3 — Con Supabase (datos clínicos)
 | Tipo de dato | Clasificación LFPDPPP | Medida requerida |
@@ -71,8 +71,8 @@ CREATE POLICY "Médico crea expediente"
   WITH CHECK (auth.jwt() ->> 'role' = 'medico');
 ```
 
-### Headers de seguridad (Fase 5 — Vercel)
-Configurar en `next.config.ts` antes del deploy a producción:
+### Headers de seguridad (implementados)
+Ya configurados en `next.config.ts` (`securityHeaders`: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy). La fuente de verdad es ese archivo; el bloque siguiente es solo referencia histórica del diseño inicial y puede diferir:
 
 ```typescript
 const headers = [
@@ -143,7 +143,7 @@ Solo estas transferencias están autorizadas según el Aviso de Privacidad de CE
 - [ ] Backups automáticos de la base de datos configurados
 
 ### Fase 5 (Producción) — pendiente
-- [ ] Headers de seguridad (CSP, X-Frame-Options, HSTS) en `next.config.ts`
+- [x] Headers de seguridad (CSP, X-Frame-Options, HSTS) en `next.config.ts`
 - [ ] HTTPS forzado en Vercel
 - [ ] Logs de acceso a datos sensibles habilitados en Supabase
 - [ ] Política de retención de datos definida y documentada

@@ -12,7 +12,7 @@
 | E-001 | Bug | Rutas inexistentes devuelven HTTP 200 en vez de 404 | ✅ Resuelto |
 | M-001 | Mejora | Fuentes declaradas con variables CSS que no existen | ✅ Aplicada |
 | M-002 | Mejora | Imágenes OG por artículo del blog | ✅ Aplicada |
-| M-003 | Mejora | `tailwind.config.ts` es código muerto en Tailwind v4 | Pendiente |
+| M-003 | Mejora | `tailwind.config.ts` es código muerto en Tailwind v4 | ✅ Aplicada |
 
 *(Agrega entradas conforme aparezcan)*
 
@@ -103,7 +103,7 @@ Se añadió `export const dynamicParams = false;` tanto en `/blog/[slug]` y `/bl
 **Estado:** ✅ Aplicada (2026-07-28)
 
 **Descripción:**
-`tailwind.config.ts` define `sans: ['var(--font-dm-sans)', ...]` y
+`tailwind.config.ts` (eliminado en M-003) definía `sans: ['var(--font-dm-sans)', ...]` y
 `display: ['var(--font-playfair)', ...]`, pero **ninguna de esas dos variables se
 define en el proyecto**: no hay `next/font`, ni `@font-face`, ni enlace a Google Fonts.
 Las fuentes cargan porque el bloque `@theme` de `globals.css` las declara por nombre
@@ -140,7 +140,7 @@ para que el código diga lo que de verdad ocurre.
 **Fecha:** 2026-07-28
 **Archivo(s) o área:** `tailwind.config.ts`, `src/app/globals.css`
 **Prioridad:** Baja
-**Estado:** Pendiente
+**Estado:** ✅ Aplicada (2026-10-15)
 
 **Descripción:**
 En Tailwind v4 el archivo de configuración JS solo se carga con una directiva
@@ -156,6 +156,12 @@ la referencia de `CLAUDE.md` para que apunte al bloque `@theme` de `globals.css`
 
 **Cómo verificarlo:**
 `grep -n "@config" src/app/globals.css` no devuelve resultados.
+
+**Resultado:**
+Se eliminó `tailwind.config.ts`. Los tokens (colores y fuentes) viven solo en el bloque
+`@theme` de `src/app/globals.css`; el plugin typography ya se cargaba con `@plugin` en ese
+mismo archivo y `content` lo detecta Tailwind v4 automáticamente. `npm run build` pasa sin
+errores y el CSS generado conserva los `--color-*`, `--font-*` y `.prose`.
 
 ---
 

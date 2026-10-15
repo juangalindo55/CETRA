@@ -75,7 +75,7 @@ public/
 
 ## Design Tokens (no usar otros colores)
 
-Definidos en `tailwind.config.ts` — usar el nombre del token, no el hex.
+Definidos en el bloque `@theme` de `src/app/globals.css` (Tailwind v4; única fuente de tokens, no hay `tailwind.config.ts`) — usar el nombre del token, no el hex.
 
 | Token Tailwind | Hex | Uso |
 |----------------|-----|-----|
@@ -208,7 +208,7 @@ Implementados y funcionales, pero hoy sin ningún import en el árbol. Antes de 
 
 ## Deuda Técnica Documentada
 
-**Colores Hex vs Tokens Tailwind** — 30+ archivos usan valores hexadecimales directamente (`#311B92`, `#7C3AED`, `#1a0a3d`, `#09090B`) en lugar de los tokens Tailwind CSS definidos (`text-violet-heritage`, `bg-violet-electric`, `text-base-black`). Los valores visuales son correctos, pero esto viola la regla "Sin azules, sin grises genéricos". **Próxima acción**: Refactorización dedicada con prueba visual completa (sesión separada). **Regla para código nuevo**: Todo componente nuevo DEBE usar tokens Tailwind desde el inicio — buscar en `tailwind.config.ts` los nombres exactos disponibles.
+**Colores Hex vs Tokens Tailwind** — 30+ archivos usan valores hexadecimales directamente (`#311B92`, `#7C3AED`, `#1a0a3d`, `#09090B`) en lugar de los tokens Tailwind CSS definidos (`text-violet-heritage`, `bg-violet-electric`, `text-base-black`). Los valores visuales son correctos, pero esto viola la regla "Sin azules, sin grises genéricos". **Próxima acción**: Refactorización dedicada con prueba visual completa (sesión separada). **Regla para código nuevo**: Todo componente nuevo DEBE usar tokens Tailwind desde el inicio — buscar en el bloque `@theme` de `src/app/globals.css` los nombres exactos disponibles.
 
 **Dos sistemas de animación conviviendo** — Framer Motion en ~15 archivos, anime.js 4.5 en `Hero` + 2 hooks, y Web Animations API nativa en `useFadeInOnScroll` / `MotionSequence`. Funciona, pero son tres formas de hacer lo mismo. No migrar nada sin leer `docs/ANIMACIONES.md` primero — hubo una tanda larga de fixes por conflictos entre sistemas y por el bundling de anime.js con Turbopack.
 

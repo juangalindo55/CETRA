@@ -80,7 +80,7 @@ git log --oneline -10
 | `style:` | Cambio visual / CSS sin lógica |
 | `refactor:` | Refactorización sin cambio de comportamiento |
 | `docs:` | Solo documentación MD |
-| `config:` | next.config.ts, tailwind.config.ts, tsconfig.json |
+| `config:` | next.config.ts, tsconfig.json, eslint.config.mjs |
 | `perf:` | Mejora de rendimiento |
 
 ---

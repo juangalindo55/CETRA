@@ -156,8 +156,8 @@
 
 ## v0.3.0 — Optimización y Lighthouse (Fase 4)
 
-**Período:** TBD
-**Estado:** ⏭️ Siguiente
+**Período:** En curso (Fase 4)
+**Estado:** 🔄 En progreso — mobile y SEO/structured data ya cubiertos; el resto sigue pendiente
 
 ### PENDIENTE
 - [ ] Lighthouse audit — objetivo 100/100/100/100
@@ -169,14 +169,17 @@
 
 ## v1.0.0 — Producción (Fase 5)
 
-**Período:** TBD
-**Estado:** ⏭️ Futuro
+**Período:** En curso (Fase 5)
+**Estado:** 🔄 En progreso — producción activa; falta Supabase y monitoreo
+
+### HECHO (verificado oct 2026)
+- [x] Deploy Vercel production con dominio `cetrapulmonar.com` (rama de producción: `main`; `preview-staging` genera Preview)
+- [x] Headers de seguridad (CSP, HSTS y otros) en `next.config.ts`
+- [x] Analytics: Vercel Analytics + Speed Insights montados en `layout.tsx`
 
 ### PENDIENTE
-- [ ] Deploy Vercel production con dominio `cetrapulmonar.com`
-- [ ] Headers de seguridad (CSP, HSTS)
 - [ ] Supabase production con backups
-- [ ] Analytics y error tracking
+- [ ] Error tracking
 - [ ] Monitoreo de uptime
 
 ---

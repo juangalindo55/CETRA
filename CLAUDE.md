@@ -186,12 +186,12 @@ Los `<h2>` de MDX llevan solo `id` (para el TableOfContents) — **sin `classNam
 
 ## Estado del Proyecto (Julio 2026)
 
-Rama de trabajo: **`preview-staging`**. `main` va 71 commits atrás — la rama es la fuente de verdad.
+Rama de trabajo: **`preview-staging`**. `main` es la rama de producción en Vercel (publica en cetrapulmonar.com; `preview-staging` genera solo Preview). Al 2026-10-15 ambas ramas están en el mismo commit (`e54c2cd`).
 
 - **Fases 1-2:** ✅ Completas — Layout, Design System, componentes base
 - **Fase 3:** 🔄 En progreso — MDX dinámico listo, Supabase pendiente (único bloque restante)
 - **Fase 4:** 🔄 En progreso — Mobile OK, SEO/structured data listo, Lighthouse audit pendiente
-- **Fase 5:** 🔄 En progreso — Analytics montado (Vercel Analytics + Speed Insights); deploy de producción pendiente
+- **Fase 5:** 🔄 En progreso — Analytics montado (Vercel Analytics + Speed Insights); deploy de producción activo desde `main` (cetrapulmonar.com); falta la auditoría Lighthouse
 
 Cerrado desde la última revisión: `ButtonCTA` unificando los CTAs, `PhotoFrame`, sistema de animaciones con `prefers-reduced-motion`, 4 secciones migradas a Server Components, página FAQ con structured data, 404 custom, cédulas profesionales y preparación COFEPRIS.
 

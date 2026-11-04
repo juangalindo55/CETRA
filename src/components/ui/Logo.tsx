@@ -14,11 +14,12 @@ export default function Logo({
   return (
     <Image
       src="/logo.svg"
-      alt="CETRA Logo"
+      alt="CETRA - Centro de Trasplante Pulmonar y Medicina Respiratoria Avanzada"
       className={className}
       width={width ?? 256}
       height={height ?? 256}
       priority
+      fetchPriority="high"
       style={{
         cursor: 'default',
         display: 'block',

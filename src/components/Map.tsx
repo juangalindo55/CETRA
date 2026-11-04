@@ -73,7 +73,7 @@ export default function Map() {
                 <Phone className="h-4 w-4 text-[#311B92]" />
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-gray-400">Teléfono directo</p>
+                <p className="text-[10px] uppercase tracking-wider text-gray-700 font-medium">Teléfono directo</p>
                 <p className="text-sm font-medium text-[#120726] transition-colors hover:text-[#7C3AED]">
                   {CONTACT_PHONE_DISPLAY}
                 </p>
@@ -85,9 +85,9 @@ export default function Map() {
                 <Clock className="h-4 w-4 text-[#311B92]" />
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-gray-400">Horario de atención</p>
-                <p className="text-sm text-gray-500">{CETRA_LOCATION.hours}</p>
-                <p className="text-sm text-gray-500">{CETRA_LOCATION.saturdayHours}</p>
+                <p className="text-[10px] uppercase tracking-wider text-gray-700 font-medium">Horario de atención</p>
+                <p className="text-sm text-gray-700">{CETRA_LOCATION.hours}</p>
+                <p className="text-sm text-gray-700">{CETRA_LOCATION.saturdayHours}</p>
               </div>
             </div>
           </div>

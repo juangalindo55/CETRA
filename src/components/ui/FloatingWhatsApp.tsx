@@ -37,14 +37,14 @@ export default function FloatingWhatsApp() {
         <div className="relative bg-white text-slate-800 p-3.5 rounded-2xl shadow-xl border border-slate-100 max-w-xs animate-in fade-in slide-in-from-bottom-2 duration-200">
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-2 right-2 text-slate-400 hover:text-slate-600 p-1"
+            className="absolute top-2 right-2 text-slate-600 hover:text-slate-900 p-1"
             aria-label="Cerrar mensaje"
           >
             <X size={14} />
           </button>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <p className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <p className="text-xs font-semibold text-emerald-800 uppercase tracking-wider">
               Atención CETRA
             </p>
           </div>

@@ -180,7 +180,7 @@ export default function Home() {
               alt="Especialista de CETRA durante una evaluación respiratoria"
               fill
               priority
-              sizes="42vw"
+              sizes="(min-width: 1024px) 42vw, 1px"
               className="object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" />
@@ -244,7 +244,11 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold">{area.title}</h3>
                     <p className="mt-3 max-w-2xl leading-7 text-gray-600">{area.text}</p>
                     <p className="mt-4 text-sm leading-6 text-violet-heritage">{area.items}</p>
-                    <Link href={area.href} className="motion-link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+                    <Link
+                      href={area.href}
+                      aria-label={`Explorar servicios de ${area.title.toLowerCase()}`}
+                      className="motion-link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink"
+                    >
                       Explorar servicios
                       <ArrowRight className="motion-link-arrow h-4 w-4" />
                     </Link>
@@ -330,12 +334,13 @@ export default function Home() {
           </Reveal>
           <dl className="mt-14 grid gap-10 border-t border-white/25 pt-10 sm:grid-cols-3 sm:gap-8">
             {stats.map((stat) => (
-              <div key={stat.value}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-display text-6xl font-light tracking-[-0.02em] text-white sm:text-7xl">
+              <div key={stat.value} className="flex flex-col">
+                <dd className="order-1 font-display text-6xl font-light tracking-[-0.02em] text-white sm:text-7xl">
                   {stat.value}
                 </dd>
-                <p className="mt-4 max-w-xs text-sm leading-6 text-white/65">{stat.label}</p>
+                <dt className="order-2 mt-4 max-w-xs text-sm leading-6 text-white/75">
+                  {stat.label}
+                </dt>
               </div>
             ))}
           </dl>

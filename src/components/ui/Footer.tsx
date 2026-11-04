@@ -28,8 +28,8 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-[10px] font-semibold mb-5 text-[#7C3AED] uppercase tracking-[0.2em]">Institución</h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <h4 className="text-[10px] font-semibold mb-5 text-[#311B92] uppercase tracking-[0.2em]">Institución</h4>
+            <ul className="space-y-3 text-sm text-gray-700">
               <li><Link href="/servicios" className="hover:text-[#311B92] transition-colors duration-200">Servicios</Link></li>
               <li><Link href="/especialistas" className="hover:text-[#311B92] transition-colors duration-200">Especialistas</Link></li>
               <li><Link href="/blog" className="hover:text-[#311B92] transition-colors duration-200">Blog</Link></li>
@@ -40,8 +40,8 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-[10px] font-semibold mb-5 text-[#7C3AED] uppercase tracking-[0.2em]">Legal</h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <h4 className="text-[10px] font-semibold mb-5 text-[#311B92] uppercase tracking-[0.2em]">Legal</h4>
+            <ul className="space-y-3 text-sm text-gray-700">
               <li><Link href="/privacidad" className="hover:text-[#311B92] transition-colors duration-200">Aviso de Privacidad</Link></li>
               <li><Link href="/terminos" className="hover:text-[#311B92] transition-colors duration-200">Términos y Condiciones</Link></li>
             </ul>

@@ -72,7 +72,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-lavender-line pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} CETRA. Todos los derechos reservados.</span>
-          <span className="tracking-widest uppercase text-[9px] text-[#7C3AED]/60">Medicina Respiratoria de Alta Especialidad</span>
+          <span className="tracking-widest uppercase text-[9px] font-medium text-[#311B92]">Medicina Respiratoria de Alta Especialidad</span>
         </div>
       </div>
     </footer>

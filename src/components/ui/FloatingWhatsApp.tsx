@@ -59,7 +59,7 @@ export default function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         data-cta-placement="floating-whatsapp"
-        aria-label="Contactar por WhatsApp para citas"
+        aria-label="Agendar Cita por WhatsApp"
         className="group relative flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
       >
         <MessageCircle size={24} className="fill-current text-white shrink-0" />

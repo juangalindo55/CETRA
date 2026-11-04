@@ -41,5 +41,9 @@
     "last 2 Safari versions",
     "last 2 Edge versions",
     "not dead"
-  ]
+  ],
+  "allowScripts": {
+    "puppeteer@25.12.0": true,
+    "unrs-resolver@1.11.1": true
+  }
 }
